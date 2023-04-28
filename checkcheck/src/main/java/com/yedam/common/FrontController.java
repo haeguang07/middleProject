@@ -26,6 +26,7 @@ public class FrontController extends HttpServlet{
 		map.put("/main.do", new mainControl());
 		map.put("/taeyeon.do", new TaeYeonControl());
 		//상품목록페이지
+		map.put("/hwan.do", new hwanControl());
 		map.put("jung.do", new JungContorol());
 		
 	}
