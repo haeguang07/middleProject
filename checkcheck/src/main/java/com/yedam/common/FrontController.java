@@ -13,11 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 
 
 import com.yedam.common.Control;
-<<<<<<< HEAD
+
 import com.yedam.user.control.joinControl;
-=======
+
 import com.yedam.user.control.BasketControl;
->>>>>>> branch 'main' of https://github.com/haeguang07/middleProject.git
 import com.yedam.user.control.loginControl;
 
 public class FrontController extends HttpServlet{
