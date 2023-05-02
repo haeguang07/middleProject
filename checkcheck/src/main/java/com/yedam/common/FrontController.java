@@ -25,8 +25,10 @@ public class FrontController extends HttpServlet{
 	public void init(ServletConfig config) throws ServletException{
 		encoding = config.getInitParameter("enc");
 		map.put("/main.do", new mainControl());
+		map.put("/search.do", new SearchPageControl());
 		//로그인 기능(get:화면으로, post:로그인 기능)
 		map.put("/login.do", new loginControl());
+		
 
 		
 	}
