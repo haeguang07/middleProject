@@ -31,10 +31,13 @@ public class FrontController extends HttpServlet{
 	public void init(ServletConfig config) throws ServletException{
 		encoding = config.getInitParameter("enc");
 		map.put("/main.do", new mainControl());
+		//관리자 재고관리 기능
+		map.put("/bookStock.do",new BookStockControl());
+		//검색 기능
 		map.put("/search.do", new SearchPageControl());
+		//상세페이지 기능
 		map.put("/getBook.do", new GetBookControl());
 		//로그인 기능(get:화면으로, post:로그인 기능)
-
 		map.put("/login.do", new loginControl());
 		//회원가입 기능(get:화면1, post:화면2)
 		map.put("/joinForm.do", new joinControl());
