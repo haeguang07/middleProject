@@ -78,7 +78,9 @@
   --bs-code-color: #d63384;
   --bs-highlight-bg: #fff3cd;
 }
-
+#normarborderstyle{
+	border:solid black 1px;
+}
 #nav123 li{
   color:black !important;
 }

@@ -22,6 +22,7 @@ import com.yedam.user.control.WaitPaymentControl;
 import com.yedam.user.control.loginControl;
 import com.yedam.user.control.myPageOrderControl;
 import com.yedam.user.control.MypageUserInfoControl;
+import com.yedam.user.control.OrderCompleteControl;
 
 public class FrontController extends HttpServlet{
 	private Map<String, Control> map;
@@ -45,7 +46,7 @@ public class FrontController extends HttpServlet{
 		map.put("/basket.do", new BasketControl());
 		//05-02 배송정보페이지 김영환 - css더 다듬어야함 기능넣어야됨
 		map.put("/delivery.do", new DeliveryControl());
-		//05-02 결제페이지 김영환 - 둘다해야됨
+		//05-02 결제페이지 김영환 - css더 다듬어야함 기능넣어야됨
 		map.put("/waitpayment.do", new WaitPaymentControl());
 		
 		map.put("/login.do", new loginControl());
@@ -60,6 +61,8 @@ public class FrontController extends HttpServlet{
 
 		//05-02 장바구니페이지
 		map.put("/basket.do", new BasketControl());
+		//05-02 주문완료페이지
+		map.put("/ordercomplete.do", new OrderCompleteControl());
 		
 	}
 	@Override
