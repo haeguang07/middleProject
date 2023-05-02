@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 import com.yedam.common.Control;
+import com.yedam.user.control.loginControl;
 
 public class FrontController extends HttpServlet{
 	private Map<String, Control> map;
@@ -24,10 +25,9 @@ public class FrontController extends HttpServlet{
 	public void init(ServletConfig config) throws ServletException{
 		encoding = config.getInitParameter("enc");
 		map.put("/main.do", new mainControl());
-		map.put("/taeyeon.do", new TaeYeonControl());
-		//상품목록페이지
-		map.put("/hwan.do", new hwanControl());
-		map.put("jung.do", new JungContorol());
+		//로그인 기능(get:화면으로, post:로그인 기능)
+		map.put("/login.do", new loginControl());
+
 		
 	}
 	@Override

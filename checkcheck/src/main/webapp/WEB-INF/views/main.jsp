@@ -52,7 +52,7 @@
         </nav>
         <!-- Header-->
         <header class="bg-dark py-5" style="position: relative;">
-            <img src="image/logo.png" style="position: absolute; ">
+            <img src="image/logo.png" style="position: absolute;width:150px;height:150px;margin-left:40px">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
                     <h1 class="display-4 fw-bolder"><select style="width:100px;height:50px;font-size:16px;" value="통합검색"><option>통합검색</option><option>국내도서</option><option>외국도서</option></select><input style="width:500px;height:50px;font-size:16px;" type="text" name="search" value="검색"><input style="width:100px;height:50px;font-size:16px;" type="button" value="검색">
@@ -141,7 +141,7 @@
         <script>
             $(function() {
         $(window).scroll(function() {
-            if ($(this).scrollTop() > 500) {
+            if ($(this).scrollTop() > 100) {
                 $('#MOVE_TOP_BTN').fadeIn();
             } else {
                 $('#MOVE_TOP_BTN').fadeOut();
@@ -157,5 +157,4 @@
     });
         </script>
     </body>
-</html>
 </html>
