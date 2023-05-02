@@ -11,17 +11,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import com.yedam.admin.control.AddBookControl;
+import com.yedam.admin.control.BookStockControl;
 import com.yedam.common.Control;
 
 import com.yedam.user.control.joinControl;
 
 import com.yedam.user.control.BasketControl;
 import com.yedam.user.control.DeliveryControl;
+import com.yedam.user.control.GetBookControl;
 import com.yedam.user.control.WaitPaymentControl;
 import com.yedam.user.control.loginControl;
+import com.yedam.user.control.mainControl;
 import com.yedam.user.control.myPageOrderControl;
 import com.yedam.user.control.MypageUserInfoControl;
+import com.yedam.user.control.SearchPageControl;
 
 public class FrontController extends HttpServlet{
 	private Map<String, Control> map;
@@ -33,6 +37,8 @@ public class FrontController extends HttpServlet{
 	public void init(ServletConfig config) throws ServletException{
 		encoding = config.getInitParameter("enc");
 		map.put("/main.do", new mainControl());
+		//관리자 도서 추가 기능
+		map.put("/addBook.do", new AddBookControl());
 		//관리자 재고관리 기능
 		map.put("/bookStock.do",new BookStockControl());
 		//검색 기능

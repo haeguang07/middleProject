@@ -1,10 +1,12 @@
-package com.yedam.common;
+package com.yedam.user.control;
 
 import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.yedam.common.Control;
 
 public class mainControl implements Control {
 
