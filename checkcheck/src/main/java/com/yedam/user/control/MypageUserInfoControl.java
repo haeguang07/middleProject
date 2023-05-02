@@ -8,11 +8,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
 
-public class myPagePrivacyControl implements Control {
+public class MypageUserInfoControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		if(req.getMethod().equals("GET")) {
+			
+			
+			return "myPage/passwordCheck.tiles";
+			
+		}else if(req.getMethod().equals("POST")) {
+			
+			return "myPage/modifyInfo.tiles";
+			
+		}
 		return null;
 	}
 

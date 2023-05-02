@@ -19,7 +19,7 @@ import com.yedam.user.control.joinControl;
 import com.yedam.user.control.BasketControl;
 import com.yedam.user.control.loginControl;
 import com.yedam.user.control.myPageOrderControl;
-import com.yedam.user.control.myPagePrivacyControl;
+import com.yedam.user.control.MypageUserInfoControl;
 
 public class FrontController extends HttpServlet{
 	private Map<String, Control> map;
@@ -41,9 +41,9 @@ public class FrontController extends HttpServlet{
 		//로그인 기능
 		map.put("/join.do", new joinControl());
 		//마이페이지 이동(주문 조회로)
-		map.put("/myPageOrder.do", new myPageOrderControl());
+		map.put("/myPageMain.do", new myPageOrderControl());
 		//개인정보수정(get:화면1(비밀번호입력), post:화면2(수정페이지))
-		map.put("/myPagePrivacy.do", new myPagePrivacyControl() );
+		map.put("/myPageUserInfo.do", new MypageUserInfoControl() );
 
 		//05-02 장바구니페이지
 		map.put("/basket.do", new BasketControl());
