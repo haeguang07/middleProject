@@ -13,7 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 
 
 import com.yedam.common.Control;
+<<<<<<< HEAD
 import com.yedam.user.control.joinControl;
+=======
+import com.yedam.user.control.BasketControl;
+>>>>>>> branch 'main' of https://github.com/haeguang07/middleProject.git
 import com.yedam.user.control.loginControl;
 
 public class FrontController extends HttpServlet{
@@ -26,12 +30,18 @@ public class FrontController extends HttpServlet{
 	public void init(ServletConfig config) throws ServletException{
 		encoding = config.getInitParameter("enc");
 		map.put("/main.do", new mainControl());
+		map.put("/search.do", new SearchPageControl());
 		//로그인 기능(get:화면으로, post:로그인 기능)
+
 		map.put("/login.do", new loginControl());
 		//회원가입 기능(get:화면으로, post:로그인 기능)
 		map.put("/join.do", new joinControl());
 
 		
+
+		map.put("/login.do", new loginControl());
+		//05-02 장바구니페이지
+		map.put("/basket.do", new BasketControl());
 	}
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
