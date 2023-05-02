@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 import com.yedam.common.Control;
+import com.yedam.user.control.joinControl;
 import com.yedam.user.control.loginControl;
 
 public class FrontController extends HttpServlet{
@@ -27,6 +28,8 @@ public class FrontController extends HttpServlet{
 		map.put("/main.do", new mainControl());
 		//로그인 기능(get:화면으로, post:로그인 기능)
 		map.put("/login.do", new loginControl());
+		//회원가입 기능(get:화면으로, post:로그인 기능)
+		map.put("/join.do", new joinControl());
 
 		
 	}
