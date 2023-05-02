@@ -13,8 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 
 
 import com.yedam.common.Control;
+
+import com.yedam.user.control.joinControl;
+
 import com.yedam.user.control.BasketControl;
 import com.yedam.user.control.loginControl;
+import com.yedam.user.control.myPageOrderControl;
+import com.yedam.user.control.myPagePrivacyControl;
 
 public class FrontController extends HttpServlet{
 	private Map<String, Control> map;
@@ -29,7 +34,17 @@ public class FrontController extends HttpServlet{
 		map.put("/search.do", new SearchPageControl());
 		map.put("/getBook.do", new GetBookControl());
 		//로그인 기능(get:화면으로, post:로그인 기능)
+
 		map.put("/login.do", new loginControl());
+		//회원가입 기능(get:화면1, post:화면2)
+		map.put("/joinForm.do", new joinControl());
+		//로그인 기능
+		map.put("/join.do", new joinControl());
+		//마이페이지 이동(주문 조회로)
+		map.put("/myPageOrder.do", new myPageOrderControl());
+		//개인정보수정(get:화면1(비밀번호입력), post:화면2(수정페이지))
+		map.put("/myPagePrivacy.do", new myPagePrivacyControl() );
+
 		//05-02 장바구니페이지
 		map.put("/basket.do", new BasketControl());
 	}
