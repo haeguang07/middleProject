@@ -44,7 +44,7 @@
 			</tr>
 			<tr>
 				<td style="width: 500px; text-align: center; display: inline-block">셰임 머신 - 수치심이 탄생시킨 혐오 시대, 그 이면의 거대 산업 생태계</td>
-				<td style="width: 180px; text-align: center; display: inline-block">16,650/832</td>
+				<td style="width: 180px; text-align: center; display: inline-block">16,650원/832p</td>
 				<td style="width: 150px; text-align: center; display: inline-block">1</td>
 			</tr>
 		</table>

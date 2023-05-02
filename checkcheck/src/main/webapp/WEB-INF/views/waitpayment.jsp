@@ -47,7 +47,7 @@
 	<p>3</p>
 	<p>4</p>
 </div>
-<div style="text-align: center; width:800px">
+<div style="text-align: center; width:900px">
 	<p style="display:inline-block">사용할포인트()<input type="text" value="ex) 500(p)"></p>
 	<p style="padding-left:200px; display:inline-block">현재 사용 가능한 포인트(5000p)</p>
 </div>
@@ -57,7 +57,7 @@
 <div style="margin:0 auto">
 	<table>
 		<tr>
-			<td><input type="radio" name="remember" style="margin: 15px"><b>카카오</b></td>
+			<td><input type="radio" name="remember" style="margin: 15px "><b>카카오</b></td>
 			<td><input type="radio" name="remember" style="margin: 15px"><b>네이버</b></td>
 			<td><input type="radio" name="remember" style="margin: 15px"><b>토스</b></td>
 		</tr>
@@ -68,9 +68,18 @@
 		</tr>
 	</table>
 </div>
+<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4" style="width:800px; margin:0 auto">
+  <table>
+	<tr><td>총 가격 : 50,000</td></tr>
+	<tr><td>할인금액 : 5,000</td></tr>
+	<tr><td>결제금액 : 45,000</td></tr>
+  </table>
+</div>
+<div style="text-align:right; padding-right:200px; padding-top:30px; padding-bottom:30px">
+	<button type="submit" value="submit">결제하기</button>
+</div>
 <div id="MOVE_TOP_BTN">
-	<a href="#"><div
-			style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative">
+	<a href="#"><div style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative">
 			<p style="font-size: 12px; position: absolute; top: 15px; left: 15px;">top</p>
 		</div></a> <a href="#"><div style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative">
 			<p style="font-size: 12px; position: absolute; top: 15px; left: 5px;">로그인</p>
