@@ -11,7 +11,7 @@ public class mainControl implements Control {
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		return "main.tiles";
+		return "WEB-INF/views/main.jsp";
 	}
 
 }
