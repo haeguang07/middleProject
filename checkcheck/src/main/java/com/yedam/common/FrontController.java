@@ -27,6 +27,7 @@ public class FrontController extends HttpServlet{
 		encoding = config.getInitParameter("enc");
 		map.put("/main.do", new mainControl());
 		map.put("/search.do", new SearchPageControl());
+		map.put("/getBook.do", new GetBookControl());
 		//로그인 기능(get:화면으로, post:로그인 기능)
 		map.put("/login.do", new loginControl());
 		//05-02 장바구니페이지
