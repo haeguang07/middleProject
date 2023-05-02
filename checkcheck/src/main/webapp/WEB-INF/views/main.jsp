@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!-- Section-->
+
 <section class="py-5">
 	<div class="container px-4 px-lg-5 mt-5">
 		<div
@@ -87,6 +87,9 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
 <script src="js/scripts.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.js"
+   integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+   crossorigin="anonymous"></script>
 <script>
 	$(function() {
 		$(window).scroll(function() {
