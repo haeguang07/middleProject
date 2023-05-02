@@ -20,17 +20,19 @@
 <link href="css/styles.css" rel="stylesheet" />
 </head>
 <body>
-	<!-- Navigation-->
-	<div id="page-content-wrapper">
-		<tiles:insertAttribute name="nav"></tiles:insertAttribute>
-	</div>
-	<!-- Section-->
-	<div id="page-content-wrapper">
-		<tiles:insertAttribute name="body"></tiles:insertAttribute>
-	</div>
-	<!-- Footer-->
-	<div>
-		<tiles:insertAttribute name="footer"></tiles:insertAttribute>
+	<div id="container" style="width:1200px; margin:0 auto;">
+		<!-- Navigation-->
+		<div id="page-content-wrapper">
+			<tiles:insertAttribute name="nav"></tiles:insertAttribute>
+		</div>
+		<!-- Section-->
+		<div id="page-content-wrapper">
+			<tiles:insertAttribute name="body"></tiles:insertAttribute>
+		</div>
+		<!-- Footer-->
+		<div>
+			<tiles:insertAttribute name="footer"></tiles:insertAttribute>
+		</div>
 	</div>
 </body>
 </html>
