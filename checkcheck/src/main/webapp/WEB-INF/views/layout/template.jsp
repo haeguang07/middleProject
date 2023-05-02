@@ -30,7 +30,7 @@
 			<tiles:insertAttribute name="body"></tiles:insertAttribute>
 		</div>
 		<!-- Footer-->
-		<div>
+		<div style="clear:both">
 			<tiles:insertAttribute name="footer"></tiles:insertAttribute>
 		</div>
 	</div>
