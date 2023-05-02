@@ -60,6 +60,7 @@ public class FrontController extends HttpServlet{
 
 		//05-02 장바구니페이지
 		map.put("/basket.do", new BasketControl());
+		
 	}
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
