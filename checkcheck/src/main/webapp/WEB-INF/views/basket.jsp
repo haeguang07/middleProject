@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<!-- 05-02 김영환 -->
 <html lang="en">
 <head>
 <meta charset="utf-8" />
@@ -21,53 +22,129 @@
 	integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
 	crossorigin="anonymous"></script>
 </head>
-	<!-- Navigation-->
-		<!-- Section-->
-		<section class="py-5">
-			<div class="container px-4 px-lg-5 mt-5">
-				<div
-					class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
-					<div class="col mb-5">
-						<ul>
-							<li><label><input type='checkbox' name='animal' value='selectall' onclick='selectAll(this)'/>Select All</label></li>
-							<li><input type='checkbox' name='animal' value='dog'/>asd</li>
+<!-- Navigation-->
+<!-- Section-->
+<section class="py-5">
+	<div class="container px-4 px-lg-5 mt-5">
+		<input type='checkbox' name='animal' value='selectall'
+			onclick='selectAll(this)' style="padding-bottom:5px"/> <b>전체선택</b>
+			<p></p>
+			<p style="width:300px; text-align:right; display:inline-block">도서제목</p>
+			<p style="width:150px; text-align:right; display:inline-block">가격</p>
+			<p style="width:270px; text-align:right; display:inline-block">수량</p>
+			<p style="width:260px; text-align:right; display:inline-block">삭제</p>
+		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
+			
+				<form action="" method="post"style="position: relative; width: 1100px; text-align:center">
+					<table>
+						<tr>
+							<td><input type="checkbox" checked="checked" name="remember" style="margin: 15px"></td>
+							<td rowspan="5"><img src="image/logo.png"
+								style="width: 150px; height: 150px"></td>
+							<td style="width: 200px" style="word-break:break-all">[국내도서]
+								아주 위험한 과학책<br>랜들 먼로 지음
+							</td>
+							<td style="padding: 0 40px; width: 300px; word-break: break-all">정가
+								: 50000원<br>포인트 : 2000p
+							</td>
+							<td style="padding: 0 40px; width: 400px; word-break: break-all">
+								<input type="text" value="1"></input>
+							</td>
+							<td style="padding: 0 40px; width: 200px; word-break: break-all">
+								<button type="reset">삭제</button>
+							</td>
 							
-							<li><input type='checkbox'  name='animal' value='cat' /> 고양이</li>
-							<li><input type='checkbox' name='animal' value='rabbit' /> 토끼</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</section>
-		<div id="MOVE_TOP_BTN">
-			<a href="#"><div style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative">
-					<p style="font-size: 12px; position: absolute; top: 15px; left: 15px;">top</p></div></a>
-			<a href="#"><div style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative">
-					<p style="font-size: 12px; position: absolute; top: 15px; left: 5px;">로그인</p></div></a> 
-			<a href="#"><div style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative">
-					<p style="font-size: 10px; position: absolute; top: 15px; left: 5px;">회원가입</p></div></a>
+						</tr>
+					</table>
+				</form>
 		</div>
-		<!-- Footer-->
-	<!-- Bootstrap core JS-->
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-	<!-- Core theme JS-->
-	<script src="js/scripts.js"></script>
-	<script>
-		$(function() {
-			$(window).scroll(function() {
-				if ($(this).scrollTop() > 100) {
-					$('#MOVE_TOP_BTN').fadeIn();
-				} else {
-					$('#MOVE_TOP_BTN').fadeOut();
-				}
-			});
-
-			$("#MOVE_TOP_BTN").click(function() {
-				$('html, body').animate({
-					scrollTop : 0
-				}, 400);
-				return false;
-			});
+		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
+			<form action="" method="post"style="position: relative; width: 1100px; text-align:center">
+					<table>
+						<tr>
+							<td><input type="checkbox" checked="checked" name="remember" style="margin: 15px"></td>
+							<td rowspan="5"><img src="image/logo.png"
+								style="width: 150px; height: 150px"></td>
+							<td style="width: 200px" style="word-break:break-all">[국내도서]
+								아주 위험한 과학책<br>랜들 먼로 지음
+							</td>
+							<td style="padding: 0 40px; width: 300px; word-break: break-all">정가
+								: 50000원<br>포인트 : 2000p
+							</td>
+							<td style="padding: 0 40px; width: 400px; word-break: break-all">
+								<input type="text" value="1"></input>
+							</td>
+							<td style="padding: 0 40px; width: 200px; word-break: break-all">
+								<button type="reset">삭제</button>
+							</td>
+							
+						</tr>
+					</table>
+				</form>
+		</div>
+		<div class="container px-4 px-lg-5 mt-5" style="text-align: center">
+			<div id="basketform"
+				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4"
+				style="text-align: center; display: inline-block">
+				<form class="form-inline center" role="form" action="" method="post"
+					style="text-align: center; width: 500px;">
+					<p>현재주소
+						<button type="submit" value="변경" style="padding:5px 15px">변경</button><br>
+						대구 광역시 중구 중앙대로 403 5층 예담 직업전문학교<br><br>
+						총 상품 가격 : 37,350원<br>
+						상품 포인트 : 1,867원<br> 예상 총 포인트 : 9,467원<br><br>
+						VIP : 3% VVIP : 5%<br><br>
+						<button type="submit" value="주문" style="padding:5px 15px">주문</button>
+						<button type="submit" value="선물" style="padding:5px 15px">선물</button>
+						<button type="submit" value="삭제" style="padding:5px 15px">삭제</button>
+					</p>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+<div id="MOVE_TOP_BTN">
+	<a href="#"><div
+			style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative">
+			<p
+				style="font-size: 12px; position: absolute; top: 15px; left: 15px;">top</p>
+		</div></a> <a href="#"><div
+			style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative">
+			<p style="font-size: 12px; position: absolute; top: 15px; left: 5px;">로그인</p>
+		</div></a> <a href="#"><div
+			style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative">
+			<p style="font-size: 10px; position: absolute; top: 15px; left: 5px;">회원가입</p>
+		</div></a>
+</div>
+<!-- Footer-->
+<!-- Bootstrap core JS-->
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="js/scripts.js"></script>
+<script>
+	$(function() {
+		$(window).scroll(function() {
+			if ($(this).scrollTop() > 100) {
+				$('#MOVE_TOP_BTN').fadeIn();
+			} else {
+				$('#MOVE_TOP_BTN').fadeOut();
+			}
 		});
-	</script>
+
+		$("#MOVE_TOP_BTN").click(function() {
+			$('html, body').animate({
+				scrollTop : 0
+			}, 400);
+			return false;
+		});
+	});
+	function selectAll(selectAll)  {
+		  const checkboxes 
+		     = document.querySelectorAll('input[type="checkbox"]');
+		  
+		  checkboxes.forEach((checkbox) => {
+		    checkbox.checked = selectAll.checked
+		  })
+		}
+</script>

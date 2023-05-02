@@ -17,6 +17,8 @@ import com.yedam.common.Control;
 import com.yedam.user.control.joinControl;
 
 import com.yedam.user.control.BasketControl;
+import com.yedam.user.control.DeliveryControl;
+import com.yedam.user.control.WaitPaymentControl;
 import com.yedam.user.control.loginControl;
 import com.yedam.user.control.myPageOrderControl;
 import com.yedam.user.control.MypageUserInfoControl;
@@ -38,6 +40,14 @@ public class FrontController extends HttpServlet{
 		//상세페이지 기능
 		map.put("/getBook.do", new GetBookControl());
 		//로그인 기능(get:화면으로, post:로그인 기능)
+		map.put("/login.do", new loginControl());
+		//05-02 장바구니페이지 김영환 - css더 다듬어야함 기능넣어야함
+		map.put("/basket.do", new BasketControl());
+		//05-02 배송정보페이지 김영환 - css더 다듬어야함 기능넣어야됨
+		map.put("/delivery.do", new DeliveryControl());
+		//05-02 결제페이지 김영환 - 둘다해야됨
+		map.put("/waitpayment.do", new WaitPaymentControl());
+		
 		map.put("/login.do", new loginControl());
 		//회원가입 기능(get:화면1, post:화면2)
 		map.put("/joinForm.do", new joinControl());
