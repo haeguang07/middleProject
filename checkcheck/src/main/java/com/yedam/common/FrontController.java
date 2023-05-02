@@ -49,13 +49,13 @@ public class FrontController extends HttpServlet{
 		map.put("/waitpayment.do", new WaitPaymentControl());
 		
 		map.put("/login.do", new loginControl());
-		//회원가입 기능(get:화면1, post:화면2)
+		//05-02회원가입 기능(get:화면1, post:화면2)
 		map.put("/joinForm.do", new joinControl());
-		//로그인 기능
+		//05-02로그인 기능
 		map.put("/join.do", new joinControl());
-		//마이페이지 이동(주문 조회로)
+		//05-02마이페이지 이동(주문 조회로)
 		map.put("/myPageMain.do", new myPageOrderControl());
-		//개인정보수정(get:화면1(비밀번호입력), post:화면2(수정페이지))
+		//05-02개인정보수정(get:화면1(비밀번호입력), post:화면2(수정페이지))
 		map.put("/myPageUserInfo.do", new MypageUserInfoControl() );
 
 		//05-02 장바구니페이지
