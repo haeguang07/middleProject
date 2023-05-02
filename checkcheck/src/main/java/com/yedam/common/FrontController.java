@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
 import com.yedam.user.control.BasketControl;
+import com.yedam.user.control.DeliveryControl;
+import com.yedam.user.control.WaitPaymentControl;
 import com.yedam.user.control.loginControl;
 
 public class FrontController extends HttpServlet{
@@ -29,8 +31,12 @@ public class FrontController extends HttpServlet{
 		map.put("/search.do", new SearchPageControl());
 		//로그인 기능(get:화면으로, post:로그인 기능)
 		map.put("/login.do", new loginControl());
-		//05-02 장바구니페이지
+		//05-02 장바구니페이지 김영환 - css더 다듬어야함 기능넣어야함
 		map.put("/basket.do", new BasketControl());
+		//05-02 배송정보페이지 김영환 - css더 다듬어야함 기능넣어야됨
+		map.put("/delivery.do", new DeliveryControl());
+		//05-02 결제페이지 김영환 - 둘다해야됨
+		map.put("/waitpayment.do", new WaitPaymentControl());
 	}
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

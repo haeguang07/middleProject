@@ -82,6 +82,17 @@
 #nav123 li{
   color:black !important;
 }
+#checkdiv{
+	text-align:left;
+}
+#checkdiv li{
+	text-align:left;
+}
+#divdelivery {
+  width : 900px;
+  background-color: white;
+  border: 1px solid black;
+}
 *,
 *::before,
 *::after {
