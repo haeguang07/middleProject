@@ -78,7 +78,9 @@
   --bs-code-color: #d63384;
   --bs-highlight-bg: #fff3cd;
 }
-
+#nav123 li{
+  color:black !important;
+}
 *,
 *::before,
 *::after {
@@ -667,6 +669,7 @@ progress {
   }
 }
 .row {
+  border: 1px solid black;
   --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;
   display: flex;
@@ -674,6 +677,8 @@ progress {
   margin-top: calc(-1 * var(--bs-gutter-y));
   margin-right: calc(-0.5 * var(--bs-gutter-x));
   margin-left: calc(-0.5 * var(--bs-gutter-x));
+  margin-bottom: 10px;
+  padding:10px;
 }
 .row > * {
   flex-shrink: 0;
@@ -3099,8 +3104,10 @@ textarea.form-control-lg {
 }
 
 .btn-outline-dark {
+  margin:2px;
+  background-color: white;
   --bs-btn-color: #212529;
-  --bs-btn-border-color: #212529;
+  --bs-btn-border-color: rgba(128, 128, 128, 0.309);
   --bs-btn-hover-color: #fff;
   --bs-btn-hover-bg: #212529;
   --bs-btn-hover-border-color: #212529;
@@ -4274,6 +4281,7 @@ textarea.form-control-lg {
 .card-img-top,
 .card-img-bottom {
   width: 100%;
+  height:350px;
 }
 
 .card-img,
@@ -7025,6 +7033,8 @@ textarea.form-control-lg {
 
 .d-flex {
   display: flex !important;
+  float:right;
+
 }
 
 .d-inline-flex {
@@ -7668,8 +7678,12 @@ textarea.form-control-lg {
 
 .mb-5 {
   margin-bottom: 3rem !important;
+  margin-top:3rem;
 }
-
+#box{
+  width:1200px;
+  margin:0 auto;
+}
 .mb-auto {
   margin-bottom: auto !important;
 }
@@ -7782,10 +7796,21 @@ textarea.form-control-lg {
 }
 
 .py-5 {
-  padding-top: 3rem !important;
-  padding-bottom: 3rem !important;
-}
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
 
+}
+.py-5 ul{
+  margin-top:20px;
+  margin-left: 400px;
+  list-style: none;
+}
+.py-5 li{
+  color: white;
+  font-size: 16px;
+  float: left;
+  margin-left: 10px;
+}
 .pt-0 {
   padding-top: 0 !important;
 }
@@ -7818,6 +7843,17 @@ textarea.form-control-lg {
   padding-right: 0.25rem !important;
 }
 
+#MOVE_TOP_BTN {
+  text-align: center;
+  position: fixed;
+  right: 2%;
+  bottom: 50px;
+  display: none;
+  z-index: 999;
+}
+#MOVE_TOP_BTN a {
+  display: block;
+}
 .pe-2 {
   padding-right: 0.5rem !important;
 }
@@ -8100,7 +8136,7 @@ textarea.form-control-lg {
 
 .text-white-50 {
   --bs-text-opacity: 1;
-  color: rgba(255, 255, 255, 0.5) !important;
+  color: black !important;
 }
 
 .text-reset {
@@ -8161,7 +8197,8 @@ textarea.form-control-lg {
 
 .bg-dark {
   --bs-bg-opacity: 1;
-  background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+  background-color: white !important;
+  border:1px solid black;
 }
 
 .bg-black {
