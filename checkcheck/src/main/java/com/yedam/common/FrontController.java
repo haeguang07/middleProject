@@ -17,6 +17,7 @@ import com.yedam.common.Control;
 import com.yedam.user.control.joinControl;
 
 import com.yedam.user.control.BasketControl;
+import com.yedam.user.control.BoardControl;
 import com.yedam.user.control.DeliveryControl;
 import com.yedam.user.control.WaitPaymentControl;
 import com.yedam.user.control.loginControl;
@@ -61,8 +62,10 @@ public class FrontController extends HttpServlet{
 
 		//05-02 장바구니페이지
 		map.put("/basket.do", new BasketControl());
-		//05-02 주문완료페이지
+		//05-02 주문완료페이지 - css더 다듬어야함 기능(홈으로 누르면 메인페이지가는 링크, 주문정보 누르면 다른페이지로 이동하는링크)
 		map.put("/ordercomplete.do", new OrderCompleteControl());
+		//05-02 공지사항목록페이지
+		map.put("/board.do", new BoardControl());
 		
 	}
 	@Override
