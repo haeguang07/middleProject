@@ -8,12 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
 
-public class joinControl implements Control {
+public class JoinFormControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		return "WEB-INF/views/user/join.jsp";
+		return null;
 	}
 
 }
