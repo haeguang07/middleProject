@@ -17,6 +17,7 @@ import com.yedam.admin.control.BookStockControl;
 import com.yedam.admin.control.ChartControl;
 import com.yedam.admin.control.ChulgoControl;
 import com.yedam.admin.control.InquiryAnswerFormControl;
+import com.yedam.book.control.InsertBookControl;
 import com.yedam.common.Control;
 
 import com.yedam.user.control.JoinControl;
@@ -55,6 +56,8 @@ public class FrontController extends HttpServlet{
 		map.put("/chulgo.do", new ChulgoControl());
 		//관리자 도서 추가 기능
 		map.put("/addBook.do", new AddBookControl());
+		//관리자 도서추가기능
+		map.put("/insertbook.do", new InsertBookControl());
 		//관리자 재고관리 기능
 		map.put("/bookStock.do",new BookStockControl());
 		//05-03 관리자 문의내용 페이지
