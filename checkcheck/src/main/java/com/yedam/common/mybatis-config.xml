@@ -10,6 +10,7 @@
   </settings>
   <typeAliases>
   <typeAlias alias="book" type="com.yedam.book.domain.BookVO" />
+  <typeAlias alias="user" type="com.yedam.user.domain.UserVO" />
   
   </typeAliases>
   <environments default="development">
@@ -25,6 +26,7 @@
   </environments>
   <mappers>
   	<mapper resource="com/yedam/book/mapper/BookMapper.xml" />
+  	<mapper resource="com/yedam/user/mapper/UserMapper.xml" />
   	
   </mappers>
 </configuration>
