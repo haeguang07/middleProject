@@ -17,4 +17,14 @@
 	<insert id="addbook" parameterType="book">
 		insert into books values (#{isbn},#{bookName},#{bookPrice},#{author},#{publisher},#{bookCategory},#{bookDetail},#{bookCount},#{hitCount},#{bookStock},#{cover})
 	</insert>
+	<select id="mainRecommand" resultType="book">
+	<![CDATA[
+		select rownum,a.*
+		from (select * 
+		from books
+		where book_category like '%>과학%'
+		order by hitcount desc) a
+		where rownum <6;
+		]]>
+	</select>
 </mapper>
