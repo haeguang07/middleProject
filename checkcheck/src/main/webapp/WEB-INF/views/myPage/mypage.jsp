@@ -45,9 +45,9 @@
 			<option value="10">10</option>
 			<option value="11">11</option>
 			<option value="12">12</option>
-		</select>월 <span>상품이름 <input type="text" style="width: 100px">
+		</select>월 <span>상품이름 </span><input type="text" style="width: 100px">
 		<button>검색</button>
-		</span>
+		
 
 		<table>
 			<tr>
