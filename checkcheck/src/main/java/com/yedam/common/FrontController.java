@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.admin.control.AddBookControl;
+import com.yedam.admin.control.AdminInquiryInfoControl;
 import com.yedam.admin.control.BookStockControl;
+import com.yedam.admin.control.InquiryAnswerFormControl;
 import com.yedam.common.Control;
 
 import com.yedam.user.control.JoinControl;
@@ -48,12 +50,18 @@ public class FrontController extends HttpServlet{
 		map.put("/addBook.do", new AddBookControl());
 		//관리자 재고관리 기능
 		map.put("/bookStock.do",new BookStockControl());
+		//05-03 관리자 문의내용 페이지
+		map.put("/adminInquiryInfo.do",new AdminInquiryInfoControl());
+		//05-03 관리자 문의작성 페이지
+		map.put("/inquiryAnswerForm.do",new InquiryAnswerFormControl());
+		
+		
 		//검색 기능
 		map.put("/search.do", new SearchPageControl());
 		//상세페이지 기능
 		map.put("/getBook.do", new GetBookControl());
-		//로그인 기능(get:화면으로, post:로그인 기능)
-		map.put("/login.do", new LoginControl());
+		
+		
 		//05-02 장바구니페이지 김영환 - css더 다듬어야함 기능넣어야함
 		map.put("/basket.do", new BasketControl());
 		//05-02 배송정보페이지 김영환 - css더 다듬어야함 기능넣어야됨
@@ -61,11 +69,14 @@ public class FrontController extends HttpServlet{
 		//05-02 결제페이지 김영환 - css더 다듬어야함 기능넣어야됨
 		map.put("/waitpayment.do", new WaitPaymentControl());
 		
+		
+		//로그인 기능(get:화면으로, post:로그인 기능)
 		map.put("/login.do", new LoginControl());
 		//05-02회원가입 기능(get:화면1, post:화면2)
 		map.put("/joinForm.do", new JoinControl());
 		//05-02로그인 기능
 		map.put("/join.do", new JoinFormControl());
+		
 		//05-02마이페이지 이동(주문 조회로)
 		map.put("/myPageMain.do", new myPageOrderControl());
 		//05-02개인정보수정(get:화면1(비밀번호입력), post:화면2(수정페이지))
