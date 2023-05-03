@@ -19,11 +19,8 @@ import com.yedam.user.control.JoinControl;
 import com.yedam.user.control.JoinFormControl;
 import com.yedam.user.control.BasketControl;
 import com.yedam.user.control.BoardControl;
-<<<<<<< HEAD
 import com.yedam.user.control.BoardDetailControl;
-=======
 import com.yedam.user.control.CouponInfoControl;
->>>>>>> branch 'main' of https://github.com/haeguang07/middleProject.git
 import com.yedam.user.control.DeliveryControl;
 import com.yedam.user.control.GetBookControl;
 import com.yedam.user.control.WaitPaymentControl;
