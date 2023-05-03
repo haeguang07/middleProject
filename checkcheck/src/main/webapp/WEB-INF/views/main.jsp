@@ -15,7 +15,7 @@
 				<ul class="slides">
 				<c:choose>
 				<c:when test="${sesinfo } != null">
-				<c:forEach var="likeBook" items=>
+				<c:forEach var="likeBook" items="">
 					<li>
 						<div class="col mb-5">
 							<div class="card h-100">
