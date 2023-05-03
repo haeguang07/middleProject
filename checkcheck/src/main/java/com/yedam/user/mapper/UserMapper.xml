@@ -6,4 +6,10 @@
 	<select id="selectUser" resultType="user" parameterType="user">
 		select * from users where user_id=#{userId} AND user_pw=#{userPw}
 	</select>
+	<insert id="insertUser" parameterType="user">
+		insert into users (user_id,user_pw,nickname, user_address,user_post,
+		user_gender,user_phone,user_category,user_email)
+		values(#{userId},#{userPw},#{nickname},#{userAddress},#{userPost},
+		#{userGender},#{userPhone},#{userCategory},#{userEmail})
+	</insert>
 </mapper>

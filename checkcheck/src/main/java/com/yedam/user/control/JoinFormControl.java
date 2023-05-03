@@ -13,7 +13,7 @@ public class JoinFormControl implements Control {
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		return null;
+		return "WEB-INF/views/user/join.jsp";
 	}
 
 }

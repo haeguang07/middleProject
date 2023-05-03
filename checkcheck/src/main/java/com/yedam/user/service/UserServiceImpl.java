@@ -16,6 +16,13 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		 return mapper.selectUser(vo);
 	}
+
+
+	@Override
+	public boolean createUser(UserVO vo) {
+		// TODO Auto-generated method stub
+		return mapper.insertUser(vo)==1;
+	}
 	
 	
 

@@ -30,7 +30,7 @@ public class UserVO {
 	private int usermoney;
 	private Date userDate;
 	private String userPoint;
-	private Date userBirth;
+	private String userBirth;
 	private String userCategory;
 	private String email;
 }
