@@ -143,6 +143,7 @@ img {
 		</div>
 		<div id="step2" >
 
+
 			<table>
 				<tr>
 					<td colspan="2"><b>관심분야를 설정하세요(최대 5개)</b></td>
