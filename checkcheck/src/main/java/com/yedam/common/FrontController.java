@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedam.admin.control.AddBookControl;
 import com.yedam.admin.control.AdminInquiryInfoControl;
 import com.yedam.admin.control.BookStockControl;
+import com.yedam.admin.control.ChartControl;
+import com.yedam.admin.control.ChulgoControl;
 import com.yedam.admin.control.InquiryAnswerFormControl;
 import com.yedam.common.Control;
 
@@ -47,6 +49,10 @@ public class FrontController extends HttpServlet{
 	public void init(ServletConfig config) throws ServletException{
 		encoding = config.getInitParameter("enc");
 		map.put("/main.do", new mainControl());
+		//관리자 통계페이지
+		map.put("/chart.do",new ChartControl());
+		//관리자 출고상태 변경기능
+		map.put("/chulgo.do", new ChulgoControl());
 		//관리자 도서 추가 기능
 		map.put("/addBook.do", new AddBookControl());
 		//관리자 재고관리 기능
