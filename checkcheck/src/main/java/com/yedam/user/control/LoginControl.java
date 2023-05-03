@@ -5,8 +5,12 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.yedam.common.Control;
+import com.yedam.user.domain.UserVO;
+import com.yedam.user.service.UserService;
+import com.yedam.user.service.UserServiceImpl;
 
 public class LoginControl implements Control {
 
@@ -18,8 +22,18 @@ public class LoginControl implements Control {
 			return "WEB-INF/views/user/login.jsp";
 			
 		}else if(req.getMethod().equals("POST")) {
-			req.getParameter("id");
-			req.getParameter("pw");
+			UserVO vo = new UserVO();
+			vo.setUserId(req.getParameter("id"));
+			vo.setUserPw(req.getParameter("pw"));
+			UserService service = new UserServiceImpl();
+			vo = service.login(vo);
+			if(vo!=null) {
+				HttpSession session = req.getSession();
+				session.setAttribute("sesInfo", vo);
+				return "main.do";
+			}else {
+				return "{'reqCode':'fail'}.json";
+			}
 			
 		};
 		

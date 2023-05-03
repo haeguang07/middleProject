@@ -25,6 +25,7 @@ import com.yedam.user.control.JoinFormControl;
 import com.yedam.user.control.BasketControl;
 import com.yedam.user.control.BoardControl;
 import com.yedam.user.control.BoardDetailControl;
+import com.yedam.user.control.CheckEmailControl;
 import com.yedam.user.control.CouponInfoControl;
 import com.yedam.user.control.DeliveryControl;
 import com.yedam.user.control.GetBookControl;
@@ -83,6 +84,8 @@ public class FrontController extends HttpServlet{
 		map.put("/login.do", new LoginControl());
 		//05-02회원가입 기능(get:화면1, post:화면2)
 		map.put("/joinForm.do", new JoinControl());
+		//05-03회원가입의 이메일보내기
+		map.put("/checkEmail.do", new CheckEmailControl());
 		//05-02로그인 기능
 		map.put("/join.do", new JoinFormControl());
 		

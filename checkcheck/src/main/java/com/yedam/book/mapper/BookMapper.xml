@@ -34,4 +34,14 @@
 	<select id="getpageCount" resultType="int">
 		select count(*) from books where book_category LIKE #{bookCategory}
 	</select>
+	<select id="mainRecommand" resultType="book">
+	<![CDATA[
+		select rownum,a.*
+		from (select * 
+		from books
+		where book_category like '%>과학%'
+		order by hitcount desc) a
+		where rownum <6;
+		]]>
+	</select>
 </mapper>
