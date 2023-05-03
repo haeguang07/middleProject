@@ -6,12 +6,52 @@
 	crossorigin="anonymous"></script>
 
 
+<<<<<<< HEAD
 <div style="border:1px solid gray;">
 	<div style="text-align: center;padding:20px;">
 		<img src="image/logo.png" style="width:300px;height:400px;display:inline-block">
 		<div style="padding:20px;vertical-align: bottom;display: inline-block;">
 			<p>책이름</p>
 			<p>줄거리</p>
+=======
+		<div
+			class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+			<div id="slideShow">
+				<ul class="slides">
+				<c:choose>
+				<c:when test="${sesinfo } != null">
+				<c:forEach var="likeBook" items="">
+					<li>
+						<div class="col mb-5">
+							<div class="card h-100">
+								<img class="card-img-top"
+									src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
+									alt="..." />
+								<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+									<p>책이름</p>
+									<p>책 설명</p>
+								</div>
+							</div>
+						</div>
+					</li>
+				</c:forEach>
+				
+				</c:when>
+				<c:otherwise>
+				
+				</c:otherwise>
+				</c:choose>
+				</ul>
+				<p class="controller">
+
+					<!-- &lang: 왼쪽 방향 화살표
+      &rang: 오른쪽 방향 화살표 -->
+					<span class="prev">&lang;</span> <span class="next">&rang;</span>
+				</p>
+			</div>
+
+
+>>>>>>> branch 'main' of https://github.com/haeguang07/middleProject.git
 		</div>
 
 	</div>
