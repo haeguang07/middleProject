@@ -15,6 +15,6 @@
 	private int bookStock;
 	private String cover; -->
 	<insert id="addbook" parameterType="book">
-		insert into books value(#{isbn},#{bookName},#{bookPrice},#{author},#{publisher},#{bookCategory},#{bookDetail},#{bookCount},#{hitCount},#{bookStock},#{cover})
+		insert into books values (#{isbn},#{bookName},#{bookPrice},#{author},#{publisher},#{bookCategory},#{bookDetail},#{bookCount},#{hitCount},#{bookStock},#{cover})
 	</insert>
 </mapper>
