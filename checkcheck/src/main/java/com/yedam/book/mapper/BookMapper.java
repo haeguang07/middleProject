@@ -8,4 +8,6 @@ public interface BookMapper {
 	public int addbook(BookVO vo);
 	public List<BookVO> mainRecommand();
 	
+	public List<BookVO> searchbook(String category);
+	public int getpageCount();
 }

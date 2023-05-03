@@ -18,6 +18,16 @@ public class BookServiceImpl implements BookService{
 	}
 
 	@Override
+	public List<BookVO> booksearch(String category) {
+		//05-03 도서검색
+		return mapper.searchbook(category);
+	}
+
+	@Override
+	public int pagetotalCount() {
+		//05-03 페이징 
+		return mapper.getpageCount();
+	}
 	public List<BookVO> mainRecommandList() {
 		return mapper.mainRecommand();
 	}

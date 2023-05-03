@@ -40,7 +40,7 @@
 		 	console.log(formData);
 			    $.ajax({
 			        type: "post",
-			        url: "insertbook.do",
+			        url: "search.do",
 			        dataType: "json",
 			        data: formData,
 			        success: function (data) {
@@ -55,10 +55,7 @@
 		     jsonp: "bookDisplay",
 		     dataType: "jsonp"
 		  });
-	 
-		  
 	}
-
 </script>
 </body>
 </html>
