@@ -16,7 +16,7 @@ public class BookVO {
 //	HITCOUNT               NUMBER         
 //	BOOK_STOCK             NUMBER         
 //	COVER                  VARCHAR2(100)  
-	private int isbn;
+	private long isbn;
 	private String bookName;
 	private int bookPrice;
 	private String author;
