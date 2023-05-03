@@ -21,6 +21,7 @@ import com.yedam.user.control.JoinControl;
 import com.yedam.user.control.JoinFormControl;
 import com.yedam.user.control.BasketControl;
 import com.yedam.user.control.BoardControl;
+import com.yedam.user.control.BoardDetailControl;
 import com.yedam.user.control.CouponInfoControl;
 import com.yedam.user.control.DeliveryControl;
 import com.yedam.user.control.GetBookControl;
@@ -99,7 +100,8 @@ public class FrontController extends HttpServlet{
 		map.put("/ordercomplete.do", new OrderCompleteControl());
 		//05-02 공지사항목록페이지
 		map.put("/board.do", new BoardControl());
-		
+		//05-03 공지상세페이지
+		map.put("/boarddetail.do", new BoardDetailControl());
 	}
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
