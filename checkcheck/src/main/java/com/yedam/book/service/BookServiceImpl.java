@@ -18,8 +18,8 @@ public class BookServiceImpl implements BookService{
 	}
 
 	@Override
-	public List<BookVO> mainRecommandList() {
-		return mapper.mainRecommand();
+	public List<BookVO> mainRecommandList(String string) {
+		return mapper.mainRecommand(string);
 	}
 
 }

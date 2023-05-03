@@ -6,5 +6,5 @@ import com.yedam.book.domain.BookVO;
 
 public interface BookService {
 	public boolean insertbook(BookVO vo);
-	public List<BookVO> mainRecommandList();
+	public List<BookVO> mainRecommandList(String string);
 }
