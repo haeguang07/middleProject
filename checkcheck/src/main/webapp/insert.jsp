@@ -12,12 +12,13 @@
 <body>
 <div class="ala" id="aladin-bookinfo9788982738562"></div>
 <script>
+	
 	var main = $("div[id^=aladin-bookinfo]"); // aladin-bookinfo로 시작하는 id를 가진 div 엘리먼트를 찾습니다.
 	//그 엘리먼트가 존재한다면
 	if(main.length>0) { 
 		/* var id = main.attr("id").substr(16); */
 		  var url = "https://openapi.naver.com/v1/search/book.json";
-		  var url2 = "http://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey=ttbhbj040030858001&cover=big&query=경제&output=js&callback=bookDisplay";
+		  var url2 = "http://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey=ttbhbj040030858001&cover=big&MaxResults=100&query=화&categoryId=2551&output=js&callback=bookDisplay";
 		  
 //			ISBN          NOT NULL NUMBER         
 //			BOOK_NAME     NOT NULL VARCHAR2(100)  
@@ -34,7 +35,20 @@
 		  function bookDisplay(success, data) {
 			console.log(data);
 		 	$('.ala').append("<img  src='"+data.item[0].cover+"'>")
-				  fetch('insert.do?isbn=${data.item[1].isbn}&bookName=${data.item[1].title}&bookPrice=${data.item[1].priceStandard}&author=${data.item[1].author}&publisher=${data.item[1].publisher}&bookCategory=${data.item[1].categoryName}&bookDetail=${data.item[1].description}&cover=${data.item[1].cover})
+		 	 for(let i = 0 ; i < data.item.length ; i++){
+		 	var formData = {"name" : [data.item[i].isbn13 ,data.item[i].title , data.item[i].priceStandard , data.item[i].author ,data.item[i].publisher,data.item[i].categoryName , data.item[i].description,0,0,0,data.item[i].cover  ]};
+		 	console.log(formData);
+			    $.ajax({
+			        type: "post",
+			        url: "insertbook.do",
+			        dataType: "json",
+			        data: formData,
+			        success: function (data) {
+			        }
+			    });
+		 	 } 
+			    
+				 /*  fetch('insertbook.do?book='+data.item)
 					.then((resolve) => resolve.json() ) //화살표함수 쓰면 {return } 생략가능
 					.then(resultData => {
 						console.log(resultData); 
@@ -44,7 +58,7 @@
 							document.getElementById('list').append(id);
 						}
 					})
-					.catch(error => console.log(error))
+					.catch(error => console.log(error)) */
 		     /* 여기서 책 정보를 이용해 구조를 만듭니다! */
 		  }
 	  
@@ -54,7 +68,8 @@
 		     jsonp: "bookDisplay",
 		     dataType: "jsonp"
 		  });
-		 
+	 
+		  
 	}
 
 </script>

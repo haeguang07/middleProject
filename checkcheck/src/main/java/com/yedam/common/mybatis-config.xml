@@ -9,7 +9,7 @@
   	<setting name="jdbcTypeForNull" value="NULL"/>
   </settings>
   <typeAliases>
-  <typeAlias alias="prod" type="com.yedam.prod.domain.ProdVO" />
+  <typeAlias alias="book" type="com.yedam.book.domain.BookVO" />
   
   </typeAliases>
   <environments default="development">
@@ -24,7 +24,7 @@
     </environment>
   </environments>
   <mappers>
-  	<mapper resource="com/yedam/prod/mapper/ProdMapper.xml" />
+  	<mapper resource="com/yedam/book/mapper/BookMapper.xml" />
   	
   </mappers>
 </configuration>

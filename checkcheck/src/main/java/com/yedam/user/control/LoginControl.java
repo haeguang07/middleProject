@@ -16,6 +16,7 @@ public class LoginControl implements Control {
 		//post는 로그인 기능, 로그인 정보는 세션에 저장
 		if(req.getMethod().equals("GET")){
 			return "WEB-INF/views/user/login.jsp";
+			
 		}else if(req.getMethod().equals("POST")) {
 			req.getParameter("id");
 			req.getParameter("pw");
