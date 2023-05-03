@@ -1,0 +1,29 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<h3>쿠폰 정보</h3>
+<table>
+	<tr>
+		<th>발급일</th>
+		<th>쿠폰내용</th>
+		<th>만기일</th>
+		<th>쿠폰상태</th>
+	</tr>
+	<tr>
+		<td>2023-04-25</td>
+		<td>1%할인쿠폰</td>
+		<td>2023-04-25</td>
+		<td>미사용</td>
+	</tr>
+		<tr>
+		<td>2023-04-25</td>
+		<td>1%할인쿠폰</td>
+		<td>2023-04-25</td>
+		<td>미사용</td>
+	</tr>
+		<tr>
+		<td>2023-04-25</td>
+		<td>1%할인쿠폰</td>
+		<td>2023-04-25</td>
+		<td>미사용</td>
+	</tr>
+</table>
