@@ -28,8 +28,8 @@ public class BookServiceImpl implements BookService{
 		//05-03 페이징 
 		return mapper.getpageCount();
 	}
-	public List<BookVO> mainRecommandList() {
-		return mapper.mainRecommand();
+	public List<BookVO> mainRecommandList(String string) {
+		return mapper.mainRecommand(string);
 	}
 
 }
