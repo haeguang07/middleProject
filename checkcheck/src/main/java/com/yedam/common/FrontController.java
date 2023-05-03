@@ -65,7 +65,6 @@ public class FrontController extends HttpServlet{
 		//05-03 관리자 문의작성 페이지
 		map.put("/inquiryAnswerForm.do",new InquiryAnswerFormControl());
 		
-		
 		//검색 기능
 		map.put("/search.do", new SearchPageControl());
 		//상세페이지 기능
