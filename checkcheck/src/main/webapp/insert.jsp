@@ -34,7 +34,7 @@
 		  function bookDisplay(success, data) {
 			console.log(data);
 		 	$('.ala').append("<img  src='"+data.item[0].cover+"'>")
-				  fetch('insertbook.do?book='+data.item)
+				  fetch('insert.do?isbn=${data.item[1].isbn}&bookName=${data.item[1].title}&bookPrice=${data.item[1].priceStandard}&author=${data.item[1].author}&publisher=${data.item[1].publisher}&bookCategory=${data.item[1].categoryName}&bookDetail=${data.item[1].description}&cover=${data.item[1].cover})
 					.then((resolve) => resolve.json() ) //화살표함수 쓰면 {return } 생략가능
 					.then(resultData => {
 						console.log(resultData); 
