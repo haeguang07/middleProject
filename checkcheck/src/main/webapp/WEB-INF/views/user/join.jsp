@@ -44,6 +44,7 @@
     	
     }
   </style>
+ 
 </head>
 
 <body>
@@ -53,7 +54,7 @@
       <h3>회원가입</h3>
       <p>회원이 되어 다양한 해택을 경험해 보세요</p>
     </div>
-    <form action="join.do" method="post">
+    
       <table>
         <!-- 아이디-->
         <tr>
@@ -83,7 +84,7 @@
           <td>주소</td>
           <td> <input type="text" class="textjoin1" name="joinPost" id="joinPost" style="width: 90px;"
               placeholder="우편번호">
-            <button class="joinButton" id="post">우편번호 찾기</button></td>
+            <button class="joinButton" id="post" onclick="execDaumPostcode()">우편번호 찾기</button></td>
         </tr>
         <tr>
           <td></td>
@@ -93,6 +94,8 @@
         <tr>
           <td></td>
           <td><input type="text" class="textjoin1" name="joinAdr2" id="joinAdr2" placeholder="상세주소">
+          </td>
+          <td><input type="text" class="textjoin1" name="joinAdr3" id="joinAdr3" placeholder="참고사항">
           </td>
         </tr>
         <!-- 이메일-->
@@ -127,9 +130,59 @@
       </table>
 
 
-    </form>
+
 
   </div>
+   <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js?autoload=false"></script>
+  <script>
+  function execDaumPostcode() {
+	    daum.postcode.load(function(){
+	        new daum.Postcode({
+	            oncomplete: function(data) {
+	                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+	                // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+	                var addr = ''; // 주소 변수
+	                var extraAddr = ''; // 참고항목 변수
+
+	                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+	                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+	                    addr = data.roadAddress;
+	                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+	                    addr = data.jibunAddress;
+	                }
+
+	                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+	                if(data.userSelectedType === 'R'){
+	                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+	                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+	                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+	                        extraAddr += data.bname;
+	                    }
+	                    // 건물명이 있고, 공동주택일 경우 추가한다.
+	                    if(data.buildingName !== '' && data.apartment === 'Y'){
+	                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	                    }
+	                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+	                    if(extraAddr !== ''){
+	                        extraAddr = ' (' + extraAddr + ')';
+	                    }
+	                    // 조합된 참고항목을 해당 필드에 넣는다.
+	                    document.getElementById("joinAdr3").value = extraAddr;
+	                
+	                } else {
+	                    document.getElementById("joinAdr3").value = '';
+	                }
+
+	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	                document.getElementById('joinPost').value = data.zonecode;
+	                document.getElementById("joinAdr").value = addr;
+	                // 커서를 상세주소 필드로 이동한다.
+	                document.getElementById("joinAdr3").focus();
+	            }
+	        }).open();
+	    });
+	  }
+</script>
 </body>
 
 </html>
