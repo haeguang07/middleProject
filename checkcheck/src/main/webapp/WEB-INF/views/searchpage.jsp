@@ -55,14 +55,12 @@
 			<li><a href="search.do?category=국내도서>경제경영">경제경영</a></li>
 			<li><a href="search.do?category=국내도서>과학">과학</a></li>
 			<li><a href="search.do?category=국내도서>건강/취미">건강/취미</a></li>
-			<li><a href="search.do?category=국내도서>공무원">공무원 수험서</a></li>
+			<li><a href="search.do?category=국내도서>수험서/자격증">수험서/자격증</a></li>
 			<li><a href="search.do?category=국내도서>달력/기타">달력/기타</a></li>
 			<li><a href="search.do?category=국내도서>대학교재">대학교재</a></li>
 			<li><a href="search.do?category=국내도서>만화">만화</a></li>
 			<li><a href="search.do?category=국내도서>사회과학">사회과학</a></li>
 			<li><a href="search.do?category=국내도서>소설/시/희곡">소설/시/희곡</a></li>
-			<li><a href="search.do?category=국내도서>수험서/자격증">수험서/자격증</a></li>
-			<li><a href="search.do?category=국내도서>건강정보">건강정보</a></li>
 			<li><a href="search.do?category=국내도서>여행">여행</a></li>
 			<li><a href="search.do?category=국내도서>역사">역사</a></li>
 			<li><a href="search.do?category=국내도서>예술">예술/대중문화</a></li>
@@ -88,7 +86,10 @@
 				id="view10" value="10">10개씩보기</option>
 			<option id="view20" value="20">20개씩보기</option></select>
 		<p>
-			<a href="#!">국내도서</a>
+			<c:if test="${not empty select }">
+			<a>${select }</a>
+			</c:if>
+			<a>${category }</a>
 		</p>
 		<!-- 책 리스트 받아서 반복문 만들기-->
 		<c:forEach var="i" items="${list }">
@@ -96,7 +97,7 @@
 				<form action="" method="post" style="position: relative">
 					<table>
 						<tr>
-							<td rowspan="5"><img src=${i.cover }></td>
+							<td rowspan="5"><img src=${i.cover } style="width:200px;height:300px"></td>
 							<td>이름</td>
 							<td>${i.bookName }</td>
 						</tr>
@@ -129,6 +130,22 @@
 </section>
 <div style="text-align:center;width:1200px;height:50px; padding:30px 0; margin-bottom:50px">
 	<div class="pagination2">
+		<c:choose>
+		<c:when test="${not empty select}">
+		<c:if test="${pageInfo.prev }">
+			<a
+				href="search.do?category=${category }&page=${pageInfo.startPage-1 }&select=${select}">Previous</a>
+		</c:if>
+		<c:forEach var="i" begin="${pageInfo.startPage }"
+			end="${pageInfo.endPage }">
+			<a class="${i==pageInfo.pageNum ? 'active1' : '' }"
+				href="search.do?category=${category }&page=${i }&select=${select}">${i } </a>
+		</c:forEach>
+		<c:if test="${pageInfo.next }">
+			<a href="search.do?category=${category }&page=${pageInfo.endPage+1 }&select=${select}">Next</a>
+		</c:if>
+		</c:when>
+		<c:otherwise>
 		<c:if test="${pageInfo.prev }">
 			<a
 				href="search.do?category=${category }&page=${pageInfo.startPage-1 }">Previous</a>
@@ -141,6 +158,8 @@
 		<c:if test="${pageInfo.next }">
 			<a href="search.do?category=${category }&page=${pageInfo.endPage+1 }">Next</a>
 		</c:if>
+		</c:otherwise>
+		</c:choose>
 	</div>
 </div>
 <div id="MOVE_TOP_BTN">

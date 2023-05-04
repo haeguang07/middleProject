@@ -70,12 +70,12 @@
 		</div>
 	</c:when>
 	<c:otherwise>
-		<div class="section" style="margin: 20px">
+		<div class="section" style="margin: 20px;position:relative;z-index:1 !important;">
 			<input type="radio" name="slide" id="slide01" checked> <input
 				type="radio" name="slide" id="slide02"> <input type="radio"
 				name="slide" id="slide03"> <input type="radio" name="slide"
 				id="slide04"> <input type="radio" name="slide" id="slide05">
-			<div class="slide-wrap">
+			<div class="slide-wrap" style="z-index:1 !important;">
 				<ul class="slidelist">
 					<li><a href="getBook.do?bookInfo=${normalList[0] }" style="position: relative;text-decoration:none;color:black"> <img
 							src="${normalList[0].cover }"
@@ -84,7 +84,7 @@
 							<div class="textbox" style="margin-left: 30px; width: 450px;padding:40px">
 								<h4 style="text-overflow: ellipsis; overflow: hidden;margin-bottom:40px">${normalList[0].bookName }</h4>
 								<p style="white-space:normal !important;color:black">${normalList[0].bookDetail }</p>
-							</div> <img src="./img/책사진2.png"> <label for="slide02"
+							</div> <img src="./img/책사진2.png" style="z-index:1 !important;"> <label for="slide02"
 							class="right"></label>
 					</a></li>
 					<li><a style="position: relative;"> <img

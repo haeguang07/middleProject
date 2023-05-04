@@ -20,207 +20,241 @@
 <link href="css/styles.css" rel="stylesheet" />
 <style>
 .section input[id*="slide"] {
-			display: none;
-		}
+	display: none;
+}
 
-		.section .slide-wrap {
-			max-width: 1200px;
-			margin: 0 auto;
-		}
+.section .slide-wrap {
+	max-width: 1200px;
+	margin: 0 auto;
+}
 
-		.section .slidelist {
-			white-space: nowrap;
-			font-size: 0;
-			overflow: hidden;
-		}
+.section .slidelist {
+	white-space: nowrap;
+	font-size: 0;
+	overflow: hidden;
+}
 
-		.section .slidelist>li {
-			display: inline-block;
-			vertical-align: middle;
-			width: 100%;
-			transition: all .5s;
-		}
+.section .slidelist>li {
+	display: inline-block;
+	vertical-align: middle;
+	width: 100%;
+	transition: all .5s;
+}
 
-		.section .slidelist>li>a {
-			display: block;
-			position: relative;
-		}
+.section .slidelist>li>a {
+	display: block;
+	position: relative;
+}
 
-		.section .slidelist>li>a img {
-			width: 100%;
-		}
+.section .slidelist>li>a img {
+	width: 100%;
+}
 
-		.section .slidelist label {
-			position: absolute;
-			z-index: 10;
-			top: 50%;
-			transform: translateY(-50%);
-			padding: 50px;
-			cursor: pointer;
-		}
+.section .slidelist label {
+	position: absolute;
+	z-index: 10;
+	top: 50%;
+	transform: translateY(-50%);
+	padding: 50px;
+	cursor: pointer;
+}
 
-		.section .slidelist .left {
-			left: 30px;
-			background: url('./img/left.png') center center / 100% no-repeat;
-		}
+.section .slidelist .left {
+	left: 30px;
+	background: url('./img/left.png') center center/100% no-repeat;
+}
 
-		.section .slidelist .right {
-			right: 30px;
-			background: url('./img/right.png') center center / 100% no-repeat;
-		}
+.section .slidelist .right {
+	right: 30px;
+	background: url('./img/right.png') center center/100% no-repeat;
+}
 
-		.section .slidelist .textbox {
-			position: absolute;
-			z-index: 1;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			line-height: 1.6;
-			text-align: center;
-		}
+.section .slidelist .textbox {
+	position: absolute;
+	z-index: 1;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	line-height: 1.6;
+	text-align: center;
+}
 
-		.section .slidelist .textbox h3 {
-			font-size: 50px;
-			color: #fff;
-			opacity: 0;
-			transform: translateY(30px);
-			transition: all .5s;
-		}
+.section .slidelist .textbox h3 {
+	font-size: 50px;
+	color: #fff;
+	opacity: 0;
+	transform: translateY(30px);
+	transition: all .5s;
+}
 
-		.section .slidelist .textbox p {
-			font-size: 24px;
-			color: #fff;
-			opacity: 0;
-			transform: translateY(30px);
-			transition: all .5s;
-		}
+.section .slidelist .textbox p {
+	font-size: 24px;
+	color: #fff;
+	opacity: 0;
+	transform: translateY(30px);
+	transition: all .5s;
+}
 
-		.section input[id="slide01"]:checked~.slide-wrap .slidelist>li {
-			transform: translateX(0%);
-		}
+.section input[id="slide01"]:checked ~.slide-wrap .slidelist>li {
+	transform: translateX(0%);
+}
 
-		.section input[id="slide02"]:checked~.slide-wrap .slidelist>li {
-			transform: translateX(-100%);
-		}
+.section input[id="slide02"]:checked ~.slide-wrap .slidelist>li {
+	transform: translateX(-100%);
+}
 
-		.section input[id="slide03"]:checked~.slide-wrap .slidelist>li {
-			transform: translateX(-200%);
-		}
+.section input[id="slide03"]:checked ~.slide-wrap .slidelist>li {
+	transform: translateX(-200%);
+}
 
-		.section input[id="slide04"]:checked~.slide-wrap .slidelist>li {
-			transform: translateX(-300%);
-		}
+.section input[id="slide04"]:checked ~.slide-wrap .slidelist>li {
+	transform: translateX(-300%);
+}
 
-		.section input[id="slide05"]:checked~.slide-wrap .slidelist>li {
-			transform: translateX(-400%);
-		}
+.section input[id="slide05"]:checked ~.slide-wrap .slidelist>li {
+	transform: translateX(-400%);
+}
 
-		.section input[id="slide01"]:checked~.slide-wrap li:nth-child(1) .textbox h3 {
-			opacity: 1;
-			transform: translateY(0);
-			transition-delay: .2s;
-		}
+.section input[id="slide01"]:checked ~.slide-wrap li:nth-child(1) .textbox h3
+	{
+	opacity: 1;
+	transform: translateY(0);
+	transition-delay: .2s;
+}
 
-		.section input[id="slide01"]:checked~.slide-wrap li:nth-child(1) .textbox p {
-			opacity: 1;
-			transform: translateY(0);
-			transition-delay: .4s;
-		}
+.section input[id="slide01"]:checked ~.slide-wrap li:nth-child(1) .textbox p
+	{
+	opacity: 1;
+	transform: translateY(0);
+	transition-delay: .4s;
+}
 
-		.section input[id="slide02"]:checked~.slide-wrap li:nth-child(2) .textbox h3 {
-			opacity: 1;
-			transform: translateY(0);
-			transition-delay: .2s;
-		}
+.section input[id="slide02"]:checked ~.slide-wrap li:nth-child(2) .textbox h3
+	{
+	opacity: 1;
+	transform: translateY(0);
+	transition-delay: .2s;
+}
 
-		.section input[id="slide02"]:checked~.slide-wrap li:nth-child(2) .textbox p {
-			opacity: 1;
-			transform: translateY(0);
-			transition-delay: .4s;
-		}
+.section input[id="slide02"]:checked ~.slide-wrap li:nth-child(2) .textbox p
+	{
+	opacity: 1;
+	transform: translateY(0);
+	transition-delay: .4s;
+}
 
-		.section input[id="slide03"]:checked~.slide-wrap li:nth-child(3) .textbox h3 {
-			opacity: 1;
-			transform: translateY(0);
-			transition-delay: .2s;
-		}
+.section input[id="slide03"]:checked ~.slide-wrap li:nth-child(3) .textbox h3
+	{
+	opacity: 1;
+	transform: translateY(0);
+	transition-delay: .2s;
+}
 
-		.section input[id="slide03"]:checked~.slide-wrap li:nth-child(3) .textbox p {
-			opacity: 1;
-			transform: translateY(0);
-			transition-delay: .4s;
-		}
+.section input[id="slide03"]:checked ~.slide-wrap li:nth-child(3) .textbox p
+	{
+	opacity: 1;
+	transform: translateY(0);
+	transition-delay: .4s;
+}
 
-		.section input[id="slide04"]:checked~.slide-wrap li:nth-child(4) .textbox h3 {
-			opacity: 1;
-			transform: translateY(0);
-			transition-delay: .2s;
-		}
+.section input[id="slide04"]:checked ~.slide-wrap li:nth-child(4) .textbox h3
+	{
+	opacity: 1;
+	transform: translateY(0);
+	transition-delay: .2s;
+}
 
-		.section input[id="slide04"]:checked~.slide-wrap li:nth-child(4) .textbox p {
-			opacity: 1;
-			transform: translateY(0);
-			transition-delay: .4s;
-		}
+.section input[id="slide04"]:checked ~.slide-wrap li:nth-child(4) .textbox p
+	{
+	opacity: 1;
+	transform: translateY(0);
+	transition-delay: .4s;
+}
 
-		.section input[id="slide05"]:checked~.slide-wrap li:nth-child(5) .textbox h3 {
-			opacity: 1;
-			transform: translateY(0);
-			transition-delay: .2s;
-		}
+.section input[id="slide05"]:checked ~.slide-wrap li:nth-child(5) .textbox h3
+	{
+	opacity: 1;
+	transform: translateY(0);
+	transition-delay: .2s;
+}
 
-		.section input[id="slide05"]:checked~.slide-wrap li:nth-child(5) .textbox p {
-			opacity: 1;
-			transform: translateY(0);
-			transition-delay: .4s;
-		}
-		
-		.slide_wrapper *{
-			margin:0;
-			padding:0;
-		}
-		.slide_wrapper{
-			
-			position:relative;
-			width:900px;
-			margin:0 0 0 100px;
-			height: 500px;
-			overflow:hidden;
-		}
-		.slides{
-			position:absolute;
-			left:0;
-			top:0;
-			width:2300px;
-			transition:left 0.5s ease-out;
-		}
-		.slides li{
-			margin:0;
-			margin-right:100px !important;
-			float:left;
-			
-		}
-		.slides li{
-			list-style:none;
-		}
-		
-		.prevbtn{
-			position:absolute;
-			top:50%;
-			transform:translateY(-50%);
-			margin:10px;
-		}
-		.nextbtn{
-			position:absolute;
-			right:0;
-			top:50%;
-			transform:translateY(-50%);
-			margin:10px;
-		}
+.section input[id="slide05"]:checked ~.slide-wrap li:nth-child(5) .textbox p
+	{
+	opacity: 1;
+	transform: translateY(0);
+	transition-delay: .4s;
+}
+
+.slide_wrapper * {
+	margin: 0;
+	padding: 0;
+}
+
+.slide_wrapper {
+	position: relative;
+	width: 900px;
+	margin: 0 0 0 100px;
+	height: 500px;
+	overflow: hidden;
+}
+
+.slides {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 2300px;
+	transition: left 0.5s ease-out;
+}
+
+.slides li {
+	margin: 0;
+	margin-right: 100px !important;
+	float: left;
+}
+
+.slides li {
+	list-style: none;
+}
+
+.prevbtn {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	margin: 10px;
+}
+
+.nextbtn {
+	position: absolute;
+	right: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	margin: 10px;
+}
+
+.dropdown2 {
+	position: relative;
+	display: inline-block;
+}
+
+.dropdown-content2 {
+	display: none;
+	position: absolute;
+	z-index: 3000; /*다른 요소들보다 앞에 배치*/
+	
+}
+
+.dropdown-content2 a {
+	display: block;
+	font-size: 18px;
+}
+
+.dropdown2:hover .dropdown-content2 {
+	display: block;
+}
 </style>
 </head>
 <body>
-	<div id="container" style="width:1200px; margin:0 auto;">
+	<div id="container" style="width: 1200px; margin: 0 auto;">
 		<!-- Navigation-->
 		<div id="page-content-wrapper">
 			<tiles:insertAttribute name="nav"></tiles:insertAttribute>
@@ -230,7 +264,7 @@
 			<tiles:insertAttribute name="body"></tiles:insertAttribute>
 		</div>
 		<!-- Footer-->
-		<div style="clear:both">
+		<div style="clear: both">
 			<tiles:insertAttribute name="footer"></tiles:insertAttribute>
 		</div>
 	</div>
