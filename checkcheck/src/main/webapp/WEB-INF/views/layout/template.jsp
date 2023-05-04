@@ -175,6 +175,48 @@
 			transition-delay: .4s;
 		}
 		
+		.slide_wrapper *{
+			margin:0;
+			padding:0;
+		}
+		.slide_wrapper{
+			
+			position:relative;
+			width:900px;
+			margin:0 0 0 100px;
+			height: 500px;
+			overflow:hidden;
+		}
+		.slides{
+			position:absolute;
+			left:0;
+			top:0;
+			width:2300px;
+			transition:left 0.5s ease-out;
+		}
+		.slides li{
+			margin:0;
+			margin-right:100px !important;
+			float:left;
+			
+		}
+		.slides li{
+			list-style:none;
+		}
+		
+		.prevbtn{
+			position:absolute;
+			top:50%;
+			transform:translateY(-50%);
+			margin:10px;
+		}
+		.nextbtn{
+			position:absolute;
+			right:0;
+			top:50%;
+			transform:translateY(-50%);
+			margin:10px;
+		}
 </style>
 </head>
 <body>

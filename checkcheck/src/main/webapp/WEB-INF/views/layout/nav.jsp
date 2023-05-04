@@ -22,9 +22,11 @@
 						<i class="bi-cart-fill me-1"></i> Cart <span
 							class="badge bg-dark text-white ms-1 rounded-pill">0</span>
 					</div>
+
 					<button class="btn btn-outline-dark" type="button" onclick="location.href='myPageMain.do?id=${sesInfo.userId}'">마이페이지</button>
 					<button class="btn btn-outline-dark" type="button" onclick="location.href='login.do'">로그인</button>
 					<button class="btn btn-outline-dark" type="button" onclick="location.href='joinForm.do'">회원가입</button>
+
 
 				</form>
 			</div>
@@ -36,15 +38,18 @@
 			style="position: absolute; width: 150px; height: 150px; margin-left: 40px">
 		<div class="container px-4 px-lg-5 my-5">
 			<div class="text-center text-white">
-				<h1 class="display-4 fw-bolder">
+				<form action="search.do" method="post">
 					<select style="width: 100px; height: 50px; font-size: 16px;"
 						value="통합검색"><option>통합검색</option>
 						<option>국내도서</option>
-						<option>외국도서</option></select><input
+						<option>외국도서</option>
+					</select>
+					<input
 						style="width: 500px; height: 50px; font-size: 16px;" type="text"
 						name="search" value="검색"><input
-						style="width: 100px; height: 50px; font-size: 16px;" type="button"
+						style="width: 100px; height: 50px; font-size: 16px;" type="submit"
 						value="검색">
+				</form>
 					<p class="lead fw-normal text-white-50 mb-0">
 					<ul id="nav123">
 						<a href="#!"><li id="category">카테고리</li></a>

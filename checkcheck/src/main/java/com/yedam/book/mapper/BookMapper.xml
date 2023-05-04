@@ -21,18 +21,18 @@
 		select book_name, author, publisher, book_price, cover
 		from books where book_category LIKE #{bookCategory}
 	</select>
-	<select id="bookWithPage" resultType="book">
+	<select id="searchBookList" resultType="book">
 		<![CDATA[
 		select b.* 
 		from(select rownum rn, a.*
-			from (select * from tbl_notice
+			from (select * from books where book_category LIKE #{bookCategory}||'%'
 				order by 1 desc) a
 			where rownum <= #{page}*10) b
 		where b.rn > (#{page} - 1)*10
 		]]>
 	</select>
 	<select id="getpageCount" resultType="int">
-		select count(*) from books where book_category LIKE #{bookCategory}
+		select count(*) from books where book_category LIKE #{bookCategory}||'%'
 	</select>
 	<select id="mainRecommand" parameterType="String" resultType="book">
 	<![CDATA[
@@ -43,6 +43,14 @@
 		and book_name not like '%CD%'
 		order by hitcount desc) a
 		where rownum <6
+		]]>
+	</select>
+	<select id="newList" resultType="book">
+	<![CDATA[
+		select rownum,a.* from books a
+		where rownum < 9
+		and book_name not like '%CD%'
+		order by hitcount desc
 		]]>
 	</select>
 </mapper>
