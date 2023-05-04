@@ -20,7 +20,7 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public List<OrderVO> OrderSearch(String orderId) {
 		// TODO Auto-generated method stub
-		return mapper.SelectOrderOrderId(orderId);
+		return mapper.selectOrderOrderId(orderId);
 	}
 	@Override
 	public int gettotal(String userId) {
