@@ -10,4 +10,5 @@ public interface BookMapper {
 	
 	public List<BookVO> searchbook(String category);
 	public int getpageCount();
+	public List<BookVO> newList();
 }

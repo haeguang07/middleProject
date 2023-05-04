@@ -32,4 +32,9 @@ public class BookServiceImpl implements BookService{
 		return mapper.mainRecommand(string);
 	}
 
+	@Override
+	public List<BookVO> getNewList() {
+		return mapper.newList();
+	}
+
 }

@@ -12,4 +12,5 @@ public interface BookService {
 	//페이징
 	public int pagetotalCount();
 	public List<BookVO> mainRecommandList(String string);
+	public List<BookVO> getNewList();
 }

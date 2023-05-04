@@ -45,4 +45,12 @@
 		where rownum <6
 		]]>
 	</select>
+	<select id="newList" resultType="book">
+	<![CDATA[
+		select rownum,a.* from books a
+		where rownum < 9
+		and book_name not like '%CD%'
+		order by hitcount desc
+		]]>
+	</select>
 </mapper>
