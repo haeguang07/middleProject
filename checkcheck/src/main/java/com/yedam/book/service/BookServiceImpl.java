@@ -24,12 +24,17 @@ public class BookServiceImpl implements BookService{
 	}
 
 	@Override
-	public int pagetotalCount() {
+	public int pagetotalCount(String category) {
 		//05-03 페이징 
-		return mapper.getpageCount();
+		return mapper.getpageCount(category);
 	}
 	public List<BookVO> mainRecommandList(String string) {
 		return mapper.mainRecommand(string);
+	}
+
+	@Override
+	public List<BookVO> searchbookList(int page, String category) {
+		return mapper.searchBookList(page, category);
 	}
 
 }

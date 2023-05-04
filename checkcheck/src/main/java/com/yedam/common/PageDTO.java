@@ -14,6 +14,7 @@ public class PageDTO {
 	private int pageNum;
 	
 	public PageDTO(int pageNum, int total) {
+		System.out.println("PageDTO-pageNum : "+pageNum+", total : "+total);
 		this.pageNum = pageNum;
 		//Math.ceil > 올림연산
 		//start,end page 계산
