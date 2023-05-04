@@ -27,4 +27,10 @@ public class OrderVO {
 	private String orderName;
 	private String orderPhone;
 	private String method;//결제방식
+	//상세조회시 결제내역의 isbn를 책이름으로 join용 필드
+	//책이름 book, 갯수:num ,가격 price
+	private String book;
+	private int num;
+	private int price;
+	
 }
