@@ -33,12 +33,22 @@ public class BookServiceImpl implements BookService{
 	}
 
 	@Override
-	public List<BookVO> searchbookList(int page, String category) {
-		return mapper.searchBookList(page, category);
+	public List<BookVO> categoryBookList(int page, String category) {
+		return mapper.categoryBookList(page, category);
 	}
 	@Override
 	public List<BookVO> getNewList() {
 		return mapper.newList();
+	}
+
+	@Override
+	public List<BookVO> searchBookList(String bookCategory,String search,int page) {
+		return mapper.searchBookList(bookCategory,search ,page);
+	}
+
+	@Override
+	public int getSearchPageCount(String bookCategory, String search) {
+		return mapper.getSearchPageCount(bookCategory, search);
 	}
 
 }

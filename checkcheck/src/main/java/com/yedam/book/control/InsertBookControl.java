@@ -35,6 +35,7 @@ public class InsertBookControl implements Control {
 		vo.setHitCount(0);
 		vo.setBookStock(0);
 		vo.setCover(book[10]);
+		vo.setPubDate(book[11]);
 		BookService service = new BookServiceImpl();
 		if(service.insertbook(vo)) {
 			return "{'retCode':'Success'}.json";

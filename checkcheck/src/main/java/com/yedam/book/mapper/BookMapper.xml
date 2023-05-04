@@ -15,13 +15,13 @@
 	private int bookStock;
 	private String cover; -->
 	<insert id="addbook" parameterType="book">
-		insert into books values (#{isbn},#{bookName},#{bookPrice},#{author},#{publisher},#{bookCategory},#{bookDetail},#{bookCount},#{hitCount},#{bookStock},#{cover})
+		insert into books values (#{isbn},#{bookName},#{bookPrice},#{author},#{publisher},#{bookCategory},#{bookDetail},#{bookCount},#{hitCount},#{bookStock},#{cover},#{pubDate})
 	</insert>
 	<select id="searchbook" resultType="book">
 		select book_name, author, publisher, book_price, cover
 		from books where book_category LIKE #{bookCategory}
 	</select>
-	<select id="searchBookList" resultType="book">
+	<select id="categoryBookList" resultType="book">
 		<![CDATA[
 		select b.* 
 		from(select rownum rn, a.*
@@ -31,8 +31,21 @@
 		where b.rn > (#{page} - 1)*10
 		]]>
 	</select>
+	<select id="searchBookList" resultType="book">
+		<![CDATA[
+		select b.* 
+		from(select rownum rn, a.*
+			from (select * from books where book_category LIKE #{bookCategory}||'%'
+				and book_name like '%'||#{search}||'%' order by 1 desc) a
+			where rownum <= #{page}*10) b
+		where b.rn > (#{page} - 1)*10
+		]]>
+	</select>
 	<select id="getpageCount" resultType="int">
 		select count(*) from books where book_category LIKE #{bookCategory}||'%'
+	</select>
+	<select id="getSearchPageCount" resultType="int">
+		select count(*) from books where book_category LIKE #{bookCategory}||'%' and book_name like '%'||#{search}||'%'
 	</select>
 	<select id="mainRecommand" parameterType="String" resultType="book">
 	<![CDATA[
