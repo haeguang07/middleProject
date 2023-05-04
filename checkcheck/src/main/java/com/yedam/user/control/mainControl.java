@@ -18,7 +18,10 @@ public class mainControl implements Control {
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		BookService service = new BookServiceImpl();
 		List<BookVO> list = service.mainRecommandList("%>%");
+		List<BookVO> newlist = service.getNewList();
 		req.setAttribute("normalList", list);
+		req.setAttribute("newList", newlist);
+		
 		return "main.tiles";
 	}
 

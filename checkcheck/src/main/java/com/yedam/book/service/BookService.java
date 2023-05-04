@@ -13,4 +13,5 @@ public interface BookService {
 	public int pagetotalCount(String category);
 	public List<BookVO> mainRecommandList(String string);
 	public List<BookVO> searchbookList(int page, String category);
+	public List<BookVO> getNewList();
 }

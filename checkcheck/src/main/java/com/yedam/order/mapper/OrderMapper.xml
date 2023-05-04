@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yedam.order.mapper.OrderMapper">
+	<select id="SelectOrderUserId" resultType="order">
+	<![CDATA[
+		Select rownum rn, b.*
+		FROM (SELECT rownum rn, a.*
+		FROM (select o.user_id, o.order_date, o.order_id, o.payment,
+		o.order_state, c.book
+		from(select listagg(a.names, ',')within group(order by a.names) AS book,
+		o.order_id
+		from (select h.order_id, b.book_name + h.history_count names ,b.isbn
+		from historys h JOIN books b
+		ON (h.isbn=b.isbn)) a JOIN orders o
+		ON(a.order_id=o.order_id)
+		group by o.order_id) c join orders o
+		ON( c.order_id=o.order_id)
+		WHERE user_id=#{userId}
+		ORDER BY 2 DESC) a
+		WHERE rownum <= #{page}*10) b
+		WHERE b.rn > (#{page}-1)*10
+	]]>
+	</select>
+	<select id="SelectOrderOrderId" resultType="order">
+		select o.*,c.book
+		,c.num, c.book_price
+		FROM (select h.order_id, b.book_name book
+		,h.history_count num
+		,b.book_price,b.isbn
+		from historys h JOIN books b
+		ON (h.isbn=b.isbn))c join orders o
+		ON(o.order_id=c.order_id)
+		WHERE
+		order_id=#{orderId}
+	</select>
+	<select id="getCount">
+	select count(*)
+	from orderId
+	WHERE user_id=#{userId} 
+	</select>
+</mapper>

@@ -36,5 +36,9 @@ public class BookServiceImpl implements BookService{
 	public List<BookVO> searchbookList(int page, String category) {
 		return mapper.searchBookList(page, category);
 	}
+	@Override
+	public List<BookVO> getNewList() {
+		return mapper.newList();
+	}
 
 }
