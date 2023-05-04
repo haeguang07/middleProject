@@ -18,7 +18,7 @@
 	if(main.length>0) { 
 		/* var id = main.attr("id").substr(16); */
 		  var url = "https://openapi.naver.com/v1/search/book.json";
-		  var url2 = "http://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey=ttbhbj040030858001&cover=big&MaxResults=100&query=화&categoryId=2551&output=js&callback=bookDisplay";
+		  var url2 = "http://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey=ttbhbj040030858001&cover=big&MaxResults=100&query=h&searchTarget=Foreign&output=js&callback=bookDisplay";
 		  
 //			ISBN          NOT NULL NUMBER         
 //			BOOK_NAME     NOT NULL VARCHAR2(100)  
@@ -36,7 +36,7 @@
 			console.log(data);
 		 	$('.ala').append("<img  src='"+data.item[0].cover+"'>")
 		 	 for(let i = 0 ; i < data.item.length ; i++){
-		 	var formData = {"name" : [data.item[i].isbn13 ,data.item[i].title , data.item[i].priceStandard , data.item[i].author ,data.item[i].publisher,data.item[i].categoryName , data.item[i].description,0,0,0,data.item[i].cover  ]};
+		 	var formData = {"name" : [data.item[i].isbn13 ,data.item[i].title , data.item[i].priceStandard , data.item[i].author ,data.item[i].publisher,data.item[i].categoryName , data.item[i].description,0,0,0,data.item[i].cover,data.item[i].pubDate  ]};
 		 	console.log(formData);
 			    $.ajax({
 			        type: "post",

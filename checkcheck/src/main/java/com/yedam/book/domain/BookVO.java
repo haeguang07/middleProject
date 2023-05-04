@@ -27,6 +27,7 @@ public class BookVO {
 	private int hitCount;//조회수
 	private int bookStock;
 	private String cover;
+	private String pubDate;
 	
 	
 }

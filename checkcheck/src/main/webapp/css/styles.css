@@ -78,9 +78,21 @@
   --bs-code-color: #d63384;
   --bs-highlight-bg: #fff3cd;
 }
-
+#nav123{
+	margin:0;
+	padding:0;
+	text-align: center;
+}
 #nav123 li{
   color:black !important;
+  font-size:22px;
+  
+}
+#nav123 a{
+	margin:0 25px;
+	text-decoration: none;
+	color:black !important;
+	
 }
 #checkdiv{
 	text-align:left;
