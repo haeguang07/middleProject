@@ -10,7 +10,8 @@ public interface BookService {
 	//사용자 도서검색
 	public List<BookVO> booksearch(String category);
 	//페이징
-	public int pagetotalCount();
+	public int pagetotalCount(String category);
 	public List<BookVO> mainRecommandList(String string);
+	public List<BookVO> searchbookList(int page, String category);
 	public List<BookVO> getNewList();
 }
