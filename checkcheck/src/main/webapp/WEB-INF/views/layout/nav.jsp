@@ -23,6 +23,7 @@
 						<i class="bi-cart-fill me-1"></i> Cart <span
 							class="badge bg-dark text-white ms-1 rounded-pill">0</span>
 					</div>
+<<<<<<< HEAD
 					<button class="btn btn-outline-dark" type="button"
 						onclick="location.href='myPageMain.do?'">마이페이지</button>
 					<c:if test="${empty sesInfo }">
@@ -36,6 +37,14 @@
 						onclick="location.href='logout.do'">로그아웃</button>
 					<p style="margin-top:16px">${sesInfo.nickname }님 환영합니다.</p>
 					</c:if>
+=======
+
+					<button class="btn btn-outline-dark" type="button" onclick="location.href='myPageMain.do?id=${sesInfo.userId}'">마이페이지</button>
+					<button class="btn btn-outline-dark" type="button" onclick="location.href='login.do'">로그인</button>
+					<button class="btn btn-outline-dark" type="button" onclick="location.href='joinForm.do'">회원가입</button>
+
+
+>>>>>>> branch 'main' of https://github.com/haeguang07/middleProject.git
 				</form>
 			</div>
 		</div>

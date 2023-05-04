@@ -42,7 +42,7 @@ public class CheckEmailControl implements Control {
 	    
 	    // 메일에 출력할 텍스트
 	    int random = (int)(Math.random()*100000)+100000;
-	    req.setAttribute("email", req.getParameter("email"));
+	    req.setAttribute("joinEmail", req.getParameter("joinEmail"));
 	    HttpSession session1 = req.getSession();
 		session1.setAttribute("random", random);
 	    StringBuffer sb = new StringBuffer();
@@ -54,8 +54,9 @@ public class CheckEmailControl implements Control {
 	    Properties props = new Properties();    
 	    props.put("mail.transport.protocol", "smtp");
 	    props.put("mail.smtp.host", "smtp.gmail.com");
-	    props.put("mail.smtp.port", "465");
+	    props.put("mail.smtp.port", "587");
 	    props.put("mail.smtp.auth", "true");
+
 	 
 	    props.put("mail.smtp.quitwait", "false");
 	    props.put("mail.smtp.socketFactory.port", "465");

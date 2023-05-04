@@ -56,14 +56,12 @@
 				<th>배송상태</th>
 				<th>변경/취소</th>
 			</tr>
-
 			<c:forEach var="order" items="${list }">
 				<tr>
 					<td>${order.orderDate }</td>
-					<td>${order.orderId }</td>
 					<td><a
-						href="getNotice.do?nid=${order.orderId }&page=${pageInfo.pageNum}">
-							${order.book }</a></td>
+						href="shippingInfo.do?id=${order.orderId }&page=${pageInfo.pageNum}">${order.orderId }</a></td>
+					<td>${order.book } 총${order.payment}원</td>
 					<td>${order.orderState }</td>
 					<td><a href="#">변경/취소</a></td>
 				</tr>

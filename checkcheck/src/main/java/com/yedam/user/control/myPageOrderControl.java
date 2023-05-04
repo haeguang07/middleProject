@@ -18,11 +18,11 @@ public class myPageOrderControl implements Control {
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String id = req.getParameter("userId");
+		String id = req.getParameter("id");
 		String pageStr = req.getParameter("page");
 		pageStr = (pageStr == null) ? "1" : pageStr;
 		int page = Integer.parseInt(pageStr);
-		
+		System.out.println(id+99+page);
 		OrderService service = new OrderServiceImpl();
 		List<OrderVO> list = service.OrderList(id, page);
 		
