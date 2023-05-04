@@ -51,7 +51,7 @@ img {
 </head>
 
 <body>
-<input style="display:none" id="reqCode" value="${reqCode}">
+	<input style="display: none" id="reqCode" value="${reqCode.num}">
 	<div id="joinForm">
 		<img src="image/logo.png" class="inline-blcok">
 		<div class="inline-blcok">
@@ -112,29 +112,29 @@ img {
 						<td>이메일</td>
 						<td><input type="email" class="textjoin1" name="joinEmail"
 							id="joinEmail"></td>
-						<td><button class="joinButton" id="sendEmail">인증번호
+						<td><button type="button" class="joinButton" id="sendEmail">인증번호
 								보내기</button></td>
 					</tr>
 					<!-- 인증하기-->
 					<tr>
 						<td></td>
-						<td><input type="email" class="textjoin1" name="certify"
+						<td><input type="text" class="textjoin1" name="certify"
 							id="certifytext">
-						<td><button class="joinButton" id="certify">인증하기</button></td>
+						<td><button type="button" class="joinButton" id="certify">인증하기</button></td>
 					</tr>
 					<!-- 전화번호-->
 					<tr>
 						<td>닉네임</td>
 						<td><input type="text" class="textjoin1" name="nickname"
 							id="nickname"></td>
-						<td><button class="joinButton" id="nickcheck">중복체크</button></td>
+						<td><button  type="button" class="joinButton" id="nickcheck">중복체크</button></td>
 					</tr>
 					<!-- 성별-->
 					<tr>
 						<td>성별</td>
-						<td><label><input type="radio" class="textjoin1" name="gender"
-							id="male ">남성</label><label><input type="radio" class="textjoin1" name="gender"
-							id="female ">여성</label></td>
+						<td><label><input type="radio" name="gender"
+								id="male ">남성</label><label><input type="radio"
+								name="gender" id="female ">여성</label></td>
 						<td></td>
 					</tr>
 					<!-- 생년월일-->
@@ -211,7 +211,7 @@ img {
 		src="http://dmaps.daum.net/map_js_init/postcode.v2.js?autoload=false"></script>
 	<script>
 	
-	widow.onload=function(){
+	window.onload=function(){
 		let result = document.querySelector('#reqCode').value;
 		if(result=='false'){
 			alert('회원가입에 실패했습니다')
@@ -263,13 +263,13 @@ img {
     let email = document.getElementById('joinEmail');
     btn.addEventListener('click', function(e){
       let emailText =email.value;
-      console.log(email);
-      if(email==""){
+      console.log(emailText);
+      if(emailText==""){
         alert('이메일을 입력하세요');
         return;
       }
       
-      fetch('checkEmail.do?joinEmail='+email)
+      fetch('checkEmail.do?joinEmail='+emailText)
       .then(resolve => resolve.json())
       .then(result=> {
         num=result.num;
@@ -277,8 +277,10 @@ img {
       .catch(err=> console.log(err))
     });
     let cBtn = document.querySelector('#certify');
-    cbtn.addEventListener('click',function(e){
+    cBtn.addEventListener('click',function(e){
     	let cNum= document.querySelector('#certifytext').value;
+    	num=document.querySelector('#reqCode').value;
+    	console.log(num)
     	if(cNum==num){
     		alert('인증이 완료 되었습니다');
     		email.disabled='disabled';
@@ -290,10 +292,10 @@ img {
     
 	let nextBtn = document.querySelector('#nextBtn');
 	nextBtn.addEventListener('click', function(e){
-		if(email.disabled=='disabled'){
+		
 		document.querySelector('#step1').style.display='none';
 		document.querySelector('#step2').style.display='block';
-		}
+		
 		
 	})
     
