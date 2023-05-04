@@ -25,15 +25,13 @@
 	</select>
 	<select id="selectOrderOrderId" resultType="order">
 		select o.*,c.book
-		,c.num, c.book_price
-		FROM (select h.order_id, b.book_name book
-		,h.history_count num
-		,b.book_price,b.isbn
+		,c.num, c.book_price,c.cover
+		FROM (select h.order_id, b.book_name book,h.history_count num 
+		,b.book_price,b.isbn,b.cover
 		from historys h JOIN books b
 		ON (h.isbn=b.isbn))c join orders o
 		ON(o.order_id=c.order_id)
-		WHERE
-		order_id=#{orderId}
+		WHERE o.order_id=#{orderId}
 	</select>
 	<select id="getCount">
 	select count(*)

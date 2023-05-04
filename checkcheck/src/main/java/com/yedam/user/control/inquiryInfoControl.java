@@ -13,7 +13,7 @@ public class inquiryInfoControl implements Control {
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		return "mypage/inquiry.tiles";
+		return "myPage/inquiry.tiles";
 	}
 
 }
