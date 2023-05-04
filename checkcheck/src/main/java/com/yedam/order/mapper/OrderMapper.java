@@ -8,7 +8,7 @@ import com.yedam.order.domain.OrderVO;
 
 public interface OrderMapper {
 	public List<OrderVO> selectOrderUserId(@Param("userId") String userId,@Param("page") int page );
-	public List<OrderVO> SelectOrderOrderId(String orderId);
+	public List<OrderVO> selectOrderOrderId(String orderId);
 	
 	//마이페이지 유저의 주문총갯수(10개씩)
 	public int getCount(String userId);
