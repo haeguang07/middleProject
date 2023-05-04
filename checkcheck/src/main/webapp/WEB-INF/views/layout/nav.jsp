@@ -22,10 +22,11 @@
 						<i class="bi-cart-fill me-1"></i> Cart <span
 							class="badge bg-dark text-white ms-1 rounded-pill">0</span>
 					</div>
-					<button class="btn btn-outline-dark" type="button" onclick="location.href='myPageMain.do?'">마이페이지</button>
-					<button class="btn btn-outline-dark" type="button" onclick="location.href='login.do'">로그인</button>
-					<button class="btn btn-outline-dark" type="button" onclick="location.href='joinForm.do'">회원가입</button>
-
+					<div>
+						<button class="btn btn-outline-dark" type="button" onclick="location.href='myPageMain.do?'">마이페이지</button>
+						<button class="btn btn-outline-dark" type="button" onclick="location.href='login.do'">로그인</button>
+						<button class="btn btn-outline-dark" type="button" onclick="location.href='joinForm.do'">회원가입</button>
+					</div>
 				</form>
 			</div>
 		</div>
@@ -45,15 +46,16 @@
 						name="search" value="검색"><input
 						style="width: 100px; height: 50px; font-size: 16px;" type="button"
 						value="검색">
+				</h1>
 					<p class="lead fw-normal text-white-50 mb-0">
-					<ul id="nav123">
-						<a href="#!"><li id="category">카테고리</li></a>
-						<a href="#!"><li>베스트</li></a>
-						<a href="#!"><li>신상</li></a>
-						<a href="#!"><li>공지사항</li></a>
-						<a href="#!"><li>문의사항</li></a>
-					</ul>
-					</p>
+						<ul id="nav123">
+							<a href="#!"><li id="category">카테고리</li></a>
+							<a href="#!"><li>베스트</li></a>
+							<a href="#!"><li>신상</li></a>
+							<a href="#!"><li>공지사항</li></a>
+							<a href="#!"><li>문의사항</li></a>
+						</ul>
 			</div>
 		</div>
 	</header>
+</div>
