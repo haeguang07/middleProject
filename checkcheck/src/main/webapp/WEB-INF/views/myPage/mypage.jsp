@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div
 	style="flex: 1; border: 1px black solid; margin: 5px; height: 500px; float: left; display: block;">
 	<p id="hoverkorea" style="display: inline-block; margin: 0 20px">마이페이지</p>
@@ -47,8 +48,6 @@
 			<option value="12">12</option>
 		</select>월 <span>상품이름 </span><input type="text" style="width: 100px">
 		<button>검색</button>
-		
-
 		<table>
 			<tr>
 				<th>주문일</th>
@@ -57,14 +56,34 @@
 				<th>배송상태</th>
 				<th>변경/취소</th>
 			</tr>
-			<tr>
-				<td>2019-05-09</td>
-				<td>882097806</td>
-				<td>손으로.. 외 2권 총 234,200원</td>
-				<td>배송완료</td>
-				<td><a href="#">변경</a><a href="#">취소</a></td>
-			</tr>
-		</table>
 
+			<c:forEach var="order" items="${list }">
+				<tr>
+					<td>${order.orderDate }</td>
+					<td>${order.orderId }</td>
+					<td><a
+						href="getNotice.do?nid=${order.orderId }&page=${pageInfo.pageNum}">
+							${order.book }</a></td>
+					<td>${order.orderState }</td>
+					<td><a href="#">변경/취소</a></td>
+				</tr>
+			</c:forEach>
+		</table>
+		<div class="center">
+			<div class="pagination">
+				<c:if test="${pageInfo.prev }">
+					<a href="myPageMain.do?page=${pageInfo.startPage-1 }&userId=${sesInfo.userId}"> 이전페이지</a>
+				</c:if>
+				<c:forEach var="i" begin="${pageInfo.startPage}"
+					end="${pageInfo.endPage}">
+					<a class="${i==pageInfo.pageNum ? 'active':'' }"
+						href="myPageMain.do?page=${i}&userId=${sesInfo.userId}">${i} </a>
+				</c:forEach>
+				<c:if test="${pageInfo.next }">
+					<a href="myPageMain.do?page=${pageInfo.endPage+1 }&userId=${sesInfo.userId}"> 다음페이지</a>
+				</c:if>
+			</div>
+		</div>
 	</div>
+
 </div>

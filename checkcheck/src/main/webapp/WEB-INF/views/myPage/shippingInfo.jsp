@@ -35,7 +35,7 @@
 		<td colspan="3">대구광역시 중구 중앙대로 403 5층</td>
 	</tr>
 	<tr>
-		<th>전회번호</th>
+		<th>전화번호</th>
 		<td colspan="3">053-421-2460</td>
 	</tr>
 </table>

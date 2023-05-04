@@ -13,7 +13,7 @@ public class ShipingInfoControl implements Control {
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		return "mypage/shippingInfo.tiles";
+		return "myPage/shippingInfo.tiles";
 	}
 
 }
