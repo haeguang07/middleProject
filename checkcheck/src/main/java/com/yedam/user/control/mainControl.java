@@ -1,6 +1,9 @@
 package com.yedam.user.control;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -19,11 +22,29 @@ public class mainControl implements Control {
 		BookService service = new BookServiceImpl();
 		List<BookVO> list = service.mainRecommandList("%>%");
 		List<BookVO> newlist = service.getNewList();
-		List<BookVO> newBookList = service.getNewList();
+		List<BookVO> newBookList = service.getNewBookList();
 		req.setAttribute("normalList", list);
 		req.setAttribute("newList", newlist);
 		req.setAttribute("newBookList", newBookList);
 		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date time = new Date();
+		
+		int year = time.getYear() + 1900;
+		int month = time.getMonth();
+		int day = time.getDay();
+		Calendar cal = Calendar.getInstance();
+		cal.set(year , month , day);
+		
+		System.out.println(dateFormat.format(cal.getTime()));
+		cal.set(day, cal.getMinimum(Calendar.DAY_OF_MONTH));
+		String monthFirst = dateFormat.format(cal.getTime());
+		System.out.println(dateFormat.format(cal.getTime()));
+		cal.set(day, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
+		String monthLast = dateFormat.format(cal.getTime());
+		System.out.println(dateFormat.format(cal.getTime()));
+		List<BookVO> bestSellerList = service.getBestSeller(monthFirst, monthLast);
+		req.setAttribute("bestSeller", bestSellerList);
 		return "main.tiles";
 	}
 

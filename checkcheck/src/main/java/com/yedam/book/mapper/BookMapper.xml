@@ -62,7 +62,7 @@
 	<select id="newList" resultType="book">
 	<![CDATA[
 		select rownum,a.* from books a
-		where rownum < 9
+		where rownum < 8
 		and book_name not like '%CD%'
 		order by hitcount desc
 		]]>
@@ -77,7 +77,29 @@
 	         from books
 	         where book_category like '국내%'
 	         order by pub_date desc)a ) b
-		where rn <=10
+		where rn <=8
 	]]>
+	</select>
+	<select id="bestSeller" resultType="book">
+		select b.order_id ,c.*, b.isbn, b.history_count*c.book_price total_price,a.order_date
+		from orders a join historys b
+		on a.order_id = b.order_id
+		join books c on b.isbn = c.isbn
+		where order_date between #{monthFirst} and #{monthLast}
+		order by total_price desc
+	</select>
+	<select id="bestSellerSearchPage" resultType="book">
+	<![CDATA[
+		select e.* 
+		from(select rownum rn, d.*
+     		from (select b.order_id ,c.*, b.history_count*c.book_price total_price,a.order_date
+            from orders a join historys b
+            on a.order_id = b.order_id
+            join books c on b.isbn = c.isbn
+            where order_date between #{monthFirst} and #{monthLast}
+            order by total_price desc) d
+     		where rownum <=#{page}*10) e
+		where e.rn > (#{page}- 1)*10
+		]]>
 	</select>
 </mapper>

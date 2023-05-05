@@ -56,4 +56,14 @@ public class BookServiceImpl implements BookService{
 		return mapper.getNewBookList();
 	}
 
+	@Override
+	public List<BookVO> getBestSeller(String monthFirst, String monthLast) {
+		return mapper.bestSeller(monthFirst, monthLast);
+	}
+
+	@Override
+	public List<BookVO> getBestSellerSearchPage(String monthFirst, String monthLast, int page) {
+		return mapper.bestSellerSearchPage(monthFirst, monthLast, page);
+	}
+
 }

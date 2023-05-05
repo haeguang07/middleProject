@@ -135,12 +135,12 @@
 </c:choose>
 
 <div class="sl01" style="border: 1px solid gray; margin: 30px 0; position: relative">
-<p style="margin:50px"><a href="#" style="text-decoration:none;color:black ">베스트셀러 더보기▶</a></p>
+<p style="margin:50px"><a href="#" style="text-decoration:none;color:black ">이 달의 베스트셀러 더보기▶</a></p>
 	<div class="slide_wrapper">
 		<ul class="slides">
-			<c:forEach var="newlist" items="${newList }">
+			<c:forEach var="best" items="${bestSeller }">
 			<li><div style="width: 200px; height: 400px;padding:20px 0;overflow:hidden">
-					<a href="getBook.do?bookInfo=${newlist }"><img src="${newlist.cover }" style="width: 200px; height: 300px;margin-bottom:10px"></a><span style="text-align:center;">${newlist.bookName }</span>
+					<a href="getBook.do?bookInfo=${best }"><img src="${best.cover }" style="width: 200px; height: 300px;margin-bottom:10px;box-shadow: 5px 5px 5px #000;"></a><span style="text-align:center;">${best.bookName }</span>
 				</div></li>
 			</c:forEach>
 		</ul>
@@ -155,7 +155,22 @@
 		<ul class="slides">
 			<c:forEach var="newlist" items="${newList }">
 			<li><div style="width: 200px; height: 400px;padding:20px 0;overflow:hidden">
-					<a href="getBook.do?bookInfo=${newlist }"><img src="${newlist.cover }" style="width: 200px; height: 300px;margin-bottom:10px"></a><span style="text-align:center;">${newlist.bookName }</span>
+					<a href="getBook.do?bookInfo=${newlist }"><img src="${newlist.cover }" style="width: 200px; height: 300px;margin-bottom:10px;box-shadow: 5px 5px 5px #000;"></a><span style="text-align:center;">${newlist.bookName }</span>
+				</div></li>
+			</c:forEach>
+		</ul>
+	
+	</div>
+		<input type="button" class="prevbtn" value="prev">
+		<input class="nextbtn" type="button" value="next">
+</div>
+<div class="sl03" style="border: 1px solid gray; margin: 30px 0; position: relative">
+<p style="margin:50px"><a href="#" style="text-decoration:none;color:black ">신간 더보기▶</a></p>
+	<div class="slide_wrapper">
+		<ul class="slides">
+			<c:forEach var="newbooklist" items="${newBookList }">
+			<li><div style="width: 200px; height: 400px;padding:20px 0;overflow:hidden">
+					<a href="getBook.do?bookInfo=${newbooklist }"><img src="${newbooklist.cover }" style="width: 200px; height: 300px;margin-bottom:10px;box-shadow: 5px 5px 5px #000;"></a><span style="text-align:center;">${newbooklist.bookName }</span>
 				</div></li>
 			</c:forEach>
 		</ul>
@@ -193,21 +208,23 @@
 	integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
 	crossorigin="anonymous"></script>
 <script>
-	let prev = document.querySelectorAll('.prevbtn');
-	let ul = prev.parentNode.firstChild.nextSibling.firstChild;
-	console.log(ul);
+	
 	var slides01 = document.querySelector('.sl01 .slides'),
 		slide01 = document.querySelectorAll('.sl01 .slides li'),
 		slides02 = document.querySelector('.sl02 .slides'),
 		slide02 = document.querySelectorAll('.sl02 .slides li'),
+		slides03 = document.querySelector('.sl03 .slides'),
+		slide03 = document.querySelectorAll('.sl03 .slides li'),
 		currentIdx = 0,
 		slideCount = slide01.length,
 		slideWidth = 200,
 		slideMargin =100,
 		prevBtn = document.querySelector('.prevbtn'),
-		nextBtn = document.querySelector('.nextbtn');
+		nextBtn = document.querySelector('.nextbtn'),
 		prevBtn2 = document.querySelector('.sl02 .prevbtn'),
-		nextBtn2 = document.querySelector('.sl02 .nextbtn');
+		nextBtn2 = document.querySelector('.sl02 .nextbtn'),
+		prevBtn3 = document.querySelector('.sl03 .prevbtn'),
+		nextBtn3 = document.querySelector('.sl03 .nextbtn');
 		
 		slides01.style.width= ( slideWidth + slideMargin)*slideCount +slideMargin + 'px';
 		slides02.style.width= ( slideWidth + slideMargin)*slideCount +slideMargin + 'px';
@@ -218,6 +235,10 @@
 		}
 		function moveSlide2(num){
 			slides02.style.left = -num * 300 + 'px';
+			currentIdx = num;
+		}
+		function moveSlide3(num){
+			slides03.style.left = -num * 300 + 'px';
 			currentIdx = num;
 		}
 		
@@ -247,6 +268,20 @@
 				moveSlide2(currentIdx -1);
 			}else{
 				moveSlide2(slideCount-3);
+			}
+		})
+		nextBtn3.addEventListener('click', function(){
+			if(currentIdx < slideCount-3){
+			moveSlide3(currentIdx + 1);
+			}else{
+			moveSlide3(0);
+			}
+		})
+		prevBtn3.addEventListener('click', function(){
+			if(currentIdx > 0){
+				moveSlide3(currentIdx -1);
+			}else{
+				moveSlide3(slideCount-3);
 			}
 		})
 	$(function() {
