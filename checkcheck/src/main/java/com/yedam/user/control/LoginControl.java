@@ -31,6 +31,7 @@ public class LoginControl implements Control {
 			vo.setUserPw(req.getParameter("pw"));
 			UserService service = new UserServiceImpl();
 			vo = service.login(vo);
+			System.out.println(vo);
 			if(vo!=null) {
 				HttpSession session = req.getSession();
 				BookService bookServ = new BookServiceImpl();
@@ -38,7 +39,7 @@ public class LoginControl implements Control {
 				String like = "%>"+vo.getUserCategory()+"%";
 				List<BookVO> list = bookServ.mainRecommandList(like);
 				session.setAttribute("sesInfo", vo);
-				req.setAttribute("list", list);
+				session.setAttribute("list", list);
 				
 				return "main.do";
 			}else {
