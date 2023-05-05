@@ -99,7 +99,7 @@
 						      </div>
 						    </div> 
 					    </li>
-						<li><a href="bestSeller.do">베스트셀러</a></li>
+						<li><a href="bestSeller.do?category=베스트셀러">베스트셀러</a></li>
 						<li><a href="#!">공지사항</a></li>
 						<li><a href="#!">문의사항</a></li>
 					</ul>

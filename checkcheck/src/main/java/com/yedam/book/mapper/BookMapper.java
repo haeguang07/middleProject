@@ -17,4 +17,6 @@ public interface BookMapper {
 	public List<BookVO> searchBookList(@Param("bookCategory") String bookCategory,@Param("search")String search,@Param("page")int page);
 	public int getSearchPageCount(@Param("bookCategory")String bookCategory ,@Param("search")String search);
 	public List<BookVO> getNewBookList();
+	public List<BookVO> bestSeller(@Param("monthFirst")String monthFirst, @Param("monthLast")String monthLast);
+	public List<BookVO> bestSellerSearchPage(@Param("monthFirst")String monthFirst, @Param("monthLast")String monthLast,@Param("page")int page);
 }
