@@ -19,8 +19,10 @@ public class mainControl implements Control {
 		BookService service = new BookServiceImpl();
 		List<BookVO> list = service.mainRecommandList("%>%");
 		List<BookVO> newlist = service.getNewList();
+		List<BookVO> newBookList = service.getNewList();
 		req.setAttribute("normalList", list);
 		req.setAttribute("newList", newlist);
+		req.setAttribute("newBookList", newBookList);
 		
 		return "main.tiles";
 	}

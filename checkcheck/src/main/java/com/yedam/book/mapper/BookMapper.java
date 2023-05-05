@@ -16,4 +16,5 @@ public interface BookMapper {
 	public List<BookVO> newList();
 	public List<BookVO> searchBookList(@Param("bookCategory") String bookCategory,@Param("search")String search,@Param("page")int page);
 	public int getSearchPageCount(@Param("bookCategory")String bookCategory ,@Param("search")String search);
+	public List<BookVO> getNewBookList();
 }
