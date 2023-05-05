@@ -146,8 +146,8 @@
 		</ul>
 	
 	</div>
-		<input type="button" class=prevbtn value="prev">
-		<input class=nextbtn type="button" value="next">
+		<input type="button" class="prevbtn" value="prev">
+		<input class="nextbtn" type="button" value="next">
 </div>
 <div class="sl02" style="border: 1px solid gray; margin: 30px 0; position: relative">
 <p style="margin:50px"><a href="#" style="text-decoration:none;color:black ">화제의 책 더보기▶</a></p>
@@ -161,8 +161,8 @@
 		</ul>
 	
 	</div>
-		<input type="button" class=prevbtn value="prev">
-		<input class=nextbtn type="button" value="next">
+		<input type="button" class="prevbtn" value="prev">
+		<input class="nextbtn" type="button" value="next">
 </div>
 <div id="MOVE_TOP_BTN">
 	<a href="#">
@@ -193,6 +193,9 @@
 	integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
 	crossorigin="anonymous"></script>
 <script>
+	let prev = document.querySelectorAll('.prevbtn');
+	let ul = prev.parentNode.firstChild.nextSibling.firstChild;
+	console.log(ul);
 	var slides01 = document.querySelector('.sl01 .slides'),
 		slide01 = document.querySelectorAll('.sl01 .slides li'),
 		slides02 = document.querySelector('.sl02 .slides'),

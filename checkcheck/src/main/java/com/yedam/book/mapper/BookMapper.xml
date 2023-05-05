@@ -58,6 +58,7 @@
 		where rownum <6
 		]]>
 	</select>
+	<!-- 조회수 많은 책들을 가져옴 -->
 	<select id="newList" resultType="book">
 	<![CDATA[
 		select rownum,a.* from books a
@@ -65,5 +66,18 @@
 		and book_name not like '%CD%'
 		order by hitcount desc
 		]]>
+	</select>
+	<!-- 최근 발간일 책들 10권 가져옴 -->
+	<select id="getNewBookList" resultType="book">
+	<![CDATA[
+		select b.book_name,b.cover
+		from 
+		(select rownum rn,a.*
+		from (select *
+	         from books
+	         where book_category like '국내%'
+	         order by pub_date desc)a ) b
+		where rn <=10
+	]]>
 	</select>
 </mapper>

@@ -51,4 +51,9 @@ public class BookServiceImpl implements BookService{
 		return mapper.getSearchPageCount(bookCategory, search);
 	}
 
+	@Override
+	public List<BookVO> getNewBookList() {
+		return mapper.getNewBookList();
+	}
+
 }

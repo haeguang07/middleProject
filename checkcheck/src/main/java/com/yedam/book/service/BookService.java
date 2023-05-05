@@ -13,7 +13,8 @@ public interface BookService {
 	public int pagetotalCount(String category);
 	public List<BookVO> mainRecommandList(String string);
 	public List<BookVO> categoryBookList(int page, String category);
-	public List<BookVO> getNewList();
+	public List<BookVO> getNewList();//메인페이지의 조회수 많은 순 리스트
 	public List<BookVO> searchBookList(String bookCategory,String search,int page);
 	public int getSearchPageCount(String bookCategory,String search);
+	public List<BookVO> getNewBookList();//메인페이지에 나올 신간책리스트
 }
