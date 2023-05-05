@@ -17,6 +17,7 @@ import com.yedam.admin.control.BookStockControl;
 import com.yedam.admin.control.ChartControl;
 import com.yedam.admin.control.ChulgoControl;
 import com.yedam.admin.control.InquiryAnswerFormControl;
+import com.yedam.book.control.BestSellerControl;
 import com.yedam.book.control.InsertBookControl;
 import com.yedam.common.Control;
 
@@ -65,7 +66,8 @@ public class FrontController extends HttpServlet{
 		map.put("/adminInquiryInfo.do",new AdminInquiryInfoControl());
 		//05-03 관리자 문의작성 페이지
 		map.put("/inquiryAnswerForm.do",new InquiryAnswerFormControl());
-		
+		//05-05 nav 의 베스트셀러 항목 누를시 베스트셀러 보여줌
+		map.put("/bestSeller.do", new BestSellerControl());
 		//검색 기능
 		map.put("/search.do", new SearchPageControl());
 		//상세페이지 기능

@@ -7,7 +7,7 @@
 	crossorigin="anonymous"></script>
 
 <c:choose>
-	<c:when test="${sesinfo != null }">
+	<c:when test="${not empty sesInfo}">
 		<div class="section" style="margin: 20px">
 			<input type="radio" name="slide" id="slide01" checked> <input
 				type="radio" name="slide" id="slide02"> <input type="radio"
@@ -17,7 +17,7 @@
 				<ul class="slidelist">
 					<li><a style="position: relative;"> <img
 							src="${list[0].cover }"
-							style="width: 300px; height: 400px; position: absolute; top: 50%; transform: translateY(-50%); left: 100px">
+							style="width: 300px; height: 400px; position: absolute; top: 50%; transform: translateY(-50%); left: 100px;box-shadow: 5px 5px 5px #000;">
 							<label for="slide05" class="left"></label>
 							<div class="textbox" style="margin-left: 30px; width: 450px;padding:40px">
 								<h4 style="text-overflow: ellipsis; overflow: hidden;margin-bottom:40px">${list[0].bookName }</h4>
@@ -27,7 +27,7 @@
 					</a></li>
 					<li><a style="position: relative;"> <img
 							src="${list[1].cover }"
-							style="width: 300px; height: 400px; position: absolute; top: 50%; transform: translateY(-50%); left: 100px">
+							style="width: 300px; height: 400px; position: absolute; top: 50%; transform: translateY(-50%); left: 100px;box-shadow: 5px 5px 5px #000;">
 							<label for="slide01" class="left"></label>
 							<div class="textbox" style="margin-left: 30px; width: 400px;padding:40px">
 								<h4 style="text-overflow: ellipsis; overflow: hidden;margin-bottom:40px">${list[1].bookName }</h4>
@@ -37,7 +37,7 @@
 					</a></li>
 					<li><a style="position: relative;"> <img
 							src="${list[2].cover }"
-							style="width: 300px; height: 400px; position: absolute; top: 50%; transform: translateY(-50%); left: 100px">
+							style="width: 300px; height: 400px; position: absolute; top: 50%; transform: translateY(-50%); left: 100px;box-shadow: 5px 5px 5px #000;">
 							<label for="slide02" class="left"></label>
 							<div class="textbox" style="margin-left: 30px; width: 400px;padding:40px">
 								<h4 style="text-overflow: ellipsis; overflow: hidden;margin-bottom:40px">${list[2].bookName }</h4>
@@ -47,7 +47,7 @@
 					</a></li>
 					<li><a style="position: relative;"> <img
 							src="${list[3].cover }"
-							style="width: 300px; height: 400px; position: absolute; top: 50%; transform: translateY(-50%); left: 100px">
+							style="width: 300px; height: 400px; position: absolute; top: 50%; transform: translateY(-50%); left: 100px;box-shadow: 5px 5px 5px #000;">
 							<label for="slide03" class="left"></label>
 							<div class="textbox" style="margin-left: 30px; width: 400px;padding:40px">
 								<h4 style="text-overflow: ellipsis; overflow: hidden;margin-bottom:40px">${list[3].bookName }</h4>
@@ -57,7 +57,7 @@
 					</a></li>
 					<li><a style="position: relative;"> <img
 							src="${list[4].cover }"
-							style="width: 300px; height: 400px; position: absolute; top: 50%; transform: translateY(-50%); left: 100px">
+							style="width: 300px; height: 400px; position: absolute; top: 50%; transform: translateY(-50%); left: 100px;box-shadow: 5px 5px 5px #000;">
 							<label for="slide04" class="left"></label>
 							<div class="textbox" style="margin-left: 30px; width: 400px;padding:40px">
 								<h4 style="text-overflow: ellipsis; overflow: hidden;margin-bottom:40px">${list[4].bookName }</h4>
@@ -79,7 +79,7 @@
 				<ul class="slidelist">
 					<li><a href="getBook.do?bookInfo=${normalList[0] }" style="position: relative;text-decoration:none;color:black"> <img
 							src="${normalList[0].cover }"
-							style="width: 300px; height: 400px; position: absolute; top: 50%; transform: translateY(-50%); left: 100px">
+							style="width: 300px; height: 400px; position: absolute; top: 50%; transform: translateY(-50%); left: 100px;box-shadow: 5px 5px 5px #000;">
 							<label for="slide05" class="left"></label>
 							<div class="textbox" style="margin-left: 30px; width: 450px;padding:40px">
 								<h4 style="text-overflow: ellipsis; overflow: hidden;margin-bottom:40px">${normalList[0].bookName }</h4>
@@ -89,7 +89,7 @@
 					</a></li>
 					<li><a style="position: relative;"> <img
 							src="${normalList[1].cover }"
-							style="width: 300px; height: 400px; position: absolute; top: 50%; transform: translateY(-50%); left: 100px">
+							style="width: 300px; height: 400px; position: absolute; top: 50%; transform: translateY(-50%); left: 100px;box-shadow: 5px 5px 5px #000;">
 							<label for="slide01" class="left"></label>
 							<div class="textbox" style="margin-left: 30px; width: 450px;padding:40px">
 								<h4 style="text-overflow: ellipsis; overflow: hidden;margin-bottom:40px">${normalList[1].bookName }</h4>
@@ -99,7 +99,7 @@
 					</a></li>
 					<li><a style="position: relative;"> <img
 							src="${normalList[2].cover }"
-							style="width: 300px; height: 400px; position: absolute; top: 50%; transform: translateY(-50%); left: 100px">
+							style="width: 300px; height: 400px; position: absolute; top: 50%; transform: translateY(-50%); left: 100px;box-shadow: 5px 5px 5px #000;">
 							<label for="slide02" class="left"></label>
 							<div class="textbox" style="margin-left: 30px; width: 450px;padding:40px">
 								<h4 style="text-overflow: ellipsis; overflow: hidden;margin-bottom:40px">${normalList[2].bookName }</h4>
@@ -109,7 +109,7 @@
 					</a></li>
 					<li><a style="position: relative;"> <img
 							src="${normalList[3].cover }"
-							style="width: 300px; height: 400px; position: absolute; top: 50%; transform: translateY(-50%); left: 100px">
+							style="width: 300px; height: 400px; position: absolute; top: 50%; transform: translateY(-50%); left: 100px;box-shadow: 5px 5px 5px #000;">
 							<label for="slide03" class="left"></label>
 							<div class="textbox" style="margin-left: 30px; width: 450px;padding:40px">
 								<h4 style="text-overflow: ellipsis; overflow: hidden;margin-bottom:40px">${normalList[3].bookName }</h4>
@@ -119,7 +119,7 @@
 					</a></li>
 					<li><a style="position: relative;"> <img
 							src="${normalList[4].cover }"
-							style="width: 300px; height: 400px; position: absolute; top: 50%; transform: translateY(-50%); left: 100px">
+							style="width: 300px; height: 400px; position: absolute; top: 50%; transform: translateY(-50%); left: 100px;box-shadow: 5px 5px 5px #000;">
 							<label for="slide04" class="left"></label>
 							<div class="textbox" style="margin-left: 30px; width: 450px;padding:40px">
 								<h4 style="text-overflow: ellipsis; overflow: hidden;margin-bottom:40px">${normalList[4].bookName }</h4>
