@@ -48,7 +48,7 @@
 </style>
 <section style="display: flex">
 	<div
-		style="flex: 1; border: 1px black solid; margin: 5px; height: 500px;">
+		style="flex: 1; border: 1px black solid; margin: 5px; height: 700px;">
 		<p id="hoverkorea" style="display: inline-block; margin: 0 20px">국내도서</p>
 		<p id="hoverforeign" style="display: inline-block;">외국도서</p>
 		<ul id="korea" style="list-style: none;">
@@ -91,6 +91,21 @@
 			</c:if>
 			<a>${category }</a>
 		</p>
+		<c:if test="${category eq '베스트셀러' }">
+		<select>
+			<option>2023</option>
+			<option>2022</option>
+			<option>2021</option>
+		</select>
+		<select>
+			<c:forEach var=i begin=1 end=12 step=1>
+				<option id="month">i</option>
+			</c:forEach>
+		</select>
+		<select id="day">
+			
+		</select>
+		</c:if>
 		<!-- 책 리스트 받아서 반복문 만들기-->
 		<c:forEach var="i" items="${list }">
 			<div style="padding: 10px; border-top: 1px black solid; clear: both;">
@@ -231,4 +246,6 @@
 		let foreign = document.querySelector('#foreign');
 		foreign.style.display = 'none';
 	})
+	
+	//월별 일수 구현하기
 </script>
