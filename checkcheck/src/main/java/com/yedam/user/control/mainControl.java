@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -31,9 +32,9 @@ public class mainControl implements Control {
 		Date time = new Date();
 		
 		int year = time.getYear() + 1900;
-		int month = time.getMonth();
+		int month = time.getMonth()+1;
 		int day = time.getDay();
-		Calendar cal = Calendar.getInstance();
+		Calendar cal = Calendar.getInstance(Locale.KOREA);
 		cal.set(year , month , day);
 		
 		System.out.println(dateFormat.format(cal.getTime()));

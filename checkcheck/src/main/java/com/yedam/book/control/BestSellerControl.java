@@ -60,7 +60,7 @@ public class BestSellerControl implements Control {
 		req.setAttribute("list", list);
 		req.setAttribute("category", category);
 		req.setAttribute("pageInfo", dto);
-
+		//https://blog.munilive.com/posts/create-weekly-selectbox-with-javascript.html
 		return "searchpage.tiles";
 	}
 
