@@ -202,7 +202,7 @@
 	position: absolute;
 	left: 0;
 	top: 0;
-	width: 2300px;
+	width: 2500px;
 	transition: left 0.5s ease-out;
 }
 

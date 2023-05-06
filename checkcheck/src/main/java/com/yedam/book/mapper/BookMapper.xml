@@ -77,7 +77,7 @@
 	         from books
 	         where book_category like '국내%'
 	         order by pub_date desc)a ) b
-		where rn <=8
+		where rn <8
 	]]>
 	</select>
 	<select id="bestSeller" resultType="book">

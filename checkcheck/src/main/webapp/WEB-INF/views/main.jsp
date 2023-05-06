@@ -228,6 +228,7 @@
 		
 		slides01.style.width= ( slideWidth + slideMargin)*slideCount +slideMargin + 'px';
 		slides02.style.width= ( slideWidth + slideMargin)*slideCount +slideMargin + 'px';
+		slides03.style.width= ( slideWidth + slideMargin)*slideCount +slideMargin + 'px';
 		
 		function moveSlide(num){
 			slides01.style.left = -num * 300 + 'px';
