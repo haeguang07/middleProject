@@ -102,4 +102,7 @@
 		where e.rn > (#{page}- 1)*10
 		]]>
 	</select>
+	<select id="isbnCallOneBook" resultType="book">
+		select * from books where isbn=#{isbn}
+	</select>
 </mapper>

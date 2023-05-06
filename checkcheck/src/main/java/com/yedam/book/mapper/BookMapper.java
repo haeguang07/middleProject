@@ -19,4 +19,5 @@ public interface BookMapper {
 	public List<BookVO> getNewBookList();
 	public List<BookVO> bestSeller(@Param("monthFirst")String monthFirst, @Param("monthLast")String monthLast);
 	public List<BookVO> bestSellerSearchPage(@Param("monthFirst")String monthFirst, @Param("monthLast")String monthLast,@Param("page")int page);
+	public BookVO isbnCallOneBook(@Param("isbn")long isbn);
 }

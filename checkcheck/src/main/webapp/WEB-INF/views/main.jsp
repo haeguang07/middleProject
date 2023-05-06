@@ -15,7 +15,7 @@
 				id="slide04"> <input type="radio" name="slide" id="slide05">
 			<div class="slide-wrap">
 				<ul class="slidelist">
-					<li><a style="position: relative;"> <img
+					<li><a href="getBook.do?bookInfo=${list[0].isbn }" style="position: relative;text-decoration:none;color:black"> <img
 							src="${list[0].cover }"
 							style="width: 300px; height: 400px; position: absolute; top: 50%; transform: translateY(-50%); left: 100px;box-shadow: 5px 5px 5px #000;">
 							<label for="slide05" class="left"></label>
@@ -25,7 +25,7 @@
 							</div> <img src="./img/slide.jpg"> <label for="slide02"
 							class="right"></label>
 					</a></li>
-					<li><a style="position: relative;"> <img
+					<li><a href="getBook.do?bookInfo=${list[1].isbn }" style="position: relative;text-decoration:none;color:black"> <img
 							src="${list[1].cover }"
 							style="width: 300px; height: 400px; position: absolute; top: 50%; transform: translateY(-50%); left: 100px;box-shadow: 5px 5px 5px #000;">
 							<label for="slide01" class="left"></label>
@@ -35,7 +35,7 @@
 							</div> <img src="./img/slide.jpg"> <label for="slide03"
 							class="right"></label>
 					</a></li>
-					<li><a style="position: relative;"> <img
+					<li><a href="getBook.do?bookInfo=${list[2].isbn }" style="position: relative;text-decoration:none;color:black"> <img
 							src="${list[2].cover }"
 							style="width: 300px; height: 400px; position: absolute; top: 50%; transform: translateY(-50%); left: 100px;box-shadow: 5px 5px 5px #000;">
 							<label for="slide02" class="left"></label>
@@ -45,7 +45,7 @@
 							</div> <img src="./img/slide.jpg"> <label for="slide04"
 							class="right"></label>
 					</a></li>
-					<li><a style="position: relative;"> <img
+					<li><a href="getBook.do?bookInfo=${list[3].isbn }" style="position: relative;text-decoration:none;color:black"> <img
 							src="${list[3].cover }"
 							style="width: 300px; height: 400px; position: absolute; top: 50%; transform: translateY(-50%); left: 100px;box-shadow: 5px 5px 5px #000;">
 							<label for="slide03" class="left"></label>
@@ -55,7 +55,7 @@
 							</div> <img src="./img/slide.jpg"> <label for="slide05"
 							class="right"></label>
 					</a></li>
-					<li><a style="position: relative;"> <img
+					<li><a href="getBook.do?bookInfo=${list[4].isbn }" style="position: relative;text-decoration:none;color:black"> <img
 							src="${list[4].cover }"
 							style="width: 300px; height: 400px; position: absolute; top: 50%; transform: translateY(-50%); left: 100px;box-shadow: 5px 5px 5px #000;">
 							<label for="slide04" class="left"></label>
@@ -77,7 +77,7 @@
 				id="slide04"> <input type="radio" name="slide" id="slide05">
 			<div class="slide-wrap" style="z-index:1 !important;">
 				<ul class="slidelist">
-					<li><a href="getBook.do?bookInfo=${normalList[0] }" style="position: relative;text-decoration:none;color:black"> <img
+					<li><a href="getBook.do?bookInfo=${normalList[0].isbn }" style="position: relative;text-decoration:none;color:black"> <img
 							src="${normalList[0].cover }"
 							style="width: 300px; height: 400px; position: absolute; top: 50%; transform: translateY(-50%); left: 100px;box-shadow: 5px 5px 5px #000;">
 							<label for="slide05" class="left"></label>
@@ -87,7 +87,7 @@
 							</div> <img src="./img/책사진2.png" style="z-index:1 !important;"> <label for="slide02"
 							class="right"></label>
 					</a></li>
-					<li><a style="position: relative;"> <img
+					<li><a href="getBook.do?bookInfo=${normalList[1].isbn }" style="position: relative;"> <img
 							src="${normalList[1].cover }"
 							style="width: 300px; height: 400px; position: absolute; top: 50%; transform: translateY(-50%); left: 100px;box-shadow: 5px 5px 5px #000;">
 							<label for="slide01" class="left"></label>
@@ -97,7 +97,7 @@
 							</div> <img src="./img/책사진2.png"> <label for="slide03"
 							class="right"></label>
 					</a></li>
-					<li><a style="position: relative;"> <img
+					<li><a href="getBook.do?bookInfo=${normalList[2].isbn }" style="position: relative;"> <img
 							src="${normalList[2].cover }"
 							style="width: 300px; height: 400px; position: absolute; top: 50%; transform: translateY(-50%); left: 100px;box-shadow: 5px 5px 5px #000;">
 							<label for="slide02" class="left"></label>
@@ -107,7 +107,7 @@
 							</div> <img src="./img/책사진2.png"> <label for="slide04"
 							class="right"></label>
 					</a></li>
-					<li><a style="position: relative;"> <img
+					<li><a href="getBook.do?bookInfo=${normalList[3].isbn }" style="position: relative;"> <img
 							src="${normalList[3].cover }"
 							style="width: 300px; height: 400px; position: absolute; top: 50%; transform: translateY(-50%); left: 100px;box-shadow: 5px 5px 5px #000;">
 							<label for="slide03" class="left"></label>
@@ -117,7 +117,7 @@
 							</div> <img src="./img/책사진2.png"> <label for="slide05"
 							class="right"></label>
 					</a></li>
-					<li><a style="position: relative;"> <img
+					<li><a href="getBook.do?bookInfo=${normalList[4].isbn }" style="position: relative;"> <img
 							src="${normalList[4].cover }"
 							style="width: 300px; height: 400px; position: absolute; top: 50%; transform: translateY(-50%); left: 100px;box-shadow: 5px 5px 5px #000;">
 							<label for="slide04" class="left"></label>
@@ -135,7 +135,7 @@
 </c:choose>
 
 <div class="sl01" style="border: 1px solid gray; margin: 30px 0; position: relative">
-<p style="margin:50px"><a href="#" style="text-decoration:none;color:black ">이 달의 베스트셀러 더보기▶</a></p>
+<p style="margin:50px"><a href="bestSeller.do?category=베스트셀러" style="text-decoration:none;color:black ">베스트셀러 더보기▶</a></p>
 	<div class="slide_wrapper">
 		<ul class="slides">
 			<c:forEach var="best" items="${bestSeller }">

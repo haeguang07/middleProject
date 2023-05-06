@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 
 <style>
 	#myform fieldset{
@@ -32,15 +32,15 @@
 <section style="display: flex">
 	<div style="float: right; flex: 1"></div>
 	<div id="top" style="flex: 2">
-		<p style="margin: 10px">코스모스</p>
-		<p>저자 () , 출판사 () , 발간일 ()</p>
-		<img src="image/logo.png"
-			style="float: left; width: 300px; height: 400px">
+		<p style="margin: 10px">${book.bookName }</p>
+		<p style="font-size: 14px">${book.author } , ${book.publisher } , ${book.pubDate }</p>
+		<img src="${book.cover }"
+			style="float: left; width: 300px; height: 400px;box-shadow: 5px 5px 5px #000;">
 		<form action="" method="post" style="float: right; margin: 20px">
 			<table style="width: 250px; height: 250px">
 				<tr>
 					<td>정가</td>
-					<td>17900</td>
+					<td>${book.bookPrice }</td>
 				</tr>
 				<tr>
 					<td>포인트</td>
@@ -51,7 +51,7 @@
 					<td>5</td>
 				</tr>
 				<tr>
-					<td>수량</td>
+					<td><p style="display:inline-block">수량 : </p><p id="bookCount" style="display:inline-block">${book.bookCount }</p></td>
 					<td>
 						<div id='result'>1</div> <input type='button'
 						onclick='count("minus")' value='- ' /> <input type='button'
@@ -97,7 +97,7 @@
 </div>
 <div id="bottom">
 	<div id='content'>
-	<form name="myform" id="myform" method="post" action="./save">
+	<form name="myform" id="myform" method="post" action="./save" style="position:relative">
     <fieldset>
         <legend>이모지 별점</legend>
         <input type="radio" name="rating" value="5" id="rate1"><label for="rate1">⭐</label>
@@ -105,8 +105,8 @@
         <input type="radio" name="rating" value="3" id="rate3"><label for="rate3">⭐</label>
         <input type="radio" name="rating" value="2" id="rate4"><label for="rate4">⭐</label>
         <input type="radio" name="rating" value="1" id="rate5" checked><label for="rate5">⭐</label>
-        <input type="text" id="reply"><span>${sesInfo.email }</span>
-				<button type="submit" id="addBtn">등록</button>
+        <input type="text" id="reply"><span style="margin:0 10px">${sesInfo.email }</span>
+				<input type="submit" value="등록"  style="position:absolute;bottom:10px;left:60px">
     </fieldset>
 	</form>
 		
@@ -149,6 +149,11 @@
 			// 더하기/빼기
 			if (type === 'plus') {
 				number = parseInt(number) + 1;
+				if(number > document.querySelector('#bookCount').innerText ){
+					alert('책의 재고보다 많은 수량은 주문 할 수없습니다');
+					number = document.querySelector('#bookCount').innerText;
+					
+				}
 			} else if (type === 'minus') {
 				number = parseInt(number) - 1;
 				if (number < 1) {
