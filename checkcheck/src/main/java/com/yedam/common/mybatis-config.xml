@@ -13,7 +13,7 @@
   <typeAlias alias="user" type="com.yedam.user.domain.UserVO" />
   <typeAlias alias="order" type="com.yedam.order.domain.OrderVO" />
   <typeAlias alias="review" type="com.yedam.review.domain.ReviewVO" />
-  <typeAlias alias="coupon" type="com.yedam.review.domain.CouponVO" />
+  <typeAlias alias="coupon" type="com.yedam.coupon.domain.CouponVO" />
   </typeAliases>
   <environments default="development">
     <environment id="development">

@@ -21,4 +21,8 @@ public interface BookService {
 	public List<BookVO> getBestSellerSearchPage(String monthFirst , String monthLast,int page);
 	public BookVO isbnCallBook(long isbn);
 	public int getBestCount(int page,String monthFirst,String monthLast);
+	public List<BookVO> hitCountSearchPageList(String monthFirst , String monthLast,int page);
+	public int hitCountCount(String monthFirst , String monthLast,int page);
+	public List<BookVO> getNewBookSearchPage(String monthFirst , String monthLast , int page);
+	public int newBookCountSearch(String monthFirst,String monthLast);
 }

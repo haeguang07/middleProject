@@ -119,4 +119,51 @@
 	<select id="isbnCallOneBook" resultType="book">
 		select * from books where isbn=#{isbn}
 	</select>
+	<!-- 화제의책 페이지 가져오기 -->
+	<select id="hitCountSearchPage" resultType="book">
+		<![CDATA[
+		select e.*
+		from(select rownum rn, d.*
+		    from (select a.*
+			from books a join historys b
+			on a.isbn = b.isbn
+			join orders c on b.order_id = c.order_id
+			where order_date between #{monthFirst} and #{monthLast}
+			order by hitcount desc) d
+		    where rownum <= #{page}*10) e
+			where e.rn > (#{page}-1)*10
+		]]>
+	</select>
+	<select id="hitCountCount" resultType="int">
+	<![CDATA[
+		select count(*) 
+		from(select rownum rn, d.*
+		     from (select a.*
+			from books a join historys b
+			on a.isbn = b.isbn
+			join orders c on b.order_id = c.order_id
+			where order_date between #{monthFirst} and #{monthLast}
+			order by hitcount desc) d
+		     where rownum <= #{page} *10) e
+		where e.rn > (#{page} - 1)*10
+]]>
+	</select>
+	<select id="newBookSearchPage" resultType="book">
+	<![CDATA[
+		select e.* 
+		from(select rownum rn, d.*
+     		from (select *
+			from books 
+			where pub_date between #{monthFirst} and #{monthLast}
+			order by pub_date desc) d
+     		where rownum <=#{page}*10) e
+			where e.rn > (#{page}- 1)*10
+		]]>
+	</select>
+	<select id="newBookCount" resultType="int">
+		select count(*)
+		from books 
+		where pub_date between #{monthFirst} and #{monthLast}
+		order by pub_date desc
+	</select>
 </mapper>
