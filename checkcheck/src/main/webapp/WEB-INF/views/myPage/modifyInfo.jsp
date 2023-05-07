@@ -137,7 +137,7 @@
 				} else if (result.reqCode == 'Fail') {
 					alert('변경실패')
 				} else {
-					alert('알수 없는 요류')
+					alert('알수 없는 오류')
 				}
 			})
 	}
@@ -156,7 +156,7 @@
 				} else if (result.reqCode == 'Fail') {
 					alert('변경실패')
 				} else {
-					alert('알수 없는 요류')
+					alert('알수 없는 오류')
 				}
 			})
 	}
@@ -173,7 +173,7 @@
 				} else if (result.reqCode == 'Fail') {
 					alert('변경실패')
 				} else {
-					alert('알수 없는 요류')
+					alert('알수 없는 오류')
 				}
 			})
 	}
