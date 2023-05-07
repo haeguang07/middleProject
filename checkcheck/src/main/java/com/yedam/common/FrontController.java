@@ -19,12 +19,13 @@ import com.yedam.admin.control.ChulgoControl;
 import com.yedam.admin.control.InquiryAnswerFormControl;
 import com.yedam.book.control.BestSellerControl;
 import com.yedam.book.control.InsertBookControl;
+import com.yedam.coupon.control.CouponInfoControl;
+import com.yedam.review.control.DeleteReviewContorl;
 import com.yedam.user.control.AdrChageContorl;
 import com.yedam.user.control.BasketControl;
 import com.yedam.user.control.BoardControl;
 import com.yedam.user.control.BoardDetailControl;
 import com.yedam.user.control.CheckEmailControl;
-import com.yedam.user.control.CouponInfoControl;
 import com.yedam.user.control.DeliveryControl;
 import com.yedam.user.control.GetBookControl;
 import com.yedam.user.control.JoinControl;
@@ -105,7 +106,9 @@ public class FrontController extends HttpServlet{
 		//05-03 마이페이지->주문조회 상세
 		map.put("/shippingInfo.do", new ShipingInfoControl());
 		//05-03 마이페이지->마이리뷰
-		map.put("/userReviewForm.do", new UserReviewFormControl());		
+		map.put("/userReviewForm.do", new UserReviewFormControl());	
+		//마이리뷰-> 리뷰삭제기능
+		map.put("/deleteReview.do", new DeleteReviewContorl());
 		//05-03 마이페이지->쿠폰 정보
 		map.put("/couponInfo.do", new CouponInfoControl());		
 		//05-03 마이페이지->포인트정보
