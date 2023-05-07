@@ -1,7 +1,9 @@
 package com.yedam.user.mapper;
 
-import org.apache.ibatis.annotations.Param;
+import java.util.List;
 
+import com.yedam.basket.domain.BasketVO;
+import org.apache.ibatis.annotations.Param;
 import com.yedam.user.domain.UserVO;
 
 public interface UserMapper {

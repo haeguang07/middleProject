@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <!-- 05-02 김영환 -->
 <html lang="en">
@@ -34,53 +35,30 @@
 			<p style="width:270px; text-align:right; display:inline-block">수량</p>
 			<p style="width:260px; text-align:right; display:inline-block">삭제</p>
 		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
-			
+		    <c:forEach var="i" items="${list }">
 				<form action="" method="post"style="position: relative; width: 1100px; text-align:center">
 					<table>
 						<tr>
 							<td><input type="checkbox" checked="checked" name="remember" style="margin: 15px"></td>
-							<td rowspan="5"><img src="image/logo.png"
+							<td rowspan="5"><img src="${i.cover }"
 								style="width: 150px; height: 150px"></td>
-							<td style="width: 200px" style="word-break:break-all">[국내도서]
-								아주 위험한 과학책<br>랜들 먼로 지음
+							<td style="width: 200px" style="word-break:break-all">${i.bookName }
 							</td>
 							<td style="padding: 0 40px; width: 300px; word-break: break-all">정가
-								: 50000원<br>포인트 : 2000p
+								: ${i.bookPrice }원<br>포인트 : ${i.bookPrice*0.05 }p
 							</td>
-							<td style="padding: 0 40px; width: 400px; word-break: break-all">
-								<input type="text" value="1"></input>
+							<td id="td" style="padding: 0 40px; width: 400px; word-break: break-all">
+								<input type='button' onclick='count("plus")' value='+'/>
+								<input type='button' onclick='count("minus")' value='-'/>
+								<div id='buycount'>0</div>
 							</td>
 							<td style="padding: 0 40px; width: 200px; word-break: break-all">
-								<button type="reset">삭제</button>
+								<input type="reset"></input>
 							</td>
-							
 						</tr>
 					</table>
 				</form>
-		</div>
-		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
-			<form action="" method="post"style="position: relative; width: 1100px; text-align:center">
-					<table>
-						<tr>
-							<td><input type="checkbox" checked="checked" name="remember" style="margin: 15px"></td>
-							<td rowspan="5"><img src="image/logo.png"
-								style="width: 150px; height: 150px"></td>
-							<td style="width: 200px" style="word-break:break-all">[국내도서]
-								아주 위험한 과학책<br>랜들 먼로 지음
-							</td>
-							<td style="padding: 0 40px; width: 300px; word-break: break-all">정가
-								: 50000원<br>포인트 : 2000p
-							</td>
-							<td style="padding: 0 40px; width: 400px; word-break: break-all">
-								<input type="text" value="1"></input>
-							</td>
-							<td style="padding: 0 40px; width: 200px; word-break: break-all">
-								<button type="reset">삭제</button>
-							</td>
-							
-						</tr>
-					</table>
-				</form>
+			</c:forEach>
 		</div>
 		<div class="container px-4 px-lg-5 mt-5" style="text-align: center">
 			<div id="basketform"
@@ -89,14 +67,14 @@
 				<form class="form-inline center" role="form" action="" method="post"
 					style="text-align: center; width: 500px;">
 					<p>현재주소
-						<button type="submit" value="변경" style="padding:5px 15px">변경</button><br>
+						<input type="submit" value="변경" style="padding:5px 15px"></input><br>
 						대구 광역시 중구 중앙대로 403 5층 예담 직업전문학교<br><br>
-						총 상품 가격 : 37,350원<br>
-						상품 포인트 : 1,867원<br> 예상 총 포인트 : 9,467원<br><br>
+						총 상품 가격 : ${bookPrice }원<br>
+						상품 포인트 : ${bookPrice*0.05 }p<br> 예상 총 포인트 : 9,467원<br><br>
 						VIP : 3% VVIP : 5%<br><br>
-						<button type="submit" value="주문" style="padding:5px 15px">주문</button>
-						<button type="submit" value="선물" style="padding:5px 15px">선물</button>
-						<button type="submit" value="삭제" style="padding:5px 15px">삭제</button>
+						<input type="submit" value="주문" style="padding:5px 15px" onclick="waitpayment.do?"></input>
+						<input type="submit" value="선물" style="padding:5px 15px"></input>
+						<input type="submit" value="삭제" style="padding:5px 15px"></input>
 					</p>
 				</form>
 			</div>
@@ -104,15 +82,12 @@
 	</div>
 </section>
 <div id="MOVE_TOP_BTN">
-	<a href="#"><div
-			style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative">
-			<p
-				style="font-size: 12px; position: absolute; top: 15px; left: 15px;">top</p>
-		</div></a> <a href="#"><div
-			style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative">
+	<a href="#">
+		<div style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative">
+			<p style="font-size: 12px; position: absolute; top: 15px; left: 15px;">top</p>
+		</div></a> <a href="#"><div style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative">
 			<p style="font-size: 12px; position: absolute; top: 15px; left: 5px;">로그인</p>
-		</div></a> <a href="#"><div
-			style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative">
+		</div></a> <a href="#"><div style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative">
 			<p style="font-size: 10px; position: absolute; top: 15px; left: 5px;">회원가입</p>
 		</div></a>
 </div>
@@ -123,6 +98,24 @@
 <!-- Core theme JS-->
 <script src="js/scripts.js"></script>
 <script>
+function count(type)  {
+	  // 결과를 표시할 element
+	  const resultElement = document.getElementById('buycount');
+	  
+	  // 현재 화면에 표시된 값
+	  let number = resultElement.innerText;
+	  
+	  // 더하기/빼기
+	  if(type === 'plus') {
+	    number = parseInt(number) + 1;
+	  }else if(type === 'minus')  {
+	    number = parseInt(number) - 1;
+	  }
+	  
+	  // 결과 출력
+	  resultElement.innerText = number;
+	}
+
 	$(function() {
 		$(window).scroll(function() {
 			if ($(this).scrollTop() > 100) {
