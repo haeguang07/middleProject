@@ -5,15 +5,17 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.yedam.common.Control;
 
-public class CouponInfoControl implements Control {
+public class logoutContorl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		 return "mypage/couponInfo.tiles";
+		HttpSession session = req.getSession();
+		session.removeAttribute("sesInfo");
+		return "main.do";
 	}
 
 }

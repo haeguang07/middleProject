@@ -150,7 +150,7 @@
 		<input class="nextbtn" type="button" value="next">
 </div>
 <div class="sl02" style="border: 1px solid gray; margin: 30px 0; position: relative">
-<p style="margin:50px"><a href="#" style="text-decoration:none;color:black ">화제의 책 더보기▶</a></p>
+<p style="margin:50px"><a href="hitCount.do?category=화제의책" style="text-decoration:none;color:black ">화제의 책 더보기▶</a></p>
 	<div class="slide_wrapper">
 		<ul class="slides">
 			<c:forEach var="newlist" items="${newList }">
@@ -165,7 +165,7 @@
 		<input class="nextbtn" type="button" value="next">
 </div>
 <div class="sl03" style="border: 1px solid gray; margin: 30px 0; position: relative">
-<p style="margin:50px"><a href="#" style="text-decoration:none;color:black ">신간 더보기▶</a></p>
+<p style="margin:50px"><a href="newBookSearch.do?category=신간" style="text-decoration:none;color:black ">신간 더보기▶</a></p>
 	<div class="slide_wrapper">
 		<ul class="slides">
 			<c:forEach var="newbooklist" items="${newBookList }">

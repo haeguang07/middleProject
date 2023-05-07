@@ -16,19 +16,32 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public UserVO login(UserVO vo) {
-		// TODO Auto-generated method stub
 		 return mapper.selectUser(vo);
 	}
 
 
 	@Override
 	public boolean createUser(UserVO vo) {
-		// TODO Auto-generated method stub
 		return mapper.insertUser(vo)==1;
 	}
 
 
+	@Override
+	public boolean modifyNick(String nickname, String userId) {
+		return mapper.nickUpdate(nickname, userId)==1;
+	}
 
+
+	@Override
+	public boolean modifyAdr(String adr, int post, String userId) {
+		return mapper.adrUpdate(adr, post, userId)==1;
+	}
+
+
+	@Override
+	public boolean modifyPw(String pw, String userId) {
+		return mapper.pwUpdate(pw, userId)==1;
+	}
 	
 	
 

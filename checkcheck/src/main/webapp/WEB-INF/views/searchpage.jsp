@@ -3,47 +3,52 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <style>
 .pagination2 {
-  display: inline-block;
-  text-align:center;
+	display: inline-block;
+	text-align: center;
 }
 
 .pagination2 a {
-  color: black;
-  float: left;
-  padding: 15px 30px;
-  text-decoration: none;
+	color: black;
+	float: left;
+	padding: 15px 30px;
+	text-decoration: none;
 }
 
 .pagination2 a.active1 {
-  background-color: #4CAF50;
-  color: white;
+	background-color: #4CAF50;
+	color: white;
 }
 
-.pagination2 a:hover:not(.active1) {background-color: #ddd;}
-#normarborderstyle{
-	border:solid black 1px;
+.pagination2 a:hover:not(.active1) {
+	background-color: #ddd;
 }
+
+#normarborderstyle {
+	border: solid black 1px;
+}
+
 #pay {
 	padding: 30px 40px;
-	top:40%;
+	top: 40%;
 	transform: translateY(0%);
-    width: 100px;
-    height: 100px;
-    border: none;
-    background-color: #c0c0c0;
-    color: white;
-    outline: none;
+	width: 100px;
+	height: 100px;
+	border: none;
+	background-color: #c0c0c0;
+	color: white;
+	outline: none;
 }
-#basket{
+
+#basket {
 	padding: 30px 40px;
-	top:40%;
+	top: 40%;
 	transform: translateY(0%);
-    width: 100px;
-    height: 100px;
-    border: none;
-    background-color: #c0c0c0;
-    color: white;
-    outline: none;
+	width: 100px;
+	height: 100px;
+	border: none;
+	background-color: #c0c0c0;
+	color: white;
+	outline: none;
 }
 </style>
 <section style="display: flex">
@@ -87,24 +92,40 @@
 			<option id="view20" value="20">20개씩보기</option></select>
 		<p>
 			<c:if test="${not empty select }">
-			<a>${select }</a>
+				<a>${select }</a>
 			</c:if>
 			<a>${category }</a>
 		</p>
-		<c:if test="${category eq '베스트셀러' }">
-		<select>
-			<option>2023</option>
-			<option>2022</option>
-			<option>2021</option>
-		</select>
-		<select>
-			<c:forEach var=i begin=1 end=12 step=1>
-				<option id="month">i</option>
-			</c:forEach>
-		</select>
-		<select id="day">
-			
-		</select>
+		<c:if test="${category eq '베스트셀러'|| category eq '화제의책' }">
+		<form ${category == '베스트셀러'? 'action="bestSeller.do?category=베스트셀러"':'action="hitCount.do?category=화제의책"' } method="post"> 
+			<select name="sh_year" id="sh_year"
+				onchange="makeWeekSelectOptions();">
+				<option ${shYear == '2023' ? 'selected="selected"' : '' } value='2023'>2023년</option>
+				<option ${shYear == '2022' ? 'selected="selected"' : '' } value='2022' >2022년</option>
+				<option ${shYear == '2021' ? 'selected="selected"' : '' } value='2021' >2021년</option>
+			</select>
+
+			<select name="sh_month" id="sh_month"
+				onchange="makeWeekSelectOptions();">
+				<option ${shMonth == '01' ? 'selected="selected"' : '' } value='01'>01월</option>
+				<option ${shMonth == '02' ? 'selected="selected"' : '' } value='02'>02월</option>
+				<option ${shMonth == '03' ? 'selected="selected"' : '' } value='03'>03월</option>
+				<option ${shMonth == '04' ? 'selected="selected"' : '' } value='04'>04월</option>
+				<option ${shMonth == '05' ? 'selected="selected"' : '' } value='05'>05월</option>
+				<option ${shMonth == '06' ? 'selected="selected"' : '' } value='06'>06월</option>
+				<option ${shMonth == '07' ? 'selected="selected"' : '' } value='07'>07월</option>
+				<option ${shMonth == '08' ? 'selected="selected"' : '' } value='08'>08월</option>
+				<option ${shMonth == '09' ? 'selected="selected"' : '' } value='09'>09월</option>
+				<option ${shMonth == '10' ? 'selected="selected"' : '' } value='10'>10월</option>
+				<option ${shMonth == '11' ? 'selected="selected"' : '' } value='11'>11월</option>
+				<option ${shMonth == '12' ? 'selected="selected"' : '' } value='12'>12월</option>
+			</select>
+
+			<select name="sh_week" id="sh_week">
+			</select>
+			<input type="text" name="category" value="베스트셀러" style="display:none;">
+			<input type="submit" value="검색">
+			</form>
 		</c:if>
 		<!-- 책 리스트 받아서 반복문 만들기-->
 		<c:forEach var="i" items="${list }">
@@ -112,7 +133,8 @@
 				<form action="" method="post" style="position: relative">
 					<table>
 						<tr>
-							<td rowspan="5"><img src=${i.cover } style="width:200px;height:300px"></td>
+							<td rowspan="5"><img src=${i.cover }
+								style="width: 200px; height: 300px"></td>
 							<td>이름</td>
 							<td>${i.bookName }</td>
 						</tr>
@@ -133,60 +155,121 @@
 							<td>5</td>
 						</tr>
 					</table>
-					<button
-						id="pay"style="float: right; position: absolute; right: 0; bottom: 10%;">구매</button>
-					<button
-						id="basket"style="float: right; position: absolute; right: 70px; bottom: 10%;">장바구니</button>
+					<button id="pay"
+						style="float: right; position: absolute; right: 0; bottom: 10%;">구매</button>
+					<button id="basket"
+						style="float: right; position: absolute; right: 70px; bottom: 10%;">장바구니</button>
 				</form>
 			</div>
 		</c:forEach>
 		<!-- 책-->
 	</div>
 </section>
-<div style="text-align:center;width:1200px;height:50px; padding:30px 0; margin-bottom:50px">
+<div
+	style="text-align: center; width: 1200px; height: 50px; padding: 30px 0; margin-bottom: 50px">
 	<div class="pagination2">
 		<c:choose>
-		<c:when test="${not empty select}">
-		<c:if test="${pageInfo.prev }">
-			<a
-				href="search.do?category=${category }&page=${pageInfo.startPage-1 }&select=${select}">Previous</a>
-		</c:if>
-		<c:forEach var="i" begin="${pageInfo.startPage }"
-			end="${pageInfo.endPage }">
-			<a class="${i==pageInfo.pageNum ? 'active1' : '' }"
-				href="search.do?category=${category }&page=${i }&select=${select}">${i } </a>
-		</c:forEach>
-		<c:if test="${pageInfo.next }">
-			<a href="search.do?category=${category }&page=${pageInfo.endPage+1 }&select=${select}">Next</a>
-		</c:if>
-		</c:when>
-		<c:otherwise>
-		<c:if test="${pageInfo.prev }">
-			<a
-				href="search.do?category=${category }&page=${pageInfo.startPage-1 }">Previous</a>
-		</c:if>
-		<c:forEach var="i" begin="${pageInfo.startPage }"
-			end="${pageInfo.endPage }">
-			<a class="${i==pageInfo.pageNum ? 'active1' : '' }"
-				href="search.do?category=${category }&page=${i }">${i } </a>
-		</c:forEach>
-		<c:if test="${pageInfo.next }">
-			<a href="search.do?category=${category }&page=${pageInfo.endPage+1 }">Next</a>
-		</c:if>
-		</c:otherwise>
+			<c:when test="${not empty select}">
+				<c:if test="${pageInfo.prev }">
+					<a
+						href="search.do?category=${category }&page=${pageInfo.startPage-1 }&select=${select}">Previous</a>
+				</c:if>
+				<c:forEach var="i" begin="${pageInfo.startPage }"
+					end="${pageInfo.endPage }">
+					<a class="${i==pageInfo.pageNum ? 'active1' : '' }"
+						href="search.do?category=${category }&page=${i }&select=${select}">${i }
+					</a>
+				</c:forEach>
+				<c:if test="${pageInfo.next }">
+					<a
+						href="search.do?category=${category }&page=${pageInfo.endPage+1 }&select=${select}">Next</a>${category }
+				</c:if>
+			</c:when>
+			<c:otherwise>
+				<c:choose>
+				<c:when test="${category eq '신간'}">
+					<c:if test="${pageInfo.prev }">
+						<a
+							href="newBookSearch.do?category=${category }&page=${pageInfo.startPage-1 }">Previous</a>
+					</c:if>
+					<c:forEach var="i" begin="${pageInfo.startPage }"
+						end="${pageInfo.endPage }">
+						<a class="${i==pageInfo.pageNum ? 'active1' : '' }"
+							href="newBookSearch.do?category=${category }&page=${i }">${i } </a>
+					</c:forEach>
+					<c:if test="${pageInfo.next }">
+						<a
+							href="newBookSearch.do?category=${category }&page=${pageInfo.endPage+1 }">Next</a>
+					</c:if>
+				</c:when>
+				<c:when test="${category eq '베스트셀러' }">
+					<c:if test="${pageInfo.prev }">
+						<a
+							href="bestSeller.do?category=${category }&page=${pageInfo.startPage-1 }">Previous</a>
+					</c:if>
+					<c:forEach var="i" begin="${pageInfo.startPage }"
+						end="${pageInfo.endPage }">
+						<a class="${i==pageInfo.pageNum ? 'active1' : '' }"
+							href="bestSeller.do?category=${category }&page=${i }">${i } </a>
+					</c:forEach>
+					<c:if test="${pageInfo.next }">
+						<a
+							href="bestSeller.do?category=${category }&page=${pageInfo.endPage+1 }">Next</a>
+					</c:if>
+				</c:when>
+				<c:when test="${category eq '화제의책' }">
+					<c:if test="${pageInfo.prev }">
+						<a
+							href="hitCount.do?category=${category }&page=${pageInfo.startPage-1 }">Previous</a>
+					</c:if>
+					<c:forEach var="i" begin="${pageInfo.startPage }"
+						end="${pageInfo.endPage }">
+						<a class="${i==pageInfo.pageNum ? 'active1' : '' }"
+							href="hitCount.do?category=${category }&page=${i }">${i } </a>
+					</c:forEach>
+					<c:if test="${pageInfo.next }">
+						<a
+							href="hitCount.do?category=${category }&page=${pageInfo.endPage+1 }">Next</a>
+					</c:if>
+				</c:when>
+				<c:otherwise>
+					<c:if test="${pageInfo.prev }">
+						<a
+							href="search.do?category=${category }&page=${pageInfo.startPage-1 }">Previous</a>
+					</c:if>
+					<c:forEach var="i" begin="${pageInfo.startPage }"
+						end="${pageInfo.endPage }">
+						<a class="${i==pageInfo.pageNum ? 'active1' : '' }"
+							href="search.do?category=${category }&page=${i }">${i } </a>
+					</c:forEach>
+					<c:if test="${pageInfo.next }">
+						<a
+							href="search.do?category=${category }&page=${pageInfo.endPage+1 }">Next</a>
+					</c:if>
+				</c:otherwise>
+				</c:choose>
+			</c:otherwise>
 		</c:choose>
 	</div>
 </div>
 <div id="MOVE_TOP_BTN">
 	<a href="#">
-		<div style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative">
-			<p style="font-size: 12px; position: absolute; top: 15px; left: 15px;">top</p></div></a> 
-	<a href="#">
-		<div style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative">
-			<p style="font-size: 12px; position: absolute; top: 15px; left: 5px;">로그인</p></div> </a>
-	<a href="#">
-		<div style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative">
-			<p style="font-size: 10px; position: absolute; top: 15px; left: 5px;">회원가입</p></div></a>
+		<div
+			style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative">
+			<p
+				style="font-size: 12px; position: absolute; top: 15px; left: 15px;">top</p>
+		</div>
+	</a> <a href="#">
+		<div
+			style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative">
+			<p style="font-size: 12px; position: absolute; top: 15px; left: 5px;">로그인</p>
+		</div>
+	</a> <a href="#">
+		<div
+			style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative">
+			<p style="font-size: 10px; position: absolute; top: 15px; left: 5px;">회원가입</p>
+		</div>
+	</a>
 </div>
 <!-- Bootstrap core JS-->
 <script
@@ -198,9 +281,9 @@
 	crossorigin="anonymous"></script>
 <script>
 	let selectbox = document.querySelector('#selectbox');
-	selectbox.addEventListener('change',function(event){
+	selectbox.addEventListener('change', function(event) {
 		console.log(selectbox.value);
-		
+
 	});
 	$(function() {
 		$(window).scroll(function() {
@@ -246,6 +329,65 @@
 		let foreign = document.querySelector('#foreign');
 		foreign.style.display = 'none';
 	})
-	
+
 	//월별 일수 구현하기
+	function makeWeekSelectOptions() {
+		var year = $("#sh_year").val();
+		var month = $("#sh_month").val();
+
+		var today = new Date();
+
+		var sdate = new Date(year, month - 1, 01);
+		var lastDay = (new Date(sdate.getFullYear(), sdate.getMonth() + 1, 0))
+				.getDate();
+		var endDate = new Date(sdate.getFullYear(), sdate.getMonth(), lastDay);
+
+		var week = sdate.getDay();
+		sdate.setDate(sdate.getDate() - week);
+		var edate = new Date(sdate.getFullYear(), sdate.getMonth(), sdate
+				.getDate());
+
+		var obj = document.getElementById("sh_week");
+		obj.options.length = 0;
+		var seled = "";
+		while (endDate.getTime() >= edate.getTime()) {
+
+			var sYear = sdate.getFullYear();
+			var sMonth = (sdate.getMonth() + 1);
+			var sDay = sdate.getDate();
+
+			sMonth = (sMonth < 10) ? "0" + sMonth : sMonth;
+			sDay = (sDay < 10) ? "0" + sDay : sDay;
+
+			var stxt = sYear + "-" + sMonth + "-" + sDay;
+
+			edate.setDate(sdate.getDate() + 6);
+
+			var eYear = edate.getFullYear();
+			var eMonth = (edate.getMonth() + 1);
+			var eDay = edate.getDate();
+
+			eMonth = (eMonth < 10) ? "0" + eMonth : eMonth;
+			eDay = (eDay < 10) ? "0" + eDay : eDay;
+
+			var etxt = eYear + "-" + eMonth + "-" + eDay;
+
+			if (today.getTime() >= sdate.getTime()
+					&& today.getTime() <= edate.getTime()) {
+				seled = stxt + "|" + etxt;
+			}
+
+			obj.options[obj.options.length] = new Option(stxt + "~" + etxt,
+					stxt + "|" + etxt);
+			obj.option
+			sdate = new Date(edate.getFullYear(), edate.getMonth(), edate
+					.getDate() + 1);
+			edate = new Date(sdate.getFullYear(), sdate.getMonth(), sdate
+					.getDate());
+		}
+
+		if (seled)
+			obj.value = seled;
+		
+		}
 </script>

@@ -14,6 +14,8 @@
   <typeAlias alias="order" type="com.yedam.order.domain.OrderVO" />
   <typeAlias alias="basket" type="com.yedam.basket.domain.BasketVO" />
   
+  <typeAlias alias="review" type="com.yedam.review.domain.ReviewVO" />
+  <typeAlias alias="coupon" type="com.yedam.coupon.domain.CouponVO" />
   </typeAliases>
   <environments default="development">
     <environment id="development">
@@ -31,5 +33,7 @@
   	<mapper resource="com/yedam/user/mapper/UserMapper.xml" />
   	<mapper resource="com/yedam/order/mapper/OrderMapper.xml" />
   	<mapper resource="com/yedam/basket/mapper/BasketMapper.xml" />
+  	<mapper resource="com/yedam/review/mapper/ReviewMapper.xml" />
+  	<mapper resource="com/yedam/coupon/mapper/CouponMapper.xml" />
   </mappers>
 </configuration>

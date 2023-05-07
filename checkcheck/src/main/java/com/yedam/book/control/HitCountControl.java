@@ -16,7 +16,7 @@ import com.yedam.book.service.BookServiceImpl;
 import com.yedam.common.Control;
 import com.yedam.common.PageDTO;
 
-public class BestSellerControl implements Control {
+public class HitCountControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -49,9 +49,7 @@ public class BestSellerControl implements Control {
 			System.out.println(shWeek);
 			String[] dateArr = shWeek.split("\\|");
 			monthFirst = dateArr[0];
-			System.out.println(monthFirst + "zzzzz");
 			monthLast = dateArr[1];
-			System.out.println(monthLast + "zzzzddsdsd");
 			String pageStr = req.getParameter("page");
 			pageStr = pageStr == null ? "1" : pageStr;
 			int page = Integer.parseInt(pageStr);
@@ -59,10 +57,10 @@ public class BestSellerControl implements Control {
 			// 페이징
 			PageDTO dto = new PageDTO(page, total);
 			
-			List<BookVO> list = service.getBestSellerSearchPage(monthFirst, monthLast, page);
+			List<BookVO> list = service.hitCountSearchPageList(monthFirst, monthLast, page);
 			req.setAttribute("list", list);
 			System.out.println(list + "post");
-			req.setAttribute("category", "베스트셀러");
+			req.setAttribute("category", "화제의책");
 			req.setAttribute("pageInfo", dto);
 			req.setAttribute("shYear", shYear);
 			req.setAttribute("shMonth", shMonth);
@@ -81,12 +79,14 @@ public class BestSellerControl implements Control {
 		monthFirst2 = monthFirst2 == null ? monthFirst : monthFirst2;
 		String monthLast2 = req.getParameter("monthLast");
 		monthLast2 = monthLast2 == null ? monthLast : monthLast2;
-
-		int total = service.getBestCount(page , monthFirst , monthLast);
+		System.out.println(monthFirst2 + "  " + monthLast2);
+		int total = service.hitCountCount(monthLast , monthFirst , page);
 		// 페이징
 		PageDTO dto = new PageDTO(page, total);
-		//날짜 구하기
-		List<BookVO> list = service.getBestSellerSearchPage(monthFirst2, monthLast2, page);
+		
+		List<BookVO> list = service.hitCountSearchPageList(monthFirst2, monthLast2, page);
+		List<BookVO> listTest = service.hitCountSearchPageList("2023-05-01", "2023-05-31", 1);
+		System.out.println(listTest);
 		System.out.println(dto);
 		System.out.println(total);
 		req.setAttribute("list", list);

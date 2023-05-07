@@ -12,7 +12,6 @@ public class AddBookControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		return "admin/addBook.tiles";
 	}
 

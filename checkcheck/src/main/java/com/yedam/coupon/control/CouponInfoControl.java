@@ -1,4 +1,4 @@
-package com.yedam.user.control;
+package com.yedam.coupon.control;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,23 +9,22 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.yedam.common.Control;
-import com.yedam.review.domain.ReviewVO;
-import com.yedam.review.service.ReviewService;
-import com.yedam.review.service.ReviewServiceImpl;
+import com.yedam.coupon.domain.CouponVO;
+import com.yedam.coupon.service.CouponService;
+import com.yedam.coupon.service.CouponServiceImpl;
 import com.yedam.user.domain.UserVO;
 
-public class UserReviewFormControl implements Control {
+public class CouponInfoControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		UserVO vo= (UserVO)session.getAttribute("sesInfo");
-		String uid= vo.getUserId();
-		ReviewService service = new ReviewServiceImpl();
-		List<ReviewVO> list= service.reviewList(uid);
+		CouponService service = new CouponServiceImpl();
+		List<CouponVO> list = service.couponList(vo.getUserId());
 		req.setAttribute("list", list);
 		
-		return "mypage/userReview.tiles";
+		 return "mypage/couponInfo.tiles";
 	}
 
 }
