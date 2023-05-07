@@ -274,7 +274,7 @@
 			<tiles:insertAttribute name="nav"></tiles:insertAttribute>
 		</div>
 		<!-- Section-->
-		<div id="page-content-wrapper"  style="float:left;">
+		<div id="page-content-wrapper1"  style="float:left;">
 			<tiles:insertAttribute name="sidebar"></tiles:insertAttribute>
 		</div>
 		<div id="page-content-wrapper" style="float:left;">

@@ -43,6 +43,7 @@ import com.yedam.user.control.ShipingInfoControl;
 import com.yedam.user.control.UserReviewFormControl;
 import com.yedam.user.control.WaitPaymentControl;
 import com.yedam.user.control.inquiryInfoControl;
+import com.yedam.user.control.logoutContorl;
 import com.yedam.user.control.mainControl;
 import com.yedam.user.control.myPageOrderControl;
 
@@ -92,6 +93,8 @@ public class FrontController extends HttpServlet{
 		
 		//로그인 기능(get:화면으로, post:로그인 기능)
 		map.put("/login.do", new LoginControl());
+		//로그아웃 기능
+		map.put("/logout.do", new logoutContorl());
 		//05-02회원가입 기능
 		map.put("/joinForm.do", new JoinFormControl());
 		//05-03회원가입의 이메일보내기
