@@ -14,4 +14,7 @@ public class ReviewVO {
 	private String userId;
 	private String reviewSubject;
 	private int starcount;
+	// join해서 책이름 입력용 필드
+	private String bookName;
+	
 }
