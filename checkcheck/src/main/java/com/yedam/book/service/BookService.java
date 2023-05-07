@@ -20,4 +20,5 @@ public interface BookService {
 	public List<BookVO> getBestSeller(String monthFirst , String monthLast);//mainpage 에서 사용하는 이번 달의 베스트 셀러 리스트
 	public List<BookVO> getBestSellerSearchPage(String monthFirst , String monthLast,int page);
 	public BookVO isbnCallBook(long isbn);
+	public int getBestCount(int page,String monthFirst,String monthLast);
 }

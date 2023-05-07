@@ -71,4 +71,9 @@ public class BookServiceImpl implements BookService{
 		return mapper.isbnCallOneBook(isbn);
 	}
 
+	@Override
+	public int getBestCount(int page, String monthFirst, String monthLast) {
+		return mapper.bestSellerCount(page, monthFirst, monthLast);
+	}
+
 }
