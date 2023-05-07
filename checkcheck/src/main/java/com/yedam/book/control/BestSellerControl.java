@@ -42,10 +42,10 @@ public class BestSellerControl implements Control {
 		cal.set(year , month , day);
 		
 		System.out.println(dateFormat.format(cal.getTime()));
-		cal.set(day, cal.getMinimum(Calendar.DAY_OF_MONTH));
+		cal.set(cal.DAY_OF_MONTH, cal.getMinimum(Calendar.DAY_OF_MONTH));
 		String monthFirst = dateFormat.format(cal.getTime());
 		System.out.println(dateFormat.format(cal.getTime()));
-		cal.set(day, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
+		cal.set(cal.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
 		String monthLast = dateFormat.format(cal.getTime());
 		System.out.println(dateFormat.format(cal.getTime()));
 		
@@ -60,7 +60,7 @@ public class BestSellerControl implements Control {
 		req.setAttribute("list", list);
 		req.setAttribute("category", category);
 		req.setAttribute("pageInfo", dto);
-
+		//https://blog.munilive.com/posts/create-weekly-selectbox-with-javascript.html
 		return "searchpage.tiles";
 	}
 

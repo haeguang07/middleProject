@@ -66,4 +66,9 @@ public class BookServiceImpl implements BookService{
 		return mapper.bestSellerSearchPage(monthFirst, monthLast, page);
 	}
 
+	@Override
+	public BookVO isbnCallBook(long isbn) {
+		return mapper.isbnCallOneBook(isbn);
+	}
+
 }

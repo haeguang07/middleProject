@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -31,18 +32,19 @@ public class mainControl implements Control {
 		Date time = new Date();
 		
 		int year = time.getYear() + 1900;
-		int month = time.getMonth();
+		int month = time.getMonth()+1;
 		int day = time.getDay();
-		Calendar cal = Calendar.getInstance();
+		Calendar cal = Calendar.getInstance(Locale.KOREA);
 		cal.set(year , month , day);
 		
 		System.out.println(dateFormat.format(cal.getTime()));
-		cal.set(day, cal.getMinimum(Calendar.DAY_OF_MONTH));
+		cal.set(cal.DAY_OF_MONTH, cal.getMinimum(Calendar.DAY_OF_MONTH));
 		String monthFirst = dateFormat.format(cal.getTime());
 		System.out.println(dateFormat.format(cal.getTime()));
-		cal.set(day, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
+		cal.set(cal.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
 		String monthLast = dateFormat.format(cal.getTime());
 		System.out.println(dateFormat.format(cal.getTime()));
+		
 		List<BookVO> bestSellerList = service.getBestSeller(monthFirst, monthLast);
 		req.setAttribute("bestSeller", bestSellerList);
 		return "main.tiles";

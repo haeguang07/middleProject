@@ -202,7 +202,7 @@
 	position: absolute;
 	left: 0;
 	top: 0;
-	width: 2300px;
+	width: 2500px;
 	transition: left 0.5s ease-out;
 }
 
@@ -250,6 +250,20 @@
 
 .dropdown2:hover .dropdown-content2 {
 	display: block;
+}
+#korea a {
+	text-decoration: none;
+	color:black;
+}
+#korea li {
+	padding:10px;
+}
+#foreign a{
+	text-decoration: none;
+	color:black;
+}
+#foreign li{
+	padding:10px;
 }
 </style>
 </head>
