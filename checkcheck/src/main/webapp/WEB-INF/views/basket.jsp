@@ -35,17 +35,17 @@
 			<p style="width:270px; text-align:right; display:inline-block">수량</p>
 			<p style="width:260px; text-align:right; display:inline-block">삭제</p>
 		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
+		    <c:forEach var="i" items="${list }">
 				<form action="" method="post"style="position: relative; width: 1100px; text-align:center">
 					<table>
 						<tr>
 							<td><input type="checkbox" checked="checked" name="remember" style="margin: 15px"></td>
-							<td rowspan="5"><img src="image/logo.png"
+							<td rowspan="5"><img src="${i.cover }"
 								style="width: 150px; height: 150px"></td>
-							<td style="width: 200px" style="word-break:break-all">[국내도서]
-								아주 위험한 과학책<br>랜들 먼로 지음
+							<td style="width: 200px" style="word-break:break-all">${i.bookName }
 							</td>
 							<td style="padding: 0 40px; width: 300px; word-break: break-all">정가
-								: 50000원<br>포인트 : 2000p
+								: ${i.bookPrice }원<br>포인트 : ${i.bookPrice*0.05 }p
 							</td>
 							<td id="td" style="padding: 0 40px; width: 400px; word-break: break-all">
 								<input type='button' onclick='count("plus")' value='+'/>
@@ -58,6 +58,7 @@
 						</tr>
 					</table>
 				</form>
+			</c:forEach>
 		</div>
 		<div class="container px-4 px-lg-5 mt-5" style="text-align: center">
 			<div id="basketform"
@@ -68,10 +69,10 @@
 					<p>현재주소
 						<input type="submit" value="변경" style="padding:5px 15px"></input><br>
 						대구 광역시 중구 중앙대로 403 5층 예담 직업전문학교<br><br>
-						총 상품 가격 : 37,350원<br>
-						상품 포인트 : 1,867원<br> 예상 총 포인트 : 9,467원<br><br>
+						총 상품 가격 : ${bookPrice }원<br>
+						상품 포인트 : ${bookPrice*0.05 }p<br> 예상 총 포인트 : 9,467원<br><br>
 						VIP : 3% VVIP : 5%<br><br>
-						<input type="submit" value="주문" style="padding:5px 15px"></input>
+						<input type="submit" value="주문" style="padding:5px 15px" onclick="waitpayment.do?"></input>
 						<input type="submit" value="선물" style="padding:5px 15px"></input>
 						<input type="submit" value="삭제" style="padding:5px 15px"></input>
 					</p>

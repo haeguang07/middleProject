@@ -8,8 +8,10 @@ public class BasketVO {
 //	USER_ID   NOT NULL VARCHAR2(16) 
 //	ISBN      NOT NULL NUMBER   
 	private int basketId;
-	private String UserId;
-	private int isbn;
-	
+	private String userId;
+	private Long isbn;
+	private String bookName;
+	private int bookPrice;
+	private String cover;
 	
 }

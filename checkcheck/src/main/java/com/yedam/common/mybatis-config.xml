@@ -12,6 +12,7 @@
   <typeAlias alias="book" type="com.yedam.book.domain.BookVO" />
   <typeAlias alias="user" type="com.yedam.user.domain.UserVO" />
   <typeAlias alias="order" type="com.yedam.order.domain.OrderVO" />
+  <typeAlias alias="basket" type="com.yedam.basket.domain.BasketVO" />
   
   </typeAliases>
   <environments default="development">
@@ -29,6 +30,6 @@
   	<mapper resource="com/yedam/book/mapper/BookMapper.xml" />
   	<mapper resource="com/yedam/user/mapper/UserMapper.xml" />
   	<mapper resource="com/yedam/order/mapper/OrderMapper.xml" />
-  	
+  	<mapper resource="com/yedam/basket/mapper/BasketMapper.xml" />
   </mappers>
 </configuration>
