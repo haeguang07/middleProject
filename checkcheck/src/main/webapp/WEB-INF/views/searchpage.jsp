@@ -96,8 +96,8 @@
 			</c:if>
 			<a>${category }</a>
 		</p>
-		<c:if test="${category eq '베스트셀러' }">
-		<form action="bestSeller.do" method="post"> 
+		<c:if test="${category eq '베스트셀러'|| category eq '화제의책' }">
+		<form ${category == '베스트셀러'? 'action="bestSeller.do?category=베스트셀러"':'action="hitCount.do?category=화제의책"' } method="post"> 
 			<select name="sh_year" id="sh_year"
 				onchange="makeWeekSelectOptions();">
 				<option ${shYear == '2023' ? 'selected="selected"' : '' } value='2023'>2023년</option>
@@ -182,23 +182,72 @@
 				</c:forEach>
 				<c:if test="${pageInfo.next }">
 					<a
-						href="search.do?category=${category }&page=${pageInfo.endPage+1 }&select=${select}">Next</a>
+						href="search.do?category=${category }&page=${pageInfo.endPage+1 }&select=${select}">Next</a>${category }
 				</c:if>
 			</c:when>
 			<c:otherwise>
-				<c:if test="${pageInfo.prev }">
-					<a
-						href="search.do?category=${category }&page=${pageInfo.startPage-1 }">Previous</a>
-				</c:if>
-				<c:forEach var="i" begin="${pageInfo.startPage }"
-					end="${pageInfo.endPage }">
-					<a class="${i==pageInfo.pageNum ? 'active1' : '' }"
-						href="search.do?category=${category }&page=${i }">${i } </a>
-				</c:forEach>
-				<c:if test="${pageInfo.next }">
-					<a
-						href="search.do?category=${category }&page=${pageInfo.endPage+1 }">Next</a>
-				</c:if>
+				<c:choose>
+				<c:when test="${category eq '신간'}">
+					<c:if test="${pageInfo.prev }">
+						<a
+							href="newBookSearch.do?category=${category }&page=${pageInfo.startPage-1 }">Previous</a>
+					</c:if>
+					<c:forEach var="i" begin="${pageInfo.startPage }"
+						end="${pageInfo.endPage }">
+						<a class="${i==pageInfo.pageNum ? 'active1' : '' }"
+							href="newBookSearch.do?category=${category }&page=${i }">${i } </a>
+					</c:forEach>
+					<c:if test="${pageInfo.next }">
+						<a
+							href="newBookSearch.do?category=${category }&page=${pageInfo.endPage+1 }">Next</a>
+					</c:if>
+				</c:when>
+				<c:when test="${category eq '베스트셀러' }">
+					<c:if test="${pageInfo.prev }">
+						<a
+							href="bestSeller.do?category=${category }&page=${pageInfo.startPage-1 }">Previous</a>
+					</c:if>
+					<c:forEach var="i" begin="${pageInfo.startPage }"
+						end="${pageInfo.endPage }">
+						<a class="${i==pageInfo.pageNum ? 'active1' : '' }"
+							href="bestSeller.do?category=${category }&page=${i }">${i } </a>
+					</c:forEach>
+					<c:if test="${pageInfo.next }">
+						<a
+							href="bestSeller.do?category=${category }&page=${pageInfo.endPage+1 }">Next</a>
+					</c:if>
+				</c:when>
+				<c:when test="${category eq '화제의책' }">
+					<c:if test="${pageInfo.prev }">
+						<a
+							href="hitCount.do?category=${category }&page=${pageInfo.startPage-1 }">Previous</a>
+					</c:if>
+					<c:forEach var="i" begin="${pageInfo.startPage }"
+						end="${pageInfo.endPage }">
+						<a class="${i==pageInfo.pageNum ? 'active1' : '' }"
+							href="hitCount.do?category=${category }&page=${i }">${i } </a>
+					</c:forEach>
+					<c:if test="${pageInfo.next }">
+						<a
+							href="hitCount.do?category=${category }&page=${pageInfo.endPage+1 }">Next</a>
+					</c:if>
+				</c:when>
+				<c:otherwise>
+					<c:if test="${pageInfo.prev }">
+						<a
+							href="search.do?category=${category }&page=${pageInfo.startPage-1 }">Previous</a>
+					</c:if>
+					<c:forEach var="i" begin="${pageInfo.startPage }"
+						end="${pageInfo.endPage }">
+						<a class="${i==pageInfo.pageNum ? 'active1' : '' }"
+							href="search.do?category=${category }&page=${i }">${i } </a>
+					</c:forEach>
+					<c:if test="${pageInfo.next }">
+						<a
+							href="search.do?category=${category }&page=${pageInfo.endPage+1 }">Next</a>
+					</c:if>
+				</c:otherwise>
+				</c:choose>
 			</c:otherwise>
 		</c:choose>
 	</div>

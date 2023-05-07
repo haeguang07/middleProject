@@ -76,4 +76,24 @@ public class BookServiceImpl implements BookService{
 		return mapper.bestSellerCount(page, monthFirst, monthLast);
 	}
 
+	@Override
+	public List<BookVO> hitCountSearchPageList(String monthFirst , String monthLast,int page) {
+		return mapper.hitCountSearchPage(monthFirst,monthLast, page);
+	}
+
+	@Override
+	public int hitCountCount(String monthFirst , String monthLast,int page) {
+		return mapper.hitCountCount(monthFirst, monthLast, page);
+	}
+
+	@Override
+	public List<BookVO> getNewBookSearchPage(String monthFirst, String monthLast, int page) {
+		return mapper.newBookSearchPage(monthFirst, monthLast, page);
+	}
+
+	@Override
+	public int newBookCountSearch(String monthFirst, String monthLast) {
+		return mapper.newBookCount(monthFirst, monthLast);
+	}
+
 }
