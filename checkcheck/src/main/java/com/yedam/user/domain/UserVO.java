@@ -33,4 +33,5 @@ public class UserVO {
 	private String userBirth;
 	private String userCategory;
 	private String email;
+	private String userName;
 }

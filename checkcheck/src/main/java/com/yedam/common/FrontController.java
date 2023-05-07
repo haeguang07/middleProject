@@ -19,10 +19,7 @@ import com.yedam.admin.control.ChulgoControl;
 import com.yedam.admin.control.InquiryAnswerFormControl;
 import com.yedam.book.control.BestSellerControl;
 import com.yedam.book.control.InsertBookControl;
-import com.yedam.common.Control;
-
-import com.yedam.user.control.JoinControl;
-import com.yedam.user.control.JoinFormControl;
+import com.yedam.user.control.AdrChageContorl;
 import com.yedam.user.control.BasketControl;
 import com.yedam.user.control.BoardControl;
 import com.yedam.user.control.BoardDetailControl;
@@ -30,17 +27,21 @@ import com.yedam.user.control.CheckEmailControl;
 import com.yedam.user.control.CouponInfoControl;
 import com.yedam.user.control.DeliveryControl;
 import com.yedam.user.control.GetBookControl;
-import com.yedam.user.control.WaitPaymentControl;
-import com.yedam.user.control.inquiryInfoControl;
+import com.yedam.user.control.JoinControl;
+import com.yedam.user.control.JoinFormControl;
 import com.yedam.user.control.LoginControl;
-import com.yedam.user.control.mainControl;
-import com.yedam.user.control.myPageOrderControl;
 import com.yedam.user.control.MypageUserInfoControl;
+import com.yedam.user.control.NickChageContorl;
+import com.yedam.user.control.OrderCompleteControl;
+import com.yedam.user.control.PointInfoControl;
+import com.yedam.user.control.PwChageContorl;
 import com.yedam.user.control.SearchPageControl;
 import com.yedam.user.control.ShipingInfoControl;
 import com.yedam.user.control.UserReviewFormControl;
-import com.yedam.user.control.OrderCompleteControl;
-import com.yedam.user.control.PointInfoControl;
+import com.yedam.user.control.WaitPaymentControl;
+import com.yedam.user.control.inquiryInfoControl;
+import com.yedam.user.control.mainControl;
+import com.yedam.user.control.myPageOrderControl;
 
 public class FrontController extends HttpServlet{
 	private Map<String, Control> map;
@@ -95,6 +96,12 @@ public class FrontController extends HttpServlet{
 		map.put("/myPageMain.do", new myPageOrderControl());
 		//05-02개인정보수정(get:화면1(비밀번호입력), post:화면2(수정페이지))
 		map.put("/myPageUserInfo.do", new MypageUserInfoControl() );
+		//개인정보수정-닉네임
+		map.put("/nickChange.do", new NickChageContorl());
+		//개인정보수정-주소
+		map.put("/adrChange.do", new AdrChageContorl());
+		//개인정보수정-비밀번호
+		map.put("/pwChange.do", new PwChageContorl());
 		//05-03 마이페이지->주문조회 상세
 		map.put("/shippingInfo.do", new ShipingInfoControl());
 		//05-03 마이페이지->마이리뷰
