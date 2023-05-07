@@ -25,7 +25,7 @@ public class UserReviewFormControl implements Control {
 		List<ReviewVO> list= service.reviewList(uid);
 		req.setAttribute("list", list);
 		
-		return "mypage/userReview.tiles";
+		return "myPage/userReview.tiles";
 	}
 
 }
