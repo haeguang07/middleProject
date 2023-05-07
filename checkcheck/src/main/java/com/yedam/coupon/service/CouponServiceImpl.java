@@ -16,6 +16,10 @@ public class CouponServiceImpl implements CouponService {
 		// TODO Auto-generated method stub
 		return mapper.searchCoupon(userId);
 	}
+	@Override
+	public int getCount(String userId) {		
+		return mapper.getCount(userId);
+	}
 	
 	
 	

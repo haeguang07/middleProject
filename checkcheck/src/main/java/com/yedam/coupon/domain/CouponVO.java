@@ -11,7 +11,7 @@ public class CouponVO {
 //	ENDDATE      NOT NULL DATE         
 //	COUPON_STATE          VARCHAR2(1)  
 	private String userId;
-	private double disocunt;
+	private double discount;
 	private Date startdate;
 	private Date enddate;
 	private String couponState;

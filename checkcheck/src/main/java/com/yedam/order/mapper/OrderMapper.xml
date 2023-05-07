@@ -8,7 +8,7 @@
 		Select rownum rn, b.*
 		FROM (SELECT rownum rn, a.*
 		FROM (select o.user_id, o.order_date, o.order_id, o.payment,
-		o.order_state, c.book
+		o.order_state, c.book,o.order_point
 		from(select listagg(a.names, ',')within group(order by a.names) AS book,
 		o.order_id
 		from (select h.order_id, b.book_name||'X'||h.history_count names ,b.isbn

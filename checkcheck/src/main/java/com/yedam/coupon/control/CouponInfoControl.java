@@ -24,7 +24,7 @@ public class CouponInfoControl implements Control {
 		List<CouponVO> list = service.couponList(vo.getUserId());
 		req.setAttribute("list", list);
 		
-		 return "mypage/couponInfo.tiles";
+		 return "myPage/couponInfo.tiles";
 	}
 
 }

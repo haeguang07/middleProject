@@ -3,7 +3,7 @@ package com.yedam.board.domain;
 import lombok.Data;
 
 @Data
-public class BoradVO {
+public class BoardVO {
 //	BOARD_ID      NOT NULL NUMBER         
 //	USER_ID       NOT NULL VARCHAR2(16)   
 //	BOARD_KIND    NOT NULL NUMBER         
