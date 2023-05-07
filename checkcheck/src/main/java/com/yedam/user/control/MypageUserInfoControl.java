@@ -30,7 +30,7 @@ public class MypageUserInfoControl implements Control {
 				return "myPageUserInfo.do";
 			}
 		}
-		return null;
+		return"main.do";
 	}
 
 }

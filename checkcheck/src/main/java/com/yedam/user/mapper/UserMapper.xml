@@ -12,4 +12,13 @@
 		values(#{userId},#{userPw},#{nickname},#{userAddress},#{userPost},
 		#{userGender},#{userPhone},#{userCategory},#{userEmail})
 	</insert>
+	<update id="nickUpdate">
+		update users set nickname=#{nickname} Where user_id=#{userId}
+	</update>
+	<update id="adrUpdate">
+		update users set address=#{address}, post=#{post} Where user_id=#{userId}
+	</update>
+	<update id="pwUpdate">
+		update users set pw=#{pw} Where user_id=#{userId}
+	</update>
 </mapper>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <h3>내가쓴 리뷰</h3>
 <div>
 	<select>
@@ -23,7 +24,7 @@
 		<option value="12">12</option>
 	</select>월 <span>도서이름 </span><input type="text" style="width: 100px">
 	<button>검색</button>
-	
+
 </div>
 <table>
 	<tr>
@@ -33,10 +34,18 @@
 		<th>별점</th>
 		<th>삭제</th>
 	</tr>
+	<c:forEach var="o" items="${list }">
+	<tr>
+		<td>${o.bookName }</td>
+		<td>${o.reviewSubject}</td>
+		<td><c:forEach begin="1" end="${o.starcount }">★</c:forEach></td>
+		<td><button onclick="location.href='deleteReview.do?rid=${o.review_id}'">삭제</button></td>
+	</tr>
+	</c:forEach>
 	<tr>
 		<td>2019-05-09</td>
 		<td>혼자 공부하는 자바</td>
-		<td>리뷰내용 </td>
+		<td>리뷰내용</td>
 		<td>★★★★</td>
 		<td><button>삭제</button></td>
 	</tr>
