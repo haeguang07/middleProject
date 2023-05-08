@@ -21,6 +21,10 @@ public class ReviewServiceImpl implements ReviewService {
 		
 		return mapper.deleteReview(reviewId)==1;
 	}
+	@Override
+	public List<ReviewVO> getBookReview(long isbn) {
+		return mapper.bookReview(isbn);
+	}
 	
 	
 

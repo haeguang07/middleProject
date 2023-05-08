@@ -18,7 +18,7 @@
 	if(main.length>0) { 
 		/* var id = main.attr("id").substr(16); */
 		  var url = "https://openapi.naver.com/v1/search/book.json";
-		  var url2 = "http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx?ttbkey=ttbhbj040030858001&cover=big&MaxResults=100&itemIdType=ISBN13&itemId=9791159922886&output=js&callback=bookDisplay";
+		  var url2 = "http://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey=ttbhbj040030858001&cover=big&MaxResults=100&query=시간여행자&output=js&callback=bookDisplay";
 		  
 //			ISBN          NOT NULL NUMBER         
 //			BOOK_NAME     NOT NULL VARCHAR2(100)  
@@ -40,7 +40,7 @@
 		 	console.log(formData);
 			    $.ajax({
 			        type: "post",
-			        url: "insertbooks.do",
+			        url: "insertbook.do",
 			        dataType: "json",
 			        data: formData,
 			        success: function (data) {

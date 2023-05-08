@@ -7,4 +7,5 @@ import com.yedam.review.domain.ReviewVO;
 public interface ReviewService {
 	public List<ReviewVO> reviewList(String userId);
 	public boolean removeReview(int reviewId);
+	public List<ReviewVO> getBookReview(long isbn);
 }
