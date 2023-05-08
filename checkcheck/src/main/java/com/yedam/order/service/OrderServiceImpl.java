@@ -27,6 +27,14 @@ public class OrderServiceImpl implements OrderService {
 		
 		return mapper.getCount(userId);
 	}
+	@Override
+	public boolean orderCancel(String orderId) {
+		return mapper.cancelUpdate(orderId)==1;
+	}
+	@Override
+	public boolean orderChange(OrderVO vo) {
+		return mapper.adrUpdate(vo)==1;
+	}
 	
 	
 

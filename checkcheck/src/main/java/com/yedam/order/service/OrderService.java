@@ -8,4 +8,6 @@ public interface OrderService {
 	public List<OrderVO> OrderList(String userId,int page);
 	public List<OrderVO> OrderSearch(String orderId);
 	public int gettotal(String userId);
+	public boolean orderCancel(String orderId);
+	public boolean orderChange(OrderVO vo);
 }
