@@ -158,8 +158,9 @@
 				<th>글내용</th>
 				<th>작성자</th>
 				<th>별점</th>
+				<th>작성일</th>
 				<th>삭제</th>
-				<th>수정</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody id="tlist">
@@ -172,7 +173,10 @@
 				<td>10</td>
 				<td><input type="text" class="reply"></td>
 				<td>user01</td>
-				<td><button>수정</button></td>
+				<td>user01</td>
+				<td>user01</td>
+				<td>user01</td>
+				<td><input type="button" value="수정"/></td>
 			</tr>
 		</tbody>
 	</table>
@@ -214,9 +218,9 @@
 			resultElement.innerText = number;
 		}
 		
-		let showFields = ['commentId', 'commentSubject', ${sesInfo.nickName} ,'commentDate']
+		let showFields = ['reviewId', 'reviewSubject', 'nickname' ,'starcount','reviewDate'];
 		let xhtp = new XMLHttpRequest(); //Ajax 호출.
-		xhtp.open('get', 'comment.do?isbn='+${book.isbn});
+		xhtp.open('get', 'review.do?isbn='+${book.isbn});
 		xhtp.send();
 		xhtp.onload = function () {
 			//console.log(xhtp.response);
@@ -233,7 +237,7 @@
 		// tr 생성해주는 함수.
 		function makeTrFunc(reply = {}) {
 			let tr = document.createElement('tr');
-			tr.id = reply.replyId; // tr 속성추가: 댓글번호
+			tr.id = reply.reviewId; // tr 속성추가: 댓글번호
 
 			// this 1) Object 안에서 사용되면 object자체를 가리킴.
 			//      let obj = {name: "hong", age: 20, showInfo: function() { this.age + this.name }}
@@ -245,8 +249,8 @@
 			tr.addEventListener('dblclick', function (e) {
 				let writer = this.children[2].innerText;
 				
-				console.log(writer, '${sesInfo.email }');
-				if(writer != '${sesInfo.email}') {
+				console.log(writer, '${sesInfo.nickname }');
+				if(writer != '${sesInfo.nickname}') {
 					alert('권한이 없습니다.');
 					return;
 				}
@@ -257,19 +261,20 @@
 				//template.children[0].innerText = reply.replyId;
 				//template.children[1].children[0].value = reply.reply;
 				//template.children[2].innerText = reply.replyWriter;
-				template.querySelector('td:nth-of-type(1)').innerText = reply.replyId;
-				template.querySelector('td:nth-of-type(2)>input').value = reply.reply;
-				template.querySelector('td:nth-of-type(3)').innerText = reply.replyWriter;
-				template.querySelector('button').addEventListener('click', function (e) {
+				template.querySelector('td:nth-of-type(1)').innerText = reply.reviewId;
+				template.querySelector('td:nth-of-type(2)>input').value = reply.reviewSubject;
+				template.querySelector('td:nth-of-type(3)').innerText = reply.nickname;
+				template.querySelector('td:nth-of-type(4)').innerText = reply.starcount;
+				template.querySelector('td:nth-of-type(5)').innerText = reply.reviewDate;
+				template.querySelector('input[type="button"]').addEventListener('click', function (e) {
 					// Ajax 호출.
-					let replyId = reply.replyId;
-					let replyCon = this.parentElement.parentElement.children[1].children[0].value;
-					console.log(replyId, replyCon);
+					let reviewId = reply.reviewId;
+					let reviewSubject = this.parentElement.parentElement.children[1].children[0].value;
 					
 					let xhtp = new XMLHttpRequest();
-					xhtp.open('post', 'modifyReply.do');
+					xhtp.open('post', 'modifyReview.do');
 					xhtp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-					xhtp.send('rid='+replyId+'&reply='+replyCon);
+					xhtp.send('rid='+reviewId+'&reviewSubject='+reviewSubject);
 					xhtp.onload = function() {
 						let result = JSON.parse(xhtp.response);
 						if (result.retCode == 'Success') {
@@ -295,12 +300,13 @@
 				tr.append(td);
 			}
 			//삭제버튼.
-			let btn = document.createElement('button');
+			let btn = document.createElement('input');
+			btn.type="button";
+			btn.value="삭제";
 			btn.addEventListener('click', function (e) {
-				let writer = btn.parentElement.previousElementSibling.innerText;
+				let writer = btn.parentElement.parentElement.children[2].innerText;
 
-				console.log(writer, '${sesInfo.email }');
-				if (writer != '${sesInfo.email}') {
+				if (writer != '${sesInfo.nickname}') {
 					alert('권한이 없습니다.');
 					return;
 				}
@@ -310,7 +316,7 @@
 				let rid = btn.parentElement.parentElement.id;
 				// db에서 삭제 후... 화면에서 삭제.
 				let xhtp = new XMLHttpRequest();
-				xhtp.open('post', 'removeReply.do');
+				xhtp.open('post', 'deleteReview.do');
 				xhtp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 				xhtp.send('rid=' + rid); // 요청방식 post일 경우에 parameter를 send() 포함.
 
@@ -327,7 +333,6 @@
 					}
 				}
 			});
-			btn.innerText = '삭제';
 			let td = document.createElement('td');
 			td.append(btn);
 			tr.append(td);
@@ -343,7 +348,7 @@
 			let id = document.querySelector('#content span').innerText;
 			if (id == null || id == '') {
 				alert("로그인 후에 처리하세요.");
-				location.href = 'loginForm.do';
+				location.href = 'login.do';
 				return;
 			}
 			let replySub = document.querySelector('#reply').innerText;
@@ -352,9 +357,6 @@
 				document.getElementById("reply").focus();
 				return;
 			}
-			console.log('click', e.target);
-			console.log('reply', document.querySelector("#reply").value);
-			console.log('id', "${sesInfo.email }");
 			let reply = document.querySelector("#reply").value;
 
 			// Ajax 호출.  post 형태
