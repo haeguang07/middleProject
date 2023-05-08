@@ -5,6 +5,7 @@
 <!-- 05-02 김영환 -->
 <html lang="en">
 <head>
+  <script src="send.js" defer></script>
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -27,23 +28,24 @@
 <!-- Section-->
 <section class="py-5">
 	<div class="container px-4 px-lg-5 mt-5">
-		<input type='checkbox' name='animal' value='selectall'
+		<input type='checkbox' name='selectall' value='selectall'
 			onclick='selectAll(this)' style="padding-bottom:5px"/> <b>전체선택</b>
 			<p></p>
 			<p style="width:300px; text-align:right; display:inline-block">도서제목</p>
 			<p style="width:150px; text-align:right; display:inline-block">가격</p>
 			<p style="width:270px; text-align:right; display:inline-block">수량</p>
-			<p style="width:260px; text-align:right; display:inline-block">삭제</p>
+			<p style="width:260px; text-align:right; display:inline-block">초기화</p>
 		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
-		    <c:forEach var="i" items="${list }">
-				<form action="" method="post"style="position: relative; width: 1100px; text-align:center">
+		    <c:forEach var="i" items="${list }" varStatus="vs">
+				<form action="delivery.do" method="post"style="position: relative; width: 1100px; text-align:center">
+					<filedset style="width:1000px">
 					<table>
 						<tr>
-							<td><input type="checkbox" checked="checked" name="remember" style="margin: 15px"></td>
+							<td><input name="checkboxindex" id=${vs.index } type="checkbox" onclick='checkSelectAll()' name="remember" style="margin: 15px"></td>
 							<td rowspan="5"><img src="${i.cover }"
 								style="width: 150px; height: 150px"></td>
-							<td style="width: 200px" style="word-break:break-all">${i.bookName }
-							</td>
+							<input name="selectbookName"  style="width:900px;word-break:break-all; border:none"value="${i.bookName }"><br>
+							
 							<td style="padding: 0 40px; width: 300px; word-break: break-all">정가
 								: ${i.bookPrice }원<br>포인트 : ${i.bookPrice*0.05 }p
 							</td>
@@ -56,30 +58,28 @@
 								<input type="reset"></input>
 							</td>
 						</tr>
-					</table>
-				</form>
+						</table>
+					</filedset>
 			</c:forEach>
-		</div>
-		<div class="container px-4 px-lg-5 mt-5" style="text-align: center">
 			<div id="basketform"
 				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4"
 				style="text-align: center; display: inline-block">
-				<form class="form-inline center" role="form" action="" method="post"
+				<filedset class="form-inline center" role="form" action="delivery.do" method="post"
 					style="text-align: center; width: 500px;">
-					<p>현재주소
-						<input type="submit" value="변경" style="padding:5px 15px"></input><br>
-						대구 광역시 중구 중앙대로 403 5층 예담 직업전문학교<br><br>
-						총 상품 가격 : ${bookPrice }원<br>
-						상품 포인트 : ${bookPrice*0.05 }p<br> 예상 총 포인트 : 9,467원<br><br>
-						VIP : 3% VVIP : 5%<br><br>
-						<input type="submit" value="주문" style="padding:5px 15px" onclick="waitpayment.do?"></input>
-						<input type="submit" value="선물" style="padding:5px 15px"></input>
-						<input type="submit" value="삭제" style="padding:5px 15px"></input>
-					</p>
+					<p>현재주소<input type="submit" value="변경" style="padding:5px 15px"></input><br></p>
+						<input name="proaddress" style="border:none; width:200px" type="text" value=${address }><br><br>
+						<input name="totalprice" style="border:none" type="text" value="총 상품 가격 : ${total }원"><br>
+						<input name="productpoint" style="border:none" type="text" value="상품 포인트 : ${total*0.05 }p"><br>
+						<input name="totalpoint" style="border:none; width:200px" type="text" value="예상 총 포인트 : ${userPoint+(total*0.05) }원"><br><br>
+						<input name="grade" type="text" style="border:none" value="고객님의 등급 : ${userGrade }"><br>
+						<p>VIP : 3% VVIP : 5%<br><br></p>
+						<input id="Bespeak" type="submit" value="주문" style="padding:5px 15px"></input>
+						<input id="present" type="submit" value="선물" style="padding:5px 15px"></input>
+						<input id="delete" type="submit" value="삭제" style="padding:5px 15px"></input>
+				</filedset>
 				</form>
 			</div>
 		</div>
-	</div>
 </section>
 <div id="MOVE_TOP_BTN">
 	<a href="#">
@@ -132,9 +132,29 @@ function count(type)  {
 			return false;
 		});
 	});
-	function selectAll(selectAll)  {
+	
+	function checkSelectAll()  {
+		  // 전체 체크박스
 		  const checkboxes 
-		     = document.querySelectorAll('input[type="checkbox"]');
+		    = document.querySelectorAll('input[name="remember"]');
+		  // 선택된 체크박스
+		  const checked 
+		    = document.querySelectorAll('input[name="remember"]:checked');
+		  // select all 체크박스
+		  const selectAll 
+		    = document.querySelector('input[name="selectall"]');
+		  
+		  if(checkboxes.length === checked.length)  {
+		    selectAll.checked = true;
+		  }else {
+		    selectAll.checked = false;
+		  }
+
+		}
+
+		function selectAll(selectAll)  {
+		  const checkboxes 
+		     = document.getElementsByName('remember');
 		  
 		  checkboxes.forEach((checkbox) => {
 		    checkbox.checked = selectAll.checked

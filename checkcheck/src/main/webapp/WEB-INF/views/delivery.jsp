@@ -39,12 +39,12 @@
 		<table style="width: 900px;margin: 0 auto">
 			<tr>
 				<td style="width: 500px; text-align: center; display: inline-block">상품명</td>
-				<td style="width: 180px; text-align: center; display: inline-block">가격/포인트</td>
+				<td style="width: 180px; text-align: center; display: inline-block">가격</td>
 				<td style="width: 150px; text-align: center; display: inline-block">수량</td>
 			</tr>
 			<tr>
-				<td style="width: 500px; text-align: center; display: inline-block">셰임 머신 - 수치심이 탄생시킨 혐오 시대, 그 이면의 거대 산업 생태계</td>
-				<td style="width: 180px; text-align: center; display: inline-block">16,650원/832p</td>
+				<td style="width: 500px; text-align: center; display: inline-block"><%= request.getParameter("selectbookName") %></td>
+				<td style="width: 180px; text-align: center; display: inline-block"><%= request.getParameter("totalprice") %>/<%= request.getParameter("totalpoint") %></td>
 				<td style="width: 150px; text-align: center; display: inline-block">1</td>
 			</tr>
 		</table>
@@ -70,7 +70,7 @@
 			<table>
 				<tr><td style="width: 200px;height:30px"></td></tr>
 				<tr><td style="width: 200px;height:40px;word-break:break-all">김영환</td></tr>
-				<tr><td style="width: 400px;height:50px;word-break:break-all">대구 광역시 중구 중앙대로 403</td></tr>
+				<tr><td style="width: 400px;height:50px;word-break:break-all"><%= request.getParameter("proaddress") %></td></tr>
 				<tr><td style="width: 400px;height:50px;word-break:break-all">5층 예담 직업전문학교</td></tr>
 				<tr><td style="width: 400px;height:55px;word-break:break-all">010-1234-5678</td></tr>
 			</table>

@@ -12,7 +12,7 @@ public class WaitPaymentControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		//결제페이지
 		return "waitpayment.tiles";
 	}
 
