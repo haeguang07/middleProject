@@ -15,5 +15,6 @@ public class CouponVO {
 	private Date startdate;
 	private Date enddate;
 	private String couponState;
+	private int couponId;
 	
 }

@@ -22,13 +22,14 @@ public class NickChageContorl implements Control {
 		UserVO vo= (UserVO)session.getAttribute("sesInfo");
 		String userId= vo.getUserId();
 		String nick = req.getParameter("nick");
+		
 		UserService service= new UserServiceImpl();
 		if(service.modifyNick(nick, userId)) {
 			vo= service.login(vo);
 			session.setAttribute("sesInfo", vo);
-			String json="{'reqCode':'Success'}";
+			
 			Gson gson = new GsonBuilder().create();
-			json += gson.toJson(vo);
+			String json = gson.toJson(vo);
 			return  json+".json";
 		}else {
 			return  "{'reqCode':'Fail'}.json";
