@@ -15,6 +15,10 @@ public class BoardServiceImpl implements BoardService {
 	public List<BoardVO> getInquiryList(String userId) {
 		return mapper.searchBoard2(userId);
 	}
+	@Override
+	public boolean addInquiry(String userId, String boardTitle, String boardSubject, String boardFile) {
+		return mapper.insertBoard2(userId, boardTitle, boardSubject, boardFile)==1;
+	}
 
 	
 	

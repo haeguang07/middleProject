@@ -46,7 +46,7 @@
 						href="shippingInfo.do?id=${order.orderId }&page=${pageInfo.pageNum}">${order.orderId }</a></td>
 					<td>${order.book } 총${order.payment}원</td>
 					<td>${order.orderState }</td>
-					<td><a href="#">변경/취소</a></td>
+					<td><a href="modifyShippingForm.do?id=${order.orderId }">변경/취소</a></td>
 				</tr>
 			</c:forEach>
 		</table>
