@@ -1,4 +1,4 @@
-package com.yedam.book.control;
+package com.yedam.review.control;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -16,15 +16,16 @@ import com.yedam.review.domain.ReviewVO;
 import com.yedam.review.service.ReviewService;
 import com.yedam.review.service.ReviewServiceImpl;
 
-public class CommentControl implements Control {
+public class ReviewControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		ReviewService service = new ReviewServiceImpl();
 		long isbn = Long.parseLong(req.getParameter("isbn"));
 		List<ReviewVO> list = service.getBookReview(isbn);
+		System.out.println(list);
 		String json="";
-		Map<String,Object> map = new HashMap<>();
+		Map<String,String> map = new HashMap<>();
 		if(list != null) {
 			map.put("retCode", "Success");
 		}else {

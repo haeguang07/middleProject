@@ -17,5 +17,7 @@ public class ReviewVO {
 	// join해서 책이름 입력용 필드
 	private String bookName;
 	private String reviewDate;
+	// join 해서 상세페이지 댓글 작성자 이름 닉네임으로 보이게함
+	private String nickname;
 	
 }

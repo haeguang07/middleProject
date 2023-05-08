@@ -10,4 +10,6 @@ public interface ReviewMapper {
 	public List<ReviewVO> searchReview(String userId);
 	public int deleteReview(int reviewId);
 	public List<ReviewVO> bookReview(@Param("isbn")long isbn);
+	public int updateReview(@Param("reviewSubject")String reviewSubject , @Param("reviewId")int reviewId);
+	public int insertReview(ReviewVO vo	);
 }

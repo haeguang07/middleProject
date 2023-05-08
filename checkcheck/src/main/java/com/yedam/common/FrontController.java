@@ -20,14 +20,16 @@ import com.yedam.admin.control.InquiryAnswerFormControl;
 import com.yedam.board.control.InquiryAddControl;
 import com.yedam.board.control.InquiryControl;
 import com.yedam.book.control.BestSellerControl;
-import com.yedam.book.control.CommentControl;
 import com.yedam.book.control.HitCountControl;
 import com.yedam.book.control.InsertBookControl;
 import com.yedam.book.control.NewBookSearchControl;
 import com.yedam.coupon.control.CouponInfoControl;
 import com.yedam.order.control.CancelOrderControl;
 import com.yedam.order.control.ModifyShippingControl;
+import com.yedam.review.control.AddReviewControl;
 import com.yedam.review.control.DeleteReviewContorl;
+import com.yedam.review.control.ModifyReviewControl;
+import com.yedam.review.control.ReviewControl;
 import com.yedam.user.control.AdrChageContorl;
 import com.yedam.user.control.BasketControl;
 import com.yedam.user.control.BoardControl;
@@ -89,7 +91,9 @@ public class FrontController extends HttpServlet {
 		map.put("/search.do", new SearchPageControl());
 		// 상세페이지 기능
 		map.put("/getBook.do", new GetBookControl());
-		map.put("/comment.do", new CommentControl());
+		map.put("/review.do", new ReviewControl());
+		map.put("/modifyReview", new ModifyReviewControl());
+		map.put("/addReview.do", new AddReviewControl());
 		
 		//05-02 장바구니페이지 김영환 - css더 다듬어야함 기능깔끔하게 넣어야함
 		map.put("/basket.do", new BasketControl());

@@ -25,6 +25,14 @@ public class ReviewServiceImpl implements ReviewService {
 	public List<ReviewVO> getBookReview(long isbn) {
 		return mapper.bookReview(isbn);
 	}
+	@Override
+	public int modifyReview(String reviewSubject, int reviewId) {
+		return	mapper.updateReview(reviewSubject, reviewId);
+	}
+	@Override
+	public int addReview(ReviewVO vo) {
+		return mapper.insertReview(vo);
+	}
 	
 	
 
