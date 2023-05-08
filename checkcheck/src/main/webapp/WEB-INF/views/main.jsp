@@ -140,7 +140,7 @@
 		<ul class="slides">
 			<c:forEach var="best" items="${bestSeller }">
 			<li><div style="width: 200px; height: 400px;padding:20px 0;overflow:hidden">
-					<a href="getBook.do?bookInfo=${best }"><img src="${best.cover }" style="width: 200px; height: 300px;margin-bottom:10px;box-shadow: 5px 5px 5px #000;"></a><span style="text-align:center;">${best.bookName }</span>
+					<a href="getBook.do?bookInfo=${best.isbn }"><img src="${best.cover }" style="width: 200px; height: 300px;margin-bottom:10px;box-shadow: 5px 5px 5px #000;"></a><span style="text-align:center;">${best.bookName }</span>
 				</div></li>
 			</c:forEach>
 		</ul>
@@ -155,7 +155,7 @@
 		<ul class="slides">
 			<c:forEach var="newlist" items="${newList }">
 			<li><div style="width: 200px; height: 400px;padding:20px 0;overflow:hidden">
-					<a href="getBook.do?bookInfo=${newlist }"><img src="${newlist.cover }" style="width: 200px; height: 300px;margin-bottom:10px;box-shadow: 5px 5px 5px #000;"></a><span style="text-align:center;">${newlist.bookName }</span>
+					<a href="getBook.do?bookInfo=${newlist.isbn }"><img src="${newlist.cover }" style="width: 200px; height: 300px;margin-bottom:10px;box-shadow: 5px 5px 5px #000;"></a><span style="text-align:center;">${newlist.bookName }</span>
 				</div></li>
 			</c:forEach>
 		</ul>
@@ -170,7 +170,7 @@
 		<ul class="slides">
 			<c:forEach var="newbooklist" items="${newBookList }">
 			<li><div style="width: 200px; height: 400px;padding:20px 0;overflow:hidden">
-					<a href="getBook.do?bookInfo=${newbooklist }"><img src="${newbooklist.cover }" style="width: 200px; height: 300px;margin-bottom:10px;box-shadow: 5px 5px 5px #000;"></a><span style="text-align:center;">${newbooklist.bookName }</span>
+					<a href="getBook.do?bookInfo=${newbooklist.isbn }"><img src="${newbooklist.cover }" style="width: 200px; height: 300px;margin-bottom:10px;box-shadow: 5px 5px 5px #000;"></a><span style="text-align:center;">${newbooklist.bookName }</span>
 				</div></li>
 			</c:forEach>
 		</ul>

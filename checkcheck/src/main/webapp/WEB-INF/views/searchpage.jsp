@@ -95,18 +95,21 @@
 				<a>${select }</a>
 			</c:if>
 			<a>${category }</a>
+			<c:if test="${not empty shWeek }">
+				<p style="display:inline-block">${shWeek }</p>
+			</c:if>
 		</p>
 		<c:if test="${category eq '베스트셀러'|| category eq '화제의책' }">
 		<form ${category == '베스트셀러'? 'action="bestSeller.do?category=베스트셀러"':'action="hitCount.do?category=화제의책"' } method="post"> 
 			<select name="sh_year" id="sh_year"
-				onchange="makeWeekSelectOptions();">
+				onclick="makeWeekSelectOptions();">
 				<option ${shYear == '2023' ? 'selected="selected"' : '' } value='2023'>2023년</option>
 				<option ${shYear == '2022' ? 'selected="selected"' : '' } value='2022' >2022년</option>
 				<option ${shYear == '2021' ? 'selected="selected"' : '' } value='2021' >2021년</option>
 			</select>
 
 			<select name="sh_month" id="sh_month"
-				onchange="makeWeekSelectOptions();">
+				onclick="makeWeekSelectOptions();">
 				<option ${shMonth == '01' ? 'selected="selected"' : '' } value='01'>01월</option>
 				<option ${shMonth == '02' ? 'selected="selected"' : '' } value='02'>02월</option>
 				<option ${shMonth == '03' ? 'selected="selected"' : '' } value='03'>03월</option>
@@ -337,19 +340,25 @@
 
 		var today = new Date();
 
-		var sdate = new Date(year, month - 1, 01);
+		var sdate = new Date(year, month - 1, 01); //고른 월의 시작날짜 ( 년도 , 월 , 시작일)
+		var start = sdate;
 		var lastDay = (new Date(sdate.getFullYear(), sdate.getMonth() + 1, 0))
-				.getDate();
-		var endDate = new Date(sdate.getFullYear(), sdate.getMonth(), lastDay);
-
-		var week = sdate.getDay();
-		sdate.setDate(sdate.getDate() - week);
+				.getDate();// 고른 월의 마지막날짜구함
+		var endDate = new Date(sdate.getFullYear(), sdate.getMonth(), lastDay);//고른 월의 (년도 , 월 , 마지막일)
+		var end = endDate;
+		var week = sdate.getDay();//시작일의 요일 구함
+		sdate.setDate(sdate.getDate() - week);// 시작일에서 요일수를 뺸다 -> 그 주의 시작 일짜를 구할수있음 ( 일요일 의 일자)
 		var edate = new Date(sdate.getFullYear(), sdate.getMonth(), sdate
-				.getDate());
+				.getDate());// 첫주차의 시작일수
 
 		var obj = document.getElementById("sh_week");
 		obj.options.length = 0;
 		var seled = "";
+		start = year + "-" + month + "-" + 1;
+		end = end.getFullYear() + "-" + (end.getMonth() +1) + "-" + end.getDate();
+		obj.options[obj.options.length] = new Option('월 전체 조회',
+				start + "|" + end);
+		
 		while (endDate.getTime() >= edate.getTime()) {
 
 			var sYear = sdate.getFullYear();

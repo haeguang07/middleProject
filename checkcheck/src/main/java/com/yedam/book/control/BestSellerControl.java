@@ -66,7 +66,7 @@ public class BestSellerControl implements Control {
 			req.setAttribute("pageInfo", dto);
 			req.setAttribute("shYear", shYear);
 			req.setAttribute("shMonth", shMonth);
-			req.setAttribute("shWeek", shWeek);
+			req.setAttribute("shWeek", monthFirst +" 에서 " +monthLast + " 까지의 검색결과입니다.");
 			System.out.println("post");
 			return "searchpage.tiles";
 		}else if(req.getMethod().equals("GET")){

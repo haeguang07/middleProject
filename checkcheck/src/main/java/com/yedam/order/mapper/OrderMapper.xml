@@ -26,7 +26,8 @@
 	<select id="selectOrderOrderId" resultType="order">
 		select o.*,c.book
 		,c.num, c.book_price,c.cover
-		FROM (select h.order_id, b.book_name book,h.history_count num 
+		FROM (select h.order_id, b.book_name
+		book,h.history_count num
 		,b.book_price,b.isbn,b.cover
 		from historys h JOIN books b
 		ON (h.isbn=b.isbn))c join orders o
@@ -34,8 +35,17 @@
 		WHERE o.order_id=#{orderId}
 	</select>
 	<select id="getCount">
-	select count(*)
-	from orders
-	WHERE user_id=#{userId} 
+		select count(*)
+		from orders
+		WHERE user_id=#{userId}
 	</select>
+	<update id="cancelUpdate">
+		update orders set order_state='취소' where
+		order_id=#{orderId}
+	</update>
+	<update id="adrUpdate">
+	update orders set order_name=#{orderName} ,order_post=#{orderPost}
+	,order_address=#{orderAddress} ,order_phone=#{orderPhone} 
+	where order_id=#{orderId}
+	</update>
 </mapper>
