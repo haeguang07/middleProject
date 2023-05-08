@@ -3,8 +3,13 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yedam.board.mapper.BoardMapper">
-	<select id="searchBoard2" parameterType="board">
-		select * from Boards where user_id=#{userId} and board_kind=2;
+	<select id="searchBoard2" resultType="board">
+		select * from Boards where
+		user_id=#{userId} and board_kind=2
 	</select>
+	<insert id="insertBoard2">
+		insert into boards
+		values(board_seq.nextval,#{userId},2,#{boardTitle},#{boardSubject},#{boardFile},sysdate,'N')
+	</insert>
 
 </mapper>

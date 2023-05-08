@@ -51,7 +51,7 @@
 	</tr>
 	<c:forEach var="book" items="${list}">
 	<tr>
-		<td><img src="${book.cover }"></td>
+		<td><img src="${book.cover }" style="width:100px"></td>
 		<td>${book.book }</td>
 		<td>${book.num} </td>
 		<td>${book.num*book.price } (적립 포인트 ${book.num*book.price/1000 }원)</td>
