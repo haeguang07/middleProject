@@ -20,6 +20,7 @@ import com.yedam.admin.control.InquiryAnswerFormControl;
 import com.yedam.board.control.InquiryAddControl;
 import com.yedam.board.control.InquiryControl;
 import com.yedam.book.control.BestSellerControl;
+import com.yedam.book.control.CommentControl;
 import com.yedam.book.control.HitCountControl;
 import com.yedam.book.control.InsertBookControl;
 import com.yedam.book.control.NewBookSearchControl;
@@ -88,8 +89,9 @@ public class FrontController extends HttpServlet {
 		map.put("/search.do", new SearchPageControl());
 		// 상세페이지 기능
 		map.put("/getBook.do", new GetBookControl());
-
-		// 05-02 장바구니페이지 김영환 - css더 다듬어야함 기능넣어야함
+		map.put("/comment.do", new CommentControl());
+		
+		//05-02 장바구니페이지 김영환 - css더 다듬어야함 기능넣어야함
 		map.put("/basket.do", new BasketControl());
 		// 05-02 배송정보페이지 김영환 - css더 다듬어야함 기능넣어야됨
 		map.put("/delivery.do", new DeliveryControl());
