@@ -18,6 +18,7 @@ import com.yedam.admin.control.ChartControl;
 import com.yedam.admin.control.ChulgoControl;
 import com.yedam.admin.control.InquiryAnswerFormControl;
 import com.yedam.book.control.BestSellerControl;
+import com.yedam.book.control.CommentControl;
 import com.yedam.book.control.HitCountControl;
 import com.yedam.book.control.InsertBookControl;
 import com.yedam.book.control.NewBookSearchControl;
@@ -81,6 +82,7 @@ public class FrontController extends HttpServlet{
 		map.put("/search.do", new SearchPageControl());
 		//상세페이지 기능
 		map.put("/getBook.do", new GetBookControl());
+		map.put("/comment.do", new CommentControl());
 		
 		
 		//05-02 장바구니페이지 김영환 - css더 다듬어야함 기능넣어야함

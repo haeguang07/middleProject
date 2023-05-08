@@ -48,9 +48,11 @@
 								: ${i.bookPrice }원<br>포인트 : ${i.bookPrice*0.05 }p
 							</td>
 							<td id="td" style="padding: 0 40px; width: 400px; word-break: break-all">
-								<input type='button' onclick='count("plus")' value='+'/>
-								<input type='button' onclick='count("minus")' value='-'/>
+								<input class="evt" type='button'  value='+'/>
+								<input class="evt" type='button'  value='-'/>
 								<div id='buycount'>0</div>
+								<p style="display:inline-block;">최대수량 : </p>
+								<div style="display:inline-block;" id="bookstock">10</div>
 							</td>
 							<td style="padding: 0 40px; width: 200px; word-break: break-all">
 								<input type="reset"></input>
@@ -98,24 +100,42 @@
 <!-- Core theme JS-->
 <script src="js/scripts.js"></script>
 <script>
-function count(type)  {
+let evt =document.getElementsByClassName('evt');
+let queryevt =document.querySelectorAll('.evt');
+console.log(queryevt); 
+console.log(evt);
+		queryevt.forEach(item => {item.addEventListener('click',function (){
 	  // 결과를 표시할 element
-	  const resultElement = document.getElementById('buycount');
-	  
+	  const resultElement = this.parentElement.children[2];
+	  console.log(this.value);
 	  // 현재 화면에 표시된 값
 	  let number = resultElement.innerText;
 	  
 	  // 더하기/빼기
-	  if(type === 'plus') {
+	  if(this.value === '+') {
 	    number = parseInt(number) + 1;
-	  }else if(type === 'minus')  {
+	    if(number > this.parentElement.children[4].innerText){
+	    	alert('재고량 이상 주문 불가합니다.');
+	    	number = this.parentElement.children[4].innerText;
+	    }
+	  }else if(this.value === '-')  {
 	    number = parseInt(number) - 1;
+	    if(number < 0){
+	    	alert('0권 이하 주문 불가합니다.');
+	    	number =0;
+	    }
 	  }
 	  
 	  // 결과 출력
 	  resultElement.innerText = number;
 	}
 
+	)
+}
+)
+
+	
+	
 	$(function() {
 		$(window).scroll(function() {
 			if ($(this).scrollTop() > 100) {
