@@ -45,7 +45,7 @@
 			<tr>
 				<td style="width: 500px; text-align: center; display: inline-block"><%= request.getParameter("selectbookName") %></td>
 				<td style="width: 180px; text-align: center; display: inline-block"><%= request.getParameter("totalprice") %>/<%= request.getParameter("totalpoint") %></td>
-				<td style="width: 150px; text-align: center; display: inline-block">1</td>
+				<td style="width: 150px; text-align: center; display: inline-block"><%= request.getParameter("buycount") %></td>
 			</tr>
 		</table>
 	</div>
@@ -69,10 +69,9 @@
 			style="position: relative; width: 500px; text-align: center; display: inline-block;margin: 0 auto">
 			<table>
 				<tr><td style="width: 200px;height:30px"></td></tr>
-				<tr><td style="width: 200px;height:40px;word-break:break-all">김영환</td></tr>
+				<tr><td style="width: 200px;height:40px;word-break:break-all">${sesInfo.userName }</td></tr>
 				<tr><td style="width: 400px;height:50px;word-break:break-all"><%= request.getParameter("proaddress") %></td></tr>
-				<tr><td style="width: 400px;height:50px;word-break:break-all">5층 예담 직업전문학교</td></tr>
-				<tr><td style="width: 400px;height:55px;word-break:break-all">010-1234-5678</td></tr>
+				<tr><td style="width: 400px;height:55px;word-break:break-all">${sesInfo.userPhone }</td></tr>
 			</table>
 		</form>
 	</div>
