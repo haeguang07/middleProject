@@ -12,7 +12,7 @@ public class DeliveryControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		//배송정보페이지
 		return "delivery.tiles";
 	}
 

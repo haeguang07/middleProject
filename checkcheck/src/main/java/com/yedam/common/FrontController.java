@@ -91,7 +91,7 @@ public class FrontController extends HttpServlet {
 		map.put("/getBook.do", new GetBookControl());
 		map.put("/comment.do", new CommentControl());
 		
-		//05-02 장바구니페이지 김영환 - css더 다듬어야함 기능넣어야함
+		//05-02 장바구니페이지 김영환 - css더 다듬어야함 기능깔끔하게 넣어야함
 		map.put("/basket.do", new BasketControl());
 		// 05-02 배송정보페이지 김영환 - css더 다듬어야함 기능넣어야됨
 		map.put("/delivery.do", new DeliveryControl());
@@ -132,6 +132,15 @@ public class FrontController extends HttpServlet {
 		map.put("/userReviewForm.do", new UserReviewFormControl());
 		// 마이리뷰-> 리뷰삭제기능
 		map.put("/deleteReview.do", new DeleteReviewContorl());
+		//05-03 마이페이지->쿠폰 정보
+		map.put("/couponInfo.do", new CouponInfoControl());		
+		//05-03 마이페이지->포인트정보
+		map.put("/pointInfo.do", new PointInfoControl());		
+		//05-03 마이페이지->문의내역
+		map.put("/inquiryInfo.do", new inquiryInfoControl());		
+		
+		
+		//05-02 주문완료페이지 - css더 다듬어야함 기능(홈으로 누르면 메인페이지가는 링크, 주문정보 누르면 다른페이지로 이동하는링크)
 		// 05-03 마이페이지->쿠폰 정보
 		map.put("/couponInfo.do", new CouponInfoControl());
 		// 05-03 마이페이지->포인트정보
