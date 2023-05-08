@@ -143,9 +143,9 @@
 				<input type="radio" name="rating" value="2" id="rate4"><label
 					for="rate4">⭐</label> <input type="radio" name="rating" value="1"
 					id="rate5" checked><label for="rate5">⭐</label> <input
-					type="text" id="reply"><span style="margin: 0 10px">${sesInfo.email }</span>
+					type="text" id="reply"><span style="margin: 0 10px">${sesInfo.nickName }</span>
 				<input type="submit" value="등록"
-					style="position: absolute; bottom: 10px; left: 60px">
+					style="position: absolute; bottom: 10px; left: 70px">
 			</fieldset>
 		</form>
 
@@ -216,7 +216,7 @@
 		
 		let showFields = ['commentId', 'commentSubject', ${sesInfo.nickName} ,'commentDate']
 		let xhtp = new XMLHttpRequest(); //Ajax 호출.
-		xhtp.open('get', 'replyList.do?nid=${notice.noticeId}');
+		xhtp.open('get', 'comment.do?isbn='+${book.isbn});
 		xhtp.send();
 		xhtp.onload = function () {
 			//console.log(xhtp.response);

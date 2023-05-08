@@ -10,11 +10,12 @@ public class ReviewVO {
 //	REVIEW_SUBJECT NOT NULL VARCHAR2(1000) 
 //	STARCOUNT      NOT NULL NUMBER    
 	private int reviewId;
-	private int isbn;
+	private long isbn;
 	private String userId;
 	private String reviewSubject;
 	private int starcount;
 	// join해서 책이름 입력용 필드
 	private String bookName;
+	private String reviewDate;
 	
 }
