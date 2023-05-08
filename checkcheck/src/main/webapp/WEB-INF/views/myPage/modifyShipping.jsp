@@ -23,6 +23,7 @@
 	</tr>
 </table>
 <form action="modifyShipping.do">
+<input type="hidden" value=${vo.orderId } name="id">
 <table>
 	<tr>
 		<th>аж╧╝юз</th>
