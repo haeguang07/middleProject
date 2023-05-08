@@ -23,9 +23,10 @@ public class AdrChageContorl implements Control {
 		String userId= vo.getUserId();
 		String adr = req.getParameter("adr");
 		int post = Integer.parseInt(req.getParameter("post"));
-		
+		System.out.println(vo);
 		UserService service= new UserServiceImpl();
 		if(service.modifyAdr(adr, post, userId)) {
+			System.out.println();
 			vo= service.login(vo);
 			session.setAttribute("sesInfo", vo);
 			String json="{'reqCode':'Success'}";

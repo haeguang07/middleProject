@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <h3>회원정보 수정</h3>
+
 <table>
 	<tr>
 		<th>아이디</th>
@@ -26,12 +27,12 @@
 	<tr>
 	<tr>
 		<th>주소</th>
-		<td><input type="text" name="joinPost" id="joinPost" style="width: 90px;" placeholder="우편번호">
+		<td><input type="text" name="joinPost" id="joinPost" style="width: 90px;" value="${sesInfo.userPost }">
 			<button class="joinButton" id="post" onclick="execDaumPostcode()">우편번호 찾기</button></td>
 	</tr>
 	<tr>
 		<td></td>
-		<td colspan="2"><input type="text" name="joinAdr" id="joinAdr" style="width: 400px;" placeholder="주소"></td>
+		<td colspan="2"><input type="text" name="joinAdr" id="joinAdr" style="width: 400px;" value="${sesInfo.userAddress }"></td>
 	</tr>
 	<tr>
 		<td></td>
@@ -58,7 +59,7 @@
 		<th>생년월일</th>
 		<td>
 			<fmt:parseDate var="parsedDate" value="${sesInfo.userBirth }" pattern="yyyy-MM-dd HH:mm:ss" />
-			<fmt:formatDate value="${parsedDate }" />
+			<fmt:formatDate value="${parsedDate }" pattern="YYYY년MM월dd일" />
 		</td>
 		<td></td>
 	</tr>
@@ -119,62 +120,76 @@
 			});
 	}
 	let nickBtn = document.querySelector('#nickBtn');
-	nickBtn.addEventListener('click', nickChane(e));
+	nickBtn.addEventListener('click', nickChange);
 
 	let adrBtn = document.querySelector('#adrBtn');
-	adrBtn.addEventListener('click', adrChane(e));
+	adrBtn.addEventListener('click', adrChange);
+	
 	let pwBtn = document.querySelector('#pwBtn');
-	adrBtn.addEventListener('click', pwChane(e));
+	adrBtn.addEventListener('click', pwChange);
 
-	function nickChane(e) {
+	function nickChange(e) {
 		let nick = document.querySelector('#nick').value;
+		
 		fetch('nickChange.do?nick=' + nick)
-			.then(resolve => resolve.json)
+			.then(resolve => resolve.json())
 			.then(result => {
-				if (result.reqCode == 'Success') {
+				
+				if (result.userId != null) {
 					alert('닉네임 변경 성공');
 					document.querySelector('#joinPost').value = result.vo.nickname;
 				} else if (result.reqCode == 'Fail') {
-					alert('변경실패')
+					alert('변경실패');
 				} else {
-					alert('알수 없는 오류')
+					alert('알수 없는 오류');
 				}
 			})
 	}
 
-	function adrChane(e) {
+	function adrChange(e) {
 		let post = document.getElementById('joinPost').value;
 		let adr1 = document.getElementById("joinAdr").value;
 		let adr2 = document.getElementById("joinAdr2").value;
-		fetch('adrChange.do?post=' + post + '&adr=' + adr1 + adr2)
-			.then(resolve => resolve.json)
+		fetch('adrChange.do?',{
+			method: 'post',
+			   headers: {
+			     "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+			   },
+			   body: 'post='+post
+		})
+			.then(resolve => resolve.json())
 			.then(result => {
 				if (result.reqCode == 'Success') {
 					alert('주소 변경 성공');
 					document.querySelector('#joinPost').value = result.vo.UserPost;
 					document.querySelector('#joinAdr').value = result.vo.UserAdrress;
 				} else if (result.reqCode == 'Fail') {
-					alert('변경실패')
+					alert('변경실패');
 				} else {
-					alert('알수 없는 오류')
+					alert('알수 없는 오류');
 				}
 			})
 	}
 
-	function pwChane(e) {
+	function pwChange(e) {
 		let pw = document.querySelector('#pw').value;
+		let pw2=document.querySelector('#pw2').value;
+		if(pw==pw2){
 		fetch('pwChange.do?pw=' + pw)
-			.then(resolve => resolve.json)
+			.then(resolve => resolve.json())
 			.then(result => {
 				if (result.reqCode == 'Success') {
-					alert('페스워드 변경 성공')
+					alert('페스워드 변경 성공');
 					document.querySelector('#pw').value = '';
 					document.querySelector('#pw2').value = '';
 				} else if (result.reqCode == 'Fail') {
-					alert('변경실패')
+					alert('변경실패');
 				} else {
-					alert('알수 없는 오류')
+					alert('알수 없는 오류');
 				}
 			})
+		}else{
+			alert('비밀번호가 일치하지 않습니다')
+		}
 	}
 </script>

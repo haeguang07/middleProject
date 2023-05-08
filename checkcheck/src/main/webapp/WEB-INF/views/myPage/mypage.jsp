@@ -2,10 +2,16 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<style>
+table {
+	border:none;
+	border: 1px solid;
+}
+</style>
 <div>
 	<div>
 		<p>
-			${vo.userName }님, 안녕하세요! <br> 멤버십 등급 : ${vo.userGrade } <br> 멤버십 회원이 되시면 구매 금액의
+			${sesInfo.userName }님, 안녕하세요! <br> 멤버십 등급 : ${sesInfo.userGrade } <br> 멤버십 회원이 되시면 구매 금액의
 			1~3% 추가 포인트 및 쿠폰 혜택을 받으실 수 있습니다.
 		</p>
 	</div>
@@ -41,12 +47,23 @@
 			</tr>
 			<c:forEach var="order" items="${list }">
 				<tr>
-					<td><fmt:formatDate value="${order.orderDate }"/> </td>
+					<td><fmt:formatDate value="${order.orderDate }" pattern="YYYY-MM-dd"/> </td>
 					<td><a
 						href="shippingInfo.do?id=${order.orderId }&page=${pageInfo.pageNum}">${order.orderId }</a></td>
 					<td>${order.book } 총${order.payment}원</td>
 					<td>${order.orderState }</td>
-					<td><a href="modifyShippingForm.do?id=${order.orderId }">변경/취소</a></td>
+					<c:choose>
+						<c:when test="${order.orderState eq '출고전'}">
+							<td><a href="modifyShippingForm.do?id=${order.orderId }">변경/취소</a></td>
+						</c:when>
+						<c:when test="${order.orderState eq '배송중'}">
+							<td>배송후 변경/취소불가</td>
+						</c:when>
+						<c:otherwise>
+							<td>취소됨</td>
+						</c:otherwise>
+					</c:choose>
+					
 				</tr>
 			</c:forEach>
 		</table>
