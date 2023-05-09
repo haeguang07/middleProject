@@ -5,7 +5,7 @@
 <script>
 	document.addEventListener("DOMContentLoaded", function () {
 		CKEDITOR.replace('subject', {
-			filebrowserUploadUrl: 'inquiry.do'
+			filebrowserUploadUrl: 'ckeditor.do'
 		});
 	})
 </script>

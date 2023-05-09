@@ -20,7 +20,7 @@ import com.yedam.admin.control.InquiryAnswerFormControl;
 import com.yedam.basket.control.AddBasketControl;
 import com.yedam.basket.control.BasketControl;
 import com.yedam.board.control.InquiryAddControl;
-import com.yedam.board.control.InquiryControl;
+import com.yedam.board.control.CkeditorControl;
 import com.yedam.board.control.inquiryInfoControl;
 import com.yedam.book.control.BestSellerControl;
 import com.yedam.book.control.HitCountControl;
@@ -148,6 +148,8 @@ public class FrontController extends HttpServlet {
 		//05-03 마이페이지->문의내역
 		map.put("/inquiryInfo.do", new inquiryInfoControl());		
 		
+		// ckeditor fileUpload
+		map.put("/ckeditor.do", new CkeditorControl());
 		
 		//05-02 주문완료페이지 - css더 다듬어야함 기능(홈으로 누르면 메인페이지가는 링크, 주문정보 누르면 다른페이지로 이동하는링크)
 		// 05-03 마이페이지->쿠폰 정보
@@ -158,8 +160,6 @@ public class FrontController extends HttpServlet {
 		map.put("/myPageinquiry.do", new MypageinquiryControl());
 		// 마이페이지 문의 내역(페이징)
 		map.put("/inquiryInfo.do", new inquiryInfoControl());
-		// 문의내역 ckeditor
-		map.put("/inquiry.do", new InquiryControl());
 		// 문의내역 추가
 		map.put("/inquiryAdd.do", new InquiryAddControl());
 
