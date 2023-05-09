@@ -31,6 +31,10 @@ public class BoardServiceImpl implements BoardService {
 	public int announceTotal() {
 		return mapper.board1Count();
 	}
+	@Override
+	public boolean removeAnno(int boardId) {
+		return mapper.deleteAnno(boardId)==1;
+	}
 
 	
 	

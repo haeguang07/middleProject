@@ -24,26 +24,29 @@
 }
 </style>
 <div style="width:1000px;text-align: center;margin:0 auto">
+<div style="padding:10px">
 <table class="table" style="border: black solid 1px">
 	<thead>
 		<tr>
-			<th style="width:10%"><input type="checkbox" name="announcement" value="selectall" onclick='checkSelectAll()'></th>
-			<th style="width:10%">글번호</th>
-			<th style="width:60%">제목</th>
-			<th style="width:20%">작성일</th>
+			<th style="width:5%"><input type="checkbox" name="selectall" value="selectall" onclick='selectAll(this)' style=${sesInfo.userId eq 'hbj04003' ? 'dispaly:inline' : 'display:none' }></th>
+			<th style="width:15%;text-align: left;">글번호</th>
+			<th style="width:50%;text-align: left;">제목</th>
+			<th style="width:30%">작성일</th>
 		</tr>
 	</thead>
 	<tbody id="announceList">
 		<c:forEach var="item" items="${board }">
-			<tr>
-			<td><input type="checkbox" name="announcement" value=""></td>
-			<td>${item.boardId }</td>
-			<td>${item.boardTitle }</td>
+			<tr id="${item.boardId }">
+			<td><input type="checkbox" name="announcement" value="${item.boardId }" style=${sesInfo.userId eq 'hbj04003' ? 'dispaly:inline' : 'display:none' }></td>
+			<td style="text-align: left;">${item.boardId }</td>
+			<td style="text-align: left">${item.boardTitle }</td>
 			<td>${item.boardDate }</td>
 			</tr>
 		</c:forEach>
 	</tbody>
 </table>
+</div>
+<div><input id="deletebtn" type="button" style="float: right" value="삭제"></div>
 	<div style="text-align: center; width: 1200px; height: 50px; padding: 30px 0; margin-bottom: 50px">
 		<div class="pagination2">		
 				<c:if test="${pageInfo.prev }">
@@ -66,24 +69,33 @@
 	integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
 	crossorigin="anonymous"></script>
 <script>
-function checkSelectAll()  {
-	  // 전체 체크박스
-	  const checkboxes 
-	    = document.querySelectorAll('input[name="remember"]');
-	  // 선택된 체크박스
-	  const checked 
-	    = document.querySelectorAll('input[name="remember"]:checked');
-	  // select all 체크박스
-	  const selectAll 
-	    = document.querySelector('input[name="selectall"]');
-	  
-	  if(checkboxes.length === checked.length)  {
-	    selectAll.checked = true;
-	  }else {
-	    selectAll.checked = false;
-	  }
-
-}
+	
+	document.querySelector('#deletebtn').addEventListener('click',function(){
+	let checkedtr = [];//check 된 tr
+	let tr = document.getElementsByTagName('tr');
+	let trid = [];//check 된 tr 의 id
+	    
+	for(let i =0 ; i < tr.length ; i++){
+	    if(tr[i].children[0].children[0].checked){
+	    	checkedtr.push(tr[i]);
+	    }
+	}
+	checkedtr.forEach(tr => {
+	    trid.push(tr.id);
+	})
+		for(let i =0; i<trid.length ; i++){
+			fetch("/removeAnno.do?boardId="+trid[i])
+			.then(result => result.json())
+			.then(resolve => {
+				if(resolve.retCode == 'Success'){
+					//0510 0054
+					document.getElementById(trid[i]).remove;
+				}else if(resolve.retCode == 'Fail'){
+				}
+			})
+			.catch(error => console.log(error));
+		}
+	})
 
 function selectAll(selectAll)  {
 	  const checkboxes 
