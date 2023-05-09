@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <!-- 05-02 김영환 -->
 <html lang="en">
@@ -42,11 +44,16 @@
 				<td style="width: 180px; text-align: center; display: inline-block">가격</td>
 				<td style="width: 150px; text-align: center; display: inline-block">수량</td>
 			</tr>
+			<c:set var="total" value="0"></c:set>
+			<c:forEach var="i" items="${list }">
+			<c:set var="total" value="${i.bookPrice*i.basketCount + total }"></c:set>
 			<tr>
-				<td style="width: 500px; text-align: center; display: inline-block"><%= request.getParameter("selectbookName") %></td>
-				<td style="width: 180px; text-align: center; display: inline-block"><%= request.getParameter("totalprice") %>/<%= request.getParameter("totalpoint") %></td>
-				<td style="width: 150px; text-align: center; display: inline-block"><%= request.getParameter("buycount") %></td>
+				<td style="width: 500px; text-align: center; display: inline-block">${i.bookName }</td>
+				<td style="width: 180px; text-align: center; display: inline-block">${i.bookPrice }/${i.bookPrice/100 }</td>
+				<td style="width: 150px; text-align: center; display: inline-block">${i.basketCount }</td>
 			</tr>
+			</c:forEach>
+			<tr><td style="width: 500px; text-align: center; display: inline-block">총가격 : ${total }</td></tr>
 		</table>
 	</div>
 	<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4" style="margin: 0 auto">
@@ -57,9 +64,8 @@
 				<tr>
 					<td style="width: 250px" style="word-break:break-all">배송지 정보<br></td></tr>
 					<tr><td style="width: 250px;height:50px;word-break: break-all">주문인</td></tr>
-					
+					<tr><td style="width: 250px;height:50px;word-break: break-all">우편번호</td></tr>
 					<tr><td style="width: 250px;height:50px;word-break: break-all">주소</td></tr>
-					<tr><td style="width: 250px;height:50px;word-break: break-all">나머지주소</td></tr>
 					<tr><td style="width: 250px;height:50px;word-break: break-all">휴대전화번호</td>
 				</tr>
 				
@@ -67,12 +73,28 @@
 		</form>
 		<form action="" method="post"
 			style="position: relative; width: 500px; text-align: center; display: inline-block;margin: 0 auto">
-			<table>
-				<tr><td style="width: 200px;height:30px"></td></tr>
-				<tr><td style="width: 200px;height:40px;word-break:break-all">${sesInfo.userName }</td></tr>
-				<tr><td style="width: 400px;height:50px;word-break:break-all"><%= request.getParameter("proaddress") %></td></tr>
-				<tr><td style="width: 400px;height:55px;word-break:break-all">${sesInfo.userPhone }</td></tr>
-			</table>
+			<c:choose>
+			<c:when test="${state == 1}">
+				<table>
+					<tr><td style="width: 200px;height:30px"></td></tr>
+					<tr><td style="width: 200px;height:40px;word-break:break-all"><input name="name"></td></tr>
+					<tr><td style="width: 200px;height:40px;word-break:break-all"><input id="Post" name="post"></td>
+						<td><button type="button" onclick="execDaumPostcode()">우편번호 찾기</button></td></tr>
+					<tr><td style="width: 400px;height:50px;word-break:break-all"><input name="address" id="address"></td></tr>
+					<tr><td style="width: 400px;height:55px;word-break:break-all"><input name="phone"></td></tr>
+				</table>
+			</c:when>
+			<c:otherwise>
+				<table>
+					<tr><td style="width: 200px;height:30px"></td></tr>
+					<tr><td style="width: 200px;height:40px;word-break:break-all"><input name="name"value="${sesInfo.userName }" style="border:none" readonly></td></tr>
+					<tr><td style="width: 400px;height:50px;word-break:break-all"><input name="name"value="${sesInfo.userPost }" style="border:none" readonly></td></tr>
+					<tr><td style="width: 400px;height:50px;word-break:break-all"><input name="name"value="${sesInfo.userAddress }" style="border:none" readonly></td></tr>
+					<tr><td style="width: 400px;height:55px;word-break:break-all"><input name="name"value="${sesInfo.userPhone }" style="border:none" readonly></td></tr>
+				</table>
+			</c:otherwise>
+			</c:choose>
+			<button type="submit" ></button>
 		</form>
 	</div>
 </div>
@@ -92,7 +114,46 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
 <script src="js/scripts.js"></script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js?autoload=false"></script>
 <script>
+function execDaumPostcode() {
+    daum.postcode.load(function () {
+      new daum.Postcode({
+        oncomplete: function (data) {
+          // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+          var addr = ''; // 주소 변수
+          var extraAddr = ''; // 참고항목 변수
+          //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+          if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+            addr = data.roadAddress;
+          } else { // 사용자가 지번 주소를 선택했을 경우(J)
+            addr = data.jibunAddress;
+          }
+          // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+          if (data.userSelectedType === 'R') {
+            // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+            // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+            if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+              extraAddr += data.bname;
+            }
+            // 건물명이 있고, 공동주택일 경우 추가한다.
+            if (data.buildingName !== '' && data.apartment === 'Y') {
+              extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+            }
+            // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+            if (extraAddr !== '') {
+              extraAddr = ' (' + extraAddr + ')';
+            }
+          }
+          // 우편번호와 주소 정보를 해당 필드에 넣는다.
+          document.getElementById('Post').value = data.zonecode;
+          document.getElementById("address").value = addr;
+          // 커서를 상세주소 필드로 이동한다.
+          document.getElementById("address").focus();
+        }
+      }).open();
+    });
+  }
 	$(function() {
 		$(window).scroll(function() {
 			if ($(this).scrollTop() > 100) {

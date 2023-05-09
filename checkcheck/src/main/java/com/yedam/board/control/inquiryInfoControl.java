@@ -33,12 +33,8 @@ public class inquiryInfoControl implements Control {
 		int total = service.inquiryTotal(vo.getUserId());
 
 		PageDTO dto = new PageDTO(page, total);
-		Map<String, Object> map = new HashMap<>();
-		map.put("list", list);
-		map.put("pageInfo", dto);
-		
-		Gson gson = new GsonBuilder().create();
-		String json = gson.toJson(map);
+		req.setAttribute("list", list);
+		req.setAttribute("pageInfo", dto);
 		
 		return "myPage/inquiry.tiles";
 	}
