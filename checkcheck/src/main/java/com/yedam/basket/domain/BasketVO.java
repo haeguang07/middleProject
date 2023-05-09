@@ -13,5 +13,6 @@ public class BasketVO {
 	private String bookName;
 	private int bookPrice;
 	private String cover;
+	private int basketCount;
 	
 }
