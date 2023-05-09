@@ -53,7 +53,7 @@ public class HitCountControl implements Control {
 			String pageStr = req.getParameter("page");
 			pageStr = pageStr == null ? "1" : pageStr;
 			int page = Integer.parseInt(pageStr);
-			int total = service.getBestCount(page , monthFirst , monthLast);
+			int total = service.hitCountCount(monthLast , monthFirst);
 			// 페이징
 			PageDTO dto = new PageDTO(page, total);
 			
@@ -80,7 +80,7 @@ public class HitCountControl implements Control {
 		String monthLast2 = req.getParameter("monthLast");
 		monthLast2 = monthLast2 == null ? monthLast : monthLast2;
 		System.out.println(monthFirst2 + "  " + monthLast2);
-		int total = service.hitCountCount(monthLast , monthFirst , page);
+		int total = service.hitCountCount(monthLast , monthFirst);
 		// 페이징
 		PageDTO dto = new PageDTO(page, total);
 		
