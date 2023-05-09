@@ -54,6 +54,7 @@ import com.yedam.user.control.WaitPaymentControl;
 import com.yedam.user.control.inquiryInfoControl;
 import com.yedam.user.control.logoutContorl;
 import com.yedam.user.control.mainControl;
+import com.yedam.user.control.modifyUserFormControl;
 import com.yedam.user.control.myPageOrderControl;
 
 public class FrontController extends HttpServlet {
@@ -116,8 +117,10 @@ public class FrontController extends HttpServlet {
 
 		// 05-02마이페이지 이동(주문 조회로)
 		map.put("/myPageMain.do", new myPageOrderControl());
-		// 05-02개인정보수정(get:화면1(비밀번호입력), post:화면2(수정페이지))
+		// 05-02개인정보수정(get:화면1), post:(비밀번호확인용)
 		map.put("/myPageUserInfo.do", new MypageUserInfoControl());
+		//개인정보 수정페이지
+		map.put("/modifyUserForm.do", new modifyUserFormControl());
 		// 개인정보수정-닉네임
 		map.put("/nickChange.do", new NickChageContorl());
 		// 개인정보수정-주소

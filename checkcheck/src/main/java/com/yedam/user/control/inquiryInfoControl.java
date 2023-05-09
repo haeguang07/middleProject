@@ -21,7 +21,6 @@ public class inquiryInfoControl implements Control {
 		HttpSession session =req.getSession();
 		UserVO vo = (UserVO)session.getAttribute("sesInfo");
 		BoardService service = new BoardServiceImpl();
-		System.out.println(vo.getUserId());
 		List<BoardVO> list = service.getInquiryList(vo.getUserId());
 		
 		req.setAttribute("list", list);

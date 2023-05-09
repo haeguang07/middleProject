@@ -51,7 +51,7 @@ img {
 </head>
 
 <body>
-	<input style="display: none" id="reqCode" value="${reqCode.num}">
+	<input style="display: none" id="retCode" value="${retCode.num}">
 	<div id="joinForm">
 		<img src="image/logo.png" class="inline-blcok">
 		<div class="inline-blcok">
@@ -212,7 +212,7 @@ img {
 	<script>
 	
 	window.onload=function(){
-		let result = document.querySelector('#reqCode').value;
+		let result = document.querySelector('#retCode').value;
 		if(result=='false'){
 			alert('회원가입에 실패했습니다')
 		}
@@ -279,7 +279,7 @@ img {
     let cBtn = document.querySelector('#certify');
     cBtn.addEventListener('click',function(e){
     	let cNum= document.querySelector('#certifytext').value;
-    	num=document.querySelector('#reqCode').value;
+    	num=document.querySelector('#retCode').value;
     	console.log(num)
     	if(cNum==num){
     		alert('인증이 완료 되었습니다');

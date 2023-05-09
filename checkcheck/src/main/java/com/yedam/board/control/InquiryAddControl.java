@@ -1,12 +1,16 @@
 package com.yedam.board.control;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.yedam.board.service.BoardService;
@@ -23,22 +27,19 @@ public class InquiryAddControl implements Control {
 		UserVO vo =(UserVO)session.getAttribute("sesInfo");
 		BoardService service = new BoardServiceImpl();
 
-		String saveDir=req.getServletContext().getRealPath("images");
-		int maxSize = 20* 1024*1024;
-		String encoding="UTF-8";
-		DefaultFileRenamePolicy rn= new DefaultFileRenamePolicy();
-		MultipartRequest multi= new MultipartRequest(req, saveDir,maxSize,encoding,rn);
 		String userId = vo.getUserId();
-		String subject = multi.getParameter("subject");
-		String title = multi.getParameter("title");
-		String attach = multi.getFilesystemName("attach");
+		String subject = req.getParameter("subject");
+		String title = req.getParameter("title");
+		String attach=null;
+		Map<String, String> map = new HashMap<>();
 		if(service.addInquiry(userId, title, subject, attach)) {
-			req.setAttribute("result", "Success");
-			return "inquiryInfo.do";
+			map.put("retCode" , "Success");
 		}else {
-			return "main.do";			
+			map.put("retCode" , "Fail");		
 		}
-		
+		Gson gson = new GsonBuilder().create();
+		String json = gson.toJson(map);
+		return json+".json";
 		
 	}
 

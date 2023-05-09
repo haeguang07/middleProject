@@ -16,9 +16,9 @@
 		update users set nickname=#{nickname} Where user_id=#{userId}
 	</update>
 	<update id="adrUpdate">
-		update users set address=#{address}, post=#{post} Where user_id=#{userId}
+		update users set user_address=#{address}, user_post=#{post} Where user_id=#{userId}
 	</update>
 	<update id="pwUpdate">
-		update users set pw=#{pw} Where user_id=#{userId}
+		update users set user_pw=#{pw} Where user_id=#{userId}
 	</update>
 </mapper>
