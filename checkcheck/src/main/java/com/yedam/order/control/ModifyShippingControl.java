@@ -1,6 +1,8 @@
 package com.yedam.order.control;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -25,14 +27,16 @@ public class ModifyShippingControl implements Control {
 		vo.setOrderName(req.getParameter("phone")); 
 		OrderService service = new OrderServiceImpl();
 		String json="";
+		Map<String, Object> map = new HashMap<>();
 		if(service.orderChange(vo)) {
-			json="{'reqCode':'Success'}";
-			Gson gson =new GsonBuilder().create();
-			json += gson.toJson(vo);
+			map.put("retCode", "Success");
+			map.put("data", vo);
 		}else {
-			json="{'reqCode':'Fail'}";
+			map.put("retCode", "Fail");
 		}
-		return json+".json";
+		Gson gson = new GsonBuilder().create();
+		json = gson.toJson(map);
+		return json + ".json";
 	}
 
 }
