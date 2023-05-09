@@ -33,6 +33,22 @@ public class ReviewServiceImpl implements ReviewService {
 	public int addReview(ReviewVO vo) {
 		return mapper.insertReview(vo);
 	}
+	@Override
+	public int getAddRid() {
+		return mapper.maxReviewIdPlusOne();
+	}
+	@Override
+	public ReviewVO getReview(int reviewId) {
+		return mapper.selectReviewId(reviewId);
+	}
+	@Override
+	public List<ReviewVO> getReviewPaging(int page,long isbn) {
+		return mapper.bookReviewPaging(page,isbn);
+	}
+	@Override
+	public int getReviewCount(long isbn) {
+		return mapper.reviewCount(isbn);
+	}
 	
 	
 

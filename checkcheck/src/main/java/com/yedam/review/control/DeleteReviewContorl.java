@@ -23,9 +23,18 @@ public class DeleteReviewContorl implements Control {
 		String json ="";
 		Map<String, Object> map= new HashMap<>();
 		if(service.removeReview(rid)) {
+<<<<<<< HEAD
 			map.put("retCode", "Success");
+=======
+			json ="{\"reqCode\":\"Success\"}";
+			
+>>>>>>> branch 'main' of https://github.com/haeguang07/middleProject.git
 		}else {
+<<<<<<< HEAD
 			map.put("retCode", "Fail");
+=======
+			json="{\"reqCode\":\"Fail\"}";
+>>>>>>> branch 'main' of https://github.com/haeguang07/middleProject.git
 		}
 		Gson gson = new GsonBuilder().create();
 		json=gson.toJson(map);

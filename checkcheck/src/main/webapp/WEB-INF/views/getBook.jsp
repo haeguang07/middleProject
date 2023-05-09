@@ -36,6 +36,27 @@
 #myform input[type=radio]:checked ~ label {
 	text-shadow: 0 0 0 #a00; /* 마우스 클릭 체크 */
 }
+.pagination2 {
+	display: inline-block;
+	text-align: center;
+}
+
+.pagination2 a {
+	color: black;
+	float: left;
+	padding: 15px 30px;
+	text-decoration: none;
+}
+
+.pagination2 a.active1 {
+	background-color: #4CAF50;
+	color: white;
+}
+
+.pagination2 a:hover:not(.active1) {
+	background-color: #ddd;
+}
+
 </style>
 <section style="display: flex">
 	<div style="float: right; flex: 1"></div>
@@ -97,9 +118,9 @@
 					</td>
 				</tr>
 				<tr>
-					<td><input type="submit" value="장바구니"></td>
+					<td><input type="button" value="장바구니" onclick=insertBasket()></td>
 					<td><input type="submit" value=" 구매 "></td>
-					<td><input type="submit" value="선물하기"></td>
+					<td><input type="button" value="선물하기" onclick="location.href=''"></td>
 				</tr>
 			</table>
 		</form>
@@ -119,7 +140,7 @@
 	<h4>책 줄거리</h4>
 	<p>${book.bookDetail }</p>
 	<div>
-		<img id="getDetail">
+		<img id="getDetail" onError="this.parentElement.style.visibility='hidden'" >
 	</div>
 	<h4>책 평</h4>
 	<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -132,20 +153,17 @@
 </div>
 <div id="bottom">
 	<div id='content'>
-		<form name="myform" id="myform" method="post" action="addComment.do"
+		<form name="myform" id="myform"
 			style="position: relative">
 			<fieldset>
 				<legend>이모지 별점</legend>
-				<input type="radio" name="rating" value="5" id="rate1"><label
-					for="rate1">⭐</label> <input type="radio" name="rating" value="4"
-					id="rate2"><label for="rate2">⭐</label> <input type="radio"
-					name="rating" value="3" id="rate3"><label for="rate3">⭐</label>
-				<input type="radio" name="rating" value="2" id="rate4"><label
-					for="rate4">⭐</label> <input type="radio" name="rating" value="1"
-					id="rate5" checked><label for="rate5">⭐</label> <input
-					type="text" id="reply"><span style="margin: 0 10px">${sesInfo.nickName }</span>
-				<input type="submit" value="등록"
-					style="position: absolute; bottom: 10px; left: 70px">
+				<input type="radio" name="rating" value="5" id="rate1"><label for="rate1">⭐</label>
+				<input type="radio" name="rating" value="4" id="rate2"><label for="rate2">⭐</label>
+				<input type="radio" name="rating" value="3" id="rate3"><label for="rate3">⭐</label>
+				<input type="radio" name="rating" value="2" id="rate4"><label for="rate4">⭐</label>
+				<input type="radio" name="rating" value="1"id="rate5" checked><label for="rate5">⭐</label>
+				<input type="text" id="reply"><span style="margin: 0 10px">${sesInfo.nickname }</span>
+				<input id="addbtn" type="button" value="등록" style="position: absolute; bottom: 10px; left: 70px">
 			</fieldset>
 		</form>
 
@@ -159,20 +177,23 @@
 				<th>작성자</th>
 				<th>별점</th>
 				<th>작성일</th>
-				<th>삭제</th>
+				<th>삭제/수정</th>
 				<th></th>
 			</tr>
 		</thead>
 		<tbody id="tlist">
 		</tbody>
 	</table>
-
+	<div style="text-align: center; width: 1200px; height: 50px; padding: 30px 0; margin-bottom: 50px">
+		<div class="pagination2">		
+							
+		</div>
+	</div>
 	<table style="display: none;">
 		<tbody>
 			<tr class="template">
 				<td>10</td>
 				<td><input type="text" class="reply"></td>
-				<td>user01</td>
 				<td>user01</td>
 				<td>user01</td>
 				<td>user01</td>
@@ -185,7 +206,22 @@
 	integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
 	crossorigin="anonymous"></script>
 <script>
-		
+
+		function insertBasket(){
+			let result = document.querySelector('#result').innerText;
+			fetch("addBasket.do?isbn=${book.isbn}&userId=${sesInfo.userId}&count="+result)
+			.then(result => result.json())
+			.then(resolve =>{
+				
+				if(resolve.retCode == 'Success'){
+					
+					if(confirm('장바구니로 이동하시겠습니까?')){
+						location.href="basket.do";
+					}
+				}
+			})
+			.catch(error => console.log(error));
+		}
 	  	$('#star a').click(function(){ 
 	  		 $(this).parent().children("a").removeClass("on");    
 	  		 $(this).addClass("on").prevAll("a").addClass("on");
@@ -217,7 +253,7 @@
 			// 결과 출력
 			resultElement.innerText = number;
 		}
-		
+		//댓글 가져옴
 		let showFields = ['reviewId', 'reviewSubject', 'nickname' ,'starcount','reviewDate'];
 		let xhtp = new XMLHttpRequest(); //Ajax 호출.
 		xhtp.open('get', 'review.do?isbn='+${book.isbn});
@@ -226,7 +262,31 @@
 			//console.log(xhtp.response);
 			let tlist = document.querySelector('#tlist');
 			//목록생성.
-			let data = JSON.parse(xhtp.response);
+			let data = JSON.parse(xhtp.response).data;
+			let paging = JSON.parse(xhtp.response).DTO;
+			let pagination2 = document.querySelector('.pagination2');
+			if(paging.prev){
+				let a = document.createElement('a');
+				a.href = "review.do?page="+paging.startPage-1+"&isbn="+${book.isbn};
+				a.innerText = "Previous";
+				pagination2.append(a);
+			}
+			for(let i = 0 ; i < paging.endPage ; i++){
+				let a = document.createElement('a');
+				a.className = i+1 == paging.pageNum ? 'active1' : '' ;
+				a.href = "review.do?page="+i+"&isbn="+${book.isbn};
+				a.innerText = i+1 ;
+				pagination2.append(a);
+			}
+			if(paging.next){
+				let a = document.createElement('a');
+				a.href = "review.do?page="+paging.endPage-1+"&isbn="+${book.isbn};
+				a.innerText = "Next";
+				pagination2.append(a);
+			}
+			console.log(paging);
+			console.log("test");
+			console.log(data);
 			for (let reply of data) {
 				console.log(reply);
 				let tr = makeTrFunc(reply);
@@ -247,6 +307,13 @@
 			//      document.getElementById('tlist').addEventListener('click',function() {console.log(this)})
 			// tr 클릭이벤트.
 			tr.addEventListener('dblclick', function (e) {
+				let modifyCheck = document.querySelector('#tlist').children;
+				for(let i = 0 ; i < modifyCheck.length ; i++){
+						if(modifyCheck[i].className == 'template'){
+							alert('동시에 수정 불가합니다');
+							return;
+						}
+				}
 				let writer = this.children[2].innerText;
 				
 				console.log(writer, '${sesInfo.nickname }');
@@ -274,7 +341,7 @@
 					let xhtp = new XMLHttpRequest();
 					xhtp.open('post', 'modifyReview.do');
 					xhtp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-					xhtp.send('rid='+reviewId+'&reviewSubject='+reviewSubject);
+					xhtp.send('rid='+reviewId+'&nickname=${sesInfo.nickname}&reviewSubject='+reviewSubject);
 					xhtp.onload = function() {
 						let result = JSON.parse(xhtp.response);
 						if (result.retCode == 'Success') {
@@ -322,11 +389,11 @@
 
 				xhtp.onload = function () {
 					let result = JSON.parse(xhtp.response);
-					if (result.retCode == 'Success') {
+					if (result.reqCode == 'Success') {
 						// 화면에서 지우기.
 						btn.parentElement.parentElement.remove(); // 제거.
 						alert('삭제 완료');
-					} else if (result.retCode == 'Fail') {
+					} else if (result.reqCode == 'Fail') {
 						alert('처리중 에러발생.');
 					} else {
 						alert('알수 없는 결과값입니다.');
@@ -341,7 +408,7 @@
 		}
 
 		// 등록이벤트...
-		document.querySelector("#addBtn").addEventListener('click', addReplyFnc);
+		document.querySelector("#addbtn").addEventListener('click', addReplyFnc);
 
 		function addReplyFnc(e) {
 			// 로그인 여부를 체크해서 로그인 정보가 없으면 로그인화면으로 이동하기.
@@ -351,19 +418,26 @@
 				location.href = 'login.do';
 				return;
 			}
-			let replySub = document.querySelector('#reply').innerText;
+			let replySub = document.querySelector('#reply').value;
 			if (replySub == null || replySub == '') {
 				alert("댓글 내용을 입력하세요.");
 				document.getElementById("reply").focus();
 				return;
 			}
+			let starList = document.getElementsByName('rating')
+			let starcount ;
+			starList.forEach(star => {
+				if(star.checked){
+					starcount = star.value;
+				}
+			})
 			let reply = document.querySelector("#reply").value;
 
 			// Ajax 호출.  post 형태
 			let xhtp = new XMLHttpRequest();
-			xhtp.open('post', 'addReply.do');
+			xhtp.open('post', 'addReview.do');
 			xhtp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-			xhtp.send('id=${id }&reply=' + reply + "&notice_id=${noticeInfo.noticeId}");
+			xhtp.send('id=${sesInfo.userId }&nickname=${sesInfo.nickname}&reviewSubject=' + reply + "&isbn=${book.isbn}&starcount="+starcount);
 			xhtp.onload = function () {
 				console.log(xhtp.response);
 				let result = JSON.parse(xhtp.response);
@@ -383,8 +457,8 @@
 		
 		
 		
-			  var url2 = "http://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey=ttbhbj040030858001&cover=big&&query="+${book.isbn} +"&output=js&callback=bookDisplay";
-			  
+			   var url2 = "http://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey=ttbhbj040030858001&cover=big&&query="+${book.isbn} +"&output=js&callback=bookDisplay";
+			 
 		 
 			  // 콜백 함수입니다.
 			  function bookDisplay(success, data) {
@@ -392,7 +466,7 @@
 			 	for(let i = 0 ; i < data.item.length ; i++){
 			 	var formData = {"name" : [data.item[i].isbn]};
 			 	console.log(formData);
-			 	$('#getDatail').arrt('src','https://image.aladin.co.kr/img/img_content/'+formData.name+'_01.jpg');
+			 	$('#getDetail').attr('src','https://image.aladin.co.kr/img/img_content/'+formData.name[0]+'_01.jpg');
 				    $.ajax({
 				        type: "post",
 				        dataType: "json",
