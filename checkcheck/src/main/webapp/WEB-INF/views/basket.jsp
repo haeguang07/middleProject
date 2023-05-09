@@ -41,7 +41,7 @@
 					<filedset style="width:1000px">
 					<table>
 						<tr>
-							<td><input id=${vs.index } class="remember" type="checkbox" onclick='checkSelectAll()' name="remember" style="margin: 15px"></td>
+							<td><input id="${vs.index }" class="remember" type="checkbox" onclick=checkSelectAll() name="remember" style="margin: 15px"></td>
 							<td rowspan="5"><img src="${i.cover }"
 								style="width: 150px; height: 150px"></td>
 							<td><input name="bookName" style="border:none;word-break:break-all; border:none"value="${i.bookName }"><br></td>
@@ -56,18 +56,19 @@
 									<fmt:parseNumber var="spoint" integerOnly="true" value= "${i.bookPrice*0.05 }"/>
 									</c:when>
 								</c:choose>
-							<td><input name="bookPrice" style="border:none;padding: 0 40px; word-break: break-all" value="${i.bookPrice }"></td>
-							<td><input name="bookpoint" style="border:none;" value="${spoint }"></td>
+							<td><input id="bookPrice" name="bookPrice" style="border:none;padding: 0 40px; word-break: break-all" value="${i.bookPrice }"></td>
+							<td><input id="bookPoint" name="bookpoint" style="border:none;" value="${spoint }"></td>
 							<td id="td" style="padding: 0 40px; width: 400px; word-break: break-all">
 								<input class="evt" type='button'  value='+'/>
 								<input class="evt" type='button'  value='-'/>
-								<input value="0" class="bookCount" name="bookCount">
+								<input value=0 id="bookCount" class="bookCount" name="bookCount">
 								<p style="display:inline-block;">최대수량 : </p>
 								<div style="display:inline-block;" id="bookstock">10</div>
 							</td>
 							<td style="padding: 0 40px; width: 200px; word-break: break-all">
 								<input type="reset"></input>
 							</td>
+							<td><input id="isbn" name="isbn" value=${i.isbn }></td>
 						</tr>
 						</table>
 					</filedset>
@@ -95,9 +96,9 @@
 						예상 총 포인트 : <input name="totalpoint" style="border:none; width:200px" type="text" value="${userPoint+gpoint }">원<br><br>
 						고객님의 등급 : <input name="grade" type="text" style="border:none" value="${userGrade }"><br>
 						<p>VIP : 3% VVIP : 5%<br><br></p>
-						<input id="Bespeak" type="button" value="주문" style="padding:5px 15px"></input>
-						<input id="present" type="button" value="선물" style="padding:5px 15px" onclick=></input>
-						<input id="delete" type="button" value="삭제" style="padding:5px 15px"></input>
+						<input id="Bespeak" type="submit" value="주문" style="padding:5px 15px">
+						<input id="present" type="button" value="선물" style="padding:5px 15px" onclick=>
+						<input id="delete" type="button" value="삭제" style="padding:5px 15px">
 				</filedset>
 				</form>
 			</div>
@@ -120,22 +121,10 @@
 <!-- Core theme JS-->
 <script src="js/scripts.js"></script>
 <script>
-let evt =document.getElementsByClassName('evt');
-let queryevt =document.querySelectorAll('.evt');
-console.log(queryevt); 
-console.log(evt);
-	  
-	  function Bespeak(){
-		  let result = document.querySelector('#bookCount').value;
-		  fetch("delivery.do?bookName=${bookName}&bookPrice=${bookPrice}&bookCount=${bookCount}")
-		  .then(result => bookCount.json())
-		  .then(resolve =>{
-			  if(resolve.retCode=='Success'){
-				  if(confirm('해당 물품을 구매하시겠습니까?'))
-			  }
-		  })
-		  .catch(error => console.log(error));
-	  }
+	  let evt =document.getElementsByClassName('evt');
+	  let queryevt =document.querySelectorAll('.evt');
+	  console.log(queryevt); 
+	  console.log(evt);
 	  queryevt.forEach(item => {item.addEventListener('click',function (){
 	  // 결과를 표시할 element
 	  const resultElement = this.parentElement.children[2];
@@ -146,6 +135,8 @@ console.log(evt);
 	  // 더하기/빼기
 	  let bookprice = this.parentElement.parentElement.children[3].children[0].value;
 	  let total = document.querySelector('#totalprice').value;
+	  let isbn = this.parentElement.parentElement.children[7].children[0].value;
+	  let bookName = this.parentElement.parentElement.children[2].children[0].value;
 	  if(this.value === '+') {
 	    number = parseInt(number) + 1;
 	    if(number > this.parentElement.children[4].innerText){
@@ -170,20 +161,29 @@ console.log(evt);
 	  }
 	  // 결과 출력
 	  resultElement.value = number;
+	  let checkbox = this.parentElement.parentElement.children[0].children[0];
+	  checkbox.value = "{'bookName':'"+bookName+"','bookPrice':'"+bookprice+"','isbn':'"+isbn+"','basketCount':'"+number+"'}";
+	  console.log(checkbox);
 	  
 	})})
 	let remember = document.querySelectorAll('.remember');
 	remember.forEach(item => item.addEventListener('click',function(){
 		let total = document.querySelector('#totalprice').value;
 		console.log(document.querySelector('#totalprice').value);
+		let bookName = this.parentElement.parentElement.children[2].children[0].value;
+		let isbn = this.parentElement.parentElement.children[7].children[0].value;
+		console.log(isbn);
+		console.log(bookName);
 			console.log(this);
 			const checkprice = this.parentElement.parentElement.children[3].children[0].value;
 			const checkcount = this.parentElement.parentElement.children[5].children[2].value;
 			if(this.checked){
 				document.querySelector('#totalprice').value = (total*1+(checkprice*checkcount));
+				this.value = "{'bookName':'"+bookName+"','bookPrice':'"+checkprice+"','isbn':'"+isbn+"','basketCount':'"+checkcount+"'}";
 				
 			}else{
 				document.querySelector('#totalprice').value = (total*1-(checkprice*checkcount));
+				this.value=0;
 			}
 	}))
 	

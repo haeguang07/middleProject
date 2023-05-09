@@ -19,6 +19,7 @@ import com.yedam.admin.control.ChulgoControl;
 import com.yedam.admin.control.InquiryAnswerFormControl;
 import com.yedam.basket.control.AddBasketControl;
 import com.yedam.basket.control.BasketControl;
+import com.yedam.basket.control.BasketDeliveryControl;
 import com.yedam.board.control.InquiryAddControl;
 import com.yedam.board.control.InquiryControl;
 import com.yedam.book.control.BestSellerControl;
@@ -170,6 +171,8 @@ public class FrontController extends HttpServlet {
 		map.put("/present.do", new PresentControl());
 		//장바구니 추가
 		map.put("/addBasket.do", new AddBasketControl());
+		//배송지,장바구니데이터
+		map.put("/basketDelivery.do", new BasketDeliveryControl());
 	}
 
 	@Override
