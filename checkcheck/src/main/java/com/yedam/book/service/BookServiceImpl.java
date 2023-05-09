@@ -72,8 +72,8 @@ public class BookServiceImpl implements BookService{
 	}
 
 	@Override
-	public int getBestCount(int page, String monthFirst, String monthLast) {
-		return mapper.bestSellerCount(page, monthFirst, monthLast);
+	public int getBestCount(String monthFirst, String monthLast) {
+		return mapper.bestSellerCount(monthFirst, monthLast);
 	}
 
 	@Override
@@ -82,8 +82,8 @@ public class BookServiceImpl implements BookService{
 	}
 
 	@Override
-	public int hitCountCount(String monthFirst , String monthLast,int page) {
-		return mapper.hitCountCount(monthFirst, monthLast, page);
+	public int hitCountCount(String monthFirst , String monthLast) {
+		return mapper.hitCountCount(monthFirst, monthLast);
 	}
 
 	@Override

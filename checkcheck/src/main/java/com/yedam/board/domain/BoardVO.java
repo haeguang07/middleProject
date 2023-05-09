@@ -14,7 +14,7 @@ public class BoardVO {
 //	CHECKS                 VARCHAR2(1) 
 	private int boardId;
 	private String UserId;
-	private String boardKind;
+	private String boardKind;//공지 : 1 문의 : 2
 	private String boardTitle;
 	private String boardSubject;
 	private String boardFile;

@@ -104,16 +104,14 @@
 	</select>
 	<select id="bestSellerCount" resultType="int">
 	<![CDATA[
-		select count(*) 
-	from(select rownum rn, d.*
-     	 from (select b.order_id ,c.*, b.history_count*c.book_price total_price,a.order_date
-	           from orders a join historys b
-	           on a.order_id = b.order_id
-	           join books c on b.isbn = c.isbn
-	           where order_date between #{monthFirst} and #{monthLast}
-	           order by total_price desc) d
-     	   where rownum <=#{page}*10) e
-	where e.rn > (#{page} - 1)*10
+		select  count(*)
+            from (select rownum rn, b.order_id ,c.*, b.history_count*c.book_price total_price,a.order_date
+            from orders a join historys b
+            on a.order_id = b.order_id
+            join books c on b.isbn = c.isbn
+            where order_date between #{monthFirst} and #{monthLast}
+            order by total_price desc) d
+            where rn <=50;
 	]]>
 	</select>
 	<select id="isbnCallOneBook" resultType="book">
@@ -136,16 +134,14 @@
 	</select>
 	<select id="hitCountCount" resultType="int">
 	<![CDATA[
-		select count(*) 
-		from(select rownum rn, d.*
-		     from (select a.*
+		 	select count(*)
+            from (select rownum rn ,a.*
 			from books a join historys b
 			on a.isbn = b.isbn
 			join orders c on b.order_id = c.order_id
-			where order_date between #{monthFirst} and #{monthLast}
+			where order_date between #{momthFirst} and #{mothLast}
 			order by hitcount desc) d
-		     where rownum <= #{page} *10) e
-		where e.rn > (#{page} - 1)*10
+            where rn <= 50;
 ]]>
 	</select>
 	<select id="newBookSearchPage" resultType="book">

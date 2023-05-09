@@ -23,6 +23,14 @@ public class BoardServiceImpl implements BoardService {
 	public int inquiryTotal(String userId) {
 		return mapper.borad2Count(userId);
 	}
+	@Override
+	public List<BoardVO> getAnnouncementPage(int page) {
+		return mapper.announcePaging(page);
+	}
+	@Override
+	public int announceTotal() {
+		return mapper.board1Count();
+	}
 
 	
 	

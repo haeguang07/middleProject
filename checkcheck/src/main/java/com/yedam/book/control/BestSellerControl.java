@@ -55,7 +55,7 @@ public class BestSellerControl implements Control {
 			String pageStr = req.getParameter("page");
 			pageStr = pageStr == null ? "1" : pageStr;
 			int page = Integer.parseInt(pageStr);
-			int total = service.getBestCount(page , monthFirst , monthLast);
+			int total = service.getBestCount(monthFirst , monthLast);
 			// 페이징
 			PageDTO dto = new PageDTO(page, total);
 			
@@ -82,7 +82,7 @@ public class BestSellerControl implements Control {
 		String monthLast2 = req.getParameter("monthLast");
 		monthLast2 = monthLast2 == null ? monthLast : monthLast2;
 
-		int total = service.getBestCount(page , monthFirst , monthLast);
+		int total = service.getBestCount(monthFirst , monthLast);
 		// 페이징
 		PageDTO dto = new PageDTO(page, total);
 		//날짜 구하기

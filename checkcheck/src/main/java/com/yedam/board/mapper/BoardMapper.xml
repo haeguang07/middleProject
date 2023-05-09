@@ -20,5 +20,18 @@
 		insert into boards
 		values(board_seq.nextval,#{userId},2,#{boardTitle},#{boardSubject},#{boardFile},sysdate,'N')
 	</insert>
-
+	<select id="announcePaging" resultType="board">
+	<![CDATA[
+		select b.*
+		from (select rownum rn,a.*
+		from(select * from Boards where board_kind=1)a
+		where rownum <= #{page}*10) b
+		where rn >(#{page}-1)*10
+	]]>
+	</select>
+	<select id="board1Count" >
+		select count(*)
+		from boards
+		where board_kind = 1
+	</select>
 </mapper>
