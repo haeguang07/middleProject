@@ -6,4 +6,5 @@ import com.yedam.basket.domain.BasketVO;
 
 public interface BasketService {
 	public List<BasketVO> selectBasket(String userId);
+	public boolean addBasket(BasketVO vo);
 }

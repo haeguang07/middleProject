@@ -12,4 +12,8 @@ public interface ReviewMapper {
 	public List<ReviewVO> bookReview(@Param("isbn")long isbn);
 	public int updateReview(@Param("reviewSubject")String reviewSubject , @Param("reviewId")int reviewId);
 	public int insertReview(ReviewVO vo	);
+	public int maxReviewIdPlusOne();
+	public ReviewVO selectReviewId(int reviewId);
+	public List<ReviewVO> bookReviewPaging(@Param("page")int page,@Param("isbn")long isbn);
+	public int reviewCount(long isbn);
 }

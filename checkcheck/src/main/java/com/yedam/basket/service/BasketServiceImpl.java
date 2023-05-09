@@ -17,4 +17,9 @@ public class BasketServiceImpl implements BasketService{
 		return mapper.selectBasket(userId);
 	}
 
+	@Override
+	public boolean addBasket(BasketVO vo) {
+		return mapper.insertBasket(vo)==1;
+	}
+
 }
