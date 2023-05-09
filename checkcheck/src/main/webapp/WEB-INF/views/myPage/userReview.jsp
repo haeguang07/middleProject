@@ -2,6 +2,28 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<style>
+.pagination2 {
+	display: inline-block;
+	text-align: center;
+}
+
+.pagination2 a {
+	color: black;
+	float: left;
+	padding: 15px 30px;
+	text-decoration: none;
+}
+
+.pagination2 a.active1 {
+	background-color: #4CAF50;
+	color: white;
+}
+
+.pagination2 a:hover:not(.active1) {
+	background-color: #ddd;
+}
+</style>
 <h3>내가쓴 리뷰</h3>
 <div>
 	<select>
@@ -36,24 +58,43 @@
 		<th>별점</th>
 		<th>삭제</th>
 	</tr>
-	<c:forEach var="r" items="${list }">
-		<tr>
-			<td>${r.reviewId }</td>
-			<td>
-				<fmt:parseDate var="date" value="${r.reviewDate }" pattern="yyyy-MM-dd HH:mm:ss" />
-				<fmt:formatDate value="${date}" pattern="YYYY년 MM월 dd일" />
-			</td>
-			<td>${r.bookName }</td>
-			<td>${r.reviewSubject}</td>
-			<td>
-				<c:forEach begin="1" end="${r.starcount }">★</c:forEach>
-			</td>
-			<td><button class='delbtn'>삭제</button></td>
-		</tr>
-	</c:forEach>
-
+	<tbody id="tlist">
+		<c:forEach var="r" items="${list }">
+			<tr class="modify">
+				<td>${r.reviewId }</td>
+				<td><fmt:parseDate var="date" value="${r.reviewDate }"
+						pattern="yyyy-MM-dd HH:mm:ss" /> <fmt:formatDate value="${date}"
+						pattern="YYYY년 MM월 dd일" /></td>
+				<td><a href='getBook.do?bookInfo=${r.isbn }'> ${r.bookName }</a></td>
+				<td>${r.reviewSubject}</td>
+				<td><c:forEach begin="1" end="${r.starcount }">★</c:forEach></td>
+				<td><button class='delbtn'>삭제</button></td>
+			</tr>
+		</c:forEach>
+	</tbody>
 </table>
+
+<div class="center">
+	<div class="pagination2">
+		<c:if test="${pageInfo.prev }">
+			<a
+				href="userReviewForm.do?page=${pageInfo.startPage-1 }&userId=${sesInfo.userId}">
+				이전페이지</a>
+		</c:if>
+		<c:forEach var="i" begin="${pageInfo.startPage}"
+			end="${pageInfo.endPage}">
+			<a class="${i==pageInfo.pageNum ? 'active1':'' }"
+				href="userReviewForm.do?page=${i}&userId=${sesInfo.userId}">${i} </a>
+		</c:forEach>
+		<c:if test="${pageInfo.next }">
+			<a
+				href="userReviewForm.do?page=${pageInfo.endPage+1 }&userId=${sesInfo.userId}">
+				다음페이지</a>
+		</c:if>
+	</div>
+</div>
 <script>
+
 
 document.querySelectorAll('.delbtn').forEach(item => {item.addEventListener('click',function() {
 		if (confirm('정말로 삭제하시겠습니까?')) {			

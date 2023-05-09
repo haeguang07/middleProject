@@ -12,9 +12,13 @@ public class ReviewServiceImpl implements ReviewService {
 	SqlSession session = DataSource.getInstance().openSession(true);
 	ReviewMapper mapper = session.getMapper(ReviewMapper.class);
 	@Override
-	public List<ReviewVO> reviewList(String userId) {
+	public List<ReviewVO> reviewList(String userId,int page) {
 		
-		return mapper.searchReview(userId);
+		return mapper.searchReview(userId,page);
+	}
+	@Override
+	public int getReviewCountId(String userId) {
+		return mapper.reviewCountId(userId);
 	}
 	@Override
 	public boolean removeReview(int reviewId) {

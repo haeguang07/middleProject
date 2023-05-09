@@ -3,9 +3,25 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <style>
-table {
-	border:none;
-	border: 1px solid;
+.pagination2 {
+	display: inline-block;
+	text-align: center;
+}
+
+.pagination2 a {
+	color: black;
+	float: left;
+	padding: 15px 30px;
+	text-decoration: none;
+}
+
+.pagination2 a.active1 {
+	background-color: #4CAF50;
+	color: white;
+}
+
+.pagination2 a:hover:not(.active1) {
+	background-color: #ddd;
 }
 </style>
 <div>
@@ -68,7 +84,7 @@ table {
 			</c:forEach>
 		</table>
 		<div class="center">
-			<div class="pagination">
+			<div class="pagination2">
 				<c:if test="${pageInfo.prev }">
 					<a href="myPageMain.do?page=${pageInfo.startPage-1 }&userId=${sesInfo.userId}"> 이전페이지</a>
 				</c:if>

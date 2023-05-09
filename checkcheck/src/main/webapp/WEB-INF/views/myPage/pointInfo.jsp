@@ -6,7 +6,28 @@
 td{
 	width:150px;
 }
+.pagination2 {
+	display: inline-block;
+	text-align: center;
+}
+
+.pagination2 a {
+	color: black;
+	float: left;
+	padding: 15px 30px;
+	text-decoration: none;
+}
+
+.pagination2 a.active1 {
+	background-color: #4CAF50;
+	color: white;
+}
+
+.pagination2 a:hover:not(.active1) {
+	background-color: #ddd;
+}
 </style>
+
 <h3>포인트 정보</h3>
 <p>남은 포인트 ${sesInfo.userPoint }p</p>
 <table>
