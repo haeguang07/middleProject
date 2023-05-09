@@ -18,10 +18,10 @@ public class DeleteReviewContorl implements Control {
 		ReviewService service =new ReviewServiceImpl();
 		String json ="";
 		if(service.removeReview(rid)) {
-			json ="{'reqCode':'Success'}";
+			json ="{\"reqCode\":\"Success\"}";
 			
 		}else {
-			json="{'reqCode':'Fail'}";
+			json="{\"reqCode\":\"Fail\"}";
 		}
 		return json+".json";
 	}

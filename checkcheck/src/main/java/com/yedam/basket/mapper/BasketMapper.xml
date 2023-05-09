@@ -9,4 +9,7 @@
 		on k.isbn=b.isbn
 		where k.user_id = #{userId}
 	</select>
+	<insert id="insertBasket" parameterType="basket">
+		insert into baskets values (basket_seq.NEXTVAL , #{userId},#{isbn},#{basketCount})
+	</insert>
 </mapper>

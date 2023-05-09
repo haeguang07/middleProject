@@ -44,7 +44,7 @@
 							<td><input id=${vs.index } class="remember" type="checkbox" onclick='checkSelectAll()' name="remember" style="margin: 15px"></td>
 							<td rowspan="5"><img src="${i.cover }"
 								style="width: 150px; height: 150px"></td>
-							<td><input name="${vs.index }bookName" style="border:none;word-break:break-all; border:none"value="${i.bookName }"><br></td>
+							<td><input name="bookName" style="border:none;word-break:break-all; border:none"value="${i.bookName }"><br></td>
 								<c:choose>
 									<c:when test="${userGrade eq 'normal' }">
 									<fmt:parseNumber var="spoint" integerOnly="true" value= "${i.bookPrice*0.01 }"/>
@@ -56,14 +56,14 @@
 									<fmt:parseNumber var="spoint" integerOnly="true" value= "${i.bookPrice*0.05 }"/>
 									</c:when>
 								</c:choose>
-							<td><input name="${vs.index }bookPrice" style="border:none;padding: 0 40px; word-break: break-all" value="${i.bookPrice }"></td>
-							<td><input name="${vs.index }bookpoint" style="border:none;" value="${spoint }"></td>
+							<td><input name="bookPrice" style="border:none;padding: 0 40px; word-break: break-all" value="${i.bookPrice }"></td>
+							<td><input name="bookpoint" style="border:none;" value="${spoint }"></td>
 							<td id="td" style="padding: 0 40px; width: 400px; word-break: break-all">
 								<input class="evt" type='button'  value='+'/>
 								<input class="evt" type='button'  value='-'/>
-								<input value="0" name="${vs.index }bookCount">
+								<input value="0" class="bookCount" name="bookCount">
 								<p style="display:inline-block;">최대수량 : </p>
-								<div style="display:inline-block;" id="${vs.index }bookstock">10</div>
+								<div style="display:inline-block;" id="bookstock">10</div>
 							</td>
 							<td style="padding: 0 40px; width: 200px; word-break: break-all">
 								<input type="reset"></input>
@@ -126,11 +126,15 @@ console.log(queryevt);
 console.log(evt);
 	  
 	  function Bespeak(){
-		  document.querySelector('Bespeak').addEventListener('click',function(){
-			  .fetch('delivery.do?bookName=${bookName}&bookPrice=${bookPrice}&bookCount=${bookCount}')
-			  .then()
-			  
+		  let result = document.querySelector('#bookCount').value;
+		  fetch("delivery.do?bookName=${bookName}&bookPrice=${bookPrice}&bookCount=${bookCount}")
+		  .then(result => bookCount.json())
+		  .then(resolve =>{
+			  if(resolve.retCode=='Success'){
+				  if(confirm('해당 물품을 구매하시겠습니까?'))
+			  }
 		  })
+		  .catch(error => console.log(error));
 	  }
 	  queryevt.forEach(item => {item.addEventListener('click',function (){
 	  // 결과를 표시할 element

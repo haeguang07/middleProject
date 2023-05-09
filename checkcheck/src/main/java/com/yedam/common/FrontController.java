@@ -17,6 +17,8 @@ import com.yedam.admin.control.BookStockControl;
 import com.yedam.admin.control.ChartControl;
 import com.yedam.admin.control.ChulgoControl;
 import com.yedam.admin.control.InquiryAnswerFormControl;
+import com.yedam.basket.control.AddBasketControl;
+import com.yedam.basket.control.BasketControl;
 import com.yedam.board.control.InquiryAddControl;
 import com.yedam.board.control.InquiryControl;
 import com.yedam.book.control.BestSellerControl;
@@ -31,7 +33,6 @@ import com.yedam.review.control.DeleteReviewContorl;
 import com.yedam.review.control.ModifyReviewControl;
 import com.yedam.review.control.ReviewControl;
 import com.yedam.user.control.AdrChageContorl;
-import com.yedam.user.control.BasketControl;
 import com.yedam.user.control.BoardControl;
 import com.yedam.user.control.BoardDetailControl;
 import com.yedam.user.control.CheckEmailControl;
@@ -93,7 +94,7 @@ public class FrontController extends HttpServlet {
 		// 상세페이지 기능
 		map.put("/getBook.do", new GetBookControl());
 		map.put("/review.do", new ReviewControl());
-		map.put("/modifyReview", new ModifyReviewControl());
+		map.put("/modifyReview.do", new ModifyReviewControl());
 		map.put("/addReview.do", new AddReviewControl());
 		
 		//05-02 장바구니페이지 김영환 - css더 다듬어야함 기능깔끔하게 넣어야함
@@ -167,6 +168,8 @@ public class FrontController extends HttpServlet {
 		map.put("/boarddetail.do", new BoardDetailControl());
 		// 05-09 선물페이지
 		map.put("/present.do", new PresentControl());
+		//장바구니 추가
+		map.put("/addBasket.do", new AddBasketControl());
 	}
 
 	@Override
@@ -180,7 +183,7 @@ public class FrontController extends HttpServlet {
 		// 페이지 정보 받는곳
 		Control control = map.get(path);
 		String viewPage = control.execute(req, resp);
-		System.out.println(viewPage);
+		System.out.println("프론트컨트롤러의 service입니다"+viewPage);
 
 		if (viewPage.endsWith(".do")) {
 			resp.sendRedirect(viewPage);

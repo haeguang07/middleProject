@@ -67,10 +67,10 @@
 		order by hitcount desc
 		]]>
 	</select>
-	<!-- 최근 발간일 책들 10권 가져옴 -->
+	<!-- 최근 발간일 책들 7권 가져옴 -->
 	<select id="getNewBookList" resultType="book">
 	<![CDATA[
-		select b.book_name,b.cover
+		select b.book_name,b.cover,b.isbn
 		from 
 		(select rownum rn,a.*
 		from (select *
