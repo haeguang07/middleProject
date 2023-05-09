@@ -21,6 +21,7 @@ import com.yedam.basket.control.AddBasketControl;
 import com.yedam.basket.control.BasketControl;
 import com.yedam.board.control.InquiryAddControl;
 import com.yedam.board.control.InquiryControl;
+import com.yedam.board.control.inquiryInfoControl;
 import com.yedam.book.control.BestSellerControl;
 import com.yedam.book.control.HitCountControl;
 import com.yedam.book.control.InsertBookControl;
@@ -43,6 +44,7 @@ import com.yedam.user.control.JoinFormControl;
 import com.yedam.user.control.LoginControl;
 import com.yedam.user.control.ModifyShippingFormControl;
 import com.yedam.user.control.MypageUserInfoControl;
+import com.yedam.user.control.MypageinquiryControl;
 import com.yedam.user.control.NickChageContorl;
 import com.yedam.user.control.OrderCompleteControl;
 import com.yedam.user.control.PointInfoControl;
@@ -51,7 +53,6 @@ import com.yedam.user.control.SearchPageControl;
 import com.yedam.user.control.ShipingInfoControl;
 import com.yedam.user.control.UserReviewFormControl;
 import com.yedam.user.control.WaitPaymentControl;
-import com.yedam.user.control.inquiryInfoControl;
 import com.yedam.user.control.logoutContorl;
 import com.yedam.user.control.mainControl;
 import com.yedam.user.control.modifyUserFormControl;
@@ -153,7 +154,9 @@ public class FrontController extends HttpServlet {
 		map.put("/couponInfo.do", new CouponInfoControl());
 		// 05-03 마이페이지->포인트정보
 		map.put("/pointInfo.do", new PointInfoControl());
-		// 05-03 마이페이지->문의내역
+		// 05-03 마이페이지->문의내역 페이지 이동
+		map.put("/myPageinquiry.do", new MypageinquiryControl());
+		// 마이페이지 문의 내역(페이징)
 		map.put("/inquiryInfo.do", new inquiryInfoControl());
 		// 문의내역 ckeditor
 		map.put("/inquiry.do", new InquiryControl());

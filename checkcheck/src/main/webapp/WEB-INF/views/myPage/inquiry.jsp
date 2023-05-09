@@ -68,18 +68,7 @@
 				<td>${b.boardId }</td>
 				<td>${b.boardTitle }</td>
 				<td>${b.checks }</td>
-				<td><button style="border: none;">▼</button></td>
 			</tr>
-			<!-- 답변내용 -->
-			<tbody style="display: none">
-				<tr>
-					<td>답변일</td>
-					<td colspan="3">${coment.date }</td>
-				</tr>
-				<tr>
-					<td colspan="4">${coment.suject }</td>
-				</tr>
-			</tbody>
 		</c:forEach>
 	</table>
 </div>
