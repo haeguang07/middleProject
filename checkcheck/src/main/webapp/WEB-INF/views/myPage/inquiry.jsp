@@ -61,8 +61,9 @@
 			<th>문의제목</th>
 			<th>답변여부</th>
 		</tr>
+
 		<c:forEach var="b" items="${list }">
-			<!-- 문의내용 -->
+			문의내용 
 			<tr>
 				<td>${b.boardDate }</td>
 				<td>${b.boardId }</td>
@@ -71,6 +72,7 @@
 			</tr>
 		</c:forEach>
 	</table>
+	
 </div>
 <script>
 	let btn = document.querySelector('#btn');
