@@ -4,8 +4,17 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yedam.board.mapper.BoardMapper">
 	<select id="searchBoard2" resultType="board">
-		select * from Boards where
-		user_id=#{userId} and board_kind=2
+		<![CDATA[
+		select b.*
+		from (select rownum rn,a.*
+		from(select * from Boards where
+		user_id=#{userId} and board_kind=2)a
+		where rownum <= #{page}*10) b
+		where rn >(#{page}-1)*10
+		]]>
+	</select>
+	<select id="borad2Count">
+		select count(*) from boards where board_kind=2 and user_id=#{userId}
 	</select>
 	<insert id="insertBoard2">
 		insert into boards

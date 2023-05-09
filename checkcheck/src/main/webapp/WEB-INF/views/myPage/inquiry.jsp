@@ -1,31 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<script src="//cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		CKEDITOR.replace('subject', {
+			filebrowserUploadUrl: 'ckeditor.do'
+		});
+	})
+</script>
 <h3>문의 작성</h3>
 <div>
-	<form action="inquiryAdd.do" method="post">
-		<fieldset>
-			<table>
-				<tr>
-					<th><label for="title">문의제목</label></th>
-					<td><input type="text" name="title"></td>
-				</tr>
-				<tr>
-					<th>문의내용</th>
-					<td><textarea rows="5" cols="25" name="subject" id="subject"></textarea></td>
-				</tr>
-				<tr>
-					<th>첨부파일</th>
-					<td><input type="file" name="attach"></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td style="text-align: right;"><button type="submit">작성</button></td>
-				</tr>
-
-			</table>
-		</fieldset>
+	<form action="">
+		<table>
+			<tr>
+				<th><label for="title">문의제목</label></th>
+				<td><input type="text" name="title" value=""></td>
+			</tr>
+			<tr>
+				<th>문의내용</th>
+				<td><textarea rows="5" cols="25" name="subject" id="subject"></textarea></td>
+			</tr>
+		
+			<tr>
+				<td></td>
+				<td style="text-align: right;"><button id="btn" type="button">작성</button></td>
+			</tr>
+		</table>
 	</form>
 </div>
 <div>
@@ -68,16 +69,41 @@
 				<td>${b.boardTitle }</td>
 				<td>${b.checks }</td>
 			</tr>
-			<!-- 답변내용 -->
-			<tbody style="display: none">
-				<tr>
-					<td>답변일</td>
-					<td colspan="3">${coment.date }</td>
-				</tr>
-				<tr>
-					<td colspan="4">${coment.suject }</td>
-				</tr>
-			</tbody>
 		</c:forEach>
 	</table>
 </div>
+<script>
+	let btn = document.querySelector('#btn');
+	btn.addEventListener('click', function () {
+		console.log(this);
+		let table = this.parentElement.parentElement.parentElement;
+		let title = table.children[0].children[1].children[0].value;
+		console.log(title)
+		let subject = CKEDITOR.instances.subject.getData();
+		if (title === '') {
+			alert('제목을 입력하세요')
+		} else if (subject == '') {
+			alert('내용을 입력하세요')
+		} else {
+			fetch('inquiryAdd.do', {
+					method: "POST",
+					headers: {
+						'Content-Type': 'application/x-www-form-urlencoded',
+					},
+					body: 'title=' + title + '&subject=' + subject
+				})
+				.then(resolve => resolve.json())
+				.then(result => {
+					if (result.retCode == 'Success') {
+						table.children[0].children[1].children[0].value='';
+						CKEDITOR.instances.subject.setData('');
+						alert('문의 등록 완료');
+					} else if (result.retCode == 'Fail') {
+						alert('등록실패');
+					} else {
+						alert('알수 없는 오류');
+					}
+				})
+		}
+	})
+</script>

@@ -16,7 +16,8 @@
 	</tr>
 	<tr>
 		<th>닉네임</th>
-		<td><input type="text" name="nick" id="nick" value="${sesInfo.nickname }"></td>
+		<td><input type="text" name="nick" id="nick"
+			value="${sesInfo.nickname }"></td>
 		<td><button id="nickBtn">변경하기</button></td>
 	</tr>
 	<tr>
@@ -27,17 +28,21 @@
 	<tr>
 	<tr>
 		<th>주소</th>
-		<td><input type="text" name="joinPost" id="joinPost" style="width: 90px;" value="${sesInfo.userPost }">
-			<button class="joinButton" id="post" onclick="execDaumPostcode()">우편번호 찾기</button></td>
+		<td><input type="text" name="joinPost" id="joinPost"
+			style="width: 90px;" value="${sesInfo.userPost }">
+			<button class="joinButton" id="post" onclick="execDaumPostcode()">우편번호
+				찾기</button></td>
 	</tr>
 	<tr>
 		<td></td>
-		<td colspan="2"><input type="text" name="joinAdr" id="joinAdr" style="width: 400px;" value="${sesInfo.userAddress }"></td>
+		<td colspan="2"><input type="text" name="joinAdr" id="joinAdr"
+			style="width: 400px;" value="${sesInfo.userAddress }"></td>
 	</tr>
 	<tr>
 		<td></td>
-		<td><input type="text" name="joinAdr2" id="joinAdr2" placeholder="상세주소"></td>
-		<td><button id="adrBtn">변경하기</button></td>
+		<td><input type="text" name="joinAdr2" id="joinAdr2"
+			placeholder="상세주소"></td>
+		<td><button type="button" id="adrBtn">변경하기</button></td>
 	</tr>
 
 	<tr>
@@ -53,14 +58,13 @@
 	<tr>
 		<th>비밀번호 확인</th>
 		<td><input type="password" name="pw2" id="pw2"></td>
-		<td><button id="pwBtn">변경하기</button></td>
+		<td><button type="button" id="pwBtn">변경하기</button></td>
 	</tr>
 	<tr>
 		<th>생년월일</th>
-		<td>
-			<fmt:parseDate var="parsedDate" value="${sesInfo.userBirth }" pattern="yyyy-MM-dd HH:mm:ss" />
-			<fmt:formatDate value="${parsedDate }" pattern="YYYY년MM월dd일" />
-		</td>
+		<td><fmt:parseDate var="parsedDate" value="${sesInfo.userBirth }"
+				pattern="yyyy-MM-dd HH:mm:ss" /> <fmt:formatDate
+				value="${parsedDate }" pattern="YYYY년MM월dd일" /></td>
 		<td></td>
 	</tr>
 </table>
@@ -83,7 +87,8 @@
 		<td></td>
 	</tr>
 </table>
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js?autoload=false"></script>
+<script
+	src="http://dmaps.daum.net/map_js_init/postcode.v2.js?autoload=false"></script>
 <script>
 	function execDaumPostcode() {
 		daum.postcode
@@ -126,7 +131,7 @@
 	adrBtn.addEventListener('click', adrChange);
 	
 	let pwBtn = document.querySelector('#pwBtn');
-	adrBtn.addEventListener('click', pwChange);
+	pwBtn.addEventListener('click', pwChange);
 
 	function nickChange(e) {
 		let nick = document.querySelector('#nick').value;
@@ -135,10 +140,9 @@
 			.then(resolve => resolve.json())
 			.then(result => {
 				
-				if (result.userId != null) {
+				if (result.retCode =='Success') {
 					alert('닉네임 변경 성공');
-					document.querySelector('#joinPost').value = result.vo.nickname;
-				} else if (result.reqCode == 'Fail') {
+				} else if (result.retCode == 'Fail') {
 					alert('변경실패');
 				} else {
 					alert('알수 없는 오류');
@@ -150,20 +154,21 @@
 		let post = document.getElementById('joinPost').value;
 		let adr1 = document.getElementById("joinAdr").value;
 		let adr2 = document.getElementById("joinAdr2").value;
-		fetch('adrChange.do?',{
-			method: 'post',
-			   headers: {
-			     "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
-			   },
-			   body: 'post='+post
-		})
+	
+		fetch('adrChange.do', {
+            method: "POST",
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'post=' + post + '&adr=' + adr1+adr2
+          })
 			.then(resolve => resolve.json())
 			.then(result => {
-				if (result.reqCode == 'Success') {
+				if (result.retCode == 'Success') {
 					alert('주소 변경 성공');
 					document.querySelector('#joinPost').value = result.vo.UserPost;
 					document.querySelector('#joinAdr').value = result.vo.UserAdrress;
-				} else if (result.reqCode == 'Fail') {
+				} else if (result.retCode == 'Fail') {
 					alert('변경실패');
 				} else {
 					alert('알수 없는 오류');
@@ -178,11 +183,11 @@
 		fetch('pwChange.do?pw=' + pw)
 			.then(resolve => resolve.json())
 			.then(result => {
-				if (result.reqCode == 'Success') {
+				if (result.retCode == 'Success') {
 					alert('페스워드 변경 성공');
 					document.querySelector('#pw').value = '';
 					document.querySelector('#pw2').value = '';
-				} else if (result.reqCode == 'Fail') {
+				} else if (result.retCode == 'Fail') {
 					alert('변경실패');
 				} else {
 					alert('알수 없는 오류');
