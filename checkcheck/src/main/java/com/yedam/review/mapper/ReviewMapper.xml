@@ -4,7 +4,16 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yedam.review.mapper.ReviewMapper">
 	<select id="searchReview" parameterType="review">
-		select * from reviews where user_id=#{userId}
+		<![CDATA[
+		select b.*
+		from (select rownum rn,a.*
+		from(select b.book_name , r.* from reviews r join books b on(r.isbn=b.isbn) where user_id=#{userId}) a
+		where rownum <= #{page}*10) b
+		where rn >(#{page}-1)*10
+		]]>
+	</select>
+	<select id="reviewCountId">
+		select count(*)  from reviews where user_id =#{userId}
 	</select>
 	<delete id="deleteReview">
 		delete from reviews where review_id=#{ReviewId}

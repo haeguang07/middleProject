@@ -9,6 +9,28 @@
 		});
 	})
 </script>
+<style>
+.pagination2 {
+	display: inline-block;
+	text-align: center;
+}
+
+.pagination2 a {
+	color: black;
+	float: left;
+	padding: 15px 30px;
+	text-decoration: none;
+}
+
+.pagination2 a.active1 {
+	background-color: #4CAF50;
+	color: white;
+}
+
+.pagination2 a:hover:not(.active1) {
+	background-color: #ddd;
+}
+</style>
 <h3>문의 작성</h3>
 <div>
 	<form action="">

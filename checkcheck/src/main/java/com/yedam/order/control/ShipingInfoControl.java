@@ -1,4 +1,4 @@
-package com.yedam.user.control;
+package com.yedam.order.control;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,17 +12,18 @@ import com.yedam.order.domain.OrderVO;
 import com.yedam.order.service.OrderService;
 import com.yedam.order.service.OrderServiceImpl;
 
-public class ModifyShippingFormControl implements Control {
+public class ShipingInfoControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		String id= req.getParameter("id");
 		OrderService service = new OrderServiceImpl();
 		List<OrderVO> list= service.OrderSearch(id);
 		
 		req.setAttribute("list", list);
 		req.setAttribute("vo", list.get(0));
-		return "myPage/modifyShipping.tiles";
+		return "myPage/shippingInfo.tiles";
 	}
 
 }
