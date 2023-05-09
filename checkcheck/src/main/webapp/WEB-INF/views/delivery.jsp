@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <!-- 05-02 김영환 -->
 <html lang="en">
@@ -36,6 +38,7 @@
 </div>
 <div style="text-align: center;margin: 0 auto">
 	<div id="divdelivery" style="margin: 0 auto">
+	  <c:forEach var="i" items="<%= request.getParameter("remember") %>" varStatus="vs">
 		<table style="width: 900px;margin: 0 auto">
 			<tr>
 				<td style="width: 500px; text-align: center; display: inline-block">상품명</td>
@@ -43,11 +46,12 @@
 				<td style="width: 150px; text-align: center; display: inline-block">수량</td>
 			</tr>
 			<tr>
-				<td style="width: 500px; text-align: center; display: inline-block"><%= request.getParameter("selectbookName") %></td>
-				<td style="width: 180px; text-align: center; display: inline-block"><%= request.getParameter("totalprice") %>/<%= request.getParameter("totalpoint") %></td>
-				<td style="width: 150px; text-align: center; display: inline-block"><%= request.getParameter("buycount") %></td>
+				<td style="width: 500px; text-align: center; display: inline-block"><%= request.getParameter("${vs.index }bookName") %></td>
+				<td style="width: 180px; text-align: center; display: inline-block"><%= request.getParameter("${vs.index }bookPrice") %>/<%= request.getParameter("0bookpoint") %></td>
+				<td style="width: 150px; text-align: center; display: inline-block"><%= request.getParameter("${vs.index }bookCount") %></td>
 			</tr>
 		</table>
+	  </c:forEach>
 	</div>
 	<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4" style="margin: 0 auto">
 

@@ -41,29 +41,29 @@
 					<filedset style="width:1000px">
 					<table>
 						<tr>
-							<td><input name="checkboxindex" id=${vs.index } type="checkbox" onclick='checkSelectAll()' name="remember" style="margin: 15px"></td>
+							<td><input id=${vs.index } class="remember" type="checkbox" onclick='checkSelectAll()' name="remember" style="margin: 15px"></td>
 							<td rowspan="5"><img src="${i.cover }"
 								style="width: 150px; height: 150px"></td>
-							<input name="selectbookName"  style="width:900px;word-break:break-all; border:none"value="${i.bookName }"><br>
-							<c:choose>
-						<c:when test="${userGrade eq 'normal' }">
-						<fmt:parseNumber var="spoint" integerOnly="true" value= "${i.bookPrice*0.01 }"/>
-						</c:when>
-						<c:when test="${userGrade eq 'VIP' }">
-						<fmt:parseNumber var="spoint" integerOnly="true" value= "${i.bookPrice*0.03 }"/>
-						</c:when>
-						<c:when test="${userGrade eq 'VVIP' }">
-						<fmt:parseNumber var="spoint" integerOnly="true" value= "${i.bookPrice*0.05 }"/>
-						</c:when>
-						</c:choose>
-							정가 : <input name="bookPrice" style="padding: 0 40px; word-break: break-all" value="${i.bookPrice }">
-								포인트 : <input name="bookpoint" value="${spoint }">p
+							<td><input name="${vs.index }bookName" style="border:none;word-break:break-all; border:none"value="${i.bookName }"><br></td>
+								<c:choose>
+									<c:when test="${userGrade eq 'normal' }">
+									<fmt:parseNumber var="spoint" integerOnly="true" value= "${i.bookPrice*0.01 }"/>
+									</c:when>
+									<c:when test="${userGrade eq 'VIP' }">
+									<fmt:parseNumber var="spoint" integerOnly="true" value= "${i.bookPrice*0.03 }"/>
+									</c:when>
+									<c:when test="${userGrade eq 'VVIP' }">
+									<fmt:parseNumber var="spoint" integerOnly="true" value= "${i.bookPrice*0.05 }"/>
+									</c:when>
+								</c:choose>
+							<td><input name="${vs.index }bookPrice" style="border:none;padding: 0 40px; word-break: break-all" value="${i.bookPrice }"></td>
+							<td><input name="${vs.index }bookpoint" style="border:none;" value="${spoint }"></td>
 							<td id="td" style="padding: 0 40px; width: 400px; word-break: break-all">
 								<input class="evt" type='button'  value='+'/>
 								<input class="evt" type='button'  value='-'/>
-								<input name='buycount' value="0">
+								<input value="0" name="${vs.index }bookCount">
 								<p style="display:inline-block;">최대수량 : </p>
-								<div style="display:inline-block;" id="bookstock">10</div>
+								<div style="display:inline-block;" id="${vs.index }bookstock">10</div>
 							</td>
 							<td style="padding: 0 40px; width: 200px; word-break: break-all">
 								<input type="reset"></input>
@@ -79,7 +79,7 @@
 					style="text-align: center; width: 500px;">
 					<p>현재주소<input type="submit" value="변경" style="padding:5px 15px"></input><br></p>
 						<input name="proaddress" style="border:none; width:200px" type="text" value=${address }><br><br>
-						총 상품 가격 : <input name="totalprice" style="border:none" type="text" value="${total }">원<br>
+						총 상품 가격 : <input id="totalprice" name="totalprice" style="border:none" type="text" value="0">원<br>
 						<c:choose>
 						<c:when test="${userGrade eq 'normal' }">
 						<fmt:parseNumber var="gpoint" integerOnly="true" value= "${total*0.01 }"/>
@@ -95,8 +95,8 @@
 						예상 총 포인트 : <input name="totalpoint" style="border:none; width:200px" type="text" value="${userPoint+gpoint }">원<br><br>
 						고객님의 등급 : <input name="grade" type="text" style="border:none" value="${userGrade }"><br>
 						<p>VIP : 3% VVIP : 5%<br><br></p>
-						<input id="Bespeak" type="submit" value="주문" style="padding:5px 15px"></input>
-						<input id="present" type="button" value="선물" style="padding:5px 15px"></input>
+						<input id="Bespeak" type="button" value="주문" style="padding:5px 15px"></input>
+						<input id="present" type="button" value="선물" style="padding:5px 15px" onclick=></input>
 						<input id="delete" type="button" value="삭제" style="padding:5px 15px"></input>
 				</filedset>
 				</form>
@@ -124,6 +124,14 @@ let evt =document.getElementsByClassName('evt');
 let queryevt =document.querySelectorAll('.evt');
 console.log(queryevt); 
 console.log(evt);
+	  
+	  function Bespeak(){
+		  document.querySelector('Bespeak').addEventListener('click',function(){
+			  .fetch('delivery.do?bookName=${bookName}&bookPrice=${bookPrice}&bookCount=${bookCount}')
+			  .then()
+			  
+		  })
+	  }
 	  queryevt.forEach(item => {item.addEventListener('click',function (){
 	  // 결과를 표시할 element
 	  const resultElement = this.parentElement.children[2];
@@ -132,28 +140,48 @@ console.log(evt);
 	  let number = resultElement.value;
 	  
 	  // 더하기/빼기
+	  let bookprice = this.parentElement.parentElement.children[3].children[0].value;
+	  let total = document.querySelector('#totalprice').value;
 	  if(this.value === '+') {
 	    number = parseInt(number) + 1;
 	    if(number > this.parentElement.children[4].innerText){
 	    	alert('재고량 이상 주문 불가합니다.');
 	    	number = this.parentElement.children[4].innerText;
+	    }else{
+	    	if(this.parentElement.parentElement.children[0].children[0].checked){
+		  		  document.querySelector('#totalprice').value = (total*1+bookprice*1);
+		  	 	}
 	    }
 	  }else if(this.value === '-')  {
 	    number = parseInt(number) - 1;
 	    if(number < 0){
 	    	alert('0권 이하 주문 불가합니다.');
 	    	number =0;
+	    	
+	    }else{
+	    	if(this.parentElement.parentElement.children[0].children[0].checked){
+	    		document.querySelector('#totalprice').value = (total*1-bookprice*1);
+	    	}
 	    }
 	  }
-	  
 	  // 결과 출력
 	  resultElement.value = number;
-	}
-	)
-}
-)
-
-	
+	  
+	})})
+	let remember = document.querySelectorAll('.remember');
+	remember.forEach(item => item.addEventListener('click',function(){
+		let total = document.querySelector('#totalprice').value;
+		console.log(document.querySelector('#totalprice').value);
+			console.log(this);
+			const checkprice = this.parentElement.parentElement.children[3].children[0].value;
+			const checkcount = this.parentElement.parentElement.children[5].children[2].value;
+			if(this.checked){
+				document.querySelector('#totalprice').value = (total*1+(checkprice*checkcount));
+				
+			}else{
+				document.querySelector('#totalprice').value = (total*1-(checkprice*checkcount));
+			}
+	}))
 	
 	$(function() {
 		$(window).scroll(function() {

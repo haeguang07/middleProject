@@ -45,6 +45,7 @@ import com.yedam.user.control.MypageUserInfoControl;
 import com.yedam.user.control.NickChageContorl;
 import com.yedam.user.control.OrderCompleteControl;
 import com.yedam.user.control.PointInfoControl;
+import com.yedam.user.control.PresentControl;
 import com.yedam.user.control.PwChageContorl;
 import com.yedam.user.control.SearchPageControl;
 import com.yedam.user.control.ShipingInfoControl;
@@ -164,6 +165,8 @@ public class FrontController extends HttpServlet {
 		map.put("/board.do", new BoardControl());
 		// 05-03 공지상세페이지
 		map.put("/boarddetail.do", new BoardDetailControl());
+		// 05-09 선물페이지
+		map.put("/present.do", new PresentControl());
 	}
 
 	@Override
