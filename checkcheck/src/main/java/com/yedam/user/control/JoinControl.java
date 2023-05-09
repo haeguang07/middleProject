@@ -32,7 +32,7 @@ public class JoinControl implements Control {
 			return "main.do";
 			
 		}else {
-			return "joinForm.do?reqCode=false";
+			return "joinForm.do?retCode=false";
 		}
 		
 		

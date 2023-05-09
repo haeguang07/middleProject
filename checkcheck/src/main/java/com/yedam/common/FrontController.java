@@ -20,7 +20,8 @@ import com.yedam.admin.control.InquiryAnswerFormControl;
 import com.yedam.basket.control.AddBasketControl;
 import com.yedam.basket.control.BasketControl;
 import com.yedam.board.control.InquiryAddControl;
-import com.yedam.board.control.InquiryControl;
+import com.yedam.board.control.CkeditorControl;
+import com.yedam.board.control.inquiryInfoControl;
 import com.yedam.book.control.BestSellerControl;
 import com.yedam.book.control.HitCountControl;
 import com.yedam.book.control.InsertBookControl;
@@ -43,6 +44,7 @@ import com.yedam.user.control.JoinFormControl;
 import com.yedam.user.control.LoginControl;
 import com.yedam.user.control.ModifyShippingFormControl;
 import com.yedam.user.control.MypageUserInfoControl;
+import com.yedam.user.control.MypageinquiryControl;
 import com.yedam.user.control.NickChageContorl;
 import com.yedam.user.control.OrderCompleteControl;
 import com.yedam.user.control.PointInfoControl;
@@ -51,9 +53,9 @@ import com.yedam.user.control.SearchPageControl;
 import com.yedam.user.control.ShipingInfoControl;
 import com.yedam.user.control.UserReviewFormControl;
 import com.yedam.user.control.WaitPaymentControl;
-import com.yedam.user.control.inquiryInfoControl;
 import com.yedam.user.control.logoutContorl;
 import com.yedam.user.control.mainControl;
+import com.yedam.user.control.modifyUserFormControl;
 import com.yedam.user.control.myPageOrderControl;
 
 public class FrontController extends HttpServlet {
@@ -116,8 +118,10 @@ public class FrontController extends HttpServlet {
 
 		// 05-02마이페이지 이동(주문 조회로)
 		map.put("/myPageMain.do", new myPageOrderControl());
-		// 05-02개인정보수정(get:화면1(비밀번호입력), post:화면2(수정페이지))
+		// 05-02개인정보수정(get:화면1), post:(비밀번호확인용)
 		map.put("/myPageUserInfo.do", new MypageUserInfoControl());
+		//개인정보 수정페이지
+		map.put("/modifyUserForm.do", new modifyUserFormControl());
 		// 개인정보수정-닉네임
 		map.put("/nickChange.do", new NickChageContorl());
 		// 개인정보수정-주소
@@ -144,16 +148,18 @@ public class FrontController extends HttpServlet {
 		//05-03 마이페이지->문의내역
 		map.put("/inquiryInfo.do", new inquiryInfoControl());		
 		
+		// ckeditor fileUpload
+		map.put("/ckeditor.do", new CkeditorControl());
 		
 		//05-02 주문완료페이지 - css더 다듬어야함 기능(홈으로 누르면 메인페이지가는 링크, 주문정보 누르면 다른페이지로 이동하는링크)
 		// 05-03 마이페이지->쿠폰 정보
 		map.put("/couponInfo.do", new CouponInfoControl());
 		// 05-03 마이페이지->포인트정보
 		map.put("/pointInfo.do", new PointInfoControl());
-		// 05-03 마이페이지->문의내역
+		// 05-03 마이페이지->문의내역 페이지 이동
+		map.put("/myPageinquiry.do", new MypageinquiryControl());
+		// 마이페이지 문의 내역(페이징)
 		map.put("/inquiryInfo.do", new inquiryInfoControl());
-		// 문의내역 ckeditor
-		map.put("/inquiry.do", new InquiryControl());
 		// 문의내역 추가
 		map.put("/inquiryAdd.do", new InquiryAddControl());
 

@@ -48,7 +48,7 @@ public class LoginControl implements Control {
 				
 				return "main.do";
 			}else {
-				return "{'reqCode':'fail'}.json";
+				return "{'retCode':'fail'}.json";
 			}
 			
 		};

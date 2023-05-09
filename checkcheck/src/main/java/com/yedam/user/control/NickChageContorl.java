@@ -1,6 +1,8 @@
 package com.yedam.user.control;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -22,18 +24,21 @@ public class NickChageContorl implements Control {
 		UserVO vo= (UserVO)session.getAttribute("sesInfo");
 		String userId= vo.getUserId();
 		String nick = req.getParameter("nick");
-		
 		UserService service= new UserServiceImpl();
+		
+		Map<String, Object> map = new HashMap<>();
+		String json = "";
 		if(service.modifyNick(nick, userId)) {
-			vo= service.login(vo);
+			vo = service.login(vo);
 			session.setAttribute("sesInfo", vo);
-			
-			Gson gson = new GsonBuilder().create();
-			String json = gson.toJson(vo);
-			return  json+".json";
-		}else {
-			return  "{'reqCode':'Fail'}.json";
+			map.put("retCode", "Success");
+			map.put("data", vo);
+		} else {
+			map.put("retCode", "Fail");
 		}
+		Gson gson = new GsonBuilder().create();
+		json = gson.toJson(map);
+		return json + ".json";
 		
 		
 		
