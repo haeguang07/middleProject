@@ -34,4 +34,7 @@
 		from boards
 		where board_kind = 1
 	</select>
+	<delete id="deleteAnno" >
+		delete from boards where board_id = #{boardId}
+	</delete>
 </mapper>

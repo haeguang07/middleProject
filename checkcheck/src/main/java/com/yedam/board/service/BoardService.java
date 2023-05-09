@@ -10,4 +10,5 @@ public interface BoardService {
 	public int inquiryTotal(String userId);
 	public List<BoardVO> getAnnouncementPage(int page);
 	public int announceTotal();
+	public boolean removeAnno(int boardId);
 }
