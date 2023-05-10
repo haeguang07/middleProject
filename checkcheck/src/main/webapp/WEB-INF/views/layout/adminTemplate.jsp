@@ -20,12 +20,12 @@
             <div class="border-end bg-white" id="sidebar-wrapper">
                 <div class="sidebar-heading border-bottom bg-light"><img src="image/logo.png" style="width:150px;height:150px;margin-left:20px"></div>
                 <div class="list-group list-group-flush">
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">도서추가</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">재고관리</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="addBook.do">도서추가</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="bookStock.do">재고관리</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">공지작성</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">출고관리</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="chulgo.do">출고관리</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">문의관리</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">통계</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="chart.do">통계</a>
                 </div>
             </div>
             <!-- Page content wrapper-->
