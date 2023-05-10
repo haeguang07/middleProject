@@ -39,6 +39,14 @@ public class BoardServiceImpl implements BoardService {
 	public BoardVO getOneAnno(int boardId) {
 		return mapper.selectBoard1(boardId);
 	}
+	@Override
+	public List<BoardVO> getInquiryList(int page) {
+		return mapper.selectBoard2List(page);
+	}
+	@Override
+	public int inquiryTotal() {
+		return mapper.borad2ListCount();
+	}
 
 	
 	
