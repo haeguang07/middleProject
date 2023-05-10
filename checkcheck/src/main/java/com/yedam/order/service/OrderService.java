@@ -6,8 +6,13 @@ import com.yedam.order.domain.OrderVO;
 
 public interface OrderService {
 	public List<OrderVO> OrderList(String userId,int page);
+	public List<OrderVO> OrderCancelList(String userId,int page);
+	public List<OrderVO> OrderPresentList(String userId,int page);
 	public List<OrderVO> OrderSearch(String orderId);
-	public int gettotal(String userId);
+	public int getTotal(String userId);
+	public int getCancelTotal(String userId);
+	public int getPresentTotal(String userId);
+	
 	public boolean orderCancel(String orderId);
 	public boolean orderChange(OrderVO vo);
 }

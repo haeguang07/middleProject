@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <style>
 .pagination2 {
 	display: inline-block;
@@ -11,7 +12,7 @@
 .pagination2 a {
 	color: black;
 	float: left;
-	padding: 15px 30px;
+	padding: 5px 10px;
 	text-decoration: none;
 }
 
@@ -59,22 +60,29 @@
 		<th>삭제</th>
 	</tr>
 	<tbody id="tlist">
+	<c:choose>
+	<c:when test="${empty list }">
+	<tr><td colspan="6" style="text-align: center">작성한 리뷰가 존재하지 않습니다 </td></tr>
+	</c:when>
+	<c:otherwise>
 		<c:forEach var="r" items="${list }">
 			<tr class="modify">
 				<td>${r.reviewId }</td>
 				<td><fmt:parseDate var="date" value="${r.reviewDate }"
 						pattern="yyyy-MM-dd HH:mm:ss" /> <fmt:formatDate value="${date}"
 						pattern="YYYY년 MM월 dd일" /></td>
-				<td><a href='getBook.do?bookInfo=${r.isbn }'> ${r.bookName }</a></td>
-				<td>${r.reviewSubject}</td>
+				<td><a href='getBook.do?bookInfo=${r.isbn }'> ${fn:substring(r.bookName,0,15)}..</a></td>
+				<td> ${r.reviewSubject}</td>
 				<td><c:forEach begin="1" end="${r.starcount }">★</c:forEach></td>
 				<td><button class='delbtn'>삭제</button></td>
 			</tr>
 		</c:forEach>
+		</c:otherwise>
+		</c:choose>
 	</tbody>
 </table>
 
-<div class="center">
+<div style="text-align: center">
 	<div class="pagination2">
 		<c:if test="${pageInfo.prev }">
 			<a

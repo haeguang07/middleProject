@@ -19,5 +19,7 @@ public class BoardVO {
 	private String boardSubject;
 	private String boardFile;
 	private String boardDate;
-	private String checks;//답변여부 
+	private String checks;//답변여부
+	//users join해서 작성자 가져오기
+	private String userName;
 }

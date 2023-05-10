@@ -29,7 +29,7 @@ public class myPageOrderControl implements Control {
 		OrderService service = new OrderServiceImpl();
 		List<OrderVO> list = service.OrderList(id, page);
 		
-		int total = service.gettotal(id);
+		int total = service.getTotal(id);
 
 		PageDTO dto = new PageDTO(page, total);
 		req.setAttribute("list", list);

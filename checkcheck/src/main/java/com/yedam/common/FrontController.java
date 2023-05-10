@@ -24,6 +24,7 @@ import com.yedam.basket.control.BasketControl;
 import com.yedam.basket.control.BasketDeliveryControl;
 import com.yedam.board.control.InquiryAddControl;
 import com.yedam.board.control.MypageinquiryControl;
+import com.yedam.board.control.NoAnwserboard2Control;
 import com.yedam.board.control.RemoveAnnoControl;
 import com.yedam.board.control.SearchAnnoControl;
 import com.yedam.board.control.CkeditorControl;
@@ -32,10 +33,14 @@ import com.yedam.book.control.BestSellerControl;
 import com.yedam.book.control.HitCountControl;
 import com.yedam.book.control.InsertBookControl;
 import com.yedam.book.control.NewBookSearchControl;
+import com.yedam.comment.control.addAnswerControl;
 import com.yedam.coupon.control.CouponInfoControl;
 import com.yedam.order.control.CancelOrderControl;
 import com.yedam.order.control.ModifyShippingControl;
 import com.yedam.order.control.ModifyShippingFormControl;
+import com.yedam.order.control.OrderCancelFormControl;
+import com.yedam.order.control.OrderPresentFormControl;
+import com.yedam.order.control.PointInfoControl;
 import com.yedam.order.control.ShipingInfoControl;
 import com.yedam.order.control.myPageOrderControl;
 import com.yedam.review.control.AddReviewControl;
@@ -55,7 +60,6 @@ import com.yedam.user.control.LoginControl;
 import com.yedam.user.control.MypageUserInfoControl;
 import com.yedam.user.control.NickChageContorl;
 import com.yedam.user.control.OrderCompleteControl;
-import com.yedam.user.control.PointInfoControl;
 import com.yedam.user.control.PresentControl;
 import com.yedam.user.control.PwChageContorl;
 import com.yedam.user.control.SearchPageControl;
@@ -88,8 +92,12 @@ public class FrontController extends HttpServlet {
 		map.put("/bookStock.do", new BookStockControl());
 		// 05-03 관리자 문의내용 페이지
 		map.put("/adminInquiryInfo.do", new AdminInquiryInfoControl());
+		//문의내용 미답변기능
+		map.put("/noAnwserboard2.do", new NoAnwserboard2Control());
 		// 05-03 관리자 문의작성 페이지
 		map.put("/inquiryAnswerForm.do", new InquiryAnswerFormControl());
+		//관리자 문의 답변 기능
+		map.put("/addAnswer.do", new addAnswerControl());
 		// 05-05 nav 의 베스트셀러 항목 누를시 베스트셀러 보여줌
 		map.put("/bestSeller.do", new BestSellerControl());
 		// 05-07 화제의책 searchpage
@@ -103,6 +111,7 @@ public class FrontController extends HttpServlet {
 		map.put("/review.do", new ReviewControl());
 		map.put("/modifyReview.do", new ModifyReviewControl());
 		map.put("/addReview.do", new AddReviewControl());
+
 		//공지사항 페이지
 		map.put("/announcement.do",new AnnouncementControl());
 		map.put("/announceForAjax.do", new AnnounceForAjaxControl());
@@ -131,7 +140,7 @@ public class FrontController extends HttpServlet {
 		map.put("/myPageMain.do", new myPageOrderControl());
 		// 05-02개인정보수정(get:화면1), post:(비밀번호확인용)
 		map.put("/myPageUserInfo.do", new MypageUserInfoControl());
-		//개인정보 수정페이지
+		// 개인정보 수정페이지
 		map.put("/modifyUserForm.do", new modifyUserFormControl());
 		// 개인정보수정-닉네임
 		map.put("/nickChange.do", new NickChageContorl());
@@ -147,22 +156,26 @@ public class FrontController extends HttpServlet {
 		map.put("/modifyShipping.do", new ModifyShippingControl());
 		// 마이페이지->주문조회-> 변경/취소 회면->취소기능
 		map.put("/cancleOrder.do", new CancelOrderControl());
+		// 마이페이지 -> 취소 주문조회
+		map.put("/orderCancelForm.do", new OrderCancelFormControl());
+		// 마이페이지 -> 취소 주문조회
+		map.put("/orderPresentForm.do", new OrderPresentFormControl());
 
 		// 05-03 마이페이지->마이리뷰
 		map.put("/userReviewForm.do", new UserReviewFormControl());
 		// 마이리뷰-> 리뷰삭제기능
 		map.put("/deleteReview.do", new DeleteReviewContorl());
-		//05-03 마이페이지->쿠폰 정보
-		map.put("/couponInfo.do", new CouponInfoControl());		
-		//05-03 마이페이지->포인트정보
-		map.put("/pointInfo.do", new PointInfoControl());		
-		//05-03 마이페이지->문의내역
-		map.put("/inquiryInfo.do", new inquiryInfoControl());		
-		
+		// 05-03 마이페이지->쿠폰 정보
+		map.put("/couponInfo.do", new CouponInfoControl());
+		// 05-03 마이페이지->포인트정보
+		map.put("/pointInfo.do", new PointInfoControl());
+		// 05-03 마이페이지->문의내역
+		map.put("/inquiryInfo.do", new inquiryInfoControl());
+
 		// ckeditor fileUpload
 		map.put("/ckeditor.do", new CkeditorControl());
-		
-		//05-02 주문완료페이지 - css더 다듬어야함 기능(홈으로 누르면 메인페이지가는 링크, 주문정보 누르면 다른페이지로 이동하는링크)
+
+		// 05-02 주문완료페이지 - css더 다듬어야함 기능(홈으로 누르면 메인페이지가는 링크, 주문정보 누르면 다른페이지로 이동하는링크)
 		// 05-03 마이페이지->쿠폰 정보
 		map.put("/couponInfo.do", new CouponInfoControl());
 		// 05-03 마이페이지->포인트정보
@@ -184,9 +197,9 @@ public class FrontController extends HttpServlet {
 		map.put("/boarddetail.do", new BoardDetailControl());
 		// 05-09 선물페이지
 		map.put("/present.do", new PresentControl());
-		//장바구니 추가
+		// 장바구니 추가
 		map.put("/addBasket.do", new AddBasketControl());
-		//배송지,장바구니데이터
+		// 배송지,장바구니데이터
 		map.put("/basketDelivery.do", new BasketDeliveryControl());
 	}
 
@@ -201,7 +214,7 @@ public class FrontController extends HttpServlet {
 		// 페이지 정보 받는곳
 		Control control = map.get(path);
 		String viewPage = control.execute(req, resp);
-		System.out.println("프론트컨트롤러의 service입니다"+viewPage);
+		System.out.println("프론트컨트롤러의 service입니다" + viewPage);
 
 		if (viewPage.endsWith(".do")) {
 			resp.sendRedirect(viewPage);

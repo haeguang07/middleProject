@@ -4,7 +4,13 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yedam.coupon.mapper.CouponMapper">
 	<select id="searchCoupon" parameterType="coupon">
-		select * from coupons where user_id=#{userId}
+	<![CDATA[
+		select rownum rn, b.*
+		FROM (SELECT rownum rn, a.*
+      		  FROM (select * from coupons where user_id=#{userId}) a
+      		  WHERE rownum <= #{page}*10) b
+    	WHERE b.rn > (#{page}-1)*10
+	]]>      		  
 	</select>
 	<select id="getCount">
 	select count(*) from coupons WHERE user_id=#{userId} 
