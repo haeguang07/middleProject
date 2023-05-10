@@ -34,6 +34,7 @@ public class CouponInfoControl implements Control {
 		req.setAttribute("list", list);
 		req.setAttribute("pageInfo", dto);
 		
+		
 		 return "myPage/couponInfo.tiles";
 	}
 
