@@ -44,6 +44,71 @@
 		from orders
 		WHERE user_id=#{userId}
 	</select>
+	<select id="selectOrderCancel" resultType="order">
+	<![CDATA[
+		select rownum rn, b.*
+		FROM (	SELECT rownum rn, a.*
+      		  	FROM (
+						select book,o.*
+						from(
+        						select a.order_id, SUBSTR(min(book_name),0,15) ||'.. 외'|| min(counts)||'권' AS book
+        						from(select h.order_id, b.book_name ,b.isbn
+             						 from historys h JOIN books b
+            						 ON (h.isbn=b.isbn))a 
+        						join (select order_id, sum(history_count) counts
+              						  from historys
+            						  group by order_id) h
+        						on(a.order_id =h.order_id)
+        					    group by a.order_id) b
+						join orders o
+						on( b.order_id =o.order_id)
+						where o.user_id=#{userId}
+						 and o.order_state='취소'
+						ORDER BY ORDER_DATE DESC) a
+				WHERE rownum <= #{page}*10) b
+    	WHERE b.rn > (#{page}-1)*10
+	]]>
+	</select>
+	<select id="getCancleCount">
+		select count(*) from orders where user_id=#{userId}
+		and order_state='취소'
+	</select>
+	<select id="selectOrderPresent">
+	<![CDATA[
+	select rownum rn, b.*
+		FROM (	SELECT rownum rn, a.*
+      		  	FROM (
+						select z.*,u.user_name		
+                		from(select book,o.*
+							 from(
+        						  select a.order_id, SUBSTR(min(book_name),0,15) ||'.. 외'|| min(counts)||'권' AS book
+        						  from(select h.order_id, b.book_name ,b.isbn
+             						   from historys h JOIN books b
+            						   ON (h.isbn=b.isbn))a 
+        						  join (select order_id, sum(history_count) counts
+              						    from historys
+            						    group by order_id) h
+        						  on(a.order_id =h.order_id)
+        					      group by a.order_id) b
+						  join orders o
+						  on( b.order_id =o.order_id)
+						  where o.user_id=#{userId}
+						  ORDER BY ORDER_DATE DESC)  z
+                   join users u
+                   on (z.user_id= u.user_id)
+                   where not z.order_name = u.user_name
+                        ) a
+				WHERE rownum <= #{page}*10) b
+    	WHERE b.rn > (#{page}-1)*10
+    		]]>
+	</select>
+	<select id="getPresentCount">
+		select count(*)
+		from orders o join users u
+		on (o.user_id=u.user_id)
+		where o.user_id=#{userId}
+		and not o.order_name= u.user_name
+	</select>
 	<update id="cancelUpdate">
 		update orders set order_state='취소' where
 		order_id=#{orderId}

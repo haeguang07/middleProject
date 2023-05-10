@@ -13,7 +13,7 @@ td{
 .pagination2 a {
 	color: black;
 	float: left;
-	padding: 15px 30px;
+	padding: 5px 10px;
 	text-decoration: none;
 }
 
@@ -46,3 +46,21 @@ td{
 	</tr>
 	</c:forEach>
 </table>
+<div style="text-align: center">
+	<div class="pagination2">
+		<c:if test="${pageInfo.prev }">
+			<a href="couponInfo.do?page=${pageInfo.startPage-1 }&userId=${sesInfo.userId}">
+				이전페이지</a>
+		</c:if>
+		<c:forEach var="i" begin="${pageInfo.startPage}"
+			end="${pageInfo.endPage}">
+			<a class="${i==pageInfo.pageNum ? 'active1':'' }"
+				href="couponInfo.do?page=${i}&userId=${sesInfo.userId}">${i} </a>
+		</c:forEach>
+		<c:if test="${pageInfo.next }">
+			<a
+				href="couponInfo.do?page=${pageInfo.endPage+1 }&userId=${sesInfo.userId}">
+				다음페이지</a>
+		</c:if>
+	</div>
+</div>

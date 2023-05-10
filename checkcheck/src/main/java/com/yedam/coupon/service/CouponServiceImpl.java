@@ -12,9 +12,9 @@ public class CouponServiceImpl implements CouponService {
 	SqlSession session = DataSource.getInstance().openSession(true);
 	CouponMapper mapper = session.getMapper(CouponMapper.class);
 	@Override
-	public List<CouponVO> couponList(String userId) {
+	public List<CouponVO> couponList(String userId,int page) {
 		// TODO Auto-generated method stub
-		return mapper.searchCoupon(userId);
+		return mapper.searchCoupon(userId,page);
 	}
 	@Override
 	public int getCount(String userId) {		

@@ -1,4 +1,4 @@
-package com.yedam.user.control;
+package com.yedam.order.control;
 
 import java.io.IOException;
 import java.util.List;
@@ -15,30 +15,25 @@ import com.yedam.order.service.OrderService;
 import com.yedam.order.service.OrderServiceImpl;
 import com.yedam.user.domain.UserVO;
 
-public class PointInfoControl implements Control {
+public class OrderPresentFormControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String pageStr=req.getParameter("page");
-		pageStr = pageStr==null ? "1": pageStr;
-		int page = Integer.parseInt(pageStr);
-		
 		HttpSession session = req.getSession();
-		UserVO vo =(UserVO)session.getAttribute("sesInfo");
-		
+		UserVO vo= (UserVO)session.getAttribute("sesInfo");
+		String id = vo.getUserId();
+		String pageStr = req.getParameter("page");
+		pageStr = (pageStr == null) ? "1" : pageStr;
+		int page = Integer.parseInt(pageStr);
 		OrderService service = new OrderServiceImpl();
-		String userId = vo.getUserId();
-		int total = service.gettotal(userId);
+		List<OrderVO> list = service.OrderPresentList(id, page);
 		
-		List<OrderVO> list = service.OrderList(userId, page);
+		int total = service.getPresentTotal(id);
+
 		PageDTO dto = new PageDTO(page, total);
-		
 		req.setAttribute("list", list);
 		req.setAttribute("pageInfo", dto);
-		
-		
-		
-		return  "myPage/pointInfo.tiles";
+		return "myPage/orderPresent.tiles";
 	}
 
 }
