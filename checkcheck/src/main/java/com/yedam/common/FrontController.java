@@ -24,6 +24,7 @@ import com.yedam.basket.control.BasketControl;
 import com.yedam.basket.control.BasketDeliveryControl;
 import com.yedam.board.control.InquiryAddControl;
 import com.yedam.board.control.MypageinquiryControl;
+import com.yedam.board.control.NoAnwserboard2Control;
 import com.yedam.board.control.RemoveAnnoControl;
 import com.yedam.board.control.SearchAnnoControl;
 import com.yedam.board.control.CkeditorControl;
@@ -90,6 +91,8 @@ public class FrontController extends HttpServlet {
 		map.put("/bookStock.do", new BookStockControl());
 		// 05-03 관리자 문의내용 페이지
 		map.put("/adminInquiryInfo.do", new AdminInquiryInfoControl());
+		//문의내용 미답변기능
+		map.put("/noAnwserboard2.do", new NoAnwserboard2Control());
 		// 05-03 관리자 문의작성 페이지
 		map.put("/inquiryAnswerForm.do", new InquiryAnswerFormControl());
 		// 05-05 nav 의 베스트셀러 항목 누를시 베스트셀러 보여줌
