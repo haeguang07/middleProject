@@ -15,4 +15,5 @@ public interface BoardMapper {
 	public List<BoardVO> announcePaging(int page);
 	public int board1Count();
 	public int deleteAnno(int boardId);
+	public BoardVO selectBoard1(int boardId);
 }

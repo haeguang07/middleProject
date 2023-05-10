@@ -11,4 +11,5 @@ public interface BoardService {
 	public List<BoardVO> getAnnouncementPage(int page);
 	public int announceTotal();
 	public boolean removeAnno(int boardId);
+	public BoardVO getOneAnno(int boardId);
 }

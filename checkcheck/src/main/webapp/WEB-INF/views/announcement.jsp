@@ -24,7 +24,7 @@
 }
 </style>
 <div style="width:1000px;text-align: center;margin:0 auto">
-<div style="padding:10px">
+<div style="padding:40px 0">
 <table class="table" style="border: black solid 1px">
 	<thead>
 		<tr>
@@ -39,14 +39,14 @@
 			<tr id="${item.boardId }">
 			<td><input type="checkbox" name="announcement" value="${item.boardId }" style=${sesInfo.userId eq 'hbj04003' ? 'dispaly:inline' : 'display:none' }></td>
 			<td style="text-align: left;">${item.boardId }</td>
-			<td style="text-align: left">${item.boardTitle }</td>
+			<td style="text-align: left"><a href="/searchAnno.do?boardId=${item.boardId }" style="text-decoration: none;color:black" >${item.boardTitle }</a></td>
 			<td>${item.boardDate }</td>
 			</tr>
 		</c:forEach>
 	</tbody>
 </table>
 </div>
-<div><input id="deletebtn" type="button" style="float: right" value="삭제"></div>
+<div><input id="deletebtn" type="button" style=${sesInfo.userId eq 'hbj04003' ? 'float:right;dispaly:inline' : 'float:right;display:none' } value="삭제"></div>
 	<div style="text-align: center; width: 1200px; height: 50px; padding: 30px 0; margin-bottom: 50px">
 		<div class="pagination2">		
 				<c:if test="${pageInfo.prev }">
@@ -80,16 +80,19 @@
 	    	checkedtr.push(tr[i]);
 	    }
 	}
+	console.log(checkedtr);
 	checkedtr.forEach(tr => {
 	    trid.push(tr.id);
 	})
+	console.log(trid);
 		for(let i =0; i<trid.length ; i++){
 			fetch("/removeAnno.do?boardId="+trid[i])
 			.then(result => result.json())
 			.then(resolve => {
 				if(resolve.retCode == 'Success'){
 					//0510 0054
-					document.getElementById(trid[i]).remove;
+					console.log('Success');
+					window.location.reload();
 				}else if(resolve.retCode == 'Fail'){
 				}
 			})

@@ -35,6 +35,10 @@ public class BoardServiceImpl implements BoardService {
 	public boolean removeAnno(int boardId) {
 		return mapper.deleteAnno(boardId)==1;
 	}
+	@Override
+	public BoardVO getOneAnno(int boardId) {
+		return mapper.selectBoard1(boardId);
+	}
 
 	
 	
