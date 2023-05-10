@@ -19,13 +19,14 @@ public class AddBookControl implements Control {
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		if(req.getMethod().equals("POST")) {
-			String[] formData = req.getParameterValues("name[]");
+			String[] formData = req.getParameterValues("name");
 			List<BookVO> list = new ArrayList<>();
 			
 			for(int i =0;i<formData.length ; i++) {
 				BookVO vo = new BookVO();
 				JSONObject jsonObj = new JSONObject(formData[i]);
 				Map<String,Object> map = jsonObj.toMap();
+				System.out.println(map);
 				String[] strArr = {"title" , "publisher", "cover" ,"author" , "priceStandard" , "isbn13" , "categoryName" ,"pubDate","description"};
 				
 					vo.setBookName((String) map.get(strArr[0]));
@@ -33,7 +34,7 @@ public class AddBookControl implements Control {
 					vo.setCover((String) map.get(strArr[2]));
 					vo.setAuthor((String) map.get(strArr[3]));
 					vo.setBookPrice((Integer) map.get(strArr[4]));
-					vo.setIsbn(Long.parseLong((String) map.get(strArr[5])));
+//					vo.setIsbn(Long.parseLong((String) map.get(strArr[5])));
 					vo.setBookCategory((String) map.get(strArr[6]));
 					vo.setPubDate((String) map.get(strArr[7]));
 					vo.setBookDetail((String) map.get(strArr[8]));
