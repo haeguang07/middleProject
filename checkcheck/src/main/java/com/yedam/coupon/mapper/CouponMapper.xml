@@ -15,4 +15,8 @@
 	<select id="getCount">
 	select count(*) from coupons WHERE user_id=#{userId} 
 	</select>
+	<select id="YsearchCoupon" parameterType="coupon">
+		select * from coupons where user_id=#{userId} and coupon_state='Y'
+	</select>
+
 </mapper>
