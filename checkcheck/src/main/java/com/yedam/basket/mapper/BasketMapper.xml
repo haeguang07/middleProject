@@ -4,7 +4,7 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yedam.basket.mapper.BasketMapper">
 	<select id="selectBasket" parameterType="String">
-		select k.basket_id,k.user_id,k.isbn,b.book_price,b.book_name,b.cover
+		select k.basket_id,k.user_id,k.isbn,b.book_price,b.book_name,b.cover,k.basket_count
 		from baskets k join books b
 		on k.isbn=b.isbn
 		where k.user_id = #{userId}

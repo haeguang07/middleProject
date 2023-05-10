@@ -20,6 +20,10 @@ public class CouponServiceImpl implements CouponService {
 	public int getCount(String userId) {		
 		return mapper.getCount(userId);
 	}
+	@Override
+	public List<CouponVO> ycouponList(String userId) {
+		return mapper.YsearchCoupon(userId);
+	}
 	
 	
 	

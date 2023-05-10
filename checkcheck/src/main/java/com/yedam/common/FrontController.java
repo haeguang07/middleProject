@@ -36,6 +36,8 @@ import com.yedam.order.control.ModifyShippingControl;
 import com.yedam.order.control.ModifyShippingFormControl;
 import com.yedam.order.control.ShipingInfoControl;
 import com.yedam.order.control.myPageOrderControl;
+import com.yedam.payment.control.PayMentControl;
+import com.yedam.payment.control.WaitPaymentControl;
 import com.yedam.review.control.AddReviewControl;
 import com.yedam.review.control.DeleteReviewContorl;
 import com.yedam.review.control.ModifyReviewControl;
@@ -57,7 +59,6 @@ import com.yedam.user.control.PointInfoControl;
 import com.yedam.user.control.PresentControl;
 import com.yedam.user.control.PwChageContorl;
 import com.yedam.user.control.SearchPageControl;
-import com.yedam.user.control.WaitPaymentControl;
 import com.yedam.user.control.logoutContorl;
 import com.yedam.user.control.mainControl;
 import com.yedam.user.control.modifyUserFormControl;
@@ -184,6 +185,8 @@ public class FrontController extends HttpServlet {
 		map.put("/addBasket.do", new AddBasketControl());
 		//배송지,장바구니데이터
 		map.put("/basketDelivery.do", new BasketDeliveryControl());
+		//최종결제완료페이지
+		map.put("/payMent.do", new PayMentControl());
 	}
 
 	@Override

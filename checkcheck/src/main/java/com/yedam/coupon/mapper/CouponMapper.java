@@ -7,4 +7,5 @@ import com.yedam.coupon.domain.CouponVO;
 public interface CouponMapper {
 	public List<CouponVO> searchCoupon(String userId);
 	public int getCount(String userId);
+	public List<CouponVO> YsearchCoupon(String userId);
 }

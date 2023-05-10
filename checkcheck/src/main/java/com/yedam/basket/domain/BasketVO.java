@@ -14,5 +14,6 @@ public class BasketVO {
 	private int bookPrice;
 	private String cover;
 	private int basketCount;
+	private String proAddress;
 	
 }

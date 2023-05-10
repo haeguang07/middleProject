@@ -37,7 +37,7 @@
 			<p style="width:260px; text-align:right; display:inline-block">초기화</p>
 		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
 		    <c:forEach var="i" items="${list }" varStatus="vs">
-				<form action="delivery.do" method="post"style="position: relative; width: 1100px; text-align:center">
+				<form method="post"style="position: relative; width: 1100px; text-align:center">
 					<filedset style="width:1000px">
 					<table>
 						<tr>
@@ -47,21 +47,21 @@
 							<td><input name="bookName" style="border:none;word-break:break-all; border:none"value="${i.bookName }"><br></td>
 								<c:choose>
 									<c:when test="${userGrade eq 'normal' }">
-									<fmt:parseNumber var="spoint" integerOnly="true" value= "${i.bookPrice*0.01 }"/>
+									<fmt:parseNumber var="spoint" integerOnly="true" value= "${(i.bookPrice*0.01)*i.basketCount }"/>
 									</c:when>
 									<c:when test="${userGrade eq 'VIP' }">
-									<fmt:parseNumber var="spoint" integerOnly="true" value= "${i.bookPrice*0.03 }"/>
+									<fmt:parseNumber var="spoint" integerOnly="true" value= "${(i.bookPrice*0.03)*i.basketCount }"/>
 									</c:when>
 									<c:when test="${userGrade eq 'VVIP' }">
-									<fmt:parseNumber var="spoint" integerOnly="true" value= "${i.bookPrice*0.05 }"/>
+									<fmt:parseNumber var="spoint" integerOnly="true" value= "${(i.bookPrice*0.05)*i.basketCount }"/>
 									</c:when>
 								</c:choose>
 							<td><input id="bookPrice" name="bookPrice" style="border:none;padding: 0 40px; word-break: break-all" value="${i.bookPrice }"></td>
-							<td><input id="bookPoint" name="bookpoint" style="border:none;" value="${spoint }"></td>
+							<td><input id="bookPoint" name="bookPoint" style="border:none;" value="${spoint }"></td>
 							<td id="td" style="padding: 0 40px; width: 400px; word-break: break-all">
 								<input class="evt" type='button'  value='+'/>
 								<input class="evt" type='button'  value='-'/>
-								<input value=0 id="bookCount" class="bookCount" name="bookCount">
+								<input value=${i.basketCount } id="bookCount" class="bookCount" name="bookCount">
 								<p style="display:inline-block;">최대수량 : </p>
 								<div style="display:inline-block;" id="bookstock">10</div>
 							</td>
@@ -79,7 +79,7 @@
 				<filedset class="form-inline center" role="form" action="delivery.do" method="post"
 					style="text-align: center; width: 500px;">
 					<p>현재주소<input type="submit" value="변경" style="padding:5px 15px"></input><br></p>
-						<input name="proaddress" style="border:none; width:200px" type="text" value=${address }><br><br>
+						<input id="proaddress" class="proaddress" name="proaddress" style="border:none; width:200px" type="text" value=${address }><br><br>
 						총 상품 가격 : <input id="totalprice" name="totalprice" style="border:none" type="text" value="0">원<br>
 						<c:choose>
 						<c:when test="${userGrade eq 'normal' }">
@@ -96,8 +96,8 @@
 						예상 총 포인트 : <input name="totalpoint" style="border:none; width:200px" type="text" value="${userPoint+gpoint }">원<br><br>
 						고객님의 등급 : <input name="grade" type="text" style="border:none" value="${userGrade }"><br>
 						<p>VIP : 3% VVIP : 5%<br><br></p>
-						<input id="Bespeak" type="submit" value="주문" style="padding:5px 15px">
-						<input id="present" type="button" value="선물" style="padding:5px 15px" onclick=>
+						<input id="Bespeak" type="submit" value="주문" style="padding:5px 15px" onclick="javascript: form.action='delivery.do';"/>
+						<input id="present" type="submit" value="선물" style="padding:5px 15px" onclick="javascript: form.action='basketDelivery.do';"/>
 						<input id="delete" type="button" value="삭제" style="padding:5px 15px">
 				</filedset>
 				</form>
@@ -137,6 +137,8 @@
 	  let total = document.querySelector('#totalprice').value;
 	  let isbn = this.parentElement.parentElement.children[7].children[0].value;
 	  let bookName = this.parentElement.parentElement.children[2].children[0].value;
+	  let proAddress = document.querySelector('#proaddress').value;
+	  console.log(proAddress);
 	  if(this.value === '+') {
 	    number = parseInt(number) + 1;
 	    if(number > this.parentElement.children[4].innerText){
@@ -162,7 +164,7 @@
 	  // 결과 출력
 	  resultElement.value = number;
 	  let checkbox = this.parentElement.parentElement.children[0].children[0];
-	  checkbox.value = "{'bookName':'"+bookName+"','bookPrice':'"+bookprice+"','isbn':'"+isbn+"','basketCount':'"+number+"'}";
+	  checkbox.value = "{'bookName':'"+bookName+"','bookPrice':'"+bookprice+"','isbn':'"+isbn+"','basketCount':'"+number+"','proAddress':'"+proAddress+"'}";
 	  console.log(checkbox);
 	  
 	})})
@@ -172,6 +174,7 @@
 		console.log(document.querySelector('#totalprice').value);
 		let bookName = this.parentElement.parentElement.children[2].children[0].value;
 		let isbn = this.parentElement.parentElement.children[7].children[0].value;
+		let proAddress = document.querySelector('#proaddress').value;
 		console.log(isbn);
 		console.log(bookName);
 			console.log(this);
@@ -179,7 +182,7 @@
 			const checkcount = this.parentElement.parentElement.children[5].children[2].value;
 			if(this.checked){
 				document.querySelector('#totalprice').value = (total*1+(checkprice*checkcount));
-				this.value = "{'bookName':'"+bookName+"','bookPrice':'"+checkprice+"','isbn':'"+isbn+"','basketCount':'"+checkcount+"'}";
+				this.value = "{'bookName':'"+bookName+"','bookPrice':'"+bookprice+"','isbn':'"+isbn+"','basketCount':'"+number+"','proAddress':'"+proAddress+"'}";
 				
 			}else{
 				document.querySelector('#totalprice').value = (total*1-(checkprice*checkcount));
