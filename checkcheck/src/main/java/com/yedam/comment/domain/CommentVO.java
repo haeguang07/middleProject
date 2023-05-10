@@ -14,6 +14,6 @@ public class CommentVO {
 	private int boardId;
 	private String userId;
 	private String commentSubject;
-	private Date comentDate;
+	private Date commentDate;
 	
 }

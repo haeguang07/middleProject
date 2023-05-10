@@ -3,18 +3,33 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yedam.board.mapper.BoardMapper">
+	<select id="selectBoard2List" resultType="board">
+	<![CDATA[
+		select rownum rn, b.*
+		from (select rownum rn, a.*
+			  from(select b.*,u.user_name 
+			  	   from Boards b join users u 
+			  	   on(b.user_id=u.user_id) 
+                   where board_kind=2 ) a
+			  where rownum <= #{page}*10) b
+		where rn >(#{page}-1)*10
+	]]>
+	</select>
+	<select id="borad2ListCount">
+		select count(*) from boards where board_kind=2
+	</select>
 	<select id="searchBoard2" resultType="board">
 		<![CDATA[
 		select b.*
 		from (select rownum rn,a.*
-		from(select * from Boards where
-		user_id=#{userId} and board_kind=2)a
-		where rownum <= #{page}*10) b
+			  from(select * from Boards where user_id=#{userId} and board_kind=2)a
+			  where rownum <= #{page}*10) b
 		where rn >(#{page}-1)*10
 		]]>
 	</select>
 	<select id="borad2Count">
-		select count(*) from boards where board_kind=2 and user_id=#{userId}
+		select count(*) from boards where board_kind=2 and
+		user_id=#{userId}
 	</select>
 	<insert id="insertBoard2">
 		insert into boards
@@ -24,17 +39,26 @@
 	<![CDATA[
 		select b.*
 		from (select rownum rn,a.*
-		from(select * from Boards where board_kind=1)a
+		from(select * from Boards where board_kind=1
+		order by board_id desc )a
 		where rownum <= #{page}*10) b
 		where rn >(#{page}-1)*10
 	]]>
 	</select>
-	<select id="board1Count" >
+	<select id="board1Count">
 		select count(*)
 		from boards
-		where board_kind = 1
+		where
+		board_kind = 1
 	</select>
-	<delete id="deleteAnno" >
-		delete from boards where board_id = #{boardId}
+	<delete id="deleteAnno">
+		delete from boards where board_id =
+		#{boardId}
 	</delete>
+	<select id="selectBoard1" resultType="board">
+		select b.*,u.user_name 
+		from boards b join users u
+		on(b.user_id= u.user_id) 
+		where board_id =#{boardId}
+	</select>
 </mapper>

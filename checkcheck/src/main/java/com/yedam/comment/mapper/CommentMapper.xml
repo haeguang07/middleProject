@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yedam.comment.mapper.CommentMapper">
+	<select id="selectComments" resultType="comment">
+		select * from comments where board_id=#{board_id}
+	</select>
+	<insert id="insertComment" parameterType="comment">
+		insert into comments values(comment_seq.nextval,#{boardId},#{userId},#{commentSubject},sysdate)
+	</insert>
+</mapper>

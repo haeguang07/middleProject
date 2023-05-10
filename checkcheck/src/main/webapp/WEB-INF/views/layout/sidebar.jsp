@@ -12,8 +12,8 @@
 		<li><a href="pointInfo.do">포인트 </a>${sesInfo.userPoint }p</li>
 		<li>주문내역</li>
 		<li><a href="myPageMain.do">주문 조회</a></li>
-		<li><a href="#!">취소 주문 내역</a></li>
-		<li><a href="#!">선물 내역</a></li>
+		<li><a href="orderCancelForm.do">취소 주문 내역</a></li>
+		<li><a href="orderPresentForm.do">선물 내역</a></li>
 		<li><a href="myPageinquiry.do">문의내역</a></li>
 	</ul>
 </div>
