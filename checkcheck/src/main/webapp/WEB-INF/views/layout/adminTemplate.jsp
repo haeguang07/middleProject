@@ -24,7 +24,7 @@
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="bookStock.do">재고관리</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">공지작성</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="chulgo.do">출고관리</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">문의관리</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="adminInquiryInfo.do">문의관리</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="chart.do">통계</a>
                 </div>
             </div>
