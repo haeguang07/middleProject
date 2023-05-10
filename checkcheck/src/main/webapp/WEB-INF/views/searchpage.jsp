@@ -99,8 +99,8 @@
 				<p style="display:inline-block">${shWeek }</p>
 			</c:if>
 		</p>
-		<c:if test="${category eq '베스트셀러'|| category eq '화제의책' }">
-		<form ${category == '베스트셀러'? 'action="bestSeller.do?category=베스트셀러"':'action="hitCount.do?category=화제의책"' } method="post"> 
+		<c:if test="${category eq '베스트셀러'|| category eq '화제의책'  }">
+		<form ${category == '베스트셀러'? 'action="bestSeller.do?category=베스트셀러"': 'action="hitCount.do?category=화제의책"'} method="post"> 
 			<select name="sh_year" id="sh_year"
 				onclick="makeWeekSelectOptions();">
 				<option ${shYear == '2023' ? 'selected="selected"' : '' } value='2023'>2023년</option>
