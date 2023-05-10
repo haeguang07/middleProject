@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.admin.control.AddBookControl;
 import com.yedam.admin.control.AdminInquiryInfoControl;
+import com.yedam.board.control.AnnounceForAjaxControl;
 import com.yedam.board.control.AnnouncementControl;
 import com.yedam.admin.control.BookStockControl;
 import com.yedam.admin.control.ChartControl;
@@ -24,6 +25,7 @@ import com.yedam.basket.control.BasketDeliveryControl;
 import com.yedam.board.control.InquiryAddControl;
 import com.yedam.board.control.MypageinquiryControl;
 import com.yedam.board.control.RemoveAnnoControl;
+import com.yedam.board.control.SearchAnnoControl;
 import com.yedam.board.control.CkeditorControl;
 import com.yedam.board.control.inquiryInfoControl;
 import com.yedam.book.control.BestSellerControl;
@@ -103,7 +105,9 @@ public class FrontController extends HttpServlet {
 		map.put("/addReview.do", new AddReviewControl());
 		//공지사항 페이지
 		map.put("/announcement.do",new AnnouncementControl());
+		map.put("/announceForAjax.do", new AnnounceForAjaxControl());
 		map.put("/removeAnno.do",new RemoveAnnoControl());
+		map.put("/searchAnno.do", new SearchAnnoControl());
 		
 		//05-02 장바구니페이지 김영환 - css더 다듬어야함 기능깔끔하게 넣어야함
 		map.put("/basket.do", new BasketControl());

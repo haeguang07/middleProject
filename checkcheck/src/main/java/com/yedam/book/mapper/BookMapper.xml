@@ -111,7 +111,7 @@
             join books c on b.isbn = c.isbn
             where order_date between #{monthFirst} and #{monthLast}
             order by total_price desc) d
-            where rn <=50;
+            
 	]]>
 	</select>
 	<select id="isbnCallOneBook" resultType="book">
@@ -139,9 +139,9 @@
 			from books a join historys b
 			on a.isbn = b.isbn
 			join orders c on b.order_id = c.order_id
-			where order_date between #{momthFirst} and #{mothLast}
+			where order_date between #{monthFirst} and #{monthLast}
 			order by hitcount desc) d
-            where rn <= 50;
+            
 ]]>
 	</select>
 	<select id="newBookSearchPage" resultType="book">

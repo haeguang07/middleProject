@@ -64,7 +64,7 @@ public class HitCountControl implements Control {
 			req.setAttribute("pageInfo", dto);
 			req.setAttribute("shYear", shYear);
 			req.setAttribute("shMonth", shMonth);
-			req.setAttribute("shWeek", shWeek);
+			req.setAttribute("shWeek", monthFirst +" 에서 " +monthLast + " 까지의 검색결과입니다.");
 			System.out.println("post");
 			return "searchpage.tiles";
 		}else if(req.getMethod().equals("GET")){
@@ -94,6 +94,7 @@ public class HitCountControl implements Control {
 		req.setAttribute("category", category);
 		System.out.println(category + "GET");
 		req.setAttribute("pageInfo", dto);
+		System.out.println(dto);
 		//https://blog.munilive.com/posts/create-weekly-selectbox-with-javascript.html
 		System.out.println("GET");
 		return "searchpage.tiles";
