@@ -42,21 +42,22 @@
 		<input type="text" style="display:none" name="userName" value="${userName }">
 		<input type="text" style="display:none" name="userAddress" value="${address }">
 		<input type="text" style="display:none" name="userPost" value="${post }">
+		<input type="text" style="display:none" name="userPhone" value="${phone }">
 		<c:forEach var="i" items="${blist }">
 			<input type="text" style="display:none" name="bookName" value="${i.bookName }">
 			<input type="text" style="display:none" name="basketCount" value="${i.basketCount }">
 			<input type="text" style="display:none" name="bookPrice" value="${i.bookPrice }">
 		</c:forEach>
-		<select id="coupon" name="${i.couponId }" onchange=couponFuntion(this.value)>
+		<select id="coupons" name="couponId" onchange=couponFuntion(this.value)>
 			<c:forEach var="i" items="${clist }">
 				<c:if test="${i.discount eq '0.01' }">
-				<option value="1">1%할인쿠폰</option>
+				<option name="couponId" value="${i.couponId }">1%할인쿠폰</option>
 				</c:if>
 				<c:if test="${i.discount eq '0.03' }">
-				<option value="3">3%할인쿠폰</option>
+				<option name="couponId" value="${i.couponId }">3%할인쿠폰</option>
 				</c:if>
 				<c:if test="${i.discount eq '0.05' }">
-				<option value="5">5%할인쿠폰</option>
+				<option name="couponId" value="${i.couponId }">5%할인쿠폰</option>
 				</c:if>
 			</c:forEach>
 		</select>
@@ -71,13 +72,13 @@
 	<div style="margin:0 auto">
 		<table>
 			<tr>
-				<td><input type="radio" name="remember" style="margin: 15px "><b>카카오</b></td>
-				<td><input type="radio" name="remember" style="margin: 15px"><b>네이버</b></td>
-				<td><input type="radio" name="remember" style="margin: 15px"><b>토스</b></td>
+				<td><input type="radio" name="remember" style="margin: 15px" value="카카오"><b>카카오</b></td>
+				<td><input type="radio" name="remember" style="margin: 15px" value="네이버"><b>네이버</b></td>
+				<td><input type="radio" name="remember" style="margin: 15px" value="토스"><b>토스</b></td>
 			</tr><tr>
-				<td><input type="radio" name="remember" style="margin: 15px"><b>신용카드</b></td>
-				<td><input type="radio" name="remember" style="margin: 15px"><b>계좌이체</b></td>
-				<td><input type="radio" name="remember" style="margin: 15px"><b>페이코</b></td>
+				<td><input type="radio" name="remember" style="margin: 15px" value="신용카드"><b>신용카드</b></td>
+				<td><input type="radio" name="remember" style="margin: 15px" value="계좌이체"><b>계좌이체</b></td>
+				<td><input type="radio" name="remember" style="margin: 15px" value="페이코"><b>페이코</b></td>
 			</tr>
 		</table>
 	</div>
@@ -94,14 +95,14 @@
 			<fmt:parseNumber var="totalSpoint" integerOnly="true" value= "${(totalPrice*0.05) }"/>
 			</c:when>
 		</c:choose>
-		<tr><td>총 가격 : <input type="text" id="totalPrice" style="width:100px;border:none" value="${totalPrice }"></td></tr>
+		<tr><td>총 가격 : <input type="text" id="totalPrice" name="totalPrice" style="width:100px;border:none" value="${totalPrice }"></td></tr>
 		<tr><td>할인금액 : <input type="text" id="totalSpoint" style="width:100px;border:none" value="${totalSpoint }"></td></tr>
 		<tr><td>쿠폰할인금액 : <input type="text" id="totalSSpoint" style="width:150px;border:none" value=""></td></tr>
 		<tr><td>결제금액 : <input type="text" name="totalPriceEnd" id="totalPriceCount" style="width:100px;border:none" value=""></td></tr>
 	  </table>
 	</div>
 	<div style="text-align:right; padding-right:200px; padding-top:30px; padding-bottom:30px">
-		<input id="payMent" type="submit" value="결제하기" style="padding:5px 15px" onclick="javascript: form.action='payMent.do';"/>
+		<input id="payMent" type="submit" value="결제하기" style="padding:5px 15px" onclick="javascript: form.action='ordercomplete.do';"/>
 	</div>
 </form>
 <div id="MOVE_TOP_BTN">
@@ -120,15 +121,19 @@
 <!-- Core theme JS-->
 <script src="js/scripts.js"></script>
 <script>
-let optiontext = document.getElementById('coupon');
-console.log(optiontext);
 const result = document.getElementById('totalSSpoint');
 const resultPrice = document.getElementById('totalPriceCount');
 let totalPriceCount = document.getElementById('totalPriceCount');
 console.log(result);
 function couponFuntion(coupons){
 	console.log(coupons);
-	if(coupons == 1){
+	var coupons = document.getElementById('coupons');
+    var option = coupons.options[coupons.selectedIndex];
+    let value = option.value;
+    console.log(value);
+    let text = option.text;
+    console.log(text);
+	if(text === '1%할인쿠폰'){
 		let totalSSpoint = document.getElementById('totalSSpoint').value;
 		let totalSpoint = document.getElementById('totalSpoint').value;
 		totalSSpoint = 0;
@@ -139,7 +144,7 @@ function couponFuntion(coupons){
 		console.log(totalSSpoint);
 		result.value = totalSSpoint;
 		resultPrice.value = (totalPrice*1)-((totalSSpoint*1)+(totalSpoint*1));
-	}else if(coupons == 3){
+	}else if(text === '3%할인쿠폰'){
 		let totalSSpoint = document.getElementById('totalSSpoint').value;
 		let totalSpoint = document.getElementById('totalSpoint').value;
 		totalSSpoint = 0;
@@ -150,7 +155,7 @@ function couponFuntion(coupons){
 		console.log(totalSSpoint);
 		result.value = totalSSpoint;
 		resultPrice.value = (totalPrice*1)-((totalSSpoint*1)+(totalSpoint*1));
-	}else if(coupons == 5){
+	}else if(text === '5%할인쿠폰'){
 		let totalSSpoint = document.getElementById('totalSSpoint').value;
 		totalSSpoint = 0;
 		result.value = 0;

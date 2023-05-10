@@ -40,13 +40,13 @@
 		<table style="margin:0 auto">
 			<tr>
 				<td style="padding-top:70px;text-align:center">결재가 성공적으로 완료되었습니다</td></tr>
-	 			<tr><td style="text-align:center">상제정보는 마이페이지><a href='#'>주문정보</a>에서 확인할 수 있습니다</td>
+	 			<tr><td style="text-align:center">상세정보는 마이페이지><a href='myPageMain.do'>주문정보</a>에서 확인할 수 있습니다</td>
 			</tr>
 		</table>
 	</div>
 	</div>
 	<div style="text-align:right; padding-right:200px; padding-top:30px; padding-bottom:30px">
-		<button type="submit" value="홈으로">홈으로</button>
+		<button type="button" value="홈으로" onclick="location.href='main.do';">홈으로</button>
 	</div>
 	<div id="MOVE_TOP_BTN">
 		<a href="#"><div style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative">
