@@ -27,7 +27,7 @@ public class PayMentControl implements Control {
 			System.out.println("책이름 : "+bookName[i]);
 			System.out.println("담은 개수 : "+basketCount[i]);
 		}
-		return "payMent.tiles";
+		return "ordercomplete.tiles";
 	}
 
 }
