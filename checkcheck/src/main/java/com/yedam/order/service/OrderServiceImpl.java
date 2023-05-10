@@ -14,18 +14,23 @@ public class OrderServiceImpl implements OrderService {
 	
 	@Override
 	public List<OrderVO> OrderList(String userId,int page) {
-		// TODO Auto-generated method stub
 		return mapper.selectOrderUserId(userId, page);
 	}
 	@Override
 	public List<OrderVO> OrderSearch(String orderId) {
-		// TODO Auto-generated method stub
 		return mapper.selectOrderOrderId(orderId);
 	}
 	@Override
-	public int gettotal(String userId) {
-		
+	public int getTotal(String userId) {
 		return mapper.getCount(userId);
+	}
+	@Override
+	public int getCancelTotal(String userId) {
+		return mapper.getCancleCount(userId);
+	}
+	@Override
+	public int getPresentTotal(String userId) {
+		return mapper.getPresentCount(userId);
 	}
 	@Override
 	public boolean orderCancel(String orderId) {
@@ -34,6 +39,14 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public boolean orderChange(OrderVO vo) {
 		return mapper.adrUpdate(vo)==1;
+	}
+	@Override
+	public List<OrderVO> OrderCancelList(String userId, int page) {
+		return mapper.selectOrderCancel(userId, page);
+	}
+	@Override
+	public List<OrderVO> OrderPresentList(String userId, int page) {
+		return mapper.selectOrderPresent(userId, page);
 	}
 	
 	

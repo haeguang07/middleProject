@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <script src="//cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
 <script>
 	document.addEventListener("DOMContentLoaded", function () {
@@ -18,7 +19,7 @@
 .pagination2 a {
 	color: black;
 	float: left;
-	padding: 15px 30px;
+	padding: 5px 10px;
 	text-decoration: none;
 }
 
@@ -59,7 +60,8 @@
 		<option value="2021">2021년</option>
 		<option value="2020">2020년</option>
 		<option value="2019">2019년</option>
-	</select> <select>
+	</select> <select>	
+		<option value="all">전체</option>
 		<option value="01">1월</option>
 		<option value="02">2월</option>
 		<option value="03">3월</option>
@@ -75,7 +77,7 @@
 	</select>
 	<button>검색</button>
 </div>
-<div>
+<div style="text-align: center">
 	<table>
 		<tr>
 			<th>문의일</th>
@@ -83,18 +85,36 @@
 			<th>문의제목</th>
 			<th>답변여부</th>
 		</tr>
-
 		<c:forEach var="b" items="${list }">
-			문의내용 
+	
 			<tr>
-				<td>${b.boardDate }</td>
+				<td><fmt:parseDate var="bDate" value="${b.boardDate }" pattern="YYYY-MM-dd HH:mm:ss"/>
+					<fmt:formatDate value="${bDate }" pattern="YY년 MM월 dd일"/>  </td>
 				<td>${b.boardId }</td>
 				<td>${b.boardTitle }</td>
 				<td>${b.checks }</td>
 			</tr>
 		</c:forEach>
 	</table>
-	
+</div>
+<div style="text-align: center">
+	<div class="pagination2">
+		<c:if test="${pageInfo.prev }">
+			<a
+				href="myPageinquiry.do?page=${pageInfo.startPage-1 }&userId=${sesInfo.userId}">
+				이전페이지</a>
+		</c:if>
+		<c:forEach var="i" begin="${pageInfo.startPage}"
+			end="${pageInfo.endPage}">
+			<a class="${i==pageInfo.pageNum ? 'active1':'' }"
+				href="myPageinquiry.do?page=${i}&userId=${sesInfo.userId}">${i} </a>
+		</c:forEach>
+		<c:if test="${pageInfo.next }">
+			<a
+				href="myPageinquiry.do?page=${pageInfo.endPage+1 }&userId=${sesInfo.userId}">
+				다음페이지</a>
+		</c:if>
+	</div>
 </div>
 <script>
 	let btn = document.querySelector('#btn');
@@ -122,6 +142,7 @@
 						table.children[0].children[1].children[0].value='';
 						CKEDITOR.instances.subject.setData('');
 						alert('문의 등록 완료');
+						location.reload();
 					} else if (result.retCode == 'Fail') {
 						alert('등록실패');
 					} else {

@@ -27,7 +27,7 @@ public class MypageinquiryControl implements Control {
 		int page = Integer.parseInt(pageStr);
 		List<BoardVO> list = service.getInquiryList(vo.getUserId(),page);
 		int total = service.inquiryTotal(vo.getUserId());
-
+		
 		PageDTO dto = new PageDTO(page, total);
 		req.setAttribute("list", list);
 		req.setAttribute("pageInfo", dto);
