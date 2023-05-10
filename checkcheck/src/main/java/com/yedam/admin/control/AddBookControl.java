@@ -13,6 +13,7 @@ import org.json.JSONObject;
 
 import com.yedam.book.domain.BookVO;
 import com.yedam.common.Control;
+import com.yedam.common.PageDTO;
 
 public class AddBookControl implements Control {
 
@@ -21,6 +22,11 @@ public class AddBookControl implements Control {
 		if(req.getMethod().equals("POST")) {
 			String[] formData = req.getParameterValues("name");
 			List<BookVO> list = new ArrayList<>();
+			String pageStr = req.getParameter("page");
+			pageStr = pageStr == null ? "1" : pageStr ;
+			int page = Integer.parseInt(pageStr);
+			int total = formData.length;
+			PageDTO dto = new PageDTO(page,total);
 			
 			for(int i =0;i<formData.length ; i++) {
 				BookVO vo = new BookVO();
@@ -42,6 +48,7 @@ public class AddBookControl implements Control {
 			}
 			System.out.println(list);
 			req.setAttribute("booklist", list);
+			req.setAttribute("pageInfo", dto);
 			req.setAttribute("test", "test");
 			return "admin/addBook.tiles";
 		}

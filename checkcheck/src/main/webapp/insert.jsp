@@ -33,11 +33,8 @@
 //			COVER                  VARCHAR2(100)  
 	  // 콜백 함수입니다.
 		  function bookDisplay(success, data) {
-			console.log(data);
-		 	$('.ala').append("<img  src='"+data.item[0].cover+"'>")
 		 	 for(let i = 0 ; i < data.item.length ; i++){
 		 	var formData = {"name" : [data.item[i].isbn13 ,data.item[i].title , data.item[i].priceStandard , data.item[i].author ,data.item[i].publisher,data.item[i].categoryName , data.item[i].description,0,0,0,data.item[i].cover,data.item[i].pubDate  ]};
-		 	console.log(formData);
 			    $.ajax({
 			        type: "post",
 			        url: "insertbook.do",
@@ -55,7 +52,6 @@
 		     jsonp: "bookDisplay",
 		     dataType: "jsonp"
 		  });
-	 
 		  
 	}
 
