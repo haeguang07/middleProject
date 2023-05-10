@@ -35,6 +35,7 @@ public class AddBookControl implements Control {
 				System.out.println(map);
 				String[] strArr = {"title" , "publisher", "cover" ,"author" , "priceStandard" , "isbn13" , "categoryName" ,"pubDate","description"};
 				
+				
 					vo.setBookName((String) map.get(strArr[0]));
 					vo.setPublisher((String) map.get(strArr[1]));
 					vo.setCover((String) map.get(strArr[2]));
