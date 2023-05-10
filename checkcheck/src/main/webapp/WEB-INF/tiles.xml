@@ -26,8 +26,8 @@
     <definition name="WILDCARD:myPage/*" extends="mypage">
   	<put-attribute name="body" value="/WEB-INF/views/myPage/{1}.jsp"></put-attribute>
   </definition>
-    <definition name="WILDCARD:*/*" extends="user">
-  	<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp"></put-attribute>
+    <definition name="WILDCARD:user/*" extends="user">
+  	<put-attribute name="body" value="/WEB-INF/views/user/{1}.jsp"></put-attribute>
   </definition>
   <definition name="WILDCARD:*" extends="user">
   	<put-attribute name="body" value="/WEB-INF/views/{1}.jsp"></put-attribute>
