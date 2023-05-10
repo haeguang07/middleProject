@@ -33,6 +33,7 @@ import com.yedam.book.control.BestSellerControl;
 import com.yedam.book.control.HitCountControl;
 import com.yedam.book.control.InsertBookControl;
 import com.yedam.book.control.NewBookSearchControl;
+import com.yedam.comment.control.addAnswerControl;
 import com.yedam.coupon.control.CouponInfoControl;
 import com.yedam.order.control.CancelOrderControl;
 import com.yedam.order.control.ModifyShippingControl;
@@ -95,6 +96,8 @@ public class FrontController extends HttpServlet {
 		map.put("/noAnwserboard2.do", new NoAnwserboard2Control());
 		// 05-03 관리자 문의작성 페이지
 		map.put("/inquiryAnswerForm.do", new InquiryAnswerFormControl());
+		//관리자 문의 답변 기능
+		map.put("/addAnswer.do", new addAnswerControl());
 		// 05-05 nav 의 베스트셀러 항목 누를시 베스트셀러 보여줌
 		map.put("/bestSeller.do", new BestSellerControl());
 		// 05-07 화제의책 searchpage
