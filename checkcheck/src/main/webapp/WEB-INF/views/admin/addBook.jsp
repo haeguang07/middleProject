@@ -104,20 +104,26 @@
         	console.log(empty);
         	let realdata = {"name": empty};
         	
-        	console.log(JSON.stringify(data.item));
+        	
         	/* let formDataArr ={"name":[]};
 		 	 for(let i = 0 ; i < data.item.length ; i++){ 
 		 	let formData = [data.item[i].isbn13 ,data.item[i].title , data.item[i].priceStandard , data.item[i].author ,data.item[i].publisher,data.item[i].categoryName , data.item[i].description,data.item[i].cover,data.item[i].pubDate];
 		 	formDataArr.push(formData);
 		 	} */
-			     $.ajax({
-			        type: "post",
-			        url: "addBook.do",
-			        dataType: "json",
-			        data: realdata,
-			        success: function (data) {
-			        }
-			    }); 
+        	 let f = document.createElement('form');
+        	 for(let i=0;i<empty.length;i++){
+        		let input =	 document.createElement('input');
+        		input.id =i;
+        		input.name="name";
+        		input.value=empty[i];
+        		console.log(input.value);
+        		f.append(input);
+        	 }
+        	 f.setAttribute('method', 'post');
+        	 f.setAttribute('action', 'addBook.do');
+        	 document.body.appendChild(f);
+        	 f.submit();
+        	 return;
 		 	    
 		    
 		 	}
