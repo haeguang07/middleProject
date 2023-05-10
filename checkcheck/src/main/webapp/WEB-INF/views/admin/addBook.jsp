@@ -63,9 +63,10 @@
 	</c:forEach>
 	<!-- 반복끝 -->
 	<!-- 페이징  -->
-	<div
-		style="text-align: center; width: 1200px; height: 50px; padding: 30px 0; margin-bottom: 50px">
-		<div class="pagination2"></div>
+	<div style="text-align: center; width: 1200px; height: 50px; padding: 30px 0; margin-bottom: 50px">
+		<div class="pagination2">
+		
+		</div>
 	</div>
 </form>
 <script src="https://code.jquery.com/jquery-3.6.4.js"
@@ -104,7 +105,7 @@
         	console.log(empty);
         	let realdata = {"name": empty};
         	
-        	
+			
         	/* let formDataArr ={"name":[]};
 		 	 for(let i = 0 ; i < data.item.length ; i++){ 
 		 	let formData = [data.item[i].isbn13 ,data.item[i].title , data.item[i].priceStandard , data.item[i].author ,data.item[i].publisher,data.item[i].categoryName , data.item[i].description,data.item[i].cover,data.item[i].pubDate];

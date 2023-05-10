@@ -38,7 +38,7 @@ public class BasketControl implements Control {
 		int total=0;
 		for(int i=0;i<list.size();i++) {
 			System.out.println(list.get(i).getBookPrice());
-			total += list.get(i).getBookPrice();
+			total += (list.get(i).getBookPrice())*list.get(i).getBasketCount();
 		}
 		req.setAttribute("total", total);
 		System.out.println(total);

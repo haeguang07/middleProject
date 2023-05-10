@@ -39,5 +39,6 @@
   	<mapper resource="com/yedam/coupon/mapper/CouponMapper.xml" />
   	<mapper resource="com/yedam/board/mapper/BoardMapper.xml" />
   	<mapper resource="com/yedam/comment/mapper/CommentMapper.xml" />
+  	<mapper resource="com/yedam/ordercomplete/mapper/CompleteMapper.xml" />
   </mappers>
 </configuration>

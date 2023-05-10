@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <!-- 05-02 김영환 -->
 <html lang="en">
@@ -27,91 +27,106 @@
 <div style="width: 1100px;">
 	<p></p>
 	<p style="width: 700px; text-align: right; display: inline-block">step01</p>
-	<p style="width: 100px; text-align: right; display: inline-block; color: red; font-weight: 700">step02</p>
+	<p
+		style="width: 100px; text-align: right; display: inline-block; color: red; font-weight: 700">step02</p>
 	<p style="width: 100px; text-align: right; display: inline-block">step03</p>
 	<p style="width: 100px; text-align: right; display: inline-block">step04</p>
 	<p></p>
 	<p style="width: 705px; text-align: right; display: inline-block">장바구니</p>
-	<p style="width: 100px; text-align: right; display: inline-block; color: red; font-weight: 700">배송정보</p>
+	<p
+		style="width: 100px; text-align: right; display: inline-block; color: red; font-weight: 700">배송정보</p>
 	<p style="width: 100px; text-align: right; display: inline-block">결제정보</p>
 	<p style="width: 100px; text-align: right; display: inline-block">주문완료</p>
 </div>
-<div style="text-align: center;margin: 0 auto">
-	<div id="divdelivery" style="margin: 0 auto">
-		<table style="width: 900px;margin: 0 auto">
-			<tr>
-				<td style="width: 500px; text-align: center; display: inline-block">상품명</td>
-				<td style="width: 180px; text-align: center; display: inline-block">가격</td>
-				<td style="width: 150px; text-align: center; display: inline-block">수량</td>
-			</tr>
-			<c:set var="total" value="0"></c:set>
-			<c:forEach var="i" items="${list }">
-			<c:set var="total" value="${i.bookPrice*i.basketCount + total }"></c:set>
-			<tr>
-				<td style="width: 500px; text-align: center; display: inline-block">${i.bookName }</td>
-				<td style="width: 180px; text-align: center; display: inline-block">${i.bookPrice }/${i.bookPrice/100 }</td>
-				<td style="width: 150px; text-align: center; display: inline-block">${i.basketCount }</td>
-			</tr>
-			</c:forEach>
-			<tr><td style="width: 500px; text-align: center; display: inline-block">총가격 : ${total }</td></tr>
-		</table>
-	</div>
-	<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4" style="margin: 0 auto">
-
-		<form action="" method="post"
-			style="position: relative; width: 300px; text-align: center; display: inline-block">
+<div style="width: 1100px; text-align: center">
+<form method="post"
+	style="position: relative; text-align: center; display: inline-block">
+	<fieldset>
+		<div style="text-align: center; margin: 0 auto">
+			<div id="divdelivery" style="margin: 0 auto">
+				<table style="width: 900px; margin: 0 auto">
+					<tr>
+						<td style="width: 400px; text-align: center; display: inline-block">상품명</td>
+						<td style="width: 150px; text-align: center; display: inline-block">가격</td>
+						<td style="width: 150px; text-align: center; display: inline-block">수량</td>
+					</tr>
+					<c:set var="total" value="0"></c:set>
+					<c:forEach var="i" items="${list }">
+						<c:set var="total" value="${i.bookPrice*i.basketCount + total }"></c:set>
+						<tr>
+							<td style="text-align:left"><input type="text" name="bookName" id="bookName" style="width: 500px; text-align: center; display: inline-block;border:none" value="${i.bookName }"></td>
+							<td style="text-align:left"><input type="text" name="bookPrice" id="bookPrice" style="width: 80px; text-align: center; display: inline-block;border:none" value="${i.bookPrice }">/<input type="text"
+							style="width: 80px; text-align: center; display: inline-block;border:none" value="${i.bookPrice/100 }"></td>
+							<td style="text-align:left"><input type="text" name="basketCount" id="basketCount" style="width: 150px; text-align: center; display: inline-block;border:none" value="${i.basketCount }"></td>
+						</tr>
+					</c:forEach>
+					<tr>
+						<td>총가격 : <input type="text" name="totalPrice" id="totalPrice" style="width: 80px; text-align: center; display: inline-block;border:none" value="${total }">원</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4"
+			style="margin: 0 auto ;width:1000px;text-align:center">
 			<table>
-				<tr>
-					<td style="width: 250px" style="word-break:break-all">배송지 정보<br></td></tr>
-					<tr><td style="width: 250px;height:50px;word-break: break-all">주문인</td></tr>
-					<tr><td style="width: 250px;height:50px;word-break: break-all">우편번호</td></tr>
-					<tr><td style="width: 250px;height:50px;word-break: break-all">주소</td></tr>
-					<tr><td style="width: 250px;height:50px;word-break: break-all">휴대전화번호</td>
-				</tr>
-				
+				<tr><td style="width: 250px" style="word-break:break-all">배송지 정보<br></td></tr>
+				<tr><td style="width: 250px; height: 50px; word-break: break-all">주문인</td></tr>
+				<tr><td style="width: 250px; height: 50px; word-break: break-all">우편번호</td></tr>
+				<tr><td style="width: 250px; height: 50px; word-break: break-all">주소</td></tr>
+				<tr><td style="width: 250px; height: 50px; word-break: break-all">휴대전화번호</td></tr>
+
 			</table>
-		</form>
-		<form action="" method="post"
-			style="position: relative; width: 500px; text-align: center; display: inline-block;margin: 0 auto">
 			<c:choose>
-			<c:when test="${state == 1}">
-				<table>
-					<tr><td style="width: 200px;height:30px"></td></tr>
-					<tr><td style="width: 200px;height:40px;word-break:break-all"><input name="name"></td></tr>
-					<tr><td style="width: 200px;height:40px;word-break:break-all"><input id="Post" name="post"></td>
-						<td><button type="button" onclick="execDaumPostcode()">우편번호 찾기</button></td></tr>
-					<tr><td style="width: 400px;height:50px;word-break:break-all"><input name="address" id="address"></td></tr>
-					<tr><td style="width: 400px;height:55px;word-break:break-all"><input name="phone"></td></tr>
-				</table>
-			</c:when>
-			<c:otherwise>
-				<table>
-					<tr><td style="width: 200px;height:30px"></td></tr>
-					<tr><td style="width: 200px;height:40px;word-break:break-all"><input name="name"value="${sesInfo.userName }" style="border:none" readonly></td></tr>
-					<tr><td style="width: 400px;height:50px;word-break:break-all"><input name="name"value="${sesInfo.userPost }" style="border:none" readonly></td></tr>
-					<tr><td style="width: 400px;height:50px;word-break:break-all"><input name="name"value="${sesInfo.userAddress }" style="border:none" readonly></td></tr>
-					<tr><td style="width: 400px;height:55px;word-break:break-all"><input name="name"value="${sesInfo.userPhone }" style="border:none" readonly></td></tr>
-				</table>
-			</c:otherwise>
+				<c:when test="${state eq '1'}">
+					<table>
+						<tr><td style="width: 200px; height: 30px"></td></tr>
+						<tr><td style="width: 200px; height: 40px; word-break: break-all"><input id="Name" name="name"></td></tr>
+						<tr><td style="width: 200px; height: 40px; word-break: break-all"><input id="Post" name="post"></td>
+							<td><button id="postchange" type="button" style="padding:20px 80px;margin-left:50px;" onclick="execDaumPostcode()">우편번호 찾기</button></td>
+						</tr>
+						<tr><td style="width: 400px; height: 50px; word-break: break-all"><input id="Address" name="address"></td></tr>
+						<tr><td style="width: 400px; height: 55px; word-break: break-all"><input id="Phone" name="phone"></td></tr>
+					</table>
+				</c:when>
+				<c:otherwise>
+					<table>
+						<tr><td style="width: 200px; height: 30px"></td></tr>
+						<tr><td style="width: 200px; height: 40px; word-break: break-all"><input
+								id="Name" name="name" value="${sesInfo.userName }" style="border: none"
+								readonly></td></tr>
+						<tr><td style="width: 400px; height: 50px; word-break: break-all"><input
+								id="Post" name="post" value="${sesInfo.userPost }" style="border: none"
+								readonly></td></tr>
+						<tr><td style="width: 400px; height: 50px; word-break: break-all"><input
+								id="Address" name="address" value="${sesInfo.userAddress }" style="border: none"
+								readonly></td></tr>
+						<tr><td style="width: 400px; height: 55px; word-break: break-all"><input
+								id="Phone" name="phone" value="${sesInfo.userPhone }" style="border: none"
+								readonly></td></tr>
+					</table>
+				</c:otherwise>
 			</c:choose>
-			<button type="submit" ></button>
-		</form>
-	</div>
+		</div>
+	</fieldset>
+	<div style="margin:0 auto; text-align:right"><button type="submit" style="padding: 15px 25px;margin:50px" value="" onclick="javascript: form.action='waitpayment.do';"/>결제하기</button></div>
+</form>
 </div>
 <div id="MOVE_TOP_BTN">
 	<a href="#"><div
 			style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative">
-			<p style="font-size: 12px; position: absolute; top: 15px; left: 15px;">top</p>
-		</div></a> <a href="#"><div style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative">
+			<p
+				style="font-size: 12px; position: absolute; top: 15px; left: 15px;">top</p>
+		</div></a> <a href="#"><div
+			style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative">
 			<p style="font-size: 12px; position: absolute; top: 15px; left: 5px;">로그인</p>
-		</div></a> <a href="#"><div style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative">
+		</div></a> <a href="#"><div
+			style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative">
 			<p style="font-size: 10px; position: absolute; top: 15px; left: 5px;">회원가입</p>
 		</div></a>
 </div>
 <!-- Footer-->
 <!-- Bootstrap core JS-->
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
 <script src="js/scripts.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js?autoload=false"></script>
@@ -147,9 +162,9 @@ function execDaumPostcode() {
           }
           // 우편번호와 주소 정보를 해당 필드에 넣는다.
           document.getElementById('Post').value = data.zonecode;
-          document.getElementById("address").value = addr;
+          document.getElementById("Address").value = addr;
           // 커서를 상세주소 필드로 이동한다.
-          document.getElementById("address").focus();
+          document.getElementById("Address").focus();
         }
       }).open();
     });
@@ -170,12 +185,4 @@ function execDaumPostcode() {
 			return false;
 		});
 	});
-	function selectAll(selectAll)  {
-		  const checkboxes 
-		     = document.querySelectorAll('input[type="checkbox"]');
-		  
-		  checkboxes.forEach((checkbox) => {
-		    checkbox.checked = selectAll.checked
-		  })
-		}
 </script>
