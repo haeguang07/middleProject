@@ -19,10 +19,11 @@
 					<li class="nav-item dropdown"></li>
 				</ul>
 				<form class="d-flex">
-					<div class="btn btn-outline-dark">
-						<i class="bi-cart-fill me-1"></i> Cart <span
-							class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-					</div>
+					<c:if test="${not empty sesInfo }">
+					<button class="btn btn-outline-dark" type="button"
+						onclick="location.href='basket.do'"><i class="bi-cart-fill me-1">Cart</i><span
+							class="badge bg-dark text-white ms-1 rounded-pill">0</span></button>
+					</c:if>
 					<c:if test="${empty sesInfo }">
 					<button class="btn btn-outline-dark" type="button"
 						onclick="location.href='login.do'">로그인</button>

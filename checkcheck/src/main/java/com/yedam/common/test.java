@@ -1,10 +1,15 @@
 package com.yedam.common;
 
 import java.io.IOException;
+<<<<<<< HEAD
 import java.util.Arrays;
+=======
+import java.util.Date;
+>>>>>>> branch 'main' of https://github.com/haeguang07/middleProject.git
 
 public class test {
 	public static void main(String[] args) throws IOException {
+<<<<<<< HEAD
 //		String URL = "https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=235079549&amp;copyPaper=1&amp;ttbkey=ttbhbj040030858001&amp;start=api";
 //		Document doc = Jsoup.connect(URL).get();
 //		
@@ -15,5 +20,9 @@ public class test {
 		System.out.println((Arrays.toString(str)).replaceAll("\\[","").replaceAll("\\]",""));
 		
 		
+=======
+		Date date = new Date();
+		System.out.println(date.getTime());
+>>>>>>> branch 'main' of https://github.com/haeguang07/middleProject.git
 	}
 }

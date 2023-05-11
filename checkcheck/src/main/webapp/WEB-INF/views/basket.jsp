@@ -69,6 +69,7 @@
 								<input type="reset"></input>
 							</td>
 							<td><input id="isbn" name="isbn" value=${i.isbn }></td>
+							<td style="display:none"><input type="text" id="basketId" name="basketId" style="display:none" value="${i.basketId }"></td>
 						</tr>
 						</table>
 					</filedset>
@@ -138,7 +139,9 @@
 	  let isbn = this.parentElement.parentElement.children[7].children[0].value;
 	  let bookName = this.parentElement.parentElement.children[2].children[0].value;
 	  let proAddress = document.querySelector('#proaddress').value;
-	  console.log(proAddress);
+	  
+	  let basketId = this.parentElement.parentElement.children[8].children[0].value;
+	  console.log(basketId)
 	  if(this.value === '+') {
 	    number = parseInt(number) + 1;
 	    if(number > this.parentElement.children[4].innerText){
@@ -164,8 +167,10 @@
 	  // 결과 출력
 	  resultElement.value = number;
 	  let checkbox = this.parentElement.parentElement.children[0].children[0];
-	  checkbox.value = "{'bookName':'"+bookName+"','bookPrice':'"+bookprice+"','isbn':'"+isbn+"','basketCount':'"+number+"','proAddress':'"+proAddress+"'}";
-	  console.log(checkbox);
+	  checkbox.value = "{'bookName':'"+bookName+"','bookPrice':'"+bookprice+"','isbn':'"+isbn+"','basketCount':'"+number+"','proAddress':'"+proAddress+"','basketId':'"+basketId+"'}";
+	  console.log(checkbox.value);
+	  console.log('장바구니아이디'+basketId);
+	  console.log(proAddress);	
 	  
 	})})
 	let remember = document.querySelectorAll('.remember');

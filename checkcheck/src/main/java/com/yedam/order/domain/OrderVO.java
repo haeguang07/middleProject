@@ -33,5 +33,5 @@ public class OrderVO {
 	private int num;
 	private int price;
 	private String cover;
-	
+	private long isbn;
 }

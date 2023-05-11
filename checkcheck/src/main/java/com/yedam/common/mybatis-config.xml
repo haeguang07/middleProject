@@ -18,6 +18,7 @@
   <typeAlias alias="coupon" type="com.yedam.coupon.domain.CouponVO" />
   <typeAlias alias="board" type="com.yedam.board.domain.BoardVO" />
   <typeAlias alias="comment" type="com.yedam.comment.domain.CommentVO" />
+  <typeAlias alias="history" type="com.yedam.history.domain.HistoryVO" />
   </typeAliases>
   <environments default="development">
     <environment id="development">

@@ -58,6 +58,13 @@
 							<td style="text-align:left"><input type="text" name="bookPrice" id="bookPrice" style="width: 80px; text-align: center; display: inline-block;border:none" value="${i.bookPrice }">/<input type="text"
 							style="width: 80px; text-align: center; display: inline-block;border:none" value="${i.bookPrice/100 }"></td>
 							<td style="text-align:left"><input type="text" name="basketCount" id="basketCount" style="width: 150px; text-align: center; display: inline-block;border:none" value="${i.basketCount }"></td>
+							<c:choose>
+								<c:when test="${empty i.basketId }">
+								</c:when>
+								<c:when test="${not empty i.basketId }">
+									<td style="display:none"><input type="text" id="basketId" name="basketId" style="display:none" value="${i.basketId }"></td>
+								</c:when>
+							</c:choose>
 						</tr>
 					</c:forEach>
 					<tr>
@@ -131,6 +138,8 @@
 <script src="js/scripts.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js?autoload=false"></script>
 <script>
+let basketId = document.getElementById('basketId').value;
+console.log(basketId);
 function execDaumPostcode() {
     daum.postcode.load(function () {
       new daum.Postcode({
