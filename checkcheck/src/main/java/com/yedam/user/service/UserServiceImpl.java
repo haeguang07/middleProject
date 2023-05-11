@@ -42,6 +42,24 @@ public class UserServiceImpl implements UserService {
 	public boolean modifyPw(String pw, String userId) {
 		return mapper.pwUpdate(pw, userId)==1;
 	}
+
+
+	@Override
+	public UserVO checkUid(String userId) {
+		return mapper.selectUserId(userId);
+	}
+
+
+	@Override
+	public UserVO checkNick(String nickname) {
+		return mapper.selectNickname(nickname);
+	}
+
+
+	@Override
+	public List<UserVO> userList() {
+		return mapper.selectUserList();
+	}
 	
 	
 
