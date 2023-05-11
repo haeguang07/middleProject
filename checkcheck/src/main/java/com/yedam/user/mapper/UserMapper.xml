@@ -3,22 +3,38 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yedam.user.mapper.UserMapper">
+	<select id="selectUserList" resultType="user">
+		select * from users_test
+	</select>
 	<select id="selectUser" resultType="user" parameterType="user">
-		select * from users where user_id=#{userId} AND user_pw=#{userPw}
+		select *
+		from users where user_id=#{userId} AND user_pw=#{userPw}
 	</select>
 	<insert id="insertUser" parameterType="user">
-		insert into users (user_id,user_pw,nickname, user_address,user_post,
-		user_gender,user_phone,user_category,user_email)
+		insert into users
+		(user_id,user_pw,nickname, user_address,user_post,
+		user_gender,user_phone,user_category,email,user_birth, user_name)
 		values(#{userId},#{userPw},#{nickname},#{userAddress},#{userPost},
-		#{userGender},#{userPhone},#{userCategory},#{userEmail})
+		#{userGender},#{userPhone},#{userCategory},#{email},#{userBirth},#{userName})
 	</insert>
 	<update id="nickUpdate">
-		update users set nickname=#{nickname} Where user_id=#{userId}
+		update users set nickname=#{nickname} Where
+		user_id=#{userId}
 	</update>
 	<update id="adrUpdate">
-		update users set user_address=#{address}, user_post=#{post} Where user_id=#{userId}
+		update users set user_address=#{address},
+		user_post=#{post} Where user_id=#{userId}
 	</update>
 	<update id="pwUpdate">
-		update users set user_pw=#{pw} Where user_id=#{userId}
+		update users set user_pw=#{pw} Where
+		user_id=#{userId}
 	</update>
+	<select id="selectUserId" resultType="user">
+		select * from users where
+		user_id= #{userId}
+	</select>
+	<select id="selectNickname" resultType="user">
+		select * from users where
+		nickname= #{nickname}
+	</select>
 </mapper>

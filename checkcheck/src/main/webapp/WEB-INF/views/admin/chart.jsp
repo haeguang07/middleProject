@@ -8,16 +8,14 @@
       function drawChart() {
 
         var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
+          ['성별', '회원수'],
+          ['남성',   ${genderCount[0]}],
+          ['여성',   ${genderCount[1]}]
+          
         ]);
 
         var options = {
-          title: 'My Daily Activities'
+          title: '회원 남녀 분포'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -34,16 +32,17 @@
       function drawChart2() {
 
         var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     2],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    2]
+          ['연령', '회원수'],
+          ['10대',  ${ageCount[0]}],
+          ['20대',  ${ageCount[1]}],
+          ['30대',  ${ageCount[2]}],
+          ['40대',  ${ageCount[3]}],
+          ['50대',  ${ageCount[4]}],
+          ['60대이상',  ${ageCount[5]}]
         ]);
 
         var options = {
-          title: 'My Daily Activities'
+          title: '회원 연령 분포'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
@@ -68,9 +67,9 @@
         ]);
 
         var options = {
-          title : 'Monthly Coffee Production by Country',
-          vAxis: {title: 'Cups'},
-          hAxis: {title: 'Month'},
+          title : '연령별 선호 장르',
+          vAxis: {title: '매출'},
+          hAxis: {title: '연령'},
           seriesType: 'bars',
           series: {5: {type: 'line'}}
         };
@@ -93,8 +92,7 @@
 
         var options = {
           chart: {
-            title: 'Company Performance',
-            subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+            title: '남녀별 선호 장르',
           },
           bars: 'horizontal' // Required for Material Bar Charts.
         };
@@ -117,7 +115,7 @@
         ]);
 
         var options = {
-          title: 'Company Performance',
+          title: '매출',
           curveType: 'function',
           legend: { position: 'bottom' }
         };
@@ -127,6 +125,7 @@
         chart.draw(data, options);
       }
     </script>
+  
     <div style="display:flex;">
 	    <div id="piechart" style="width: 900px; height: 500px;flex:1"></div>
 		<div id="piechart2" style="width: 900px; height: 500px;flex:1"></div>

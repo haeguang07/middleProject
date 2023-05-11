@@ -63,7 +63,7 @@
 					<tr>
 						<td>아이디</td>
 						<td><input type="text" class="textjoin1" id="joinId"></td>
-						<td><button class="joinButton" id="idCheck">중복체크</button></td>
+						<td><button type="button" class="joinButton" id="idCheck">중복체크</button></td>
 					</tr>
 					<tr>
 						<td></td>
@@ -87,8 +87,7 @@
 						<td>주소</td>
 						<td><input type="text" class="textjoin1" name="joinPost" id="joinPost" style="width: 90px;"
 								placeholder="우편번호">
-							<button class="joinButton" id="post" onclick="execDaumPostcode()">우편번호
-								찾기</button></td>
+							<button type="button" class="joinButton" id="post" onclick="execDaumPostcode()">우편번호 찾기</button></td>
 					</tr>
 					<tr>
 						<td></td>
@@ -103,17 +102,27 @@
 					<!-- 이메일-->
 					<tr>
 						<td>이메일</td>
-						<td><input type="email" class="textjoin1" name="joinEmail" id="joinEmail"></td>
+						<td><input type="email" class="textjoin1" id="joinEmail"></td>
 						<td><button type="button" class="joinButton" id="sendEmail">인증번호
 								보내기</button></td>
 					</tr>
 					<!-- 인증하기-->
 					<tr>
 						<td></td>
-						<td><input type="text" class="textjoin1" name="certify" id="certifytext">
-						<td><button type="button" class="joinButton" id="certify">인증하기</button></td>
+						<td><input type="text" class="textjoin1" name="certify" id="certifytext" placeholder="인증번호입력">
+						<td><button type="button" class="joinButton" id="certify" >인증하기</button></td>
+					</tr>
+					<!-- 이름 -->
+					<tr>
+						<td>이름</td>
+						<td><input type="text" class="textjoin1" id="joinPhone" name="joinName"></td>
+						<td class="explanText">이름을 입력하세요</td>
 					</tr>
 					<!-- 전화번호-->
+					<tr>
+						<td>전화번호</td>
+						<td><input type="text" class="textjoin1" id="joinPhone" name="joinPhone"></td>
+					</tr>
 					<tr>
 						<td>닉네임</td>
 						<td><input type="text" class="textjoin1" id="nickname"></td>
@@ -122,8 +131,8 @@
 					<!-- 성별-->
 					<tr>
 						<td>성별</td>
-						<td><label><input type="radio" name="gender" id="male" checked="checked">남성</label><label><input
-									type="radio" name="gender" id="female">여성</label></td>
+						<td><label><input type="radio" name="gender" id="male" checked="checked" value="M">남성</label><label><input
+									type="radio" name="gender" id="female" value="F">여성</label></td>
 						<td></td>
 					</tr>
 					<!-- 생년월일-->
@@ -142,50 +151,53 @@
 
 
 				<table>
+
 					<tr>
 						<td colspan="2"><b>관심분야를 설정하세요(최대 5개)</b></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="check1" id="check1">
-							<label for="check1">경제경영</label></td>
-						<td><input type="checkbox" name="check1" id="check2">
-							<label for="check1">건강취미</label></td>
+						<th colspan="2">국내도서</th>
+						<th colspan="2">해외도서</th>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="check1" id="check3">
-							<label for="check1">과학</label></td>
-						<td><input type="checkbox" name="check1" id="check4">
-							<label for="check1">건강/취미</label></td>
+						<td><label><input class="hobby" type="checkbox" name="check1" value="경제경영">경제경영</label></td>
+						<td><label><input class="hobby" type="checkbox" name="check1" value="건강취미">건강취미</label></td>
+						<td><label><input class="hobby" type="checkbox" name="check1" value="ELT/어학/사전">ELT/어학/사전</label></td>
+						<td><label><input class="hobby" type="checkbox" name="check1" value="가정/원예/인테리어">가정/원예/인테리어</label></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="check1" id="check5">
-							<label for="check1">공무원 수험서</label></td>
-						<td><input type="checkbox" name="check1" id="check6">
-							<label for="check1">달력/기타</label></td>
+						<td><label><input class="hobby" type="checkbox" name="check1" value="과학">과학</label></td>
+						<td><label><input class="hobby" type="checkbox" name="check1" value="건강/취미">건강/취미</label></td>
+						<td><label><input class="hobby" type="checkbox" name="check1" value="건강/스포츠">건강/스포츠</label></td>
+						<td><label><input class="hobby" type="checkbox" name="check1" value="경제경영">경제경영</label></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="check1" id="check7">
-							<label for="check1">대학교제</label></td>
-						<td><input type="checkbox" name="check1" id="check8">
-							<label for="check1">만화</label></td>
+						<td><label><input class="hobby" type="checkbox" name="check1" value="공무원">공무원 수험서</label></td>
+						<td><label><input class="hobby" type="checkbox" name="check1" value="달력/기타">달력/기타</label></td>
+						<td><label><input class="hobby" type="checkbox" name="check1" value="공예/취미/수집">공예/취미/수집</label></td>
+						<td><label><input class="hobby" type="checkbox" name="check1" value="외국도서>만화 ">	만화 </label></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="check1" id="check9">
-							<label for="check1">사회과학</label></td>
-						<td><input type="checkbox" name="check1" id="check10">
-							<label for="check1">소설</label></td>
+						<td><label><input class="hobby" type="checkbox" name="check1" value="대학교제">대학교제</label></td>
+						<td><label><input class="hobby" type="checkbox" name="check1" value="국내도서>만화">만화</label></td>
+						<td><label><input class="hobby" type="checkbox" name="check1" value="소설/시/희곡">소설/시/희곡</label></td>
+						<td><label><input class="hobby" type="checkbox" name="check1" value="여행">여행</label></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="check1" id="check11">
-							<label for="check1">어린이</label></td>
-						<td><input type="checkbox" name="check1" id="check12">
-							<label for="check1">에세이</label></td>
+						<td><label><input class="hobby" type="checkbox" name="check1" value="사회과학"> 사회과학</label></td>
+						<td><label><input class="hobby" type="checkbox" name="check1" value="소설"> 소설</label></td>
+						<td><label><input class="hobby" type="checkbox" name="check1" value="역사">역사</label></td>
+						<td><label><input class="hobby" type="checkbox" name="check1" value="요리">요리</label></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="check1" id="check13">
-							<label for="check1">여행</label></td>
-						<td><input type="checkbox" name="check1" id="check14">
-							<label for="check1">역사</label></td>
+						<td><label><input class="hobby" type="checkbox" name="check1" value="어린이">어린이</label></td>
+						<td><label><input class="hobby" type="checkbox" name="check1" value="에세이">에세이</label></td>
+						<td><label><input class="hobby" type="checkbox" name="check1" value="종교/명상/점술">종교/명상/점술</label></td>
+						<td><label><input class="hobby" type="checkbox" name="check1" value="해외잡지">해외잡지</label></td>
+					</tr>
+					<tr>
+						<td><label><input class="hobby" type="checkbox" name="check1" value="여행">여행</label></td>
+						<td><label><input class="hobby" type="checkbox" name="check1" value="역사"> 역사</label></td>
 					</tr>
 					<tr>
 						<td colspan="2" style="text-align: center;"><button id="submit">회원가입하기</button></td>
@@ -194,8 +206,17 @@
 			</div>
 		</form>
 	</div>
+	${result }
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js?autoload=false"></script>
 	<script>
+	let query = window.location.search;
+	let param = new URLSearchParams(query);
+	let result = param.get('result');
+	console.log(result);
+		if(result == 'false'){
+			alert('회원가입에 실패했습니다.')
+		}
+	
 		function execDaumPostcode() {
 			daum.postcode.load(function () {
 				new daum.Postcode({
@@ -237,29 +258,32 @@
 				alert('이메일을 입력하세요');
 				return;
 			}
-			fetch('checkEmail.do?joinEmail=' + emailText)
+			fetch('checkEmail.do?email=' + emailText)
 				.then(resolve => resolve.json())
 				.then(result => {
-					num = result.num;
+					num = result.random;
+					console.log(num);
 				})
 				.catch(err => console.log(err))
 		});
 		let cBtn = document.querySelector('#certify');
 		cBtn.addEventListener('click', function (e) {
 			let cNum = document.querySelector('#certifytext').value;
-			num = document.querySelector('#retCode').value;
+
 			console.log(num)
 			if (cNum == num) {
 				alert('인증이 완료 되었습니다');
-				email.disabled = 'disabled';
+				email.name = "joinEmail";
 			} else {
 				alert('인증번호를 정확히 입력하세요');
 			}
 		})
 		//정규식
-		let regId = /^[a-zA-Z0-9]{4,12}*$/; // 4자~12자리의 영문자, 숫자
+		let regId = /^[a-zA-Z0-9]{4,12}$/; // 4자~12자리의 영문자, 숫자
 		let regPw = /^[a-zA-Z0-9!@#$%^&*()?_~]{8,15}$/; // 8~15자리 숫자, 영문, 특수문자 조합
-		let reqNick =/[^?a-zA-Z0-9/]{1,8}/;// 1~8자리 한글포함 특수문자와 공백
+		let reqNick = /^[a-zA-Z0-9]{1,8}/; // 1~8자리  영문자, 숫자 특수문자와 공백
+		let reqBirth =
+			/^(19[0-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/ //19XX|20XX - 0(0~9)|1(1,2) - 0(0~9)|(1,2)(0~9)|3(0,1)
 
 		let id = document.querySelector('#joinId');
 		let pw = document.querySelector('#joinPw');
@@ -278,7 +302,8 @@
 				alert('아이디는 4자~12자리의 영문자, 숫자를 입력하세요');
 				return;
 			} else {
-				fetch('userIdCheck.do')
+				let uid = id.value;
+				fetch('userIdCheck.do?uid=' + uid)
 					.then(resolve => resolve.json())
 					.then(result => {
 						if (result.retCode == 'Success') {
@@ -288,6 +313,9 @@
 						} else if (result.retCode == 'Fail') {
 							alert('이미 있는 아이디 입니다. 다시 입력해주세요');
 							id.value = '';
+							if (id.name) {
+								id.removeAttribute('name');
+							}
 							id.focus();
 						} else {
 							alert('알 수 없는 오류');
@@ -297,13 +325,14 @@
 		})
 
 		//닉네임 중복체크
-		let nickcheckBtn =document.querySelector('#nickcheck');
+		let nickcheckBtn = document.querySelector('#nickcheck');
 		nickcheckBtn.addEventListener('click', function () {
 			if (!reqNick.test(nickname.value)) {
-				alert('닉네임는 1~8자리 한글포함 특수문자를 입력하세요');
+				alert('닉네임는 1~8자리 입력하세요');
 				return;
 			} else {
-				fetch('nickCheck.do')
+				let nick = nickname.value;
+				fetch('nickCheck.do?nick=' + nick)
 					.then(resolve => resolve.json())
 					.then(result => {
 						if (result.retCode == 'Success') {
@@ -313,6 +342,9 @@
 						} else if (result.retCode == 'Fail') {
 							alert('이미 있는 닉네임 입니다. 다시 입력해주세요');
 							nickname.value = '';
+							if (nickname.name) {
+								nickname.removeAttribute('name');
+							}
 							nickname.focus();
 						} else {
 							alert('알 수 없는 오류');
@@ -333,6 +365,7 @@
 			if (pw.value.search(/[!@#$%^&*()?_~]/g) != -1) chk++;
 			if (chk < 2) {
 				alert("비밀번호는 숫자, 영문, 특수문자를 두가지이상 혼용하여야 합니다.");
+
 				return false;
 			}
 			// 동일한 문자/숫자 4이상, 연속된 문자
@@ -340,16 +373,14 @@
 				alert("비밀번호에 4자 이상의 연속 또는 반복 문자 및 숫자를 사용하실 수 없습니다.");
 				return false;
 			}
-
 			// 아이디 포함 여부
 			if (pw.value.search(id.value) > -1) {
 				alert("ID가 포함된 비밀번호는 사용하실 수 없습니다.");
 				return false;
 			}
-
 			// 기존 비밀번호와 새 비밀번호 일치 여부
-			if (pw.value == pw2.value) {
-				alert("기존 비밀본호와 새 비밀번호가 일치합니다.");
+			if (pw.value != pw2.value) {
+				alert("기존 비밀본호와 새 비밀번호가 일치하지 않습니다.");
 				return false;
 			}
 		}
@@ -359,17 +390,27 @@
 				alert('아이디는 4자~12자리의 영문자, 숫자를 입력하세요');
 				return;
 			} else if (!id.name) {
-				alert('아이디 중복체크를 해주세요')
+				alert('아이디 중복체크를 해주세요');
+				return;
 			} else if (pwCheck()) {
 				pw.value = '';
 				pw2.value = '';
 				return;
-			} else if (!email2.readonly) {
+			} else if (post.value == '' || adr.value == '') {
+				alert('주소를 입력하세요');
+				return;
+			} else if (adr2.value == '') {
+				alert('상세주소를 입력하세요');
+				return;
+			} else if (!email2.name) {
 				alert('이메일 인증을 해주세요');
+				return;
 			} else if (!nickname.name) {
 				alert('닉네임 중복체크를 해주세요');
-			} else if (birth.value == '') {
-				alert('생년월일을 입력하세요')
+				return;
+			} else if (!reqBirth.test(birth.value)) {
+				alert('생년월일을 정확히 입력하세요');
+				return;
 			}
 
 
@@ -379,6 +420,62 @@
 			document.querySelector('#step2').style.display = 'block';
 
 
+		})
+
+		function isContinuedValue(value) {
+			console.log("value = " + value);
+			var intCnt1 = 0;
+			var intCnt2 = 0;
+			var temp0 = "";
+			var temp1 = "";
+			var temp2 = "";
+			var temp3 = "";
+
+			for (var i = 0; i < value.length - 3; i++) {
+
+				temp0 = value.charAt(i);
+				temp1 = value.charAt(i + 1);
+				temp2 = value.charAt(i + 2);
+				temp3 = value.charAt(i + 3);
+
+
+				if (temp0.charCodeAt(0) - temp1.charCodeAt(0) == 1 &&
+					temp1.charCodeAt(0) - temp2.charCodeAt(0) == 1 &&
+					temp2.charCodeAt(0) - temp3.charCodeAt(0) == 1) {
+					intCnt1 = intCnt1 + 1;
+				}
+
+				if (temp0.charCodeAt(0) - temp1.charCodeAt(0) == -1 &&
+					temp1.charCodeAt(0) - temp2.charCodeAt(0) == -1 &&
+					temp2.charCodeAt(0) - temp3.charCodeAt(0) == -1) {
+					intCnt2 = intCnt2 + 1;
+				}
+
+			}
+
+
+			return (intCnt1 > 0 || intCnt2 > 0);
+		}
+		var maxCount = 5; // 카운트 최대값은 2
+		var count = 0; // 카운트, 0으로 초기화 설정
+		let hobbys = document.querySelectorAll('.hobby');
+		hobbys.forEach(item => {
+			item.addEventListener('click', function () {
+				console.log('체크시작');
+				if (this.checked) { // 만약 this의 속성이 checked 라면(사용자가 클릭해서 체크상태가 된다면)
+					count += 1; // count 1 증가
+				} else { // 아니라면 (this의 속성이 checked가 아니라면)
+					count -= 1; // count 1 감소
+				}
+				console.log('count:' + count);
+				if (count > maxCount) { // 만약 count 값이 maxCount 값보다 큰 경우라면
+					alert("최대 5개까지만 선택가능합니다!"); // alert 창을 띄움
+					this.checked = false; // (마지막 onclick한)this 객체의 checked를 false(checked가 아닌 상태)로 만든다.
+					console.log('체크해제')
+					count -= 1; // 이때 올라갔던 카운트를 취소처리해야 하므로 count를 1 감소시킨다.
+				}
+
+			})
 		})
 	</script>
 </body>

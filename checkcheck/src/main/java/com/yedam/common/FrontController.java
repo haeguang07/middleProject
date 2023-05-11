@@ -62,9 +62,11 @@ import com.yedam.user.control.JoinFormControl;
 import com.yedam.user.control.LoginControl;
 import com.yedam.user.control.MypageUserInfoControl;
 import com.yedam.user.control.NickChageContorl;
+import com.yedam.user.control.NickCheckControl;
 import com.yedam.user.control.PresentControl;
 import com.yedam.user.control.PwChageContorl;
 import com.yedam.user.control.SearchPageControl;
+import com.yedam.user.control.UserIdCheckControl;
 import com.yedam.user.control.logoutContorl;
 import com.yedam.user.control.mainControl;
 import com.yedam.user.control.modifyUserFormControl;
@@ -132,6 +134,10 @@ public class FrontController extends HttpServlet {
 		map.put("/logout.do", new logoutContorl());
 		// 05-02회원가입 기능
 		map.put("/joinForm.do", new JoinFormControl());
+		//아이디 중복체크
+		map.put("/userIdCheck.do", new UserIdCheckControl());
+		//닉네임 중복체크
+		map.put("/nickCheck.do", new NickCheckControl());
 		// 05-03회원가입의 이메일보내기
 		map.put("/checkEmail.do", new CheckEmailControl());
 		// 05-02회원가입 기능

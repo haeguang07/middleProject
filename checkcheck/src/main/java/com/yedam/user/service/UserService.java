@@ -11,4 +11,7 @@ public interface UserService {
 	public boolean modifyNick(String nickname, String userId);
 	public boolean modifyAdr(String adr, int post,String userId);
 	public boolean modifyPw(String pw, String userId);
+	public UserVO checkUid(String userId);
+	public UserVO checkNick(String nickname);
+	public List<UserVO> userList();
 }
