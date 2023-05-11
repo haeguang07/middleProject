@@ -23,15 +23,18 @@ public class BasketDeliveryControl implements Control {
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //		bookName=${bookName}&bookPrice=${bookPrice}&bookCount=${bookCount}
 		//선물버튼 클릭시 가는 delivery.tiles
+		System.out.println("delivery선물 컨트롤페이지 입니다.");
 		String[] remember = req.getParameterValues("remember");
 		System.out.println(remember[0]);
 		List<BasketVO> list = new ArrayList<>();
 		for(int i=0;i<remember.length;i++) {
 			BasketVO data = new Gson().fromJson(remember[i], BasketVO.class);
 			System.out.println(data.getProAddress());
+			System.out.println(data.getBasketId());
 			list.add(data);
 			System.out.println(list);
 		}
+			
 		req.setAttribute("list", list);
 		req.setAttribute("state", "1");
 		System.out.println("state");
