@@ -28,6 +28,7 @@ public class BookVO {
 	private int bookStock;
 	private String cover;
 	private String pubDate;
+	private String check;
 	
 	
 }
