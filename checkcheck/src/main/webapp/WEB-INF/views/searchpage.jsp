@@ -136,32 +136,19 @@
 				<form action="" method="post" style="position: relative">
 					<table>
 						<tr>
-							<td rowspan="5"><img src=${i.cover }
-								style="width: 200px; height: 300px"></td>
-							<td>이름</td>
-							<td>${i.bookName }</td>
+							
+							<td rowspan="5"><img src=${i.cover } style="width: 200px; height: 300px"></td>
+							<td>이름</td><td>${i.bookName }</td>
 						</tr>
-						<tr>
-							<td>저자</td>
-							<td>${i.author }</td>
-						</tr>
-						<tr>
-							<td>출판사</td>
-							<td>${i.publisher }</td>
-						</tr>
-						<tr>
-							<td>가격</td>
-							<td>${i.bookPrice }</td>
-						</tr>
-						<tr>
-							<td>평점</td>
-							<td>5</td>
-						</tr>
+						<tr><td>저자</td><td>${i.author }</td></tr>
+						<tr><td>출판사</td><td>${i.publisher }</td></tr>
+						<tr><td>가격</td><td>${i.bookPrice }</td></tr>
+						<tr><td>평점</td><td>5</td></tr>
 					</table>
-					<button id="pay"
-						style="float: right; position: absolute; right: 0; bottom: 10%;">구매</button>
-					<button id="basket"
-						style="float: right; position: absolute; right: 70px; bottom: 10%;">장바구니</button>
+					<button id="pay" type="button" style="float: right; position: absolute; right: 0; bottom: 10%;" onclick=insertOrder(this)>구매</button>
+					<button id="basket" type="button" style="float: right; position: absolute; right: 70px; bottom: 10%;" onclick=insertBasket(this)>장바구니</button>
+					<span style="display:none">${i.isbn }</span>
+					<input type="text" style="display:none" value="">
 				</form>
 			</div>
 		</c:forEach>
@@ -283,6 +270,45 @@
 	integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
 	crossorigin="anonymous"></script>
 <script>
+function insertBasket(field){
+	console.log(field.nextElementSibling);
+	let isbn = field.nextElementSibling.innerText;
+	if("${sesInfo}"==""){
+		alert('로그인후 이용가능합니다');
+		return;
+	}
+	fetch("addBasket.do?isbn="+isbn+"&userId=${sesInfo.userId}&count=1")
+	.then(result => result.json())
+	.then(resolve =>{
+		
+		if(resolve.retCode == 'Success'){
+			
+			if(confirm('장바구니로 이동하시겠습니까?')){
+				location.href="basket.do";
+			}
+		}
+	})
+	.catch(error => console.log(error));
+}
+function insertOrder(field){
+	let basketbutton = field.nextElementSibling;
+	console.log(basketbutton);
+	let isbn = basketbutton.nextElementSibling.innerText;
+	console.log(isbn);
+	location.href="delivery.do?isbn="+isbn;
+	
+	if("${sesInfo}"==""){
+		alert('로그인후 이용가능합니다');
+		return;
+	}
+	//location.href="delivery.do";
+	//넘겨야하는값 : isbn,bookName,bookPrice,basketCount(이거도없음),proAddress
+}
+	$('#star a').click(function(){ 
+		 $(this).parent().children("a").removeClass("on");    
+		 $(this).addClass("on").prevAll("a").addClass("on");
+		 console.log($(this).attr("value"));
+	 });
 	let selectbox = document.querySelector('#selectbox');
 	selectbox.addEventListener('change', function(event) {
 		console.log(selectbox.value);

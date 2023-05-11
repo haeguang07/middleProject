@@ -3,12 +3,25 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yedam.ordercomplete.mapper.CompleteMapper">
-
+	<insert id="insertOrder" parameterType="order">
+		insert into orders values(#{orderId},#{userId},#{payment},#{orderPoint},'배송전',sysdate,#{orderPost},#{orderAddress},#{orderName},#{orderPhone},#{method})
+	</insert>
 	<update id="updateBook">
-		update books set book_stock = book_stock-#{basketCount} where isbn = #{isbn}
+		update books set book_stock = book_stock-#{bookStock}, book_count = book_count+#{bookStock} where isbn = #{isbn}
 	</update>
-	<update id="updateUser">
-		update users set user_point = user_point+#{totalSpoint} where user_id = #{userId}
+	<update id="updateUser" parameterType="map">
+		update users set user_point = user_point+#{userPoint} where user_id = #{userId}
 	</update>
-	
+	<delete id="deleteCoupon">
+		delete coupons where coupon_id = #{couponId}
+	</delete>
+	<delete id="deleteBasket">
+		delete baskets where basket_id = #{basketId}
+	</delete>
+	<select id="selectbook">
+		select isbn from books where book_name=#{bookName}
+	</select>
+	<insert id="insertHistory" parameterType="history">
+		insert into historys values(#{orderId},#{isbn},#{historyCount})
+	</insert>
 </mapper>

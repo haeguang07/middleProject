@@ -8,6 +8,6 @@ public class HistoryVO {
 //	ISBN          NOT NULL NUMBER        
 //	HISTORY_COUNT NOT NULL NUMBER   
 	private String orderId;
-	private int isbn;
+	private long isbn;
 	private int historyCount;
 }

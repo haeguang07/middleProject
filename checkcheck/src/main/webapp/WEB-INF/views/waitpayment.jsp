@@ -47,6 +47,7 @@
 			<input type="text" style="display:none" name="bookName" value="${i.bookName }">
 			<input type="text" style="display:none" name="basketCount" value="${i.basketCount }">
 			<input type="text" style="display:none" name="bookPrice" value="${i.bookPrice }">
+			<input type="text" style="display:none" name="basketId" value="${i.basketId }">
 		</c:forEach>
 		<select id="coupons" name="couponId" onchange=couponFuntion(this.value)>
 			<c:forEach var="i" items="${clist }">
@@ -96,7 +97,7 @@
 			</c:when>
 		</c:choose>
 		<tr><td>총 가격 : <input type="text" id="totalPrice" name="totalPrice" style="width:100px;border:none" value="${totalPrice }"></td></tr>
-		<tr><td>할인금액 : <input type="text" id="totalSpoint" style="width:100px;border:none" value="${totalSpoint }"></td></tr>
+		<tr><td>적립금액 : <input type="text" id="totalSpoint" name="totalSpoint" style="width:100px;border:none" value="${totalSpoint }"></td></tr>
 		<tr><td>쿠폰할인금액 : <input type="text" id="totalSSpoint" style="width:150px;border:none" value=""></td></tr>
 		<tr><td>결제금액 : <input type="text" name="totalPriceEnd" id="totalPriceCount" style="width:100px;border:none" value=""></td></tr>
 	  </table>
@@ -143,7 +144,7 @@ function couponFuntion(coupons){
 		totalSSpoint = ((totalPrice*0.01)*1);
 		console.log(totalSSpoint);
 		result.value = totalSSpoint;
-		resultPrice.value = (totalPrice*1)-((totalSSpoint*1)+(totalSpoint*1));
+		resultPrice.value = (totalPrice*1)-((totalSSpoint*1));
 	}else if(text === '3%할인쿠폰'){
 		let totalSSpoint = document.getElementById('totalSSpoint').value;
 		let totalSpoint = document.getElementById('totalSpoint').value;
@@ -154,7 +155,7 @@ function couponFuntion(coupons){
 		totalSSpoint = ((totalPrice*0.03)*1);
 		console.log(totalSSpoint);
 		result.value = totalSSpoint;
-		resultPrice.value = (totalPrice*1)-((totalSSpoint*1)+(totalSpoint*1));
+		resultPrice.value = (totalPrice*1)-((totalSSpoint*1));
 	}else if(text === '5%할인쿠폰'){
 		let totalSSpoint = document.getElementById('totalSSpoint').value;
 		totalSSpoint = 0;
@@ -163,7 +164,7 @@ function couponFuntion(coupons){
 		totalSSpoint = ((totalPrice*0.05)*1);
 		console.log(totalSSpoint);
 		result.value = totalSSpoint;
-		resultPrice.value = (totalPrice*1)-((totalSSpoint*1)+(totalSpoint*1));
+		resultPrice.value = (totalPrice*1)-((totalSSpoint*1));
 	}
 }
 	$(function() {
