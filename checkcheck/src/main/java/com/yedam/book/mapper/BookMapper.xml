@@ -162,4 +162,7 @@
 		where pub_date between #{monthFirst} and #{monthLast}
 		order by pub_date desc
 	</select>
+	<select id="insertBook" parameterType="book">
+		insert into books values()
+	</select>
 </mapper>
