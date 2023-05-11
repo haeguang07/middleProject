@@ -34,4 +34,8 @@ public class UserVO {
 	private String userCategory;
 	private String email;
 	private String userName;
+	
+	//join용 필드
+	 private int payment;
+	 private Date orderDate;
 }
