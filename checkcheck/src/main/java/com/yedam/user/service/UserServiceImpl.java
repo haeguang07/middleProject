@@ -60,6 +60,12 @@ public class UserServiceImpl implements UserService {
 	public List<UserVO> userList() {
 		return mapper.selectUserList();
 	}
+
+
+	@Override
+	public List<UserVO> getGenderPayment(int year) {
+		return mapper.selectGenderPayment(year);
+	}
 	
 	
 

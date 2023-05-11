@@ -15,6 +15,7 @@ public interface UserMapper {
 	public UserVO selectUserId(String userId);
 	public UserVO selectNickname(String nickname);
 	public List<UserVO> selectUserList();
+	public List<UserVO> selectGenderPayment(int year);
 	
 
 }

@@ -108,10 +108,11 @@
       function drawChart4() {
         var data = google.visualization.arrayToDataTable([
           ['연도', '남자', '여자','총매출'],
-          ['2006',  1000,      400,1400],
-          ['2005',  1170,      460,1610],
-          ['2006',  660,       1120,1780],
-          ['2007',  1030,      540,1570]
+          ['${years[0]}',  ${plist[0]['M']}, ${plist[0]['F']}, ${plist[0]['M']+ plist[0]['F']}],
+          ['${years[1]}',  ${plist[1]['M']}, ${plist[1]['F']}, ${plist[1]['M']+ plist[1]['F']}],
+          ['${years[2]}',  ${plist[2]['M']}, ${plist[2]['F']}, ${plist[2]['M']+ plist[2]['F']}],
+          ['${years[3]}',  ${plist[3]['M']}, ${plist[3]['F']}, ${plist[3]['M']+ plist[3]['F']}],
+          ['${years[4]}',  ${plist[4]['M']}, ${plist[4]['F']}, ${plist[4]['M']+ plist[4]['F']}]
         ]);
 
         var options = {

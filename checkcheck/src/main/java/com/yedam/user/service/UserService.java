@@ -14,4 +14,5 @@ public interface UserService {
 	public UserVO checkUid(String userId);
 	public UserVO checkNick(String nickname);
 	public List<UserVO> userList();
+	public List<UserVO> getGenderPayment(int year);
 }
