@@ -179,25 +179,56 @@
 		<input type="button" class="prevbtn" value="prev">
 		<input class="nextbtn" type="button" value="next">
 </div>
+<c:choose>
+<c:when test="${sesInfo eq null }">
 <div id="MOVE_TOP_BTN">
-	<a href="#">
+	
 		<div
-			style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative; margin: 5px">
+			style="width: 70px; height: 70px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative; margin: 5px;box-shadow:5px 5px 5px black">
 			<p
-				style="font-size: 12px; position: absolute; top: 15px; left: 15px;">top</p>
+				style="font-size: 16px; position: absolute; top: 15px; left: 15px;color:black;margin-left:7px;margin-top:5px"><a href="#" style="text-decoration: none;color:black;">top</a></p>
 		</div>
-	</a> <a href="#">
+	 
 		<div
-			style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative; margin: 5px">
-			<p style="font-size: 12px; position: absolute; top: 15px; left: 5px;">로그인</p>
+			style="width: 70px; height: 70px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative; margin: 5px;box-shadow:5px 5px 5px black">
+			<p style="font-size: 14px; position: absolute; top: 15px; left: 5px;color:black;margin-left:8px;margin-top:7px"><a href="login.do" style="text-decoration: none;color:black;">로그인</a></p>
 		</div>
-	</a> <a href="#">
+	
 		<div
-			style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative; margin: 5px">
-			<p style="font-size: 10px; position: absolute; top: 15px; left: 5px;">회원가입</p>
+			style="width: 70px; height: 70px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative; margin: 5px;box-shadow:5px 5px 5px black">
+			<p style="font-size: 14px; position: absolute; top: 15px; left: 5px;margin-left:3px;margin-top:5px"><a href="joinForm.do" style="text-decoration: none;color:black;">회원가입</a></p>
 		</div>
-	</a>
+	
 </div>
+</c:when>
+<c:otherwise>
+<div id="MOVE_TOP_BTN">
+	
+		<div
+			style="width: 70px; height: 70px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative; margin: 5px;box-shadow:5px 5px 5px black">
+			<p
+				style="font-size: 16px; position: absolute; top: 15px; left: 15px;color:black;margin-left:7px;margin-top:5px"><a href="#" style="text-decoration: none;color:black;">top</a></p>
+		</div>
+	 
+		<div
+			style="width: 70px; height: 70px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative; margin: 5px;box-shadow:5px 5px 5px black">
+			<p style="font-size: 14px; position: absolute; top: 15px; left: 5px;color:black;margin-left:2px;margin-top:7px"><a href="login.do" style="text-decoration: none;color:black;">로그아웃</a></p>
+		</div>
+	 
+		<div
+			style="width: 70px; height: 70px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative; margin: 5px;box-shadow:5px 5px 5px black">
+			<p style="font-size: 14px; position: absolute; top: 15px; left: 5px;color:black;margin-left:2px;margin-top:7px"><a href="basket.do" style="text-decoration: none;color:black;">장바구니</a></p>
+		</div>
+	
+	
+		<div
+			style="width: 70px; height: 70px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative; margin: 5px;box-shadow:5px 5px 5px black">
+			<p style="font-size: 14px; position: absolute; top: 15px; left: 5px;color:black;margin-left:4px;margin-top:5px"><a href="myPageMain.do" style="text-decoration: none;color:black;">My Page</a></p>
+		</div>
+	
+</div>
+</c:otherwise>
+</c:choose>
 <!-- Footer-->
 <!-- Bootstrap core JS-->
 <script
@@ -294,11 +325,11 @@
 			}
 		});
 
-		$("#MOVE_TOP_BTN").click(function() {
+		/* $("#MOVE_TOP_BTN").click(function() {
 			$('html, body').animate({
 				scrollTop : 0
 			}, 400);
 			return false;
-		});
+		}); */
 	});
 </script>

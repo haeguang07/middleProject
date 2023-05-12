@@ -179,7 +179,7 @@
 					</tr>
 					<tr>
 						<td><label><input class="hobby" type="checkbox" name="check1" value="대학교제">대학교제</label></td>
-						<td><label><input class="hobby" type="checkbox" name="check1" value="국내도서>만화">만화</label></td>
+						<td><label><input class="hobby" type="checkbox" name="check1" value="만화">만화</label></td>
 						<td><label><input class="hobby" type="checkbox" name="check1" value="소설/시/희곡">소설/시/희곡</label></td>
 						<td><label><input class="hobby" type="checkbox" name="check1" value="여행">여행</label></td>
 					</tr>

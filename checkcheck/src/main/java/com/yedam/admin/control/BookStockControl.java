@@ -26,6 +26,7 @@ public class BookStockControl implements Control {
 		List<BookVO> list = service.bookStockPage(page);
 		req.setAttribute("pageInfo", dto);
 		req.setAttribute("stockWarningList", list);
+		req.setAttribute("total", total);
 		
 		
 		return "admin/bookStock.tiles";

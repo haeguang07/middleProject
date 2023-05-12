@@ -5,7 +5,7 @@
 	<nav class="navbar navbar-expand-lg navbar-light bg-light"
 		style="background-color: rgb(108, 213, 234) !important;">
 		<div class="container px-4 px-lg-5">
-			<a class="navbar-brand" href="#!">CheckCheck</a>
+			<a class="navbar-brand" href="#!" style="margin-left:20px">CheckCheck</a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -20,21 +20,20 @@
 				</ul>
 				<form class="d-flex">
 					<c:if test="${not empty sesInfo }">
-					<button class="btn btn-outline-dark" type="button"
-						onclick="location.href='basket.do'"><i class="bi-cart-fill me-1">Cart</i><span
-							class="badge bg-dark text-white ms-1 rounded-pill">0</span></button>
 					</c:if>
 					<c:if test="${empty sesInfo }">
-					<button class="btn btn-outline-dark" type="button"
-						onclick="location.href='login.do'">로그인</button>
-					<button class="btn btn-outline-dark" type="button"
-						onclick="location.href='joinForm.do'">회원가입</button>
+					<input class="btn btn-outline-dark" type="button"
+						onclick="location.href='login.do'" value="로그인">
+					<input class="btn btn-outline-dark" type="button"
+						onclick="location.href='joinForm.do'" value="회원가입">
 					</c:if>
 					<c:if test="${not empty sesInfo }">
-					<button class="btn btn-outline-dark" type="button"
-						onclick="location.href='myPageMain.do?'">마이페이지</button>
-					<button class="btn btn-outline-dark" type="button"
-						onclick="location.href='logout.do'">로그아웃</button>
+					<input class="btn btn-outline-dark" type="button"
+						onclick="location.href='basket.do'" value="장바구니">
+					<input class="btn btn-outline-dark" type="button"
+						onclick="location.href='myPageMain.do?'" value="마이페이지">
+					<input class="btn btn-outline-dark" type="button"
+						onclick="location.href='logout.do'" value="로그아웃">
 					<p style="margin-top:16px">${sesInfo.nickname }님 환영합니다.</p>
 					</c:if>
 				</form>

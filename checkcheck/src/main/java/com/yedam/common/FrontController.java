@@ -41,6 +41,7 @@ import com.yedam.book.control.NewBookSearchControl;
 import com.yedam.comment.control.addAnswerControl;
 import com.yedam.coupon.control.CouponInfoControl;
 import com.yedam.order.control.CancelOrderControl;
+import com.yedam.order.control.ModifyOrderStateControl;
 import com.yedam.order.control.ModifyShippingControl;
 import com.yedam.order.control.ModifyShippingFormControl;
 import com.yedam.order.control.OrderCancelFormControl;
@@ -94,6 +95,7 @@ public class FrontController extends HttpServlet {
 		map.put("/chartData.do", new ChartDataControl());
 		// 관리자 출고상태 변경기능
 		map.put("/chulgo.do", new ChulgoControl());
+		map.put("/modifyOrderState.do", new ModifyOrderStateControl());
 		// 관리자 도서 추가 기능
 		map.put("/addBook.do", new AddBookControl());
 		// 관리자 도서추가기능

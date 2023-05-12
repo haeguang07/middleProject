@@ -27,7 +27,7 @@
 }
 </style>
 <div id="number">
-	<h3>10권 미만의 책이 () 권 있습니다</h3><br>
+	<h3>10권 미만의 책이 (${total }) 권 있습니다</h3><br>
 	<h3>확인한 후 재고를 추가해주세요</h3>
 </div>
 <div id="tableBoard">
@@ -51,7 +51,7 @@
 					<td>${stock.bookName }</td>
 					<td>${stock.bookStock }</td>
 					<td style="width:50px"><input id="booknum" type="number" value="1"></td>
-					<td><input type="button" value="추가"></td>
+					<td><input type="button" value="추가" onclick=oneButton(this)></td>
 				</tr>
 	</c:forEach>
 			</tbody>
@@ -59,8 +59,7 @@
 	<div style="text-align: center; width: 1200px; height: 50px; padding: 30px 0; margin-bottom: 50px">
 		<div class="pagination2">
 					<c:if test="${pageInfo.prev }">
-						<a
-							href="bookStock.do?page=${pageInfo.startPage-1 }">Previous</a>
+						<a href="bookStock.do?page=${pageInfo.startPage-1 }">Previous</a>
 					</c:if>
 					<c:forEach var="i" begin="${pageInfo.startPage }"
 						end="${pageInfo.endPage }">
@@ -93,23 +92,66 @@
 				}
 			})
 			
+			
+			//전체 추가 버튼 눌렀을시
 			document.getElementById('all').addEventListener('click',function(){
 				let allNum = document.getElementById('booknum').value;
 				let list = document.querySelectorAll('input[name=book]');
 				let isbnList = [];
 				for(i of list){
 					if(i.checked){
-						isbnList.push(i.value);
+						isbnList.push({"isbn":+i.value});
 					}
 				}
-				     $ajax.({
-				    	 type:"post",
+				console.log(isbnList);
+				     $.ajax({
+				    	 type:"POST",
 				    	 url:"modifyStock.do",
-				    	 dataType:"json",
-				    	 data:isbnList,
+				    	 data:{
+				    		book: JSON.stringify(isbnList),
+				    		booknum : allNum
+				    	 },
+				    	 dataType:"text",
 				    	 Success:function(data){
+				    		 console.log(data.retCode);
+				    		 console.log('성공');
+				    	 },
+				    	 error:function(data){
+				    		 console.log(data);
+				    	 },
+				    	 complete:function(){
+				    		 alert('성공');
+				    		 location.reload();
 				    	 }
 				     })
 					
 			})
+			
+			//단일로 버튼 눌렀을시
+			function oneButton(thing){
+				
+				let bookinfo = thing.parentElement.parentElement.children[0].children[0].value;
+				let bookjson = [{"isbn":bookinfo}];
+				let num = thing.parentElement.previousElementSibling.children[0].value;
+				$.ajax({
+					type:"POST",
+					url: "modifyStock.do",
+					data:{
+						book:JSON.stringify(bookjson),
+						booknum : num
+					},
+					dataType:"text",
+			    	 Success:function(data){
+			    		 console.log(data.retCode);
+			    		 console.log('성공');
+			    	 },
+			    	 error:function(data){
+			    		 console.log(data);
+			    	 },
+			    	 complete:function(){
+			    		 alert('성공');
+			    		 location.reload();
+			    	 }
+				})
+			}
 		</script>
