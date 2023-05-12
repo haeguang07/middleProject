@@ -29,6 +29,7 @@ public class BookVO {
 	private String cover;
 	private String pubDate;
 	private String check;
-	
+	private int basketCount;
+	private int basketId;
 	
 }

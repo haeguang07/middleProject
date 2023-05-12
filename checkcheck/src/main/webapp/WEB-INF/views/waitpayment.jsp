@@ -36,76 +36,148 @@
 	<p style="width: 100px; text-align: right; display: inline-block; color: red; font-weight: 700">결제정보</p>
 	<p style="width: 100px; text-align: right; display: inline-block">주문완료</p>
 </div>
-<form method="post"style="position: relative; width: 1100px;">
-	<div>
-		<input type="text" style="display:none" name="userId" value="${userId }">
-		<input type="text" style="display:none" name="userName" value="${userName }">
-		<input type="text" style="display:none" name="userAddress" value="${address }">
-		<input type="text" style="display:none" name="userPost" value="${post }">
-		<input type="text" style="display:none" name="userPhone" value="${phone }">
-		<c:forEach var="i" items="${blist }">
-			<input type="text" style="display:none" name="bookName" value="${i.bookName }">
-			<input type="text" style="display:none" name="basketCount" value="${i.basketCount }">
-			<input type="text" style="display:none" name="bookPrice" value="${i.bookPrice }">
-			<input type="text" style="display:none" name="basketId" value="${i.basketId }">
-		</c:forEach>
-		<select id="coupons" name="couponId" onchange=couponFuntion(this.value)>
-			<c:forEach var="i" items="${clist }">
-				<c:if test="${i.discount eq '0.01' }">
-				<option name="couponId" value="${i.couponId }">1%할인쿠폰</option>
-				</c:if>
-				<c:if test="${i.discount eq '0.03' }">
-				<option name="couponId" value="${i.couponId }">3%할인쿠폰</option>
-				</c:if>
-				<c:if test="${i.discount eq '0.05' }">
-				<option name="couponId" value="${i.couponId }">5%할인쿠폰</option>
-				</c:if>
+<c:if test="${'0' eq check }">
+	<form method="post"style="position: relative; width: 1100px;">
+		<div>
+			<input style="display:none" name="typecheck" value="0">
+			<input type="text" style="display:none" name="userId" value="${userId }">
+			<input type="text" style="display:none" name="userName" value="${userName }">
+			<input type="text" style="display:none" name="userAddress" value="${address }">
+			<input type="text" style="display:none" name="userPost" value="${post }">
+			<input type="text" style="display:none" name="userPhone" value="${phone }">
+			<input type="text" style="display:none" name="bookName" value="${bookName }">
+			<input type="text" style="display:none" name="bookPrice" value="${bookPrice }">
+			<select id="coupons" name="couponId" onchange=couponFuntion(this.value)>
+				<c:forEach var="i" items="${clist }">
+					<c:if test="${i.discount eq '0.01' }">
+					<option name="couponId" value="${i.couponId }">1%할인쿠폰</option>
+					</c:if>
+					<c:if test="${i.discount eq '0.03' }">
+					<option name="couponId" value="${i.couponId }">3%할인쿠폰</option>
+					</c:if>
+					<c:if test="${i.discount eq '0.05' }">
+					<option name="couponId" value="${i.couponId }">5%할인쿠폰</option>
+					</c:if>
+				</c:forEach>
+			</select>
+		</div>
+		<div style="text-align: center; width:900px">
+			<p style="display:inline-block">사용할포인트<input id="usepoint" name="usepoint" type="text" value=""></p>
+			<p style="padding-left:200px; display:inline-block">현재 사용가능한 포인트 : ${userPoint }</p>
+		</div>
+		<div>
+			<p>결제수단 결정</p>
+		</div>
+		<div style="margin:0 auto">
+			<table>
+				<tr>
+					<td><input type="radio" name="remember" style="margin: 15px" value="카카오"><b>카카오</b></td>
+					<td><input type="radio" name="remember" style="margin: 15px" value="네이버"><b>네이버</b></td>
+					<td><input type="radio" name="remember" style="margin: 15px" value="토스"><b>토스</b></td>
+				</tr><tr>
+					<td><input type="radio" name="remember" style="margin: 15px" value="신용카드"><b>신용카드</b></td>
+					<td><input type="radio" name="remember" style="margin: 15px" value="계좌이체"><b>계좌이체</b></td>
+					<td><input type="radio" name="remember" style="margin: 15px" value="페이코"><b>페이코</b></td>
+				</tr>
+			</table>
+		</div>
+		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4" style="width:800px; margin:0 auto">
+		  <table>
+		  	<c:choose>
+				<c:when test="${userGrade eq 'normal' }">
+				<fmt:parseNumber var="totalSpoint" integerOnly="true" value= "${(totalPrice*0.01) }"/>
+				</c:when>
+				<c:when test="${userGrade eq 'VIP' }">
+				<fmt:parseNumber var="totalSpoint" integerOnly="true" value= "${(totalPrice*0.03) }"/>
+				</c:when>
+				<c:when test="${userGrade eq 'VVIP' }">
+				<fmt:parseNumber var="totalSpoint" integerOnly="true" value= "${(totalPrice*0.05) }"/>
+				</c:when>
+			</c:choose>
+			<tr><td>총 가격 : <input type="text" id="totalPrice" name="totalPrice" style="width:100px;border:none" value="${bookPrice }"></td></tr>
+			<tr><td>적립금액 : <input type="text" id="totalSpoint" name="totalSpoint" style="width:100px;border:none" value="${totalSpoint }"></td></tr>
+			<tr><td>쿠폰할인금액 : <input type="text" id="totalSSpoint" style="width:150px;border:none" value=""></td></tr>
+			<tr><td>결제금액 : <input type="text" name="totalPriceEnd" id="totalPriceCount" style="width:100px;border:none" value="${bookPrice-totalSpoint }"></td></tr>
+		  </table>
+		</div>
+		<div style="text-align:right; padding-right:200px; padding-top:30px; padding-bottom:30px">
+			<input id="payMent" type="submit" value="결제하기" style="padding:5px 15px" onclick="javascript: form.action='ordercomplete.do';"/>
+		</div>
+	</form>
+</c:if>
+<c:if test="${'1' eq check }">
+	<form method="post"style="position: relative; width: 1100px;">
+		<div>
+			<input style="display:none" name="typecheck" value="1">
+			<input type="text" style="display:none" name="userId" value="${userId }">
+			<input type="text" style="display:none" name="userName" value="${userName }">
+			<input type="text" style="display:none" name="userAddress" value="${address }">
+			<input type="text" style="display:none" name="userPost" value="${post }">
+			<input type="text" style="display:none" name="userPhone" value="${phone }">
+			<c:forEach var="i" items="${blist }">
+				<input type="text" style="display:none" name="bookName" value="${i.bookName }">
+				<input type="text" style="display:none" name="basketCount" value="${i.basketCount }">
+				<input type="text" style="display:none" name="bookPrice" value="${i.bookPrice }">
+				<input type="text" style="display:none" name="basketId" value="${i.basketId }">
 			</c:forEach>
-		</select>
-	</div>
-	<div style="text-align: center; width:900px">
-		<p style="display:inline-block">사용할포인트<input type="text" value=""></p>
-		<p style="padding-left:200px; display:inline-block">현재 사용가능한 포인트 : ${userPoint }</p>
-	</div>
-	<div>
-		<p>결제수단 결정</p>
-	</div>
-	<div style="margin:0 auto">
-		<table>
-			<tr>
-				<td><input type="radio" name="remember" style="margin: 15px" value="카카오"><b>카카오</b></td>
-				<td><input type="radio" name="remember" style="margin: 15px" value="네이버"><b>네이버</b></td>
-				<td><input type="radio" name="remember" style="margin: 15px" value="토스"><b>토스</b></td>
-			</tr><tr>
-				<td><input type="radio" name="remember" style="margin: 15px" value="신용카드"><b>신용카드</b></td>
-				<td><input type="radio" name="remember" style="margin: 15px" value="계좌이체"><b>계좌이체</b></td>
-				<td><input type="radio" name="remember" style="margin: 15px" value="페이코"><b>페이코</b></td>
-			</tr>
-		</table>
-	</div>
-	<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4" style="width:800px; margin:0 auto">
-	  <table>
-	  	<c:choose>
-			<c:when test="${userGrade eq 'normal' }">
-			<fmt:parseNumber var="totalSpoint" integerOnly="true" value= "${(totalPrice*0.01) }"/>
-			</c:when>
-			<c:when test="${userGrade eq 'VIP' }">
-			<fmt:parseNumber var="totalSpoint" integerOnly="true" value= "${(totalPrice*0.03) }"/>
-			</c:when>
-			<c:when test="${userGrade eq 'VVIP' }">
-			<fmt:parseNumber var="totalSpoint" integerOnly="true" value= "${(totalPrice*0.05) }"/>
-			</c:when>
-		</c:choose>
-		<tr><td>총 가격 : <input type="text" id="totalPrice" name="totalPrice" style="width:100px;border:none" value="${totalPrice }"></td></tr>
-		<tr><td>적립금액 : <input type="text" id="totalSpoint" name="totalSpoint" style="width:100px;border:none" value="${totalSpoint }"></td></tr>
-		<tr><td>쿠폰할인금액 : <input type="text" id="totalSSpoint" style="width:150px;border:none" value=""></td></tr>
-		<tr><td>결제금액 : <input type="text" name="totalPriceEnd" id="totalPriceCount" style="width:100px;border:none" value=""></td></tr>
-	  </table>
-	</div>
-	<div style="text-align:right; padding-right:200px; padding-top:30px; padding-bottom:30px">
-		<input id="payMent" type="submit" value="결제하기" style="padding:5px 15px" onclick="javascript: form.action='ordercomplete.do';"/>
-	</div>
-</form>
+			<select id="coupons" name="couponId" onchange=couponFuntion(this.value)>
+				<c:forEach var="i" items="${clist }">
+					<c:if test="${i.discount eq '0.01' }">
+					<option name="couponId" value="${i.couponId }">1%할인쿠폰</option>
+					</c:if>
+					<c:if test="${i.discount eq '0.03' }">
+					<option name="couponId" value="${i.couponId }">3%할인쿠폰</option>
+					</c:if>
+					<c:if test="${i.discount eq '0.05' }">
+					<option name="couponId" value="${i.couponId }">5%할인쿠폰</option>
+					</c:if>
+				</c:forEach>
+			</select>
+		</div>
+		<div style="text-align: center; width:900px">
+			<p style="display:inline-block">사용할포인트<input type="text" value=""></p>
+			<p style="padding-left:200px; display:inline-block">현재 사용가능한 포인트 : ${userPoint }</p>
+		</div>
+		<div>
+			<p>결제수단 결정</p>
+		</div>
+		<div style="margin:0 auto">
+			<table>
+				<tr>
+					<td><input type="radio" name="remember" style="margin: 15px" value="카카오"><b>카카오</b></td>
+					<td><input type="radio" name="remember" style="margin: 15px" value="네이버"><b>네이버</b></td>
+					<td><input type="radio" name="remember" style="margin: 15px" value="토스"><b>토스</b></td>
+				</tr><tr>
+					<td><input type="radio" name="remember" style="margin: 15px" value="신용카드"><b>신용카드</b></td>
+					<td><input type="radio" name="remember" style="margin: 15px" value="계좌이체"><b>계좌이체</b></td>
+					<td><input type="radio" name="remember" style="margin: 15px" value="페이코"><b>페이코</b></td>
+				</tr>
+			</table>
+		</div>
+		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4" style="width:800px; margin:0 auto">
+		  <table>
+		  	<c:choose>
+				<c:when test="${userGrade eq 'normal' }">
+				<fmt:parseNumber var="totalSpoint" integerOnly="true" value= "${(totalPrice*0.01) }"/>
+				</c:when>
+				<c:when test="${userGrade eq 'VIP' }">
+				<fmt:parseNumber var="totalSpoint" integerOnly="true" value= "${(totalPrice*0.03) }"/>
+				</c:when>
+				<c:when test="${userGrade eq 'VVIP' }">
+				<fmt:parseNumber var="totalSpoint" integerOnly="true" value= "${(totalPrice*0.05) }"/>
+				</c:when>
+			</c:choose>
+			<tr><td>총 가격 : <input type="text" id="totalPrice" name="totalPrice" style="width:100px;border:none" value="${totalPrice }"></td></tr>
+			<tr><td>적립금액 : <input type="text" id="totalSpoint" name="totalSpoint" style="width:100px;border:none" value="${totalSpoint }"></td></tr>
+			<tr><td>쿠폰할인금액 : <input type="text" id="totalSSpoint" style="width:150px;border:none" value=""></td></tr>
+			<tr><td>결제금액 : <input type="text" name="totalPriceEnd" id="totalPriceCount" style="width:100px;border:none" value=""></td></tr>
+		  </table>
+		</div>
+		<div style="text-align:right; padding-right:200px; padding-top:30px; padding-bottom:30px">
+			<input id="payMent" type="submit" value="결제하기" style="padding:5px 15px" onclick="javascript: form.action='ordercomplete.do';"/>
+		</div>
+	</form>
+</c:if>
 <div id="MOVE_TOP_BTN">
 	<a href="#"><div style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative">
 			<p style="font-size: 12px; position: absolute; top: 15px; left: 15px;">top</p>

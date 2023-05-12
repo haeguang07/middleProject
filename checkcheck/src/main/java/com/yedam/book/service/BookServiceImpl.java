@@ -96,4 +96,9 @@ public class BookServiceImpl implements BookService{
 		return mapper.newBookCount(monthFirst, monthLast);
 	}
 
+	@Override
+	public BookVO selectBookSearch(long isbn) {
+		return mapper.selectBookSearch(isbn);
+	}
+
 }

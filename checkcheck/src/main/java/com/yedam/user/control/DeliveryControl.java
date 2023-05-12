@@ -7,11 +7,15 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.yedam.basket.domain.BasketVO;
 import com.yedam.book.domain.BookVO;
+import com.yedam.book.service.BookService;
+import com.yedam.book.service.BookServiceImpl;
 import com.yedam.common.Control;
+import com.yedam.user.domain.UserVO;
 
 public class DeliveryControl implements Control {
 
@@ -20,13 +24,44 @@ public class DeliveryControl implements Control {
 		//배송정보페이지
 		System.out.println("delivery컨트롤페이지 입니다.");
 		if(req.getMethod().equals("GET")) {
-			System.out.println("check");
-			int isbn = Integer.parseInt(req.getParameter("isbn"));
-			System.out.println(isbn);
+			System.out.println("GET방식입니다.");
+			long isbn1 = Long.parseLong(req.getParameter("isbn"));
+			System.out.println(isbn1);
 			BookVO bvo = new BookVO();
+			BookService service = new BookServiceImpl();
+			bvo = service.selectBookSearch(isbn1);
+			System.out.println("isbn : "+bvo.getIsbn());
+			String isbn = String.valueOf(isbn1);
+			String bookName = bvo.getBookName();
+			String bookPrice = String.valueOf(bvo.getBookPrice());
+			System.out.println(isbn);
+			System.out.println("책이름 : "+bvo.getBookName());
+			System.out.println("책가격 : "+bvo.getBookPrice());
+			String check="0";
+			req.setAttribute("check", check);
+			req.setAttribute("isbn", isbn);
+			req.setAttribute("bookName", bookName);
+			req.setAttribute("bookPrice", bookPrice);
+			HttpSession session = req.getSession();
+			UserVO uvo = (UserVO)session.getAttribute("sesInfo");
+			System.out.println(uvo);
+			String grade = uvo.getUserGrade();
+			req.setAttribute("sesInfo", uvo);
+			req.setAttribute("grade", grade);
+//			String userId = uvo.getUserId();
+//			String userName = uvo.getUserName();
+//			String userAddress = uvo.getUserAddress();
+//			String userPost = String.valueOf(uvo.getUserPost());
+//			String userPhone = uvo.getUserPhone();
+//			req.setAttribute("userId", userId);
+//			req.setAttribute("userName", userName);
+//			req.setAttribute("userPost", userPost);
+//			req.setAttribute("userAddress", userAddress);
+//			req.setAttribute("userPhone", userPhone);
 			
 		}
 		else if(req.getMethod().equals("POST")) {
+			System.out.println("POST방식입니다.");
 			String[] remember = req.getParameterValues("remember");
 			if(remember.length!=0){
 				System.out.println(remember[0]);
@@ -39,7 +74,9 @@ public class DeliveryControl implements Control {
 					list.add(data);
 					System.out.println(list);
 				}
+				String check="1";
 				req.setAttribute("list", list);
+				req.setAttribute("check", check);
 			}
 		}
 		return "delivery.tiles";

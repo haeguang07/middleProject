@@ -165,4 +165,7 @@
 	<select id="insertBook" parameterType="book">
 		insert into books values()
 	</select>
+	<select id="selectBookSearch" resultType="book">
+		select isbn,book_name,book_price from books where isbn=#{isbn}
+	</select>
 </mapper>
