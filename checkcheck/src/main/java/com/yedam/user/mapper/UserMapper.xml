@@ -36,12 +36,52 @@
 		nickname= #{nickname}
 	</select>
 	<select id="selectGenderPayment" resultType="user">
-		select user_gender, SUM(payment) AS payment
+		select user_gender,
+		SUM(payment) AS payment
 		from(
-				select user_gender, payment
-				from users u join orders_test o 
-				on(u.user_id=o.user_id)
-				where order_date BETWEEN '${year}-01-01' and '${year}-12-31')
-		group by user_gender
+		select user_gender, payment
+		from users u
+		join orders_test o
+		on(u.user_id=o.user_id)
+		where order_date BETWEEN
+		'${year}-01-01' and '${year}-12-31')
+		group by
+		user_gender
+	</select>
+	<select id="selectGendercategory" resultType="user">
+		select user_gender,
+		book_category as category , SUM(sell) as rate
+		from users u
+		join ( select
+		book_category, user_id, history_count * book_price as sell
+		from (
+		select REGEXP_SUBSTR(book_category,'[^>]+', 1, 2) AS
+		book_category
+		,book_price, history_count, order_id
+		from books b join historys h
+		on(b.isbn= h.isbn) ) a join orders o
+		on (a.order_id = o.order_id)) b
+		on(u.user_id= b.user_id)
+		group by u.user_gender, b.book_category
+		having
+		u.user_gender=#{gender}
+		order by rate desc
+	</select>
+	<select id="selectCategoryTop5" resultType="user">
+	<![CDATA[
+		select rownum ,a.*
+		from (select book_category as category , SUM(sell) as rate
+		from users u
+		join ( select book_category, user_id, history_count * book_price as sell
+		from ( select REGEXP_SUBSTR(book_category,'[^>]+', 1, 2) AS
+		book_category ,book_price, history_count, order_id
+		from books b join historys h
+		on(b.isbn= h.isbn) ) a join orders o
+		on (a.order_id = o.order_id)) b
+		on(u.user_id= b.user_id)
+		group by b.book_category
+		order by rate desc) a
+		where rownum <=5
+		]]>
 	</select>
 </mapper>
