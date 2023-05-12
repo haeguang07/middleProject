@@ -81,6 +81,28 @@ public class ChartDataControl implements Control {
 		for (UserVO vo: fcList) fcMap.put(vo.getCategory(), vo.getRate());
 		for (UserVO vo: cate5) cate5Map.put(vo.getCategory(), vo.getRate());
 		
+		//연령별 장르 매출
+		//나이로 생년월일 범위
+		List<String> ageArr = new ArrayList<>();
+		for(int i=0;i<70;i+=10) {
+			now = LocalDate.now();
+			String age = (now.getYear()-i)+"-"+now.getMonthValue()+"-"+now.getDayOfMonth();		
+			ageArr.add(age);
+		}
+		//각 연령별 매출
+		Map<String,Map<String,Integer>> ageMap = new HashMap<>();//<연령,<카테고리,매출>>
+		for(int i=0;i<ageArr.size();i++) {
+			Map<String,Integer> ageCateMap = new HashMap<>();
+			List<UserVO> aList =new ArrayList<>();
+			if(i==ageArr.size()-1) {
+				aList = service.getAgePayment60(ageArr.get(i));
+			}else {
+				aList = service.getAgePayment(ageArr.get(i+1),ageArr.get(i));
+			}
+			for(UserVO vo: aList) ageCateMap.put(vo.getCategory(), vo.getRate());				
+			ageMap.put((i+"0대"), ageCateMap);
+		}
+		
 		
 		Map<String,Object> map = new HashMap<>();
 		map.put("genderCount", genderCount);
@@ -91,6 +113,7 @@ public class ChartDataControl implements Control {
 		map.put("category5", category5);
 		map.put("mcMap", mcMap);
 		map.put("fcMap", fcMap);
+		map.put("ageMap", ageMap);
 		
 		
 		Gson gson = new GsonBuilder().create();
