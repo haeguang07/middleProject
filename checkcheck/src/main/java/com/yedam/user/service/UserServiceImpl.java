@@ -66,7 +66,13 @@ public class UserServiceImpl implements UserService {
 	public List<UserVO> getGenderPayment(int year) {
 		return mapper.selectGenderPayment(year);
 	}
-	
-	
+	@Override
+	public List<UserVO> getGenderCategoryRate(String gender) {
+		return mapper.selectGendercategory(gender);
+	}
+	@Override
+	public List<UserVO> getCategoryTop5() {
+		return mapper.selectCategoryTop5();
+	}
 
 }

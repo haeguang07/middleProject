@@ -61,4 +61,7 @@
 		on(b.user_id= u.user_id) 
 		where board_id =#{boardId}
 	</select>
+	<insert id="insertAnno" >
+		insert into boards values (BOARD_SEQ.nextval,#{userId},1,#{boardTitle},#{boardSubject},sysdate,'N')
+	</insert>
 </mapper>

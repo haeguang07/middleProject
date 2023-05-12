@@ -26,4 +26,7 @@ public interface BookService {
 	public List<BookVO> getNewBookSearchPage(String monthFirst , String monthLast , int page);
 	public int newBookCountSearch(String monthFirst,String monthLast);
 	public BookVO selectBookSearch(long isbn);
+	public List<BookVO>	bookStockPage(int page);
+	public int getStockTotal();
+	public boolean modifyStock(long isbn,int booknum);
 }

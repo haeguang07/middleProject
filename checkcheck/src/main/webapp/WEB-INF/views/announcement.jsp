@@ -46,7 +46,10 @@
 	</tbody>
 </table>
 </div>
-<div><input id="deletebtn" type="button" style=${sesInfo.userId eq 'hbj04003' ? 'float:right;dispaly:inline' : 'float:right;display:none' } value="삭제"></div>
+<div>
+	<input type="button" value="글작성"  onclick="location.href='writeAnno.do'" style=${sesInfo.userId eq 'hbj04003' ? 'float:right;dispaly:inline;margin-left:10px' : 'float:right;display:none;margin-left:10px' } >
+	<input id="deletebtn" type="button" style=${sesInfo.userId eq 'hbj04003' ? 'float:right;dispaly:inline' : 'float:right;display:none' } value="삭제">
+</div>
 	<div style="text-align: center; width: 1200px; height: 50px; padding: 30px 0; margin-bottom: 50px">
 		<div class="pagination2">		
 				<c:if test="${pageInfo.prev }">

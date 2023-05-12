@@ -35,7 +35,9 @@ public class UserVO {
 	private String email;
 	private String userName;
 	
-	//join용 필드
+	//관리자통계에 필요한 join용 필드
 	 private int payment;
 	 private Date orderDate;
+	 private String category;
+	 private int rate;
 }

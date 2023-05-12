@@ -15,4 +15,6 @@ public interface UserService {
 	public UserVO checkNick(String nickname);
 	public List<UserVO> userList();
 	public List<UserVO> getGenderPayment(int year);
+	public List<UserVO> getGenderCategoryRate(String gender);
+	public List<UserVO> getCategoryTop5();
 }

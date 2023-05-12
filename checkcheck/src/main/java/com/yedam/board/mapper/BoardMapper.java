@@ -19,4 +19,5 @@ public interface BoardMapper {
 	public int board1Count();
 	public int deleteAnno(int boardId);
 	public BoardVO selectBoard1(int boardId);
+	public int insertAnno(@Param("userId")String userId, @Param("boardTitle")String boardTitle,@Param("boardSubject")String boardSubject);
 }
