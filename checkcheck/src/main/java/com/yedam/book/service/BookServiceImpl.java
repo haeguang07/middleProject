@@ -96,4 +96,22 @@ public class BookServiceImpl implements BookService{
 		return mapper.newBookCount(monthFirst, monthLast);
 	}
 
+	@Override
+	public BookVO selectBookSearch(long isbn) {
+		return mapper.selectBookSearch(isbn);
+	}
+	public List<BookVO> bookStockPage(int page) {
+		return mapper.bookStockList(page);
+	}
+
+	@Override
+	public int getStockTotal() {
+		return mapper.stockTotal();
+	}
+
+	@Override
+	public boolean modifyStock(long isbn,int booknum) {
+		return mapper.updateStock(isbn,booknum)==1;
+	}
+
 }

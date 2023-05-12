@@ -35,9 +35,9 @@ public class InsertBookControl implements Control {
 		vo.setBookCategory(book[5]);
 		book[6] = book[6].equals("") ? "줄거리없음" : book[6];
 		vo.setBookDetail(book[6]);
-		vo.setBookCount(Integer.parseInt(book[7]));
+		vo.setBookCount(0);
 		vo.setHitCount(0);
-		vo.setBookStock(0);
+		vo.setBookStock(Integer.parseInt(book[7]));
 		vo.setCover(book[10]);
 		vo.setPubDate(book[11]);
 		if(service.insertbook(vo)) {

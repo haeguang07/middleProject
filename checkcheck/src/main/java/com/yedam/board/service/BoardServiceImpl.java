@@ -47,6 +47,10 @@ public class BoardServiceImpl implements BoardService {
 	public int inquiryTotal() {
 		return mapper.borad2ListCount();
 	}
+	@Override
+	public int addAnno(String userId, String boardTitle, String boardSubject) {
+		return mapper.insertAnno(userId, boardTitle, boardSubject);
+	}
 
 	
 	

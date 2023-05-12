@@ -40,9 +40,6 @@
 		<input id="allCount" type="number" value="1">
 		<input id="boxes" type="button" value="추가">
 	</div>
-	<%= request.getParameter("test") %>
-	${booklist eq null }
-	${test eq null }
 
 	<!-- 반복시작-->
 	<c:forEach var="b" items="${booklist }">
