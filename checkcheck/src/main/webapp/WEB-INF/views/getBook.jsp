@@ -64,13 +64,14 @@
 		<p style="margin: 10px">${book.bookName }</p>
 		<p style="font-size: 14px">${book.author }, ${book.publisher } ,
 			${book.pubDate }</p>
+		<input type="text" id="bookisbn" style="display:none" value="${book.isbn }">
 		<img src="${book.cover }"
 			style="float: left; width: 300px; height: 400px; box-shadow: 5px 5px 5px #000;">
 		<form action="" method="post" style="float: right; margin: 20px">
 			<table style="width: 250px; height: 250px">
 				<tr>
 					<td>정가</td>
-					<td>${book.bookPrice }</td>
+					<td id="bookPrice">${book.bookPrice }</td>
 				</tr>
 				<c:choose>
 					<c:when test="${sesInfo.userGrade eq 'normal' }">
@@ -78,7 +79,7 @@
 							<td>포인트</td>
 							<fmt:parseNumber var="point" value="${book.bookPrice*0.01 }"
 								integerOnly="true" />
-							<td>${point }</td>
+							<td id="point">${point }</td>
 						</tr>
 					</c:when>
 					<c:when test="${sesInfo.userGrade eq 'vip' }">
@@ -86,7 +87,7 @@
 							<td>포인트</td>
 							<fmt:parseNumber var="point" value="${book.bookPrice*0.03 }"
 								integerOnly="true" />
-							<td>${point }</td>
+							<td id="point">${point }</td>
 						</tr>
 					</c:when>
 					<c:when test="${sesInfo.userGrade eq 'vvip' }">
@@ -94,7 +95,7 @@
 							<td>포인트</td>
 							<fmt:parseNumber var="point" value="${book.bookPrice*0.05 }"
 								integerOnly="true" />
-							<td>${point }</td>
+							<td id="point">${point }</td>
 						</tr>
 					</c:when>
 					<c:otherwise>
@@ -110,7 +111,7 @@
 				</tr>
 				<tr>
 					<td><p style="display: inline-block">수량 :</p>
-						<p id="bookCount" style="display: inline-block">${book.bookCount }</p></td>
+						<p id="bookCount" style="display: inline-block">${book.bookStock }</p></td>
 					<td>
 						<div id='result'>1</div> <input type='button'
 						onclick='count("minus")' value='- ' /> <input type='button'
@@ -119,8 +120,8 @@
 				</tr>
 				<tr>
 					<td><input type="button" value="장바구니" onclick=insertBasket()></td>
-					<td><input type="submit" value=" 구매 "></td>
-					<td><input type="button" value="선물하기" onclick="location.href=''"></td>
+					<td><input type="button" value=" 구매 " onclick=insertOrder(this)></td>
+					<td><input type="button" value="선물하기" onclick=insertPresent(this)></td>
 				</tr>
 			</table>
 		</form>
@@ -214,6 +215,10 @@
 
 		function insertBasket(){
 			let result = document.querySelector('#result').innerText;
+			if("${sesInfo}"==""){
+				alert('로그인후 이용가능합니다');
+				return;
+			}
 			fetch("addBasket.do?isbn=${book.isbn}&userId=${sesInfo.userId}&count="+result)
 			.then(result => result.json())
 			.then(resolve =>{
@@ -226,6 +231,32 @@
 				}
 			})
 			.catch(error => console.log(error));
+		}
+		function insertOrder(field){
+			let isbn = document.getElementById('bookisbn').value;
+			console.log(isbn);
+			location.href="delivery.do?isbn="+isbn;
+			
+			if("${sesInfo}"==""){
+				alert('로그인후 이용가능합니다');
+				return;
+			}
+		}
+		function insertPresent(field){
+			console.log('presenttest');
+			let isbn = document.getElementById('bookisbn').value;
+			let isbn1 = document.getElementById('bookisbn');
+			console.log(isbn);
+			let bookName = isbn1.parentElement.children[0].innerText;
+			console.log(bookName);
+			//let bookPrice = field.parentElement.parentElement.children[0].children[1].innerText;
+			let bookPrice = document.getElementById('bookPrice').innerText;
+			console.log(bookPrice);
+			let basketCount = document.getElementById('result').innerText;
+			console.log(basketCount);
+			let bookPoint = document.getElementById('point').innerText;
+			console.log(bookPoint);
+			location.href="basketDelivery.do?presentcheck=1&isbn="+isbn+"&bookName="+bookName+"&bookPrice="+bookPrice+"&basketCount="+basketCount;
 		}
 	  	$('#star a').click(function(){ 
 	  		 $(this).parent().children("a").removeClass("on");    

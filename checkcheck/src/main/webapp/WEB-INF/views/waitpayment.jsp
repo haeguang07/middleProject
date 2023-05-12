@@ -47,22 +47,15 @@
 			<input type="text" style="display:none" name="userPhone" value="${phone }">
 			<input type="text" style="display:none" name="bookName" value="${bookName }">
 			<input type="text" style="display:none" name="bookPrice" value="${bookPrice }">
-			<select id="coupons" name="couponId" onchange=couponFuntion(this.value)>
+			<select id="coupons" name="couponId" onchange=couponFuntion(this)>
+			<option name="couponId" id="0" value="0">사용할쿠폰선택</option>
 				<c:forEach var="i" items="${clist }">
-					<c:if test="${i.discount eq '0.01' }">
-					<option name="couponId" value="${i.couponId }">1%할인쿠폰</option>
-					</c:if>
-					<c:if test="${i.discount eq '0.03' }">
-					<option name="couponId" value="${i.couponId }">3%할인쿠폰</option>
-					</c:if>
-					<c:if test="${i.discount eq '0.05' }">
-					<option name="couponId" value="${i.couponId }">5%할인쿠폰</option>
-					</c:if>
+					<option name="couponId" id="${i.discount }" value="${i.couponId }"><fmt:formatNumber value="${i.discount*100}"/>%할인쿠폰</option>
 				</c:forEach>
 			</select>
 		</div>
 		<div style="text-align: center; width:900px">
-			<p style="display:inline-block">사용할포인트<input id="usepoint" name="usepoint" type="text" value=""></p>
+			<p style="display:inline-block">사용할포인트<input id="usepoint" name="usepoint" type="text" value="0" onchange=couponFuntion(this)></p>
 			<p style="padding-left:200px; display:inline-block">현재 사용가능한 포인트 : ${userPoint }</p>
 		</div>
 		<div>
@@ -96,8 +89,8 @@
 			</c:choose>
 			<tr><td>총 가격 : <input type="text" id="totalPrice" name="totalPrice" style="width:100px;border:none" value="${bookPrice }"></td></tr>
 			<tr><td>적립금액 : <input type="text" id="totalSpoint" name="totalSpoint" style="width:100px;border:none" value="${totalSpoint }"></td></tr>
-			<tr><td>쿠폰할인금액 : <input type="text" id="totalSSpoint" style="width:150px;border:none" value=""></td></tr>
-			<tr><td>결제금액 : <input type="text" name="totalPriceEnd" id="totalPriceCount" style="width:100px;border:none" value="${bookPrice-totalSpoint }"></td></tr>
+			<tr><td>총할인금액 : <input type="text" id="totalSSpoint" style="width:150px;border:none" value=""></td></tr>
+			<tr><td>결제금액 : <input type="text" name="totalPriceEnd" id="totalPriceCount" style="width:100px;border:none" value=""></td></tr>
 		  </table>
 		</div>
 		<div style="text-align:right; padding-right:200px; padding-top:30px; padding-bottom:30px">
@@ -120,22 +113,15 @@
 				<input type="text" style="display:none" name="bookPrice" value="${i.bookPrice }">
 				<input type="text" style="display:none" name="basketId" value="${i.basketId }">
 			</c:forEach>
-			<select id="coupons" name="couponId" onchange=couponFuntion(this.value)>
+			<select id="coupons" name="couponId" onchange=couponFuntion(this)>
+			<option name="couponId" id="0" value="0">사용할쿠폰선택</option>
 				<c:forEach var="i" items="${clist }">
-					<c:if test="${i.discount eq '0.01' }">
-					<option name="couponId" value="${i.couponId }">1%할인쿠폰</option>
-					</c:if>
-					<c:if test="${i.discount eq '0.03' }">
-					<option name="couponId" value="${i.couponId }">3%할인쿠폰</option>
-					</c:if>
-					<c:if test="${i.discount eq '0.05' }">
-					<option name="couponId" value="${i.couponId }">5%할인쿠폰</option>
-					</c:if>
+					<option name="${i.discount }" id="${i.discount }" value="${i.couponId }"><fmt:formatNumber value="${i.discount*100}"/>%할인쿠폰</option>
 				</c:forEach>
 			</select>
 		</div>
 		<div style="text-align: center; width:900px">
-			<p style="display:inline-block">사용할포인트<input type="text" value=""></p>
+			<p style="display:inline-block">사용할포인트<input id="usepoint" name="usepoint" type="text" value="0"  onchange=couponFuntion(this)></p>
 			<p style="padding-left:200px; display:inline-block">현재 사용가능한 포인트 : ${userPoint }</p>
 		</div>
 		<div>
@@ -169,7 +155,7 @@
 			</c:choose>
 			<tr><td>총 가격 : <input type="text" id="totalPrice" name="totalPrice" style="width:100px;border:none" value="${totalPrice }"></td></tr>
 			<tr><td>적립금액 : <input type="text" id="totalSpoint" name="totalSpoint" style="width:100px;border:none" value="${totalSpoint }"></td></tr>
-			<tr><td>쿠폰할인금액 : <input type="text" id="totalSSpoint" style="width:150px;border:none" value=""></td></tr>
+			<tr><td>총할인금액 : <input type="text" id="totalSSpoint" style="width:150px;border:none" value=""></td></tr>
 			<tr><td>결제금액 : <input type="text" name="totalPriceEnd" id="totalPriceCount" style="width:100px;border:none" value=""></td></tr>
 		  </table>
 		</div>
@@ -206,39 +192,23 @@ function couponFuntion(coupons){
     console.log(value);
     let text = option.text;
     console.log(text);
-	if(text === '1%할인쿠폰'){
-		let totalSSpoint = document.getElementById('totalSSpoint').value;
-		let totalSpoint = document.getElementById('totalSpoint').value;
-		totalSSpoint = 0;
-		result.value = 0;
-		let totalPrice = document.getElementById('totalPrice').value;
-		console.log(totalPrice);
-		totalSSpoint = ((totalPrice*0.01)*1);
-		console.log(totalSSpoint);
-		result.value = totalSSpoint;
-		resultPrice.value = (totalPrice*1)-((totalSSpoint*1));
-	}else if(text === '3%할인쿠폰'){
-		let totalSSpoint = document.getElementById('totalSSpoint').value;
-		let totalSpoint = document.getElementById('totalSpoint').value;
-		totalSSpoint = 0;
-		result.value = 0;
-		let totalPrice = document.getElementById('totalPrice').value;
-		console.log(totalPrice);
-		totalSSpoint = ((totalPrice*0.03)*1);
-		console.log(totalSSpoint);
-		result.value = totalSSpoint;
-		resultPrice.value = (totalPrice*1)-((totalSSpoint*1));
-	}else if(text === '5%할인쿠폰'){
-		let totalSSpoint = document.getElementById('totalSSpoint').value;
-		totalSSpoint = 0;
-		result.value = 0;
-		let totalPrice = document.getElementById('totalPrice').value;
-		totalSSpoint = ((totalPrice*0.05)*1);
-		console.log(totalSSpoint);
-		result.value = totalSSpoint;
-		resultPrice.value = (totalPrice*1)-((totalSSpoint*1));
+	let id = option.id;
+	console.log(id);
+	let totalSSpoint = document.getElementById('totalSSpoint').value;
+	let totalSpoint = document.getElementById('totalSpoint').value;
+	let usePoint = document.getElementById('usepoint').value;
+	usePoint = usePoint== ""? 0: usePoint;
+	console.log(usePoint);
+	totalSSpoint = 0;
+	result.value = 0;
+	let totalPrice = document.getElementById('totalPrice').value;
+	console.log(totalPrice);
+	totalSSpoint = ((totalPrice*id)*1)+(usePoint*1);
+	console.log(totalSSpoint);
+	result.value = totalSSpoint;
+	resultPrice.value = (totalPrice*1)-(totalSSpoint*1);
 	}
-}
+
 	$(function() {
 		$(window).scroll(function() {
 			if ($(this).scrollTop() > 100) {

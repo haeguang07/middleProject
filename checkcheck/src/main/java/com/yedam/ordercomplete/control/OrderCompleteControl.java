@@ -27,6 +27,8 @@ public class OrderCompleteControl implements Control {
 			String userId = req.getParameter("userId");						//ok
 			int payment = Integer.parseInt(req.getParameter("totalPrice"));//ok
 			int orderPoint = Integer.parseInt(req.getParameter("totalSpoint"));
+			int usePoint = Integer.parseInt(req.getParameter("usepoint"));
+			System.out.println("usePoint : "+usePoint);
 			//배송상태(배송전중후)
 			//orderdate
 			int orderPost = Integer.parseInt(req.getParameter("userPost"));						//ok
@@ -42,7 +44,7 @@ public class OrderCompleteControl implements Control {
 			vo.setOrderId(orderId);
 			vo.setUserId(userId);
 			vo.setPayment(payment);
-			vo.setOrderPoint(orderPoint);
+			vo.setOrderPoint(usePoint);
 			//state,date
 			vo.setOrderPost(orderPost);
 			vo.setOrderAddress(orderAddress);
@@ -55,9 +57,9 @@ public class OrderCompleteControl implements Control {
 			bvo = service.selectbook(bookName);
 			bvo.setBookStock(bookStock);
 			service.updateBook(bvo);
-			UserVO uvo = new UserVO();
 			int userPoint = Integer.parseInt(req.getParameter("totalSpoint"));
 			service.updateUser(userPoint,userId);
+			service.updateUser((-usePoint), userId);
 			//사용한 쿠폰 제거하는부분
 			if(coupon!=null) {
 				int couponId = Integer.parseInt(coupon);
@@ -82,6 +84,9 @@ public class OrderCompleteControl implements Control {
 			String userId = req.getParameter("userId");						//ok
 			int payment = Integer.parseInt(req.getParameter("totalPrice"));//ok
 			int orderPoint = Integer.parseInt(req.getParameter("totalSpoint"));
+			String usePoint1 = req.getParameter("usepoint");
+			int usePoint =usePoint1== "" ? 0: Integer.parseInt(usePoint1);
+			System.out.println("usePoint : "+usePoint);
 			//배송상태(배송전중후)
 			//orderdate
 			int orderPost = Integer.parseInt(req.getParameter("userPost"));						//ok
@@ -109,7 +114,7 @@ public class OrderCompleteControl implements Control {
 			vo.setOrderId(orderId);
 			vo.setUserId(userId);
 			vo.setPayment(payment);
-			vo.setOrderPoint(orderPoint);
+			vo.setOrderPoint(usePoint);
 			//state,date
 			vo.setOrderPost(orderPost);
 			vo.setOrderAddress(orderAddress);
@@ -118,6 +123,8 @@ public class OrderCompleteControl implements Control {
 			vo.setMethod(orderMethod);
 			CompleteService service = new CompleteServiceImpl();
 			service.insertOrder(vo);
+			service.updateUser(orderPoint,userId);
+			service.updateUser((-usePoint), userId);
 			//bookstock- 하는부분 updateBook
 			for(int i=0;i<bookName.length;i++) {
 				BookVO bvo = new BookVO();
