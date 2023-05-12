@@ -17,6 +17,7 @@ import com.yedam.board.control.AnnounceForAjaxControl;
 import com.yedam.board.control.AnnouncementControl;
 import com.yedam.admin.control.BookStockControl;
 import com.yedam.admin.control.ChartControl;
+import com.yedam.admin.control.ChartDataControl;
 import com.yedam.admin.control.ChulgoControl;
 import com.yedam.admin.control.InquiryAnswerFormControl;
 import com.yedam.basket.control.AddBasketControl;
@@ -85,6 +86,8 @@ public class FrontController extends HttpServlet {
 		map.put("/main.do", new mainControl());
 		// 관리자 통계페이지
 		map.put("/chart.do", new ChartControl());
+		//관리자 통계 데이터(json)
+		map.put("/chartData.do", new ChartDataControl());
 		// 관리자 출고상태 변경기능
 		map.put("/chulgo.do", new ChulgoControl());
 		// 관리자 도서 추가 기능
