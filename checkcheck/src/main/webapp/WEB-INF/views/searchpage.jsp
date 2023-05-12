@@ -195,16 +195,16 @@
 				<c:when test="${category eq '베스트셀러' }">
 					<c:if test="${pageInfo.prev }">
 						<a
-							href="bestSeller.do?category=${category }&page=${pageInfo.startPage-1 }">Previous</a>
+							href="bestSeller.do?category=${category }&page=${pageInfo.startPage-1 }&monthFirst=${mfirst}&monthLast=${mlast}">Previous</a>
 					</c:if>
 					<c:forEach var="i" begin="${pageInfo.startPage }"
 						end="${pageInfo.endPage }">
 						<a class="${i==pageInfo.pageNum ? 'active1' : '' }"
-							href="bestSeller.do?category=${category }&page=${i }">${i } </a>
+							href="bestSeller.do?category=${category }&page=${i }&monthFirst=${mfirst}&monthLast=${mlast}">${i } </a>
 					</c:forEach>
 					<c:if test="${pageInfo.next }">
 						<a
-							href="bestSeller.do?category=${category }&page=${pageInfo.endPage+1 }">Next</a>
+							href="bestSeller.do?category=${category }&page=${pageInfo.endPage+1 }&monthFirst=${mfirst}&monthLast=${mlast}">Next</a>
 					</c:if>
 				</c:when>
 				<c:when test="${category eq '화제의책' }">
