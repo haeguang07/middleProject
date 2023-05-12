@@ -2,15 +2,23 @@
     pageEncoding="UTF-8"%>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
+    //데이터 로드
+    fetch('chartData.do')
+    .then(resolve=> resolve.json())
+    .then(result=>{
+    	console.log(result)
+    
+    
+    
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
 
       function drawChart() {
-
+		let genderCount =result.genderCount;
         var data = google.visualization.arrayToDataTable([
           ['성별', '회원수'],
-          ['남성',   ${genderCount[0]}],
-          ['여성',   ${genderCount[1]}]
+          ['남성',   genderCount[0]],
+          ['여성',   genderCount[1]]
           
         ]);
 
@@ -28,17 +36,18 @@
       
        
       google.charts.setOnLoadCallback(drawChart2);
-
+		let ageCount =[];
       function drawChart2() {
-
+    	 		
+    	let ageCount= result.ageCount;
         var data = google.visualization.arrayToDataTable([
           ['연령', '회원수'],
-          ['10대',  ${ageCount[0]}],
-          ['20대',  ${ageCount[1]}],
-          ['30대',  ${ageCount[2]}],
-          ['40대',  ${ageCount[3]}],
-          ['50대',  ${ageCount[4]}],
-          ['60대이상',  ${ageCount[5]}]
+          ['10대',  ageCount[0]],
+          ['20대',  ageCount[1]],
+          ['30대',  ageCount[2]],
+          ['40대',  ageCount[3]],
+          ['50대',  ageCount[4]],
+          ['60대이상',  ageCount[5]]
         ]);
 
         var options = {
@@ -80,13 +89,16 @@
       /*남여장르별  */
        google.charts.load('current', {'packages':['bar']});
       google.charts.setOnLoadCallback(drawChart3);
-
+      	let 
+		let mcMap = result.mcMap;
+		let fcMap = result.fcMap;
       function drawChart3() {
         var data = google.visualization.arrayToDataTable([
           ['장르', '남성', '여성'],
           ['과학', 1000, 400],
           ['문학', 2010, 460],
           ['비문학', 660, 1120],
+          ['교재', 1030, 540],
           ['교재', 1030, 540]
         ]);
 
@@ -106,13 +118,15 @@
       google.charts.setOnLoadCallback(drawChart4);
 
       function drawChart4() {
+    	  let plist=result.plist;
+    	  let years =result.years;
         var data = google.visualization.arrayToDataTable([
           ['연도', '남자', '여자','총매출'],
-          ['${years[0]}',  ${plist[0]['M']}, ${plist[0]['F']}, ${plist[0]['M']+ plist[0]['F']}],
-          ['${years[1]}',  ${plist[1]['M']}, ${plist[1]['F']}, ${plist[1]['M']+ plist[1]['F']}],
-          ['${years[2]}',  ${plist[2]['M']}, ${plist[2]['F']}, ${plist[2]['M']+ plist[2]['F']}],
-          ['${years[3]}',  ${plist[3]['M']}, ${plist[3]['F']}, ${plist[3]['M']+ plist[3]['F']}],
-          ['${years[4]}',  ${plist[4]['M']}, ${plist[4]['F']}, ${plist[4]['M']+ plist[4]['F']}]
+          [years[0],  plist[0]['M'], plist[0]['F'], plist[0]['M']+ plist[0]['F']],
+          [years[1],  plist[1]['M'], plist[1]['F'], plist[1]['M']+ plist[1]['F']],
+          [years[2],  plist[2]['M'], plist[2]['F'], plist[2]['M']+ plist[2]['F']],
+          [years[3],  plist[3]['M'], plist[3]['F'], plist[3]['M']+ plist[3]['F']],
+          [years[4],  plist[4]['M'], plist[4]['F'], plist[4]['M']+ plist[4]['F']]
         ]);
 
         var options = {
@@ -125,6 +139,8 @@
 
         chart.draw(data, options);
       }
+    })
+    .catch(err=> console.log(err));
     </script>
   
     <div style="display:flex;">
