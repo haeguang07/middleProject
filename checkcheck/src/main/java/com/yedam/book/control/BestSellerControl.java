@@ -67,6 +67,8 @@ public class BestSellerControl implements Control {
 			req.setAttribute("shYear", shYear);
 			req.setAttribute("shMonth", shMonth);
 			req.setAttribute("shWeek", monthFirst +" 에서 " +monthLast + " 까지의 검색결과입니다.");
+			req.setAttribute("mfirst", monthFirst);
+			req.setAttribute("mlast", monthLast);
 			System.out.println("post");
 			return "searchpage.tiles";
 		}else if(req.getMethod().equals("GET")){
@@ -76,13 +78,14 @@ public class BestSellerControl implements Control {
 		String pageStr = req.getParameter("page");
 		pageStr = pageStr == null ? "1" : pageStr;
 		int page = Integer.parseInt(pageStr);
-		
+		System.out.println(page);
 		String monthFirst2 = req.getParameter("monthFirst");
 		monthFirst2 = monthFirst2 == null ? monthFirst : monthFirst2;
 		String monthLast2 = req.getParameter("monthLast");
 		monthLast2 = monthLast2 == null ? monthLast : monthLast2;
+		System.out.println(monthFirst2 + " " + monthLast2);
 
-		int total = service.getBestCount(monthFirst , monthLast);
+		int total = service.getBestCount(monthFirst2 , monthLast2);
 		// 페이징
 		PageDTO dto = new PageDTO(page, total);
 		//날짜 구하기
@@ -94,6 +97,9 @@ public class BestSellerControl implements Control {
 		req.setAttribute("category", category);
 		System.out.println(category + "GET");
 		req.setAttribute("pageInfo", dto);
+		System.out.println(dto);
+		req.setAttribute("mfirst", monthFirst2);
+		req.setAttribute("mlast", monthLast2);
 		//https://blog.munilive.com/posts/create-weekly-selectbox-with-javascript.html
 		System.out.println("GET");
 		return "searchpage.tiles";
