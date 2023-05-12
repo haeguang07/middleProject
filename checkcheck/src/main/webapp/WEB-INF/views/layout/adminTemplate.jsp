@@ -13,6 +13,7 @@
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css2/styles.css" rel="stylesheet" />
+        <base href="/" />
     </head>
     <body>
         <div class="d-flex" id="wrapper">
@@ -26,6 +27,7 @@
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="chulgo.do">출고관리</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="adminInquiryInfo.do">문의관리</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="chart.do">통계</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="logout.do">로그아웃</a>
                 </div>
             </div>
             <!-- Page content wrapper-->
