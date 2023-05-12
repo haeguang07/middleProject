@@ -18,5 +18,9 @@ public interface OrderMapper {
 	public int getCount(String userId);
 	public int getCancleCount(String userId);
 	public int getPresentCount(String userId);
+	public List<OrderVO> chulgoList(int page);
+	public int getChulgoTotal();
+	public List<String> subjectList(String orderId);
+	public int updateOrderState(long orderIdList);
 	
 }

@@ -15,4 +15,8 @@ public interface OrderService {
 	
 	public boolean orderCancel(String orderId);
 	public boolean orderChange(OrderVO vo);
+	public List<OrderVO> getChulgoList(int page);
+	public int chulgoTotal();
+	public List<String> getSubject(String orderId);
+	public int modifyOrderState(long orderIdList);
 }

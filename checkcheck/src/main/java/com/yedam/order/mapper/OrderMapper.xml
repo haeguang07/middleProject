@@ -120,4 +120,29 @@
 		,order_phone=#{orderPhone}
 		where order_id=#{orderId}
 	</update>
+	<select id="chulgoList" resultType="order">
+		<![CDATA[
+		select b.*
+		from(select rownum rn , a.*
+		from(select * 
+		from orders 
+		where order_state = '배송전')a
+		where rownum <= #{page}*10) b
+		where rn > (#{page}-1)*10
+		]]>
+	</select>
+	<select id="getChulgoTotal">
+		select count(*) 
+		from orders 
+		where order_state = '배송전'
+	</select>
+	<select id="subjectList" resultType="String">
+		select  b.isbn
+		from orders a join historys b
+		on a.order_id = b.order_id
+		where b.order_id =#{orderId}
+	</select>
+	<update id="updateOrderState" >
+		update orders set order_state = '배송중' where order_id in(#{orderIdList})
+	</update>
 </mapper>

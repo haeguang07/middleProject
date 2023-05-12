@@ -48,6 +48,22 @@ public class OrderServiceImpl implements OrderService {
 	public List<OrderVO> OrderPresentList(String userId, int page) {
 		return mapper.selectOrderPresent(userId, page);
 	}
+	@Override
+	public List<OrderVO> getChulgoList(int page) {
+		return mapper.chulgoList(page);
+	}
+	@Override
+	public int chulgoTotal() {
+		return mapper.getChulgoTotal();
+	}
+	@Override
+	public List<String> getSubject(String orderId) {
+		return mapper.subjectList(orderId);
+	}
+	@Override
+	public int modifyOrderState(long orderIdList) {
+		return mapper.updateOrderState(orderIdList);
+	}
 	
 	
 
