@@ -84,4 +84,35 @@
 		where rownum <=5
 		]]>
 	</select>
+	<select id="selectAgePayment" resultType="user">
+	<![CDATA[
+		select book_category as category , SUM(sell) as rate
+		from (select user_id, user_birth from users where user_birth BETWEEN
+		#{birth} and #{birth10}) u
+		join ( select book_category, user_id, history_count * book_price as sell
+		from ( select REGEXP_SUBSTR(book_category,'[^>]+', 1, 2) AS
+		book_category ,book_price, history_count, order_id
+		from books b join historys h
+		on(b.isbn= h.isbn) ) a join orders o
+		on (a.order_id = o.order_id)) b
+		on(u.user_id= b.user_id)
+		group by b.book_category
+		order by rate desc
+			]]>
+	</select>
+	<select id="selectAgePayment60" resultType="user">
+	<![CDATA[
+		select book_category as category , SUM(sell) as rate
+		from (select user_id, user_birth from users where user_birth < #{birth60}) u
+		join ( select book_category, user_id, history_count * book_price as sell
+		from ( select REGEXP_SUBSTR(book_category,'[^>]+', 1, 2) AS
+		book_category ,book_price, history_count, order_id
+		from books b join historys h
+		on(b.isbn= h.isbn) ) a join orders o
+		on (a.order_id = o.order_id)) b
+		on(u.user_id= b.user_id)
+		group by b.book_category
+		order by rate desc
+			]]>
+	</select>
 </mapper>
