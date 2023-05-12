@@ -97,6 +97,9 @@ public class BookServiceImpl implements BookService{
 	}
 
 	@Override
+	public BookVO selectBookSearch(long isbn) {
+		return mapper.selectBookSearch(isbn);
+	}
 	public List<BookVO> bookStockPage(int page) {
 		return mapper.bookStockList(page);
 	}
