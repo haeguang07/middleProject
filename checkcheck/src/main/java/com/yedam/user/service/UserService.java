@@ -2,7 +2,6 @@ package com.yedam.user.service;
 
 import java.util.List;
 
-import com.yedam.basket.domain.BasketVO;
 import com.yedam.user.domain.UserVO;
 
 public interface UserService {
@@ -17,4 +16,6 @@ public interface UserService {
 	public List<UserVO> getGenderPayment(int year);
 	public List<UserVO> getGenderCategoryRate(String gender);
 	public List<UserVO> getCategoryTop5();
+	public List<UserVO> getAgePayment(String birth,String birth10);
+	public List<UserVO> getAgePayment60(String birth60);
 }

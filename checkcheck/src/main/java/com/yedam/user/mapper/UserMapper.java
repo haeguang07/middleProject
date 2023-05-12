@@ -18,5 +18,7 @@ public interface UserMapper {
 	public List<UserVO> selectGenderPayment(int year);
 	public List<UserVO> selectGendercategory(String gender);
 	public List<UserVO> selectCategoryTop5();
+	public List<UserVO> selectAgePayment(@Param("birth")String birth,@Param("birth10") String birth10);
+	public List<UserVO> selectAgePayment60(String birth60);
 
 }
