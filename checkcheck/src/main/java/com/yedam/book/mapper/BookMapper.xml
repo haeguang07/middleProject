@@ -165,4 +165,25 @@
 	<select id="insertBook" parameterType="book">
 		insert into books values()
 	</select>
+	<select id="bookStockList" resultType="book">
+		<![CDATA[
+		select c.* 
+		from
+    		(select b.*
+   			 from(select rownum rn , a.*
+    			  from(select * from books
+          		  where book_stock < 10
+          	      order by book_stock ) a ) b
+     		 where rownum <=#{page}*10) c
+		where rn > (#{page}-1)*10
+		]]>
+	</select>
+	<select id="stockTotal">
+		<![CDATA[
+			select count(*) from books where book_stock <10
+		]]>
+	</select>
+	<update id="updateStock" >
+		update books set book_stock = #{booknum} where isbn= #{isbn}
+	</update>
 </mapper>

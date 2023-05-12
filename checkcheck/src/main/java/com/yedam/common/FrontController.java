@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yedam.admin.control.AddAnnoControl;
 import com.yedam.admin.control.AddBookControl;
 import com.yedam.admin.control.AdminInquiryInfoControl;
+import com.yedam.admin.control.AnnoUploadControl;
 import com.yedam.board.control.AnnounceForAjaxControl;
 import com.yedam.board.control.AnnouncementControl;
 import com.yedam.admin.control.BookStockControl;
@@ -20,6 +22,8 @@ import com.yedam.admin.control.ChartControl;
 import com.yedam.admin.control.ChartDataControl;
 import com.yedam.admin.control.ChulgoControl;
 import com.yedam.admin.control.InquiryAnswerFormControl;
+import com.yedam.admin.control.ModifyStockControl;
+import com.yedam.admin.control.WriteAnnoControl;
 import com.yedam.basket.control.AddBasketControl;
 import com.yedam.basket.control.BasketControl;
 import com.yedam.basket.control.BasketDeliveryControl;
@@ -96,6 +100,7 @@ public class FrontController extends HttpServlet {
 		map.put("/insertbook.do", new InsertBookControl());
 		// 관리자 재고관리 기능
 		map.put("/bookStock.do", new BookStockControl());
+		map.put("/modifyStock.do",new ModifyStockControl());
 		// 05-03 관리자 문의내용 페이지
 		map.put("/adminInquiryInfo.do", new AdminInquiryInfoControl());
 		//문의내용 미답변기능
@@ -123,6 +128,9 @@ public class FrontController extends HttpServlet {
 		map.put("/announceForAjax.do", new AnnounceForAjaxControl());
 		map.put("/removeAnno.do",new RemoveAnnoControl());
 		map.put("/searchAnno.do", new SearchAnnoControl());
+		map.put("/writeAnno.do", new WriteAnnoControl());
+		map.put("/annoUpload.do", new AnnoUploadControl());
+		map.put("/addAnno.do", new AddAnnoControl());
 		
 		//05-02 장바구니페이지 김영환 - css더 다듬어야함 기능깔끔하게 넣어야함
 		map.put("/basket.do", new BasketControl());
