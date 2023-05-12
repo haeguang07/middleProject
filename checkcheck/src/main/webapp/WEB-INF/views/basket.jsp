@@ -41,6 +41,7 @@
 					<filedset style="width:1000px">
 					<table>
 						<tr>
+						<input style="display:none" name="presentcheck" value="0">
 							<td><input id="${vs.index }" class="remember" type="checkbox" onclick=checkSelectAll() name="remember" style="margin: 15px"></td>
 							<td rowspan="5"><img src="${i.cover }"
 								style="width: 150px; height: 150px"></td>
@@ -68,7 +69,7 @@
 							<td style="padding: 0 40px; width: 200px; word-break: break-all">
 								<input type="reset"></input>
 							</td>
-							<td><input id="isbn" name="isbn" value=${i.isbn }></td>
+							<td><input style="display:none" id="isbn" name="isbn" value=${i.isbn }></td>
 							<td style="display:none"><input type="text" id="basketId" name="basketId" style="display:none" value="${i.basketId }"></td>
 						</tr>
 						</table>
