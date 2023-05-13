@@ -64,7 +64,7 @@
         
         
         <property name="java-output-path" value="/checkcheck/build/classes"/>
-        <property name="context-root" value="com.yedam"/>
+        <property name="context-root" value="/"/>
                                                                                                     
     
     
