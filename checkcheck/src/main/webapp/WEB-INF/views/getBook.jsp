@@ -218,28 +218,59 @@
 			if("${sesInfo}"==""){
 				alert('로그인후 이용가능합니다');
 				return;
-			}
-			fetch("addBasket.do?isbn=${book.isbn}&userId=${sesInfo.userId}&count="+result)
-			.then(result => result.json())
-			.then(resolve =>{
-				
-				if(resolve.retCode == 'Success'){
-					
-					if(confirm('장바구니로 이동하시겠습니까?')){
-						location.href="basket.do";
+			}else{
+				const resultElement = document.getElementById('result');
+	
+				// 현재 화면에 표시된 값
+				let number = resultElement.innerText;
+				let bookCount = document.getElementById('bookCount').innerText;
+				console.log(number);
+				console.log(bookCount);
+				if(bookCount > 0){
+					if(number < document.querySelector('#bookCount').innerText ){
+						fetch("addBasket.do?isbn=${book.isbn}&userId=${sesInfo.userId}&count="+result)
+						.then(result => result.json())
+						.then(resolve =>{
+							
+							if(resolve.retCode == 'Success'){
+								
+								if(confirm('장바구니로 이동하시겠습니까?')){
+									location.href="basket.do";
+								}
+							}
+						})
+						.catch(error => console.log(error));
 					}
+				}else{
+					alert('재고가 부족합니다!! 장바구니에 넣을수 없습니다!!');
 				}
-			})
-			.catch(error => console.log(error));
+			}
 		}
 		function insertOrder(field){
 			let isbn = document.getElementById('bookisbn').value;
 			console.log(isbn);
-			location.href="delivery.do?isbn="+isbn;
 			
 			if("${sesInfo}"==""){
 				alert('로그인후 이용가능합니다');
 				return;
+			}else{
+				const resultElement = document.getElementById('result');
+	
+				// 현재 화면에 표시된 값
+				let number = resultElement.innerText;
+				console.log(number);
+				let bookCount = document.getElementById('bookCount').innerText;
+				if(bookCount>1){
+					if(number > document.getElementById('bookCount').innerText ){
+						alert('책의 재고보다 많은 수량은 주문 할 수없습니다');
+						number = document.querySelector('#bookCount').innerText;
+					}
+					else{
+						location.href="delivery.do?isbn="+isbn;
+					}
+				}else if(bookCount<1){
+					alert('재고가 부족합니다!! 구매가 불가능합니다!!');
+				}
 			}
 		}
 		function insertPresent(field){
@@ -256,7 +287,22 @@
 			console.log(basketCount);
 			let bookPoint = document.getElementById('point').innerText;
 			console.log(bookPoint);
-			location.href="basketDelivery.do?presentcheck=1&isbn="+isbn+"&bookName="+bookName+"&bookPrice="+bookPrice+"&basketCount="+basketCount;
+			const resultElement = document.getElementById('result');
+
+			// 현재 화면에 표시된 값
+			let number = resultElement.innerText;
+			let bookCount = document.getElementById('bookCount').innerText;
+			if(bookCount>1){
+			if(number > document.querySelector('#bookCount').innerText ){
+				alert('책의 재고보다 많은 수량은 주문 할 수없습니다');
+				number = document.querySelector('#bookCount').innerText;
+				
+			}else{
+				location.href="basketDelivery.do?presentcheck=1&isbn="+isbn+"&bookName="+bookName+"&bookPrice="+bookPrice+"&basketCount="+basketCount;
+			}
+			}else if(bookCount<1){
+				alert('재고가 부족합니다!! 주문하실 수 없습니다!!');
+			}
 		}
 	  	$('#star a').click(function(){ 
 	  		 $(this).parent().children("a").removeClass("on");    

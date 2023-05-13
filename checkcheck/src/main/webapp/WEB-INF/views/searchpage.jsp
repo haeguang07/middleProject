@@ -144,6 +144,7 @@
 						<tr><td>출판사</td><td>${i.publisher }</td></tr>
 						<tr><td>가격</td><td>${i.bookPrice }</td></tr>
 						<tr><td>평점</td><td>5</td></tr>
+						<input type="text" style="display:none" id="bookStock" value="${i.bookStock }">
 					</table>
 					<button id="pay" type="button" style="float: right; position: absolute; right: 0; bottom: 10%;" onclick=insertOrder(this)>구매</button>
 					<button id="basket" type="button" style="float: right; position: absolute; right: 70px; bottom: 10%;" onclick=insertBasket(this)>장바구니</button>
@@ -277,18 +278,24 @@ function insertBasket(field){
 		alert('로그인후 이용가능합니다');
 		return;
 	}
-	fetch("addBasket.do?isbn="+isbn+"&userId=${sesInfo.userId}&count=1")
-	.then(result => result.json())
-	.then(resolve =>{
-		
-		if(resolve.retCode == 'Success'){
+	let bookStock = field.parentElement.children[0].value;
+	if(bookStock>=1){
+		fetch("addBasket.do?isbn="+isbn+"&userId=${sesInfo.userId}&count=1")
+		.then(result => result.json())
+		.then(resolve =>{
 			
-			if(confirm('장바구니로 이동하시겠습니까?')){
-				location.href="basket.do";
+			if(resolve.retCode == 'Success'){
+				
+				if(confirm('장바구니로 이동하시겠습니까?')){
+					location.href="basket.do";
+				}
 			}
-		}
-	})
-	.catch(error => console.log(error));
+		})
+		.catch(error => console.log(error));
+	} else if(bookStock<1){
+		alert('재고가 없습니다!! 장바구니에 담을수 없습니다!!');
+		return
+	}
 }
 function insertOrder(field){
 	if("${sesInfo}"==""){
@@ -299,6 +306,18 @@ function insertOrder(field){
 	console.log(basketbutton);
 	let isbn = basketbutton.nextElementSibling.innerText;
 	console.log(isbn);
+	let bookStock = field.parentElement.children[0].value;
+	if("${sesInfo}"==""){
+		alert('로그인후 이용가능합니다');
+		return;
+	}
+	if(bookStock<1){
+		alert('재고가 없습니다!!');
+		return;
+	}else if(bookStock>=1){
+	    location.href="delivery.do?isbn="+isbn;
+	}
+	console.log(bookStock);
 	location.href="delivery.do?isbn="+isbn;
 	
 	//location.href="delivery.do";
