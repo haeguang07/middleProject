@@ -28,6 +28,8 @@
 <!-- Section-->
 <section class="py-5">
 	<div class="container px-4 px-lg-5 mt-5">
+<c:if test="${empty list }"><p>현재 장바구니에 담아둔 도서가 없습니다!!</p></c:if>
+		    <c:if test="${not empty list }">
 		<input type='checkbox' name='selectall' value='selectall'
 			onclick='selectAll(this)' style="padding-bottom:5px"/> <b>전체선택</b>
 			<p></p>
@@ -37,8 +39,8 @@
 			<p style="width:260px; text-align:right; display:inline-block">초기화</p>
 		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
 		    <c:forEach var="i" items="${list }" varStatus="vs">
-				<form method="post"style="position: relative; width: 1100px; text-align:center">
-					<filedset style="width:1000px">
+				<form method="post"style="position: relative; width: 1100px; text-align:center;">
+					<filedset style="width:1000px;">
 					<table>
 						<tr>
 						<input style="display:none" name="presentcheck" value="0">
@@ -75,11 +77,12 @@
 						</table>
 					</filedset>
 			</c:forEach>
+			</div>
+			</c:if>
 			<div id="basketform"
-				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4"
-				style="text-align: center; display: inline-block">
+				class="" style="text-align: center; border:solid 1px black;">
 				<filedset class="form-inline center" role="form" action="delivery.do" method="post"
-					style="text-align: center; width: 500px;">
+					style="text-align: center; width: 500px; ">
 					<p>현재주소<input type="submit" value="변경" style="padding:5px 15px"></input><br></p>
 						<input id="proaddress" class="proaddress" name="proaddress" style="border:none; width:200px" type="text" value=${address }><br><br>
 						총 상품 가격 : <input id="totalprice" name="totalprice" style="border:none" type="text" value="0">원<br>
@@ -97,13 +100,12 @@
 						상품 포인트 : <input name="productpoint" style="border:none" type="text" value="${gpoint }">p<br>
 						예상 총 포인트 : <input name="totalpoint" style="border:none; width:200px" type="text" value="${userPoint+gpoint }">원<br><br>
 						고객님의 등급 : <input name="grade" type="text" style="border:none" value="${userGrade }"><br>
-						<p>VIP : 3% VVIP : 5%<br><br></p>
+						<p>normal : 1%   VIP : 3%   VVIP : 5%<br><br></p>
 						<input id="Bespeak" type="submit" value="주문" style="padding:5px 15px" onclick="javascript: form.action='delivery.do';"/>
 						<input id="present" type="submit" value="선물" style="padding:5px 15px" onclick="javascript: form.action='basketDelivery.do';"/>
 						<input id="delete" type="button" value="삭제" style="padding:5px 15px">
 				</filedset>
 				</form>
-			</div>
 		</div>
 </section>
 <div id="MOVE_TOP_BTN">

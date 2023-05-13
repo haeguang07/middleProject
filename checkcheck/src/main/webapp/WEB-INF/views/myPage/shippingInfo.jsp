@@ -49,23 +49,26 @@
 		<th>개수</th>
 		<th>가격</th>
 	</tr>
+	<c:set var="t" value="0"/>
 	<c:forEach var="book" items="${list}">
 	<tr>
 		<td><img src="${book.cover }" style="width:100px"></td>
 		<td>${book.book }</td>
 		<td>${book.num} </td>
-		<td>${book.num*book.price } (적립 포인트 ${book.num*book.price/1000 }원)</td>
+		<td>${book.num*book.price }원</td>
 	</tr>	
+	<c:set var="t" value="${t+book.num*book.price}" />
 	</c:forEach>
 	
 </table>
 <h3>결재정보</h3>
+
 <table>
   <tr>
     <th>총금액</th>
-    <td></td>
+    <td>${t }</td>
     <th>할인금액</th>
-    <td>30,000</td>
+    <td>${t-vo.payment }</td>
   </tr>
   <tr>
     <th>실 결제금액</th>

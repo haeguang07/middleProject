@@ -22,9 +22,10 @@ public class ModifyShippingControl implements Control {
 		OrderVO vo = new OrderVO();
 		vo.setOrderId(req.getParameter("id"));
 		vo.setOrderName(req.getParameter("name")); 
-		vo.setOrderName(req.getParameter("joinPost")); 
-		vo.setOrderName(req.getParameter("joinAdr")+req.getParameter("joinAdr2")); 
-		vo.setOrderName(req.getParameter("phone")); 
+		vo.setOrderPost(Integer.parseInt(req.getParameter("joinPost"))); 
+		vo.setOrderAddress(req.getParameter("joinAdr")+req.getParameter("joinAdr2")); 
+		vo.setOrderPhone(req.getParameter("phone")); 
+		System.out.println(vo);
 		OrderService service = new OrderServiceImpl();
 		String json="";
 		Map<String, Object> map = new HashMap<>();

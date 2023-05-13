@@ -33,7 +33,7 @@
 	</select>
 	<insert id="insertBoard2">
 		insert into boards
-		values(board_seq.nextval,#{userId},2,#{boardTitle},#{boardSubject},#{boardFile},sysdate,'N')
+		values(board_seq.nextval,#{userId},2,#{boardTitle},#{boardSubject},sysdate,'N')
 	</insert>
 	<select id="announcePaging" resultType="board">
 	<![CDATA[

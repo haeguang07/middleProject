@@ -10,7 +10,7 @@ public interface BoardMapper {
 	
 	public List<BoardVO> searchBoard2(@Param("userId")String userId,@Param("page") int page);
 	public List<BoardVO> selectBoard2List(int page);
-	public int insertBoard2(@Param("userId")String userId,@Param("boardTitle")String boardTitle,@Param("boardSubject")String boardSubject,@Param("boardFile")String boardFile);
+	public int insertBoard2(@Param("userId")String userId,@Param("boardTitle")String boardTitle,@Param("boardSubject")String boardSubject);
 	//문의 게시판의 갯수
 	public int borad2Count(String userId);
 	public int borad2ListCount();
