@@ -43,7 +43,7 @@
 	<!-- Header-->
 	<header class="bg-dark py-5" style="position: relative;z-index: 2;">
 		<img src="image/logo.png"
-			style="position: absolute; width: 150px; height: 150px; margin-left: 40px;z-index:100;" onclick="location.href='main.do'">
+			style="position: absolute; width: 150px; height: 150px; margin-left: 40px;z-index:100;" onclick="location.href='main.do?userCategory=${sesInfo.userCategory}'">
 		<div class="container px-4 px-lg-5 my-5">
 			<div class="text-center text-white" style="position:relative">
 				<form action="search.do" method="post">

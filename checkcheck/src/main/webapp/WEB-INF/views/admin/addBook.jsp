@@ -46,10 +46,10 @@
 	<div id="addBookList"
 		style="display: flex; text-align: center; border-bottom: 1px solid rgba(0, 0, 0, 0.13); padding: 10px">
 		<div style="flex: 0.5"></div>
-		<div style="flex: 1; position: relative;">
+		<div style="flex: 1; position: relative;height:300px">
 			<input type="checkbox" value="${b.isbn }" ${b.check eq 'be' ? 'name="addbook2"': 'name="addbook"' }
-				style="position: absolute; top: 10px; left: 10px" ${b.check eq 'be' ? 'onclick="return false;"' : '' }> <img
-				src="${b.cover }" alt="책표지" style="width: 200px; height: 300px">
+				style="position: absolute; top: 10px; left: -90px;${b.check eq 'be' ? 'visibility: hidden' : ''}" ${b.check eq 'be' ? 'onclick="return false;"' : '' }> <img
+				src="${b.cover }" alt="책표지" style="width: 200px; height: 300px;position:absolute;left:-50px"><img src="image/forbiden.png" style="position:absolute;width:200px;height:200px;left:-50px;${b.check ne 'be' ? 'visibility: hidden' : ''}">
 		</div>
 		<table id="table" style="flex: 1; margin: 30px">
 				<tr>
@@ -73,10 +73,10 @@
 					<td>${b.bookPrice }</td>
 				</tr>
 		</table>
-		<div style="flex: 2; position: relative;">
+		<div style="flex: 2; position: relative;${b.check eq 'be' ? 'visibility: hidden' : ''}">
 			<div style="position: absolute; bottom: 10px">
-				<input class=num type="number" value="1"> 
-				<input type="button" value="추가">
+				<input class=num type="number" value="1" onclick=addClass(this)> 
+				<input type="button" value="추가" onclick=oneBookAdd(this)>
 			</div>
 		</div>
 	</div>
@@ -87,16 +87,16 @@
 		<div class="pagination2">
 					<c:if test="${pageInfo.prev }">
 						<a
-							href="#" onclick=searchBook(${pageInfo.startPage-1}) >Previous</a>
+							 onclick=searchBook(${pageInfo.startPage-1}) >Previous</a>
 					</c:if>
 					<c:forEach var="i" begin="${pageInfo.startPage }"
 						end="${pageInfo.endPage }">
 						<a class="${i==pageInfo.pageNum ? 'active1' : '' }"
-							href="#" onclick=searchBook(${i})>${i } </a>
+							 onclick=searchBook(${i})>${i } </a>
 					</c:forEach>
 					<c:if test="${pageInfo.next }">
 						<a
-							href="#" onclick=searchBook(${pageInfo.endPage+1})>Next</a>
+							 onclick=searchBook(${pageInfo.endPage+1})>Next</a>
 					</c:if>
 		</div>
 	</div>
@@ -218,7 +218,58 @@
 					    });
 				 
 			}
-	        
+	        	//단일 버튼누를시
+  				function forAddBook2(Success, data){
+	        	
+				console.log(data);
+				let count = document.querySelector('.value').value;
+				var formData;
+				if(data.item[0].isbn13 == ''){
+					if(data.item[0].isbn.charAt(0)=='K'){
+						let isbn10 = data.item[0].isbn.substr(1);// isbn K로 시작할시 자르기
+						console.log(isbn10);
+					formData =[isbn10 ,data.item[0].title , data.item[0].priceStandard , data.item[0].author,data.item[0].publisher,data.item[0].categoryName , data.item[0].description,count,0,0,data.item[0].cover,data.item[0].pubDate];
+					}else{
+					formData =[data.item[0].isbn ,data.item[0].title , data.item[0].priceStandard , data.item[0].author,data.item[0].publisher,data.item[0].categoryName , data.item[0].description,count,0,0,data.item[0].cover,data.item[0].pubDate];
+					}
+				}else{
+			 		formData = [data.item[0].isbn13 ,data.item[0].title , data.item[0].priceStandard , data.item[0].author,data.item[0].publisher,data.item[0].categoryName, data.item[0].description,count,0,0,data.item[0].cover,data.item[0].pubDate];
+				}
+			 		let formData2 ={"name": formData}
+			 		console.log(formData2);
+			 		console.log('ajax 시작전')
+			 		
+			 		/* let form = document.createElement('form');
+			 		for(let i = 0 ; i < formData.length ; i++){
+			 		let input = document.createElement('input');
+			 		input.id='book';
+			 		input.name='name';
+			 		input.value=formData[i];
+			 		form.append(input);
+			 		}
+			 		form.setAttribute("action","insertbook.do");
+			 		form.setAttribute("method","POST");
+			 		document.body.appendChild(form);
+			 		form.submit();
+			 		return; */
+			 		 $.ajax({
+					        type: "post",
+					        url: "insertbook.do",
+					        dataType: "json",
+					        data:formData2,
+					        success: function (data) {
+					        	console.log(data);
+					        	if(data.retCode=='Success'){
+					        	alert('성공');
+					        	}
+					        },
+					        complete: function(){
+					        	console.log('성공');
+					        	location.reload();
+					        }
+					    });
+				 
+			}
         //이벤트의 메소드
         function searchBook(number){
         	let page = number;
@@ -283,6 +334,33 @@
 				}	
 			}
 		}
+		function oneBookAdd(thing){
+			let isbn = thing.parentElement.parentElement.parentElement.querySelector('input[type=checkbox]').value;
+			
+			if(isbn.length >10){
+				url="http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx?ttbkey=ttbhbj040030858001&cover=big&itemIdType=ISBN13&ItemId="+isbn+"&output=js&callback=forAddBook2";
+			}else{
+				if(isbn.length == 9){
+					isbn = 'K'+isbn;
+				}
+				url="http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx?ttbkey=ttbhbj040030858001&cover=big&itemIdType=ISBN&ItemId="+isbn+"&output=js&callback=forAddBook2";
+			}				
+			
+			$.ajax({
+			     url: url,
+			     jsonp: "forAddBook2",
+			     dataType: "jsonp",
+			     async:true
 
-
+			  });
+		}
+		
+		function addClass(thing){
+			thing.className = 'value';
+			if(document.getElementsByClassName('value').length >1){
+				alert('추가를 완료하고 다른 책을 추가 할수있습니다');
+				thing.className ='num';
+				return;
+			}
+		}
     </script>

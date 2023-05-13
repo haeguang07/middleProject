@@ -40,10 +40,15 @@ public class LoginControl implements Control {
 				CouponService se = new CouponServiceImpl();
 				int couponCount = se.getCount(vo.getUserId());
 				//로그인한 유저 장르 기입해서 상위 조회수 책 리스트 정보 가져오기
-				String like = "%>"+vo.getUserCategory()+"%";
-				List<BookVO> list = bookServ.mainRecommandList(like);
+				String like = vo.getUserCategory();
+				if(like.indexOf(",") != -1) {
+					String[] likeArr = like.split(",");
+					int random = (int) (Math.random()*likeArr.length);
+					like = likeArr[random];
+				}
+				List<BookVO> userList =bookServ.getUserCategoryList(like);
 				session.setAttribute("sesInfo", vo);
-				session.setAttribute("list", list);
+				session.setAttribute("list", userList);
 				session.setAttribute("coupon", couponCount);
 				
 				return "main.do";

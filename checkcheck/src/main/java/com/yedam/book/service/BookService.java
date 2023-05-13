@@ -29,4 +29,5 @@ public interface BookService {
 	public List<BookVO>	bookStockPage(int page);
 	public int getStockTotal();
 	public boolean modifyStock(long isbn,int booknum);
+	public List<BookVO> getUserCategoryList(String userCategory);
 }
