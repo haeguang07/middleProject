@@ -194,4 +194,14 @@ order by counts desc
 	<update id="updateStock" >
 		update books set book_stock = #{booknum} where isbn= #{isbn}
 	</update>
+	<select id="userCategoryList" resultType="book">
+		<![CDATA[
+			select rownum rn, a.*
+			from (select * 
+			from books 
+			where book_category like '%'||#{userCategory}||'%' 
+			order by book_count desc) a
+			where rownum <=5
+		]]>
+	</select>
 </mapper>

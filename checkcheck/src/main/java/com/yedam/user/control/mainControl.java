@@ -21,9 +21,11 @@ public class mainControl implements Control {
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		BookService service = new BookServiceImpl();
+		
 		List<BookVO> list = service.mainRecommandList("%>%");
 		List<BookVO> newlist = service.getNewList();
 		List<BookVO> newBookList = service.getNewBookList();
+		
 		req.setAttribute("normalList", list);
 		req.setAttribute("newList", newlist);
 		req.setAttribute("newBookList", newBookList);

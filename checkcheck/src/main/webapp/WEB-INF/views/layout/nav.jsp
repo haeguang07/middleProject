@@ -43,8 +43,8 @@
 	<!-- Header-->
 	<header class="bg-dark py-5" style="position: relative;z-index: 2;">
 		<img src="image/logo.png"
-			style="position: absolute; width: 150px; height: 150px; margin-left: 40px;z-index:100;" onclick="location.href='main.do'">
-		<div class="container px-4 px-lg-5 my-5">
+			style="position: absolute; width: 150px; height: 150px; margin-left: 40px;z-index:100;clear:both" onclick="location.href='main.do?userCategory=${sesInfo.userCategory}'">
+		<div class="container px-4 px-lg-5 my-5" style="clear: both;margin-left:100px">
 			<div class="text-center text-white" style="position:relative">
 				<form action="search.do" method="post">
 					<select style="width: 100px; height: 50px; font-size: 16px;"
@@ -106,5 +106,7 @@
 					
 			</div>
 		</div>
+		<!-- 달력 입니다~ -->
+		<img src="image/calendar.png" style="width; width: 150px; height: 150px;float:right;margin-right:50px" >
 	</header>
 </div>

@@ -19,7 +19,7 @@
         <div class="d-flex" id="wrapper">
             <!-- Sidebar-->
             <div class="border-end bg-white" id="sidebar-wrapper">
-                <div class="sidebar-heading border-bottom bg-light"><img src="image/logo.png" style="width:150px;height:150px;margin-left:20px"></div>
+                <div class="sidebar-heading border-bottom bg-light"><img src="image/logo.png" style="width:150px;height:150px;margin-left:20px" onclick="location.href='main.do?userCategory=${sesInfo.userCategory}'"></div>
                 <div class="list-group list-group-flush">
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="addBook.do">도서추가</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="bookStock.do">재고관리</a>
