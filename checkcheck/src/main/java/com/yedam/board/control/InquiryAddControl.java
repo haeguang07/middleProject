@@ -28,9 +28,9 @@ public class InquiryAddControl implements Control {
 		String userId = vo.getUserId();
 		String subject = req.getParameter("subject");
 		String title = req.getParameter("title");
-		String attach=null;
+		
 		Map<String, String> map = new HashMap<>();
-		if(service.addInquiry(userId, title, subject, attach)) {
+		if(service.addInquiry(userId, title, subject)) {
 			map.put("retCode" , "Success");
 		}else {
 			map.put("retCode" , "Fail");		

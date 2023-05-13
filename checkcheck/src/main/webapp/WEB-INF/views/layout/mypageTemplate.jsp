@@ -265,6 +265,9 @@
 #foreign li{
 	padding:10px;
 }
+.center{
+	text-align: center;
+}
 </style>
 </head>
 <body>
@@ -274,11 +277,13 @@
 			<tiles:insertAttribute name="nav"></tiles:insertAttribute>
 		</div>
 		<!-- Section-->
-		<div id="page-content-wrapper1"  style="float:left;">
+		<div style="display:flex;">
+		<div id="page-content-wrapper1"  style="flex:1; width:215px;">
 			<tiles:insertAttribute name="sidebar"></tiles:insertAttribute>
 		</div>
-		<div id="page-content-wrapper" style="float:left;">
+		<div id="page-content-wrapper" style="flex:4.3; margin: 0 auto;">
 			<tiles:insertAttribute name="body"></tiles:insertAttribute>
+		</div>
 		</div>
 		<!-- Footer-->
 		<div style="clear: both">
