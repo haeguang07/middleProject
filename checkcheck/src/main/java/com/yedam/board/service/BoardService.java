@@ -7,7 +7,7 @@ import com.yedam.board.domain.BoardVO;
 public interface BoardService {
 	public List<BoardVO> getInquiryList(String userId, int page);
 	public List<BoardVO> getInquiryList(int page);
-	public boolean addInquiry(String userId, String boardTitle, String boardSubject,String boardFile);
+	public boolean addInquiry(String userId, String boardTitle, String boardSubject);
 	public int inquiryTotal(String userId);
 	public int inquiryTotal();
 	public List<BoardVO> getAnnouncementPage(int page);

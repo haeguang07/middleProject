@@ -2,7 +2,38 @@
 	pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f"%>
+<script>
+function modify(feild){
+	
+	if(confirm('정말로 변경하시겠습니까?')){
+		let id = `${vo.orderId }`;
+		let name = document.querySelector('#name').value;
+		let joinPost = document.querySelector('#joinPost').value;
+		let joinAdr = document.querySelector('#joinAdr').value;
+		let joinAdr2 = document.querySelector('#joinAdr2').value;
+		let phone = document.querySelector('#phone').value;
+		fetch('modifyShipping.do', {
+			method: "POST",
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded',
+			},
+			body: 'id=' + id+'&name='+name+'&joinPost='+joinPost+'&joinAdr='+joinAdr+'&joinAdr2='+joinAdr2+'&phone='+phone
+		})
+		.then(resolve=> resolve.json())
+		.then(result=>{
+			if(result.retCode=='Success'){
+				alert('변경 성공');
+				location.reload();
+			}else if(result.retCode=='Fail'){
+				alert('변경실패');
+			}else{
+				alert('알수 없는 오류');
+			}
+		})
+	}
+}
 
+</script>
 <h3>기본 배송정보</h3>
 <table>
 	<tr>
@@ -49,7 +80,7 @@
 		<td colspan="3"><input type="text" value="${vo.orderPhone }" name="phone" id="phone"></td>
 	</tr>
 	<tr>
-	<td><button type="submit">주소변경</button></td>
+	<td><button type="button" onclick=modify(this)>주소변경</button></td>
 	</tr>
 </table>
 </form>
@@ -60,13 +91,15 @@
 		<th>개수</th>
 		<th>가격</th>
 	</tr>
+	<c:set var="t" value="0"/>
 	<c:forEach var="book" items="${list}">
 		<tr>
 			<td><img src="${book.cover }" style="width:100px"></td>
 			<td>${book.book }</td>
 			<td>${book.num}</td>
-			<td>${book.num*book.price }(적립 포인트 ${book.num*book.price/1000 }원)</td>
+			<td>${book.num*book.price }</td>
 		</tr>
+	<c:set var="t" value="${t+book.num*book.price}" />
 	</c:forEach>
 
 </table>
@@ -74,9 +107,9 @@
 <table>
 	<tr>
 		<th>총금액</th>
-		<td></td>
+		<td>${t }</td>
 		<th>할인금액</th>
-		<td>30,000</td>
+		<td>${t-vo.payment }</td>
 	</tr>
 	<tr>
 		<th>실 결제금액</th>
@@ -130,5 +163,6 @@ function cancel(){
 		location.href='cancleOrder.do'+id;
 	}
 }
+
 
 	</script>
