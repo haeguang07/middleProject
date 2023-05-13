@@ -87,7 +87,7 @@
 							</div> <img src="./img/책사진2.png" style="z-index:1 !important;"> <label for="slide02"
 							class="right"></label>
 					</a></li>
-					<li><a href="getBook.do?bookInfo=${normalList[1].isbn }" style="position: relative;"> <img
+					<li><a href="getBook.do?bookInfo=${normalList[1].isbn }" style="position: relative;text-decoration:none;color:black"> <img
 							src="${normalList[1].cover }"
 							style="width: 300px; height: 400px; position: absolute; top: 50%; transform: translateY(-50%); left: 100px;box-shadow: 5px 5px 5px #000;">
 							<label for="slide01" class="left"></label>
@@ -97,7 +97,7 @@
 							</div> <img src="./img/책사진2.png"> <label for="slide03"
 							class="right"></label>
 					</a></li>
-					<li><a href="getBook.do?bookInfo=${normalList[2].isbn }" style="position: relative;"> <img
+					<li><a href="getBook.do?bookInfo=${normalList[2].isbn }" style="position: relative;text-decoration:none;color:black"> <img
 							src="${normalList[2].cover }"
 							style="width: 300px; height: 400px; position: absolute; top: 50%; transform: translateY(-50%); left: 100px;box-shadow: 5px 5px 5px #000;">
 							<label for="slide02" class="left"></label>
@@ -107,7 +107,7 @@
 							</div> <img src="./img/책사진2.png"> <label for="slide04"
 							class="right"></label>
 					</a></li>
-					<li><a href="getBook.do?bookInfo=${normalList[3].isbn }" style="position: relative;"> <img
+					<li><a href="getBook.do?bookInfo=${normalList[3].isbn }" style="position: relative;text-decoration:none;color:black"> <img
 							src="${normalList[3].cover }"
 							style="width: 300px; height: 400px; position: absolute; top: 50%; transform: translateY(-50%); left: 100px;box-shadow: 5px 5px 5px #000;">
 							<label for="slide03" class="left"></label>
@@ -117,7 +117,7 @@
 							</div> <img src="./img/책사진2.png"> <label for="slide05"
 							class="right"></label>
 					</a></li>
-					<li><a href="getBook.do?bookInfo=${normalList[4].isbn }" style="position: relative;"> <img
+					<li><a href="getBook.do?bookInfo=${normalList[4].isbn }" style="position: relative;text-decoration:none;color:black"> <img
 							src="${normalList[4].cover }"
 							style="width: 300px; height: 400px; position: absolute; top: 50%; transform: translateY(-50%); left: 100px;box-shadow: 5px 5px 5px #000;">
 							<label for="slide04" class="left"></label>
