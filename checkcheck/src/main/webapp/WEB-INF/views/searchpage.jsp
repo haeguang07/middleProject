@@ -291,16 +291,16 @@ function insertBasket(field){
 	.catch(error => console.log(error));
 }
 function insertOrder(field){
+	if("${sesInfo}"==""){
+		alert('로그인후 이용가능합니다');
+		return;	
+	}
 	let basketbutton = field.nextElementSibling;
 	console.log(basketbutton);
 	let isbn = basketbutton.nextElementSibling.innerText;
 	console.log(isbn);
 	location.href="delivery.do?isbn="+isbn;
 	
-	if("${sesInfo}"==""){
-		alert('로그인후 이용가능합니다');
-		return;
-	}
 	//location.href="delivery.do";
 	//넘겨야하는값 : isbn,bookName,bookPrice,basketCount(이거도없음),proAddress
 }

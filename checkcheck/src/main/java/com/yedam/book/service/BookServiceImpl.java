@@ -114,4 +114,9 @@ public class BookServiceImpl implements BookService{
 		return mapper.updateStock(isbn,booknum)==1;
 	}
 
+	@Override
+	public List<BookVO> getUserCategoryList(String userCategory) {
+		return mapper.userCategoryList(userCategory);
+	}
+
 }
