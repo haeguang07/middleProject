@@ -11,8 +11,6 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.yedam.board.service.BoardService;
 import com.yedam.board.service.BoardServiceImpl;
 import com.yedam.common.Control;

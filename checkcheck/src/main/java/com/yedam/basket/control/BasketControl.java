@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 import com.yedam.basket.domain.BasketVO;
 import com.yedam.basket.service.BasketService;
 import com.yedam.basket.service.BasketServiceImpl;
-import com.yedam.book.domain.BookVO;
 import com.yedam.common.Control;
 import com.yedam.user.domain.UserVO;
 

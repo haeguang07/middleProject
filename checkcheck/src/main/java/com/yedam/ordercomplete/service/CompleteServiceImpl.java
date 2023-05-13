@@ -7,7 +7,6 @@ import com.yedam.common.DataSource;
 import com.yedam.history.domain.HistoryVO;
 import com.yedam.order.domain.OrderVO;
 import com.yedam.ordercomplete.mapper.CompleteMapper;
-import com.yedam.user.domain.UserVO;
 
 public class CompleteServiceImpl implements CompleteService{
 	SqlSession session = DataSource.getInstance().openSession(true);
