@@ -85,8 +85,10 @@
 			<th>문의제목</th>
 			<th>답변여부</th>
 		</tr>
+		<c:if test="${empty list }">
+			<tr><td colspan="4">문의한 내역이 존재하지 않습니다</td></tr>
+		</c:if>
 		<c:forEach var="b" items="${list }">
-	
 			<tr>
 				<td><fmt:parseDate var="bDate" value="${b.boardDate }" pattern="YYYY-MM-dd HH:mm:ss"/>
 					<fmt:formatDate value="${bDate }" pattern="YY년 MM월 dd일"/>  </td>

@@ -8,8 +8,8 @@
 		<li><a href="myPageUserInfo.do">개인정보 수정</a></li>
 		<li><a href="userReviewForm.do">마이리뷰</a></li>
 		<li>통장</li>
-		<li><a href="couponInfo.do">쿠폰 </a>${coupon }장</li>
-		<li><a href="pointInfo.do">포인트 </a>${sesInfo.userPoint }p</li>
+		<li><a href="couponInfo.do">쿠폰 </a></li>
+		<li><a href="pointInfo.do">포인트 </a></li>
 		<li>주문내역</li>
 		<li><a href="myPageMain.do">주문 조회</a></li>
 		<li><a href="orderCancelForm.do">취소 주문 내역</a></li>

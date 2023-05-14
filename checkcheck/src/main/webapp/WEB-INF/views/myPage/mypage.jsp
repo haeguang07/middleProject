@@ -23,6 +23,9 @@
 .pagination2 a:hover:not(.active1) {
 	background-color: #ddd;
 }
+.center{
+	text-align: center;
+}
 </style>
 <div>
 	<div>
@@ -57,7 +60,7 @@
 			<tr>
 				<th>주문일</th>
 				<th>주문번호</th>
-				<th>상품</th>
+				<th style="width:40%">상품</th>
 				<th>배송상태</th>
 				<th>변경/취소</th>
 			</tr>
@@ -69,11 +72,11 @@
 					<td>${order.book } 총${order.payment}원</td>
 					<td>${order.orderState }</td>
 					<c:choose>
-						<c:when test="${order.orderState eq '출고전'}">
+						<c:when test="${order.orderState eq '배송전'}">
 							<td><a href="modifyShippingForm.do?id=${order.orderId }">변경/취소</a></td>
 						</c:when>
 						<c:when test="${order.orderState eq '배송중'}">
-							<td>배송후 변경/취소불가</td>
+							<td>변경/취소</td>
 						</c:when>
 						<c:otherwise>
 							<td>취소됨</td>

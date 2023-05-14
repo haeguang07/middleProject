@@ -50,7 +50,7 @@
 			<tr>
 				<th>주문일</th>
 				<th>주문번호</th>
-				<th>상품</th>
+				<th style="width:40%">상품</th>
 				<th>배송상태</th>
 			</tr>
 			<c:choose>
