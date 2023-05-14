@@ -33,26 +33,9 @@
             <!-- Page content wrapper-->
             <div id="page-content-wrapper">
                 <!-- Top navigation-->
-                <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                    <div class="container-fluid">
-                        <button class="btn btn-primary" id="sidebarToggle">Toggle Menu</button>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                                <li class="nav-item active"><a class="nav-link" href="#!">Home</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#!">Link</a></li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="#!">Action</a>
-                                        <a class="dropdown-item" href="#!">Another action</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#!">Something else here</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                <nav style="height:70px;border-bottom:1px rgb(185, 178, 178) solid;">
+                    	<p id="stockInfo" style="font-size: 24px;padding:10px;display:inline-block;">재고가 10권 이하인 책이 () 권 있습니다</p>
+                    	<input type="button" value="재고패이지 이동" onclick="location.href='bookStock.do'">
                 </nav>
                 <!-- Page content-->
                 <div class="container-fluid">
@@ -66,5 +49,16 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+        <script>
+	fetch("getStockCount.do")
+	.then(result => result.json())
+	.then(resolve => {
+		if(resolve.retCode == 'Success'){
+			document.getElementById('stockInfo').innerText = '재고가 10권 이하인 책이 ('+resolve.data+') 권 있습니다';
+		}else if (resolve.retCode == 'Fail'){
+			alert('재고 데이터를 가져오는데 실패하였습니다.')
+		}
+	})
+</script>
     </body>
 </html>

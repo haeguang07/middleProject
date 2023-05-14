@@ -46,7 +46,9 @@ public class LoginControl implements Control {
 					int random = (int) (Math.random()*likeArr.length);
 					like = likeArr[random];
 				}
+				System.out.println(like);
 				List<BookVO> userList =bookServ.getUserCategoryList(like);
+				System.out.println(userList);
 				session.setAttribute("sesInfo", vo);
 				session.setAttribute("list", userList);
 				session.setAttribute("coupon", couponCount);

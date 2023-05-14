@@ -14,5 +14,6 @@ public interface BoardService {
 	public int announceTotal();
 	public boolean removeAnno(int boardId);
 	public BoardVO getOneAnno(int boardId);
-	public int addAnno(String userId , String boardTitle , String boardSubject);
+	public int addAnno(String userId ,int boardKind, String boardTitle , String boardSubject);
+	public List<BoardVO> getBoard3List();
 }

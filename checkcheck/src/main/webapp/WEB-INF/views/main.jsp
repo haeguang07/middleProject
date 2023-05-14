@@ -5,6 +5,104 @@
 <script src="https://code.jquery.com/jquery-3.6.4.js"
 	integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
 	crossorigin="anonymous"></script>
+<style>
+	.btnLightBlue.btnPush {
+  box-shadow: 0px 5px 0px 0px #1E8185;
+}
+.btnPush:hover {
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+.btnLightBlue.btnPush:hover {
+  box-shadow: 0px 0px 0px 0px #1E8185;
+}
+.btnLightBlue.btnBorder {
+  box-shadow: 0px 0px 0px 0px #01939A;
+}
+.btnLightBlue.btnBorder:hover {
+  box-shadow: 0px 0px 0px 5px #01939A;
+}
+.btnFloat {
+  background: none;
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.5);
+}
+
+.btnFloat:before {
+  content: 'Float';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120px;
+  height: 50px;
+  border-radius: 5px;
+  transition: all 0.2s ;
+}
+.btnLightBlue.btnFloat:before {
+  background: #5DC8CD;
+}
+.btnFloat:before {
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.4);
+}
+
+.btnFloat:hover:before {
+  
+}
+
+.btnFloat:hover:before {
+  margin-top: -2px;
+  margin-left: 0px;
+  transform: scale(1.1,1.1);
+  -ms-transform: scale(1.1,1.1);
+  -webkit-transform: scale(1.1,1.1);
+  box-shadow: 0px 5px 5px -2px rgba(0, 0, 0, 0.25);
+}
+.btnSlide .top {
+  position: absolute;
+  top: 0px;
+  left: 0;
+  width: 120px;
+  height: 50px;
+  background: #00AE68;
+  z-index: 10;
+  transition: all 0.2s ;
+  border-radius: 5px;
+}
+.btnSlide.btnLightBlue .top {
+  background: #5DC8CD;
+}
+
+.btnSlide .bottom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120px;
+  height: 50px;
+  color: #000;
+  z-index: 5;
+  border-radius: 5px;
+}
+
+.btnSlide:hover .top {
+  top: 40px;
+}
+input.button {
+  display: block;
+  float: left;
+  width: 120px;
+  padding: 0;
+  font-weight: 600;
+  text-align: center;
+  line-height: 50px;
+  color: #FFF;
+  border-radius: 5px;
+  transition: all 0.2s ;
+}
+.btnLightBlue {
+  background: #5DC8CD;
+}
+
+</style>
 
 <c:choose>
 	<c:when test="${not empty sesInfo}">
@@ -15,11 +113,11 @@
 				id="slide04"> <input type="radio" name="slide" id="slide05">
 			<div class="slide-wrap">
 				<ul class="slidelist">
-					<li><a href="getBook.do?bookInfo=${list[0].isbn }" style="position: relative;text-decoration:none;color:black"> <img
+					<li style="position:relative"><a href="getBook.do?bookInfo=${list[0].isbn }" style="position: relative;text-decoration:none;color:black;text-align: center;"> <img
 							src="${list[0].cover }"
 							style="width: 300px; height: 400px; position: absolute; top: 50%; transform: translateY(-50%); left: 100px;box-shadow: 5px 5px 5px #000;">
 							<label for="slide05" class="left"></label>
-							<div class="textbox" style="margin-left: 30px; width: 450px;padding:40px">
+							<div class="textbox" style="margin-left: 30px; width: 400px;padding:40px">
 								<h4 style="text-overflow: ellipsis; overflow: hidden;margin-bottom:40px">${list[0].bookName }</h4>
 								<p style="white-space:normal !important;color:black">${list[0].bookDetail }</p>
 							</div> <img src="./img/slide.jpg"> <label for="slide02"
@@ -134,50 +232,50 @@
 	</c:otherwise>
 </c:choose>
 
-<div class="sl01" style="border: 1px solid gray; margin: 30px 0; position: relative">
+<div class="sl01" style="border: 1px solid rgba(128, 128, 128, 0.575);border-radius:20px; margin: 30px 0; position: relative">
 <p style="margin:50px"><a href="bestSeller.do?category=베스트셀러" style="text-decoration:none;color:black ">베스트셀러 더보기▶</a></p>
 	<div class="slide_wrapper">
 		<ul class="slides">
 			<c:forEach var="best" items="${bestSeller }">
 			<li><div style="width: 200px; height: 400px;padding:20px 0;overflow:hidden">
-					<a href="getBook.do?bookInfo=${best.isbn }"><img src="${best.cover }" style="width: 200px; height: 300px;margin-bottom:10px;box-shadow: 5px 5px 5px #000;"></a><span style="text-align:center;">${best.bookName }</span>
+					<a href="getBook.do?bookInfo=${best.isbn }"><img src="${best.cover }" style="width: 200px; height: 300px;margin-bottom:10px;box-shadow: 5px 5px 5px #000;border:1px black solid"></a><span style="text-align:center;">${best.bookName }</span>
 				</div></li>
 			</c:forEach>
 		</ul>
 	
 	</div>
-		<input type="button" class="prevbtn" value="prev">
-		<input class="nextbtn" type="button" value="next">
+		<input class="prevbtn button btnPush btnLightBlue" type="button" value="prev">
+		<input class="nextbtn button btnPush btnLightBlue" type="button" value="next">
 </div>
-<div class="sl02" style="border: 1px solid gray; margin: 30px 0; position: relative">
+<div class="sl02" style="border: 1px solid rgba(128, 128, 128, 0.575);border-radius:20px; margin: 30px 0; position: relative">
 <p style="margin:50px"><a href="hitCount.do?category=화제의책" style="text-decoration:none;color:black ">화제의 책 더보기▶</a></p>
 	<div class="slide_wrapper">
 		<ul class="slides">
 			<c:forEach var="newlist" items="${newList }">
 			<li><div style="width: 200px; height: 400px;padding:20px 0;overflow:hidden">
-					<a href="getBook.do?bookInfo=${newlist.isbn }"><img src="${newlist.cover }" style="width: 200px; height: 300px;margin-bottom:10px;box-shadow: 5px 5px 5px #000;"></a><span style="text-align:center;">${newlist.bookName }</span>
+					<a href="getBook.do?bookInfo=${newlist.isbn }"><img src="${newlist.cover }" style="width: 200px; height: 300px;margin-bottom:10px;box-shadow: 5px 5px 5px #000;border:1px black solid"></a><span style="text-align:center;">${newlist.bookName }</span>
 				</div></li>
 			</c:forEach>
 		</ul>
 	
 	</div>
-		<input type="button" class="prevbtn" value="prev">
-		<input class="nextbtn" type="button" value="next">
+		<input class="prevbtn button btnPush btnLightBlue" type="button" value="prev">
+		<input class="nextbtn button btnPush btnLightBlue" type="button" value="next">
 </div>
-<div class="sl03" style="border: 1px solid gray; margin: 30px 0; position: relative">
+<div class="sl03" style="border: 1px solid rgba(128, 128, 128, 0.575);border-radius:20px; margin: 30px 0; position: relative">
 <p style="margin:50px"><a href="newBookSearch.do?category=신간" style="text-decoration:none;color:black ">신간 더보기▶</a></p>
 	<div class="slide_wrapper">
 		<ul class="slides">
 			<c:forEach var="newbooklist" items="${newBookList }">
 			<li><div style="width: 200px; height: 400px;padding:20px 0;overflow:hidden">
-					<a href="getBook.do?bookInfo=${newbooklist.isbn }"><img src="${newbooklist.cover }" style="width: 200px; height: 300px;margin-bottom:10px;box-shadow: 5px 5px 5px #000;"></a><span style="text-align:center;">${newbooklist.bookName }</span>
+					<a href="getBook.do?bookInfo=${newbooklist.isbn }"><img src="${newbooklist.cover }" style="width: 200px; height: 300px;margin-bottom:10px;box-shadow: 5px 5px 5px #000;border:1px black solid"></a><span style="text-align:center;">${newbooklist.bookName }</span>
 				</div></li>
 			</c:forEach>
 		</ul>
 	
 	</div>
-		<input type="button" class="prevbtn" value="prev">
-		<input class="nextbtn" type="button" value="next">
+		<input class="prevbtn button btnPush btnLightBlue" type="button" value="prev">
+		<input class="nextbtn button btnPush btnLightBlue" type="button" value="next">
 </div>
 <c:choose>
 <c:when test="${sesInfo eq null }">
@@ -239,6 +337,23 @@
 	integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
 	crossorigin="anonymous"></script>
 <script>
+  let radios = document.querySelectorAll('input[type=radio]');
+	
+	let interval = setInterval(function (){
+		for(let i = 0 ; i< radios.length;i++){
+		    if(radios[i].checked){
+		        radios[i].checked = false;
+		        if(i == radios.length -1){
+		        	radios[0].checked = true;
+		        	break;
+		        }
+		        radios[i+1].checked = true;
+		        break;
+		    }
+		}
+	} , 3000);
+
+	
 	
 	var slides01 = document.querySelector('.sl01 .slides'),
 		slide01 = document.querySelectorAll('.sl01 .slides li'),

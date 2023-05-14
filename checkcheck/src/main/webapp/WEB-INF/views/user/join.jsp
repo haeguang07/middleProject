@@ -175,7 +175,7 @@
 						<td><label><input class="hobby" type="checkbox" name="check1" value="공무원">공무원 수험서</label></td>
 						<td><label><input class="hobby" type="checkbox" name="check1" value="달력/기타">달력/기타</label></td>
 						<td><label><input class="hobby" type="checkbox" name="check1" value="공예/취미/수집">공예/취미/수집</label></td>
-						<td><label><input class="hobby" type="checkbox" name="check1" value="외국도서>만화 ">	만화 </label></td>
+						<td><label><input class="hobby" type="checkbox" name="check1" value="외국도서>만화 ">만화</label></td>
 					</tr>
 					<tr>
 						<td><label><input class="hobby" type="checkbox" name="check1" value="대학교제">대학교제</label></td>
@@ -184,7 +184,7 @@
 						<td><label><input class="hobby" type="checkbox" name="check1" value="여행">여행</label></td>
 					</tr>
 					<tr>
-						<td><label><input class="hobby" type="checkbox" name="check1" value="사회과학"> 사회과학</label></td>
+						<td><label><input class="hobby" type="checkbox" name="check1" value="사회과학">사회과학</label></td>
 						<td><label><input class="hobby" type="checkbox" name="check1" value="소설"> 소설</label></td>
 						<td><label><input class="hobby" type="checkbox" name="check1" value="역사">역사</label></td>
 						<td><label><input class="hobby" type="checkbox" name="check1" value="요리">요리</label></td>
@@ -197,7 +197,7 @@
 					</tr>
 					<tr>
 						<td><label><input class="hobby" type="checkbox" name="check1" value="여행">여행</label></td>
-						<td><label><input class="hobby" type="checkbox" name="check1" value="역사"> 역사</label></td>
+						<td><label><input class="hobby" type="checkbox" name="check1" value="역사">역사</label></td>
 					</tr>
 					<tr>
 						<td colspan="2" style="text-align: center;"><button id="submit">회원가입하기</button></td>

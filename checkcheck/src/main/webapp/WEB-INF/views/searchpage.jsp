@@ -27,29 +27,43 @@
 	border: solid black 1px;
 }
 
-#pay {
-	padding: 30px 40px;
-	top: 40%;
-	transform: translateY(0%);
-	width: 100px;
-	height: 100px;
-	border: none;
-	background-color: #c0c0c0;
-	color: white;
-	outline: none;
+	.btnLightBlue.btnPush {
+  box-shadow: 0px 5px 0px 0px #1E8185;
+}
+.btnPush:hover {
+  margin-top:10px;
+  margin-bottom: 5px;
+}
+.btnLightBlue.btnPush:hover {
+  box-shadow: 0px 0px 0px 0px #1E8185;
+}
+.btnLightBlue.btnBorder {
+  box-shadow: 0px 0px 0px 0px #01939A;
+}
+.btnLightBlue.btnBorder:hover {
+  box-shadow: 0px 0px 0px 5px #01939A;
 }
 
-#basket {
-	padding: 30px 40px;
-	top: 40%;
-	transform: translateY(0%);
-	width: 100px;
-	height: 100px;
-	border: none;
-	background-color: #c0c0c0;
-	color: white;
-	outline: none;
+.btnLightBlue.btnFloat:before {
+  background: #5DC8CD;
 }
+
+input.button {
+  display: block;
+  float: left;
+  width: 120px;
+  padding: 0;
+  font-weight: 600;
+  text-align: center;
+  line-height: 50px;
+  color: #FFF;
+  border-radius: 5px;
+  transition: all 0.2s ;
+}
+.btnLightBlue {
+  background: #5DC8CD;
+}
+
 </style>
 <section style="display: flex">
 	<div
@@ -133,8 +147,8 @@
 		<!-- 책 리스트 받아서 반복문 만들기-->
 		<c:forEach var="i" items="${list }">
 			<div style="padding: 10px; border-top: 1px black solid; clear: both;">
-				<form action="" method="post" style="position: relative">
-					<table>
+				<form action="" method="post" style="position: relative; clear: both;">
+					<table style=" clear: both;">
 						<tr>
 							
 							<td rowspan="5"><img src=${i.cover } style="width: 200px; height: 300px"></td>
@@ -146,8 +160,11 @@
 						<tr><td>평점</td><td>5</td></tr>
 						<input type="text" style="display:none" id="bookStock" value="${i.bookStock }">
 					</table>
-					<button id="pay" type="button" style="float: right; position: absolute; right: 0; bottom: 10%;" onclick=insertOrder(this)>구매</button>
-					<button id="basket" type="button" style="float: right; position: absolute; right: 70px; bottom: 10%;" onclick=insertBasket(this)>장바구니</button>
+					<div style="margin-bottom:70px">
+					<input class="button btnPush btnLightBlue"  value="구매" type="button" style="float: right" onclick=insertOrder(this)>
+					<input class="button btnPush btnLightBlue"  value="장바구니" type="button" style="float: right;margin-right:20px" onclick=insertBasket(this)>
+					</div>
+					<div style="float:right"></div>
 					<span style="display:none">${i.isbn }</span>
 					<input type="text" style="display:none" value="">
 				</form>
@@ -243,25 +260,7 @@
 		</c:choose>
 	</div>
 </div>
-<div id="MOVE_TOP_BTN">
-	<a href="#">
-		<div
-			style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative">
-			<p
-				style="font-size: 12px; position: absolute; top: 15px; left: 15px;">top</p>
-		</div>
-	</a> <a href="#">
-		<div
-			style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative">
-			<p style="font-size: 12px; position: absolute; top: 15px; left: 5px;">로그인</p>
-		</div>
-	</a> <a href="#">
-		<div
-			style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative">
-			<p style="font-size: 10px; position: absolute; top: 15px; left: 5px;">회원가입</p>
-		</div>
-	</a>
-</div>
+
 <!-- Bootstrap core JS-->
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -273,7 +272,8 @@
 <script>
 function insertBasket(field){
 	console.log(field.nextElementSibling);
-	let isbn = field.nextElementSibling.innerText;
+	let isbn = field.parentElement.nextElementSibling.nextElementSibling.innerText;
+	console.log(isbn);
 	if("${sesInfo}"==""){
 		alert('로그인후 이용가능합니다');
 		return;

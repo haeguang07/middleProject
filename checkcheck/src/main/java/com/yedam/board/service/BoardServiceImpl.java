@@ -48,8 +48,12 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.borad2ListCount();
 	}
 	@Override
-	public int addAnno(String userId, String boardTitle, String boardSubject) {
-		return mapper.insertAnno(userId, boardTitle, boardSubject);
+	public int addAnno(String userId,int boardKind, String boardTitle, String boardSubject) {
+		return mapper.insertAnno(userId,boardKind, boardTitle, boardSubject);
+	}
+	@Override
+	public List<BoardVO> getBoard3List() {
+		return mapper.board3List();
 	}
 
 	

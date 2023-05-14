@@ -62,6 +62,13 @@
 		where board_id =#{boardId}
 	</select>
 	<insert id="insertAnno" >
-		insert into boards values (BOARD_SEQ.nextval,#{userId},1,#{boardTitle},#{boardSubject},sysdate,'N')
+		insert into boards values (BOARD_SEQ.nextval,#{userId},#{boardKind},#{boardTitle},#{boardSubject},sysdate,'N')
 	</insert>
+	<select id="board3List" resultType="board">
+	<![CDATA[
+		select rownum rn , a.*
+		from(select * from boards where board_kind = 3 order by board_date desc) a
+		where rownum <= 5
+		]]>
+	</select>
 </mapper>

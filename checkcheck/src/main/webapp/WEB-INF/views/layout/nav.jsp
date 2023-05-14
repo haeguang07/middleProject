@@ -26,8 +26,13 @@
 						onclick="location.href='login.do'" value="로그인">
 					<input class="btn btn-outline-dark" type="button"
 						onclick="location.href='joinForm.do'" value="회원가입">
+					<p style="margin:16px 20px">로그인을 해주세요</p>
 					</c:if>
 					<c:if test="${not empty sesInfo }">
+						<c:if test="${sesInfo.userId eq 'hbj04003' }">
+					<input class="btn btn-outline-dark" type="button"
+						onclick="location.href='addBook.do'" value="관리자 페이지">
+						</c:if>
 					<input class="btn btn-outline-dark" type="button"
 						onclick="location.href='basket.do'" value="장바구니">
 					<input class="btn btn-outline-dark" type="button"
