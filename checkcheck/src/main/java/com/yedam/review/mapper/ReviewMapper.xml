@@ -14,6 +14,7 @@
 		where rn > (#{page}-1)*10
 		]]>
 	</select>
+	
 	<select id="reviewCountId">
 		select count(*)  from reviews where user_id =#{userId}
 	</select>

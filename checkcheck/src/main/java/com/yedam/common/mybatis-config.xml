@@ -19,6 +19,7 @@
   <typeAlias alias="board" type="com.yedam.board.domain.BoardVO" />
   <typeAlias alias="comment" type="com.yedam.comment.domain.CommentVO" />
   <typeAlias alias="history" type="com.yedam.history.domain.HistoryVO" />
+  <typeAlias alias="event" type="com.yedam.event.domain.EventVO" />
   </typeAliases>
   <environments default="development">
     <environment id="development">
@@ -41,5 +42,6 @@
   	<mapper resource="com/yedam/board/mapper/BoardMapper.xml" />
   	<mapper resource="com/yedam/comment/mapper/CommentMapper.xml" />
   	<mapper resource="com/yedam/ordercomplete/mapper/CompleteMapper.xml" />
+  	<mapper resource="com/yedam/event/mapper/EventMapper.xml" />
   </mappers>
 </configuration>
