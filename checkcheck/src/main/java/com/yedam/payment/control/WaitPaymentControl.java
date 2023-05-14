@@ -43,8 +43,10 @@ public class WaitPaymentControl implements Control {
 			System.out.println("3.waitpaymentcontrol 여기까지됨");
 			String bookName = req.getParameter("bookName");
 			String bookPrice = req.getParameter("bookPrice");
+			String basketCount = req.getParameter("basketCount");
 			System.out.println(bookName);
 			System.out.println(bookPrice);
+			System.out.println(basketCount);
 			CouponService service = new CouponServiceImpl();
 			List<CouponVO> clist = new ArrayList<>();
 			clist = service.ycouponList(userId);
@@ -60,11 +62,13 @@ public class WaitPaymentControl implements Control {
 			req.setAttribute("userGrade", userGrade);
 			req.setAttribute("bookName", bookName);
 			req.setAttribute("bookPrice", bookPrice);
+			req.setAttribute("basketCount", basketCount);
 			req.setAttribute("totalPrice", bookPrice);
 			req.setAttribute("address", userAddress);
 			req.setAttribute("phone", userPhone);
 			req.setAttribute("post",userPost);
 			req.setAttribute("check", check);
+			req.setAttribute("clist", clist);
 			
 		}else if(req.getParameter("typecheck").equals("1")) {
 			System.out.println("typecheck=1");

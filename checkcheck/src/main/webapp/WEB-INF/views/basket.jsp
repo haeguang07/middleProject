@@ -68,9 +68,7 @@
 								<p style="display:inline-block;">최대수량 : </p>
 								<div style="display:inline-block;" id="bookstock">10</div>
 							</td>
-							<td style="padding: 0 40px; width: 200px; word-break: break-all">
-								<input type="reset"></input>
-							</td>
+							<td style="padding: 0 40px; width: 200px; word-break: break-all"><input type="reset"></input></td>
 							<td><input style="display:none" id="isbn" name="isbn" value=${i.isbn }></td>
 							<td style="display:none"><input type="text" id="basketId" name="basketId" style="display:none" value="${i.basketId }"></td>
 						</tr>
@@ -103,21 +101,61 @@
 						<p>normal : 1%   VIP : 3%   VVIP : 5%<br><br></p>
 						<input id="Bespeak" type="submit" value="주문" style="padding:5px 15px" onclick="javascript: form.action='delivery.do';"/>
 						<input id="present" type="submit" value="선물" style="padding:5px 15px" onclick="javascript: form.action='basketDelivery.do';"/>
-						<input id="delete" type="button" value="삭제" style="padding:5px 15px">
+						<input id="delete" type="submit" value="삭제" style="padding:5px 15px" onclick="javascript: form.action='basketDelete.do';"/>
 				</filedset>
 				</form>
 		</div>
 </section>
+<c:choose>
+<c:when test="${sesInfo eq null }">
 <div id="MOVE_TOP_BTN">
-	<a href="#">
-		<div style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative">
-			<p style="font-size: 12px; position: absolute; top: 15px; left: 15px;">top</p>
-		</div></a> <a href="#"><div style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative">
-			<p style="font-size: 12px; position: absolute; top: 15px; left: 5px;">로그인</p>
-		</div></a> <a href="#"><div style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative">
-			<p style="font-size: 10px; position: absolute; top: 15px; left: 5px;">회원가입</p>
-		</div></a>
+	
+		<div
+			style="width: 70px; height: 70px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative; margin: 5px;box-shadow:5px 5px 5px black">
+			<p
+				style="font-size: 16px; position: absolute; top: 15px; left: 15px;color:black;margin-left:7px;margin-top:5px"><a href="#" style="text-decoration: none;color:black;">top</a></p>
+		</div>
+	 
+		<div
+			style="width: 70px; height: 70px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative; margin: 5px;box-shadow:5px 5px 5px black">
+			<p style="font-size: 14px; position: absolute; top: 15px; left: 5px;color:black;margin-left:8px;margin-top:7px"><a href="login.do" style="text-decoration: none;color:black;">로그인</a></p>
+		</div>
+	
+		<div
+			style="width: 70px; height: 70px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative; margin: 5px;box-shadow:5px 5px 5px black">
+			<p style="font-size: 14px; position: absolute; top: 15px; left: 5px;margin-left:3px;margin-top:5px"><a href="joinForm.do" style="text-decoration: none;color:black;">회원가입</a></p>
+		</div>
+	
 </div>
+</c:when>
+<c:otherwise>
+<div id="MOVE_TOP_BTN">
+	
+		<div
+			style="width: 70px; height: 70px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative; margin: 5px;box-shadow:5px 5px 5px black">
+			<p
+				style="font-size: 16px; position: absolute; top: 15px; left: 15px;color:black;margin-left:7px;margin-top:5px"><a href="#" style="text-decoration: none;color:black;">top</a></p>
+		</div>
+	 
+		<div
+			style="width: 70px; height: 70px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative; margin: 5px;box-shadow:5px 5px 5px black">
+			<p style="font-size: 14px; position: absolute; top: 15px; left: 5px;color:black;margin-left:2px;margin-top:7px"><a href="login.do" style="text-decoration: none;color:black;">로그아웃</a></p>
+		</div>
+	 
+		<div
+			style="width: 70px; height: 70px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative; margin: 5px;box-shadow:5px 5px 5px black">
+			<p style="font-size: 14px; position: absolute; top: 15px; left: 5px;color:black;margin-left:2px;margin-top:7px"><a href="basket.do" style="text-decoration: none;color:black;">장바구니</a></p>
+		</div>
+	
+	
+		<div
+			style="width: 70px; height: 70px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative; margin: 5px;box-shadow:5px 5px 5px black">
+			<p style="font-size: 14px; position: absolute; top: 15px; left: 5px;color:black;margin-left:4px;margin-top:5px"><a href="myPageMain.do" style="text-decoration: none;color:black;">My Page</a></p>
+		</div>
+	
+</div>
+</c:otherwise>
+</c:choose>
 <!-- Footer-->
 <!-- Bootstrap core JS-->
 <script
@@ -178,23 +216,37 @@
 	})})
 	let remember = document.querySelectorAll('.remember');
 	remember.forEach(item => item.addEventListener('click',function(){
-		let total = document.querySelector('#totalprice').value;
-		console.log(document.querySelector('#totalprice').value);
 		let bookName = this.parentElement.parentElement.children[2].children[0].value;
 		let isbn = this.parentElement.parentElement.children[7].children[0].value;
 		let proAddress = document.querySelector('#proaddress').value;
 		console.log(isbn);
 		console.log(bookName);
+		let basketId = this.parentElement.parentElement.children[8].children[0].value;
+		console.log(basketId);
+		let bookprice = this.parentElement.parentElement.children[3].children[0].value;
+		console.log(bookprice);
+		let basketCount = this.parentElement.parentElement.children[5].children[2].value;
+		console.log(basketCount);
 			console.log(this);
 			const checkprice = this.parentElement.parentElement.children[3].children[0].value;
 			const checkcount = this.parentElement.parentElement.children[5].children[2].value;
 			if(this.checked){
+				console.log('가격'+checkprice);
+				console.log('개수'+checkcount);
+				let total = document.querySelector('#totalprice').value;
 				document.querySelector('#totalprice').value = (total*1+(checkprice*checkcount));
-				this.value = "{'bookName':'"+bookName+"','bookPrice':'"+bookprice+"','isbn':'"+isbn+"','basketCount':'"+number+"','proAddress':'"+proAddress+"'}";
+				console.log(document.querySelector('#totalprice').value);
+				this.value = "{'bookName':'"+bookName+"','bookPrice':'"+bookprice+"','isbn':'"+isbn+"','basketCount':'"+basketCount+"','proAddress':'"+proAddress+"','basketId':'"+basketId+"'}";
+				console.log(this.value);
 				
 			}else{
+				console.log('가격'+checkprice);
+				console.log('개수'+checkcount);
+				let total = document.querySelector('#totalprice').value;
 				document.querySelector('#totalprice').value = (total*1-(checkprice*checkcount));
+				console.log(document.querySelector('#totalprice').value);
 				this.value=0;
+				console.log(this.value);
 			}
 	}))
 	
@@ -228,8 +280,10 @@
 		  
 		  if(checkboxes.length === checked.length)  {
 		    selectAll.checked = true;
+		    console.log('hello');
 		  }else {
 		    selectAll.checked = false;
+		    console.log('bye');
 		  }
 
 	}
@@ -240,6 +294,7 @@
 		  
 		  checkboxes.forEach((checkbox) => {
 		    checkbox.checked = selectAll.checked
+		    console.log('check');
 		  })
 	}
 </script>
