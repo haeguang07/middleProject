@@ -3,28 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<style>
-.pagination2 {
-	display: inline-block;
-	text-align: center;
-}
 
-.pagination2 a {
-	color: black;
-	float: left;
-	padding: 5px 10px;
-	text-decoration: none;
-}
-
-.pagination2 a.active1 {
-	background-color: #4CAF50;
-	color: white;
-}
-
-.pagination2 a:hover:not(.active1) {
-	background-color: #ddd;
-}
-</style>
 <h3>내가쓴 리뷰</h3>
 <div>
 	<select>
@@ -51,7 +30,7 @@
 
 </div>
 <table>
-	<tr>
+	<tr style="height: 80px; text-align: center; background: #000; color: #fff;">
 		<th>문의번호</th>
 		<th>작성일</th>
 		<th>도서이름</th>
@@ -65,8 +44,8 @@
 	<tr><td colspan="6" style="text-align: center">작성한 리뷰가 존재하지 않습니다 </td></tr>
 	</c:when>
 	<c:otherwise>
-		<c:forEach var="r" items="${list }">
-			<tr class="modify">
+		<c:forEach var="r" items="${list }" varStatus="o">
+			<tr class="modify" style="${o.index%2==0 ? 'background:#ddd;':''}" > 
 				<td>${r.reviewId }</td>
 				<td><fmt:parseDate var="date" value="${r.reviewDate }"
 						pattern="yyyy-MM-dd HH:mm:ss" /> <fmt:formatDate value="${date}"

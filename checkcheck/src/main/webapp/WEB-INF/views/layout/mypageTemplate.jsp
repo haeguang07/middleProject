@@ -268,6 +268,45 @@
 .center{
 	text-align: center;
 }
+.pagination2 {
+	display: inline-block;
+	text-align: center;
+}
+
+.pagination2 a {
+	color: black;
+	float: left;
+	padding: 5px 10px;
+	text-decoration: none;
+}
+
+.pagination2 a.active1 {
+	background-color: #4CAF50;
+	color: white;
+}
+
+.pagination2 a:hover:not(.active1) {
+	background-color: #ddd;
+}
+table{
+	width: 100%;
+}
+  button{
+  position: static;
+  width: 100px;
+  height: 50px;
+  transform: translateY(0);
+ 
+  }
+  .thead1{
+  height: 80px; text-align: center; background: #222; color: #fff;
+  }
+  .tbody1{
+  text-align: center; padding-top: 30px;
+  }
+  .trGray{
+  background:#ddd;
+  }
 </style>
 </head>
 <body>
@@ -277,11 +316,11 @@
 			<tiles:insertAttribute name="nav"></tiles:insertAttribute>
 		</div>
 		<!-- Section-->
-		<div style="display:flex;">
+		<div style="display:flex; padding-top: 20px">
 		<div id="page-content-wrapper1"  style="flex:1; width:215px;">
 			<tiles:insertAttribute name="sidebar"></tiles:insertAttribute>
 		</div>
-		<div id="page-content-wrapper" style="flex:4.3; margin: 0 auto;">
+		<div id="page-content-wrapper" style="flex:4.3; margin: 0 auto; ">
 			<tiles:insertAttribute name="body"></tiles:insertAttribute>
 		</div>
 		</div>
