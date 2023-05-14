@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yedam.event.mapper.EventMapper">
+	<select id="selectEvent" resultType="event">
+		select * from events where user_id =#{userId}
+	</select>
+	
+</mapper>

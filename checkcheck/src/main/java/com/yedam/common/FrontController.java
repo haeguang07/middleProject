@@ -42,6 +42,8 @@ import com.yedam.book.control.InsertBookControl;
 import com.yedam.book.control.NewBookSearchControl;
 import com.yedam.comment.control.addAnswerControl;
 import com.yedam.coupon.control.CouponInfoControl;
+import com.yedam.event.contorl.EventControl;
+import com.yedam.event.contorl.EventFormControl;
 import com.yedam.order.control.CancelOrderControl;
 import com.yedam.order.control.ModifyOrderStateControl;
 import com.yedam.order.control.ModifyShippingControl;
@@ -142,7 +144,12 @@ public class FrontController extends HttpServlet {
 		map.put("/delivery.do", new DeliveryControl());
 		// 05-02 결제페이지 김영환 - css더 다듬어야함 기능넣어야됨
 		map.put("/waitpayment.do", new WaitPaymentControl());
-
+		
+		//이벤트화면
+		map.put("/eventForm.do", new EventFormControl());
+		//이벤트 리스트
+		map.put("/event.do", new EventControl());
+		
 		// 로그인 기능(get:화면으로, post:로그인 기능)
 		map.put("/login.do", new LoginControl());
 		// 로그아웃 기능

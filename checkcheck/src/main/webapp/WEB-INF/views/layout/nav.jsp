@@ -112,6 +112,6 @@
 			</div>
 		</div>
 		<!-- 달력 입니다~ -->
-		<img src="image/calendar.png" style="width; width: 150px; height: 150px;float:right;margin-right:50px" >
+		<img src="image/calendar.png" onclick="location.href='eventForm.do'" style="width; width: 150px; height: 150px;float:right;margin-right:50px" >
 	</header>
 </div>

@@ -9,5 +9,5 @@ public class EventVO {
 //	EVENT_DATE NOT NULL DATE  
 	
 	private String userId;
-	private Date eventeDate;
+	private String eventDate;
 }
