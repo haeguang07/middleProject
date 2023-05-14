@@ -32,15 +32,25 @@ public class OrderCompleteControl implements Control {
 			//배송상태(배송전중후)
 			//orderdate
 			int orderPost = Integer.parseInt(req.getParameter("userPost"));						//ok
+			System.out.println("ordercheck1");
 			String orderAddress = req.getParameter("userAddress");				//ok
 			String orderName = req.getParameter("userName");						//ok
+			System.out.println("ordercheck2");
 			String orderPhone = req.getParameter("userPhone");
 			String orderMethod = req.getParameter("remember");
+			System.out.println("ordercheck3");
 			String bookName = req.getParameter("bookName");
+			System.out.println(bookName);
 			String bookPrice = req.getParameter("bookPrice");
+			int bookStock = Integer.parseInt(req.getParameter("basketCount"));
+			if(bookStock == 1) {
+				bookStock = 1;
+			}
+			System.out.println(bookStock);
+			System.out.println("ordercheck4");
 			String coupon = req.getParameter("couponId");
-			int bookStock = 1;
 			OrderVO vo = new OrderVO();
+			System.out.println("ordercheck5");
 			vo.setOrderId(orderId);
 			vo.setUserId(userId);
 			vo.setPayment(payment);
@@ -56,6 +66,7 @@ public class OrderCompleteControl implements Control {
 			BookVO bvo = new BookVO();
 			bvo = service.selectbook(bookName);
 			bvo.setBookStock(bookStock);
+			System.out.println(bvo);
 			service.updateBook(bvo);
 			int userPoint = Integer.parseInt(req.getParameter("totalSpoint"));
 			service.updateUser(userPoint,userId);

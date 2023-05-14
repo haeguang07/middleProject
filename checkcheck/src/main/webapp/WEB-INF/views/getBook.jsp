@@ -120,8 +120,8 @@
 				</tr>
 				<tr>
 					<td><input type="button" value="장바구니" onclick=insertBasket()></td>
-					<td><input type="button" value=" 구매 " onclick=insertOrder(this)></td>
-					<td><input type="button" value="선물하기" onclick=insertPresent(this)></td>
+					<td><input type="button" value=" 구매 " onclick=insertOrder()></td>
+					<td><input type="button" value="선물하기" onclick=insertPresent()></td>
 				</tr>
 			</table>
 		</form>
@@ -227,7 +227,7 @@
 				console.log(number);
 				console.log(bookCount);
 				if(bookCount > 0){
-					if(number < document.querySelector('#bookCount').innerText ){
+					if(number <= bookCount ){
 						fetch("addBasket.do?isbn=${book.isbn}&userId=${sesInfo.userId}&count="+result)
 						.then(result => result.json())
 						.then(resolve =>{
@@ -246,7 +246,7 @@
 				}
 			}
 		}
-		function insertOrder(field){
+		function insertOrder(){
 			let isbn = document.getElementById('bookisbn').value;
 			console.log(isbn);
 			
@@ -260,20 +260,21 @@
 				let number = resultElement.innerText;
 				console.log(number);
 				let bookCount = document.getElementById('bookCount').innerText;
-				if(bookCount>1){
-					if(number > document.getElementById('bookCount').innerText ){
+				console.log(bookCount);
+				if(bookCount>0){
+					if(number > bookCount ){
 						alert('책의 재고보다 많은 수량은 주문 할 수없습니다');
 						number = document.querySelector('#bookCount').innerText;
 					}
-					else{
-						location.href="delivery.do?isbn="+isbn;
+					else if(number < bookCount){
+						location.href="delivery.do?isbn="+isbn+"&bookCount="+number;
 					}
 				}else if(bookCount<1){
 					alert('재고가 부족합니다!! 구매가 불가능합니다!!');
 				}
 			}
 		}
-		function insertPresent(field){
+		function insertPresent(){
 			console.log('presenttest');
 			let isbn = document.getElementById('bookisbn').value;
 			let isbn1 = document.getElementById('bookisbn');
@@ -292,14 +293,14 @@
 			// 현재 화면에 표시된 값
 			let number = resultElement.innerText;
 			let bookCount = document.getElementById('bookCount').innerText;
-			if(bookCount>1){
-			if(number > document.querySelector('#bookCount').innerText ){
-				alert('책의 재고보다 많은 수량은 주문 할 수없습니다');
-				number = document.querySelector('#bookCount').innerText;
-				
-			}else{
-				location.href="basketDelivery.do?presentcheck=1&isbn="+isbn+"&bookName="+bookName+"&bookPrice="+bookPrice+"&basketCount="+basketCount;
-			}
+			if(bookCount>0){
+				if(number > document.querySelector('#bookCount').innerText ){
+					alert('책의 재고보다 많은 수량은 주문 할 수없습니다');
+					number = document.querySelector('#bookCount').innerText;
+					
+				}else if(number < bookCount){
+					location.href="basketDelivery.do?presentcheck=1&isbn="+isbn+"&bookName="+bookName+"&bookPrice="+bookPrice+"&bookCount="+number;
+				}
 			}else if(bookCount<1){
 				alert('재고가 부족합니다!! 주문하실 수 없습니다!!');
 			}
