@@ -35,12 +35,20 @@
 		</tr>
 	</thead>
 	<tbody id="announceList">
+		<c:forEach var="i" items="${board3List }">
+		<tr>
+			<td><input type="checkbox" name="announcement" value="${i.boardId }" style=${sesInfo.userId eq 'hbj04003' ? 'dispaly:inline' : 'display:none' }></td>
+			<td style="text-align: left;"><p style="font-weight:bold;color:red ">중요</p></td>
+			<td style="text-align: left;"><a href="/searchAnno.do?boardId=${i.boardId }" style="text-decoration: none;color:red" >${i.boardTitle }</a></td>
+			<td>${i.boardDate }</td>
+		</tr>
+		</c:forEach>
 		<c:forEach var="item" items="${board }">
 			<tr id="${item.boardId }">
-			<td><input type="checkbox" name="announcement" value="${item.boardId }" style=${sesInfo.userId eq 'hbj04003' ? 'dispaly:inline' : 'display:none' }></td>
-			<td style="text-align: left;">${item.boardId }</td>
-			<td style="text-align: left"><a href="/searchAnno.do?boardId=${item.boardId }" style="text-decoration: none;color:black" >${item.boardTitle }</a></td>
-			<td>${item.boardDate }</td>
+				<td><input type="checkbox" name="announcement" value="${item.boardId }" style=${sesInfo.userId eq 'hbj04003' ? 'dispaly:inline' : 'display:none' }></td>
+				<td style="text-align: left;">${item.boardId }</td>
+				<td style="text-align: left"><a href="/searchAnno.do?boardId=${item.boardId }" style="text-decoration: none;color:black" >${item.boardTitle }</a></td>
+				<td>${item.boardDate }</td>
 			</tr>
 		</c:forEach>
 	</tbody>

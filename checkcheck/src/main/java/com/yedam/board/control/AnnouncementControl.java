@@ -24,7 +24,10 @@ public class AnnouncementControl implements Control {
 		int total = service.announceTotal();
 		PageDTO dto = new PageDTO(page,total);
 		List<BoardVO> list = service.getAnnouncementPage(page);
+		List<BoardVO> board3List = service.getBoard3List();
+	
 		System.out.println(list);
+		req.setAttribute("board3List", board3List);
 		req.setAttribute("board", list);
 		req.setAttribute("pageInfo", dto);
 		return "announcement.tiles";

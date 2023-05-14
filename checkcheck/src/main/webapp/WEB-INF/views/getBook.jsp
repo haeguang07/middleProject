@@ -179,17 +179,40 @@
 				<th>별점</th>
 				<th>작성일</th>
 				<th>삭제/수정</th>
-				<th></th>
 			</tr>
 		</thead>
 		<tbody id="tlist">
+			<c:forEach var="rv" items="${reviewList }">
+				<tr>
+					<td>${rv.reviewId }</td>
+					<td>${rv.reviewSubject }</td>
+					<td>${rv.nickname }</td>
+					<td>
+						<c:forEach var="num" begin="1" end="${rv.starcount }">
+							★
+						</c:forEach>
+					</td>
+					<td>${rv.reviewDate }</td>
+					<td><input class="delete" type="button" value="삭제"></td>
+				</tr>
+			</c:forEach>
 		</tbody>
 	</table>
 	
 	
 	<div style="text-align: center; width: 1200px; height: 50px; padding: 30px 0; margin-bottom: 50px">
 		<div class="pagination2">		
-							
+				<c:if test="${pageInfo.prev }">
+					<a href="getBook.do?page=${pageInfo.startPage-1 }&bookInfo=${book.isbn}"> 이전페이지</a>
+				</c:if>
+				<c:forEach var="i" begin="${pageInfo.startPage}"
+					end="${pageInfo.endPage}">
+					<a class="${i==pageInfo.pageNum ? 'active1':'' }"
+						href="getBook.do?page=${i}&bookInfo=${book.isbn}">${i} </a>
+				</c:forEach>
+				<c:if test="${pageInfo.next }">
+					<a href="getBook.do?page=${i}&bookInfo=${book.isbn}"> 다음페이지</a>
+				</c:if>				
 		</div>
 	</div>
 	
@@ -346,50 +369,15 @@
 			let tlist = document.querySelector('#tlist');
 			//목록생성.
 			let data = JSON.parse(xhtp.response).data;
-			let paging = JSON.parse(xhtp.response).DTO;
-			let pagination2 = document.querySelector('.pagination2');
-			if(paging.prev){
-				let a = document.createElement('a');
-				a.href = "review.do?page="+paging.startPage-1+"&isbn="+${book.isbn};
-				a.innerText = "Previous";
-				pagination2.append(a);
-			}
-			for(let i = 0 ; i < paging.endPage ; i++){
-				let a = document.createElement('a');
-				a.className = i+1 == paging.pageNum ? 'active1' : '' ;
-				a.href = "review.do?page="+i+"&isbn="+${book.isbn};
-				a.innerText = i+1 ;
-				pagination2.append(a);
-			}
-			if(paging.next){
-				let a = document.createElement('a');
-				a.href = "review.do?page="+paging.endPage-1+"&isbn="+${book.isbn};
-				a.innerText = "Next";
-				pagination2.append(a);
-			}
-			console.log(paging);
 			console.log("test");
 			console.log(data);
 			for (let reply of data) {
 				console.log(reply);
-				let tr = makeTrFunc(reply);
-				tlist.append(tr);
 			}
 		}
 
-		// tr 생성해주는 함수.
-		function makeTrFunc(reply = {}) {
-			let tr = document.createElement('tr');
-			tr.id = reply.reviewId; // tr 속성추가: 댓글번호
-
-			// this 1) Object 안에서 사용되면 object자체를 가리킴.
-			//      let obj = {name: "hong", age: 20, showInfo: function() { this.age + this.name }}
-			//      2) function 선언안에서 this는 window 전역객체. <-> 지역
-			//      function add() { console.log(this) }
-			//      3) event 안에서 사용되는 this는 이벤트 받는 대상.
-			//      document.getElementById('tlist').addEventListener('click',function() {console.log(this)})
-			// tr 클릭이벤트.
-			tr.addEventListener('dblclick', function (e) {
+		//수정기능
+				document.querySelector('#tlist').querySelectorAll('tr').forEach(tr => {tr.addEventListener('dblclick', function (e) {
 				let modifyCheck = document.querySelector('#tlist').children;
 				for(let i = 0 ; i < modifyCheck.length ; i++){
 						if(modifyCheck[i].className == 'template'){
@@ -407,19 +395,21 @@
 				
 				console.log(this);
 				let template = document.querySelector('.template').cloneNode(true);
+				let clonetr = this.cloneNode(true);
 				console.log(template);
 				//template.children[0].innerText = reply.replyId;
 				//template.children[1].children[0].value = reply.reply;
 				//template.children[2].innerText = reply.replyWriter;
-				template.querySelector('td:nth-of-type(1)').innerText = reply.reviewId;
-				template.querySelector('td:nth-of-type(2)>input').value = reply.reviewSubject;
-				template.querySelector('td:nth-of-type(3)').innerText = reply.nickname;
-				template.querySelector('td:nth-of-type(4)').innerText = reply.starcount;
-				template.querySelector('td:nth-of-type(5)').innerText = reply.reviewDate;
+				template.querySelector('td:nth-of-type(1)').innerText = this.children[0].innerText;
+				template.querySelector('td:nth-of-type(2)>input').value = this.children[1].innerText;
+				template.querySelector('td:nth-of-type(3)').innerText = this.children[2].innerText;
+				template.querySelector('td:nth-of-type(4)').innerText = this.children[3].innerText;
+				template.querySelector('td:nth-of-type(5)').innerText = this.children[4].innerText;
+				//수정 버튼 누를시
 				template.querySelector('input[type="button"]').addEventListener('click', function (e) {
 					// Ajax 호출.
-					let reviewId = reply.reviewId;
-					let reviewSubject = this.parentElement.parentElement.children[1].children[0].value;
+					let reviewId = document.querySelector('.template').children[0].innerText;
+					let reviewSubject =document.querySelector('.template').children[1].children[0].value;
 					
 					let xhtp = new XMLHttpRequest();
 					xhtp.open('post', 'modifyReview.do');
@@ -431,8 +421,8 @@
 							// 화면변경.
 							alert('성공.');
 							console.log(result.data);
-							tr = makeTrFunc(result.data);
-							document.getElementById('tlist').replaceChild(tr, template);
+							clonetr.children[1].innerText = reviewSubject;
+							document.getElementById('tlist').replaceChild(clonetr, template);
 						} else if (result.retCode == 'Fail') {
 							alert('처리중 에러.');
 						} else {
@@ -443,17 +433,11 @@
 				// 화면전환.
 				document.getElementById('tlist').replaceChild(template, tr);
 			})
-			// td 생성.
-			for (let prop of showFields) {
-				let td = document.createElement('td');
-				td.innerText = reply[prop];
-				tr.append(td);
-			}
+				});
+			
 			//삭제버튼.
-			let btn = document.createElement('input');
-			btn.type="button";
-			btn.value="삭제";
-			btn.addEventListener('click', function (e) {
+			let btns = document.querySelectorAll('.delete');
+			btns.forEach(btn => {btn.addEventListener('click', function (e) {
 				let writer = btn.parentElement.parentElement.children[2].innerText;
 
 				if (writer != '${sesInfo.nickname}') {
@@ -461,9 +445,7 @@
 					return;
 				}
 
-
-				console.log(btn.parentElement.parentElement);
-				let rid = btn.parentElement.parentElement.id;
+				let rid = this.parentElement.parentElement.children[0].innerText;
 				// db에서 삭제 후... 화면에서 삭제.
 				let xhtp = new XMLHttpRequest();
 				xhtp.open('post', 'deleteReview.do');
@@ -472,7 +454,7 @@
 
 				xhtp.onload = function () {
 					let result = JSON.parse(xhtp.response);
-					if (result.reqCode == 'Success') {
+					if (result.retCode == 'Success') {
 						// 화면에서 지우기.
 						btn.parentElement.parentElement.remove(); // 제거.
 						alert('삭제 완료');
@@ -482,14 +464,9 @@
 						alert('알수 없는 결과값입니다.');
 					}
 				}
+			})
 			});
-			let td = document.createElement('td');
-			td.append(btn);
-			tr.append(td);
-
-			return tr; //생성한 tr 을 반환.
-		}
-
+			
 		// 등록이벤트...
 		document.querySelector("#addbtn").addEventListener('click', addReplyFnc);
 
@@ -526,9 +503,30 @@
 				let result = JSON.parse(xhtp.response);
 				if (result.retCode == 'Success') {
 					// 값을 활용해서 tr 생성.
-					let tr = makeTrFunc(result.data);
-					tlist.append(tr);
-
+					let tlist = document.getElementById('tlist');
+					let tr = document.createElement('tr');
+					let td = document.createElement('td');
+					td.innerText= document.getElementById('tlist').children[0].children[0].innerText +1;
+					tr.append(td);
+					td = document.createElement('td');
+					td.innerText = reply;
+					tr.append(td);
+					td = document.createElement('td');
+					td.innerText = '${sesInfo.nickname}';
+					tr.append(td);
+					td = document.createElement('td');
+					let realstar="";
+					for(let i = 0 ; i < starcount ; i++){
+						realstar = realstar + "★";
+					}
+					td.innerText = realstar;
+					tr.append(td);
+					td = document.createElement('td');
+					let dt = new Date();
+					let str1 = dt.getFullYear()+'-'+(dt.getMonth()+1)+'-'+dt.getDate()+' '+' '+ dt.getHours()+':'+dt.getMinutes()+':'+dt.getSeconds();
+					td.innerText = str1;
+					tr.append(td);
+					tlist.insertBefore(tr,tlist.children[0])
 					// 입력값 초기화하기.
 					document.getElementById("reply").value = '';
 					document.getElementById("reply").focus();

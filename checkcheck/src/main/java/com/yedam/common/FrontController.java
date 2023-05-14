@@ -36,6 +36,7 @@ import com.yedam.board.control.RemoveAnnoControl;
 import com.yedam.board.control.SearchAnnoControl;
 import com.yedam.board.control.inquiryInfoControl;
 import com.yedam.book.control.BestSellerControl;
+import com.yedam.book.control.GetStockCountControl;
 import com.yedam.book.control.HitCountControl;
 import com.yedam.book.control.InsertBookControl;
 import com.yedam.book.control.NewBookSearchControl;
@@ -103,6 +104,7 @@ public class FrontController extends HttpServlet {
 		// 관리자 재고관리 기능
 		map.put("/bookStock.do", new BookStockControl());
 		map.put("/modifyStock.do",new ModifyStockControl());
+		map.put("/getStockCount.do", new GetStockCountControl());
 		// 05-03 관리자 문의내용 페이지
 		map.put("/adminInquiryInfo.do", new AdminInquiryInfoControl());
 		//문의내용 미답변기능
@@ -224,6 +226,8 @@ public class FrontController extends HttpServlet {
 		//장바구니 목록제거
 		map.put("/basketDelete.do", new BasketDeleteControl());
 	}
+	
+
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

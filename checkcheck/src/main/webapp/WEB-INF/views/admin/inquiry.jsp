@@ -2,9 +2,33 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<style>
+.pagination2 {
+	display: inline-block;
+	text-align: center;
+}
+
+.pagination2 a {
+	color: black;
+	float: left;
+	padding: 15px 30px;
+	text-decoration: none;
+}
+
+.pagination2 a.active1 {
+	background-color: #4CAF50;
+	color: white;
+}
+
+.pagination2 a:hover:not(.active1) {
+	background-color: #ddd;
+}
+
+</style>
 <label><input type="checkbox" id="checked">미답변문의만 확인</label>
 <div>
-	<table>
+	<table class="table">
+		<thead style="text-align: center">
 		<tr>
 			<th>번호</th>
 			<th>제목</th>
@@ -12,12 +36,13 @@
 			<th>문의일</th>
 			<th>답변여부</th>
 		</tr>
+		</thead>
 		<!-- 반복 -->
 		<tbody id="tlist" style="text-align: center">
 			<c:forEach var="i" items="${list }">
 				<tr>
 					<td>${i.boardId }</td>
-					<td><a href='inquiryAnswerForm.do?bid=${i.boardId }&page=${pageInfo.pageNum}'>${i.boardTitle }</a></td>
+					<td><a href='inquiryAnswerForm.do?bid=${i.boardId }&page=${pageInfo.pageNum}' style="text-decoration: none;color:black">${i.boardTitle }</a></td>
 					<td>${i.userName }</td>
 					<td><fmt:parseDate var="bDate" value="${i.boardDate }"
 							pattern="yyyy-MM-dd HH:mm:ss" /> <fmt:formatDate
@@ -112,6 +137,7 @@
 					let a = document.createElement('a');
 					a.href='inquiryAnswerForm.do?bid='+reply['boardId'];
 					a.innerText = reply[prop];
+					a.style.cssText = "text-decoration:none;color:black";
 					td.append(a);
 				}
 				else if(prop=='boardDate'){
