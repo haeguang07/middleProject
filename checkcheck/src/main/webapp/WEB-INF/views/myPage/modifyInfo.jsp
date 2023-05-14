@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<style>
+button{
+	width: auto;
+}
+td{
+width: 300px;
+}
+</style>
 <h3>회원정보 수정</h3>
 
 <table>
@@ -34,12 +42,12 @@
 				찾기</button></td>
 	</tr>
 	<tr>
-		<td></td>
+		<th></th>
 		<td colspan="2"><input type="text" name="joinAdr" id="joinAdr"
 			style="width: 400px;" value="${sesInfo.userAddress }"></td>
 	</tr>
 	<tr>
-		<td></td>
+		<th></th>
 		<td><input type="text" name="joinAdr2" id="joinAdr2"
 			placeholder="상세주소"></td>
 		<td><button type="button" id="adrBtn">변경하기</button></td>

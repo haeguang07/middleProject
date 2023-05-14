@@ -10,28 +10,7 @@
 		});
 	})
 </script>
-<style>
-.pagination2 {
-	display: inline-block;
-	text-align: center;
-}
 
-.pagination2 a {
-	color: black;
-	float: left;
-	padding: 5px 10px;
-	text-decoration: none;
-}
-
-.pagination2 a.active1 {
-	background-color: #4CAF50;
-	color: white;
-}
-
-.pagination2 a:hover:not(.active1) {
-	background-color: #ddd;
-}
-</style>
 <h3>문의 작성</h3>
 <div>
 	<form action="">
@@ -79,17 +58,17 @@
 </div>
 <div style="text-align: center">
 	<table>
-		<tr>
+		<tr class="thead1">
 			<th>문의일</th>
 			<th>문의번호</th>
 			<th>문의제목</th>
 			<th>답변여부</th>
 		</tr>
 		<c:if test="${empty list }">
-			<tr><td colspan="4">문의한 내역이 존재하지 않습니다</td></tr>
+			<tr><td colspan="4" class="tbody1">문의한 내역이 존재하지 않습니다</td></tr>
 		</c:if>
-		<c:forEach var="b" items="${list }">
-			<tr>
+		<c:forEach var="b" items="${list }" varStatus="o">
+			<tr class="${o.index%2==0 ? 'trGray':''}">
 				<td><fmt:parseDate var="bDate" value="${b.boardDate }" pattern="YYYY-MM-dd HH:mm:ss"/>
 					<fmt:formatDate value="${bDate }" pattern="YY년 MM월 dd일"/>  </td>
 				<td>${b.boardId }</td>

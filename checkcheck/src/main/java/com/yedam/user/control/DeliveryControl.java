@@ -34,9 +34,11 @@ public class DeliveryControl implements Control {
 			String isbn = String.valueOf(isbn1);
 			String bookName = bvo.getBookName();
 			String bookPrice = String.valueOf(bvo.getBookPrice());
+			String basketCount = req.getParameter("bookCount");
 			System.out.println(isbn);
 			System.out.println("책이름 : "+bvo.getBookName());
 			System.out.println("책가격 : "+bvo.getBookPrice());
+			System.out.println("갯수 : "+basketCount);
 			String check="0";
 			req.setAttribute("check", check);
 			req.setAttribute("isbn", isbn);
@@ -48,6 +50,7 @@ public class DeliveryControl implements Control {
 			String grade = uvo.getUserGrade();
 			req.setAttribute("sesInfo", uvo);
 			req.setAttribute("grade", grade);
+			req.setAttribute("basketCount", basketCount);
 //			String userId = uvo.getUserId();
 //			String userName = uvo.getUserName();
 //			String userAddress = uvo.getUserAddress();

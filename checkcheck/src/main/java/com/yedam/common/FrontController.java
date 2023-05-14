@@ -24,6 +24,7 @@ import com.yedam.admin.control.ModifyStockControl;
 import com.yedam.admin.control.WriteAnnoControl;
 import com.yedam.basket.control.AddBasketControl;
 import com.yedam.basket.control.BasketControl;
+import com.yedam.basket.control.BasketDeleteControl;
 import com.yedam.basket.control.BasketDeliveryControl;
 import com.yedam.board.control.AnnounceForAjaxControl;
 import com.yedam.board.control.AnnouncementControl;
@@ -222,6 +223,8 @@ public class FrontController extends HttpServlet {
 		map.put("/addBasket.do", new AddBasketControl());
 		//배송지,장바구니데이터
 		map.put("/basketDelivery.do", new BasketDeliveryControl());
+		//장바구니 목록제거
+		map.put("/basketDelete.do", new BasketDeleteControl());
 	}
 	
 
