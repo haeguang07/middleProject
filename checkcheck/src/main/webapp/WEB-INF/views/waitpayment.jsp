@@ -47,6 +47,7 @@
 			<input type="text" style="display:none" name="userPhone" value="${phone }">
 			<input type="text" style="display:none" name="bookName" value="${bookName }">
 			<input type="text" style="display:none" name="bookPrice" value="${bookPrice }">
+			<input type="text" style="display:none" name="basketCount" value="${basketCount }">
 			<select id="coupons" name="couponId" onchange=couponFuntion(this)>
 			<option name="couponId" id="0" value="0">사용할쿠폰선택</option>
 				<c:forEach var="i" items="${clist }">
@@ -87,8 +88,8 @@
 				<fmt:parseNumber var="totalSpoint" integerOnly="true" value= "${(totalPrice*0.05) }"/>
 				</c:when>
 			</c:choose>
-			<tr><td>총 가격 : <input type="text" id="totalPrice" name="totalPrice" style="width:100px;border:none" value="${bookPrice }"></td></tr>
-			<tr><td>적립금액 : <input type="text" id="totalSpoint" name="totalSpoint" style="width:100px;border:none" value="${totalSpoint }"></td></tr>
+			<tr><td>총 가격 : <input type="text" id="totalPrice" name="totalPrice" style="width:100px;border:none" value="${(bookPrice*1)*(basketCount*1) }"></td></tr>
+			<tr><td>적립금액 : <input type="text" id="totalSpoint" name="totalSpoint" style="width:100px;border:none" value="${(totalSpoint*1)*(basketCount*1) }"></td></tr>
 			<tr><td>총할인금액 : <input type="text" id="totalSSpoint" style="width:150px;border:none" value=""></td></tr>
 			<tr><td>결제금액 : <input type="text" name="totalPriceEnd" id="totalPriceCount" style="width:100px;border:none" value=""></td></tr>
 		  </table>

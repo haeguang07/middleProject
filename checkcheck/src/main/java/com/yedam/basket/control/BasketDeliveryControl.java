@@ -25,7 +25,7 @@ public class BasketDeliveryControl implements Control {
 			String isbn=req.getParameter("isbn");
 			String bookName=req.getParameter("bookName");
 			String bookPrice=req.getParameter("bookPrice");
-			String basketCount=req.getParameter("basketCount");
+			String basketCount=req.getParameter("bookCount");
 			System.out.println("presentcheck = "+pre);
 			System.out.println("isbn = "+isbn);
 			System.out.println("bookName = "+bookName);
