@@ -2,39 +2,16 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<style>
-.pagination2 {
-	display: inline-block;
-	text-align: center;
-}
 
-.pagination2 a {
-	color: black;
-	float: left;
-	padding: 15px 30px;
-	text-decoration: none;
-}
-
-.pagination2 a.active1 {
-	background-color: #4CAF50;
-	color: white;
-}
-
-.pagination2 a:hover:not(.active1) {
-	background-color: #ddd;
-}
-.center{
-	text-align: center;
-}
-</style>
 <div>
-	<div>
+	<div style="border: 1px solid black;">
 		<p>
 			${sesInfo.userName }님, 안녕하세요! <br> 멤버십 등급 : ${sesInfo.userGrade } <br> 멤버십 회원이 되시면 구매 금액의
 			1~3% 추가 포인트 및 쿠폰 혜택을 받으실 수 있습니다.
 		</p>
 	</div>
 	<div>
+	<div style="border: 1px solid black; border-radius: 10px; margin: 10px auto; padding: 10px; height: 70px; line-height: 50px;">
 		<select>
 			<option value="2023">2023</option>
 			<option value="2022">2022</option>
@@ -54,18 +31,20 @@
 			<option value="10">10</option>
 			<option value="11">11</option>
 			<option value="12">12</option>
-		</select>월 <span>상품이름 </span><input type="text" style="width: 100px">
-		<button>검색</button>
+		</select>월 <div style=" float: right; display: inline-block;"><span>상품이름 </span><input type="text" style="width: 300px; height: 40px">
+		<button>검색</button></div>
+		</div>
+		<div>
 		<table>
-			<tr>
+			<tr class="thead1">
 				<th>주문일</th>
 				<th>주문번호</th>
-				<th style="width:40%">상품</th>
+				<th style="width:40%; text-align: left;">상품</th>
 				<th>배송상태</th>
 				<th>변경/취소</th>
 			</tr>
-			<c:forEach var="order" items="${list }">
-				<tr>
+			<c:forEach var="order" items="${list }" varStatus="o">
+				<tr style="${o.index%2==0 ? 'background:#ddd;':''}">
 					<td><fmt:formatDate value="${order.orderDate }" pattern="YYYY-MM-dd"/> </td>
 					<td><a
 						href="shippingInfo.do?id=${order.orderId }&page=${pageInfo.pageNum}">${order.orderId }</a></td>
@@ -86,6 +65,7 @@
 				</tr>
 			</c:forEach>
 		</table>
+		</div>
 		<div class="center">
 			<div class="pagination2">
 				<c:if test="${pageInfo.prev }">

@@ -40,28 +40,5 @@
 </c:if>
 
 <script>
-	let addBtn = document.querySelector('#modifyBtn');
-	addBtn.addEventListener('click', function () {
-		let subject = CKEDITOR.instances.answer.getData();
-		fetch('addAnswer.do', {
-				method: "POST",
-				headers: {
-					'Content-Type': 'application/x-www-form-urlencoded',
-				},
-				body: 'subject=' + subject + '&bid=${vo.boardId}'
-			})
-			.then(resolve => resolve.json())
-			.then(result => {
-				if (result.retCode == 'Success') {
-					alert('답변이 성공적으로 입력되었습니다')					
-					location.reload();
-				} else if (result.retCode == 'Fail') {
-					alert('등록실패');
-				} else {
-					alert('알수 없는 오류');
-				}
-			})
-
-
-	})
+	
 </script>

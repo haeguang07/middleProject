@@ -2,28 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<style>
-.pagination2 {
-	display: inline-block;
-	text-align: center;
-}
 
-.pagination2 a {
-	color: black;
-	float: left;
-	padding: 15px 30px;
-	text-decoration: none;
-}
-
-.pagination2 a.active1 {
-	background-color: #4CAF50;
-	color: white;
-}
-
-.pagination2 a:hover:not(.active1) {
-	background-color: #ddd;
-}
-</style>
 <div>
 		<select>
 			<option value="2023">2023</option>
@@ -47,7 +26,7 @@
 		</select>월 <span>상품이름 </span><input type="text" style="width: 100px">
 		<button>검색</button>
 		<table>
-			<tr>
+			<tr class="thead1">
 				<th>주문일</th>
 				<th>주문번호</th>
 				<th style="width:40%">상품</th>
@@ -55,11 +34,11 @@
 			</tr>
 			<c:choose>
 			<c:when test="${empty list }">
-			<tr><td colspan="4">취소한 주문내역이 없습니다</td></tr>
+			<tr><td colspan="4" class="tbody1">취소한 주문내역이 없습니다</td></tr>
 			</c:when>
 			</c:choose>
-			<c:forEach var="order" items="${list }">
-				<tr>
+			<c:forEach var="order" items="${list }" varStatus="o">
+				<tr class="${o.index%2==0 ? 'trGray':''}">
 					<td><fmt:formatDate value="${order.orderDate }" pattern="YYYY-MM-dd"/> </td>
 					<td><a
 						href="shippingInfo.do?id=${order.orderId }&page=${pageInfo.pageNum}">${order.orderId }</a></td>

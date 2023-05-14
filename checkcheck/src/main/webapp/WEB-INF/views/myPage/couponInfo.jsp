@@ -1,34 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<style>
-td{
-	width:150px;
-}
-.pagination2 {
-	display: inline-block;
-	text-align: center;
-}
 
-.pagination2 a {
-	color: black;
-	float: left;
-	padding: 5px 10px;
-	text-decoration: none;
-}
-
-.pagination2 a.active1 {
-	background-color: #4CAF50;
-	color: white;
-}
-
-.pagination2 a:hover:not(.active1) {
-	background-color: #ddd;
-}
-</style>
 <h3>쿠폰 정보</h3>
 <table>
-	<tr>
+	<tr class="thead1">
 	
 		<th>쿠폰아이디</th>
 		<th>발급일</th>
@@ -36,8 +12,11 @@ td{
 		<th>만기일</th>
 		<th>쿠폰상태</th>
 	</tr>
-	<c:forEach var="co"  items="${list }">
-	<tr>
+	<c:if test="${empty list }">
+		<tr><td colspan="5" class="tbody1">쿠폰이 존재하지 않습니다</td></tr>
+	</c:if>
+	<c:forEach var="co"  items="${list }" varStatus="o">
+	<tr class="${o.index%2==0 ? 'trGray':''}">
 		<td>${co.couponId} </td>
 		<td><fmt:formatDate value="${co.startdate}" pattern="YYYY-MM-dd"/> </td>
 		<td><fmt:formatNumber type="percent" value="${co.discount}"/> 할인쿠폰</td>
