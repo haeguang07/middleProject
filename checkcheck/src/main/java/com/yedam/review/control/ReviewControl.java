@@ -24,7 +24,7 @@ public class ReviewControl implements Control {
 		ReviewService service = new ReviewServiceImpl();
 		long isbn = Long.parseLong(req.getParameter("isbn"));
 		String pageStr = req.getParameter("page");
-		int page = pageStr == null? 1 : Integer.parseInt("pageStr"); 
+		int page = pageStr == null? 1 : Integer.parseInt(pageStr); 
 		int total = service.getReviewCount(isbn);
 		PageDTO dto = new PageDTO(page,total);
 		List<ReviewVO> list = service.getReviewPaging(page,isbn);

@@ -16,9 +16,9 @@
                 <table class="table" style="width:800px;margin:0 auto">
                     <tr>
                         <th>제목</th>
-                        <td colspan="3"><input type="text" name="title" placeholder="제목" style="width:500px"></td>
+                        <td colspan="2"><input type="text" name="title" placeholder="제목" style="width:500px"></td>
+                        <td><select id="primary" name="select"><option value="1">일반</option><option value="3">중요</option></select></td>
                         <td><input name="userId" value="${sesInfo.userId }" style="display:none"></td>
-                        <td></td>
                     </tr>
                     <tr>
                         <th>내용</th>

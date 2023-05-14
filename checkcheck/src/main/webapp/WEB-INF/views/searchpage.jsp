@@ -133,8 +133,8 @@
 		<!-- 책 리스트 받아서 반복문 만들기-->
 		<c:forEach var="i" items="${list }">
 			<div style="padding: 10px; border-top: 1px black solid; clear: both;">
-				<form action="" method="post" style="position: relative">
-					<table>
+				<form action="" method="post" style="position: relative; clear: both;">
+					<table style=" clear: both;">
 						<tr>
 							
 							<td rowspan="5"><img src=${i.cover } style="width: 200px; height: 300px"></td>
@@ -302,6 +302,22 @@
 	integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
 	crossorigin="anonymous"></script>
 <script>
+$(function() {
+	$(window).scroll(function() {
+		if ($(this).scrollTop() > 100) {
+			$('#MOVE_TOP_BTN').fadeIn();
+		} else {
+			$('#MOVE_TOP_BTN').fadeOut();
+		}
+	});
+
+	/* $("#MOVE_TOP_BTN").click(function() {
+		$('html, body').animate({
+			scrollTop : 0
+		}, 400);
+		return false;
+	}); */
+});
 function insertBasket(field){
 	console.log(field.nextElementSibling);
 	let isbn = field.nextElementSibling.innerText;

@@ -14,12 +14,14 @@ public class AddAnnoControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		BoardService service = new BoardServiceImpl();
 		String title = req.getParameter("title");
 		String subject = req.getParameter("summary");
 		String userId = req.getParameter("userId");
+		String select = req.getParameter("select");
+		int selectNum = Integer.parseInt(select);
 		
-		BoardService service = new BoardServiceImpl();
-		if(service.addAnno(userId, title, subject) > 0) {
+		if(service.addAnno(userId,selectNum, title, subject) > 0) {
 			return "announcement.do";
 		}else {
 			return "writeAnno.do";

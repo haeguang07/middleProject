@@ -214,6 +214,9 @@
 					        	if(data.retCode=='Success'){
 					        	alert('성공');
 					        	}
+					        },
+					        complete:function(){
+					        	console.log('성공');
 					        }
 					    });
 				 
@@ -330,7 +333,7 @@
 				  });
 				if(i == arry.length -1 ){
 					alert('성공');
-					location.reload();
+					searchBook(${pageInfo.pageNum});
 				}	
 			}
 		}

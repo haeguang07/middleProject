@@ -81,27 +81,34 @@
 	]]>
 	</select>
 	<select id="bestSeller" resultType="book">
-		select b.order_id ,c.*, b.isbn, b.history_count*c.book_price total_price,a.order_date
-		from orders a join historys b
-		on a.order_id = b.order_id
-		join books c on b.isbn = c.isbn
-		where order_date between #{monthFirst} and #{monthLast}
-		order by total_price desc
+	<![CDATA[
+		select rownum rn , f.*
+	from(select d.counts, e.*
+		from(select isbn, sum(history_count) counts
+			from (select a.isbn , a.history_count ,b.order_date
+			from historys a join orders b
+			on a.order_id = b.order_id
+			where order_date between #{monthFirst} and #{monthLast}) c
+			group by isbn) d
+		join books e on d.isbn = e.isbn
+		order by counts desc)f
+	where rownum <=7
+	]]>
 	</select>
 	<select id="bestSellerSearchPage" resultType="book">
 	<![CDATA[
-		select g.*
+select g.*
 from(select rownum rn , f.*
-from(select d.counts, e.*
-from(select isbn, sum(history_count) counts
-from (select a.isbn , a.history_count ,b.order_date
-from historys a join orders b
-on a.order_id = b.order_id
-where order_date between #{monthFirst} and #{monthLast}) c
-group by isbn) d
-join books e on d.isbn = e.isbn
-order by counts desc)f
-where rownum <=#{page}*10)g
+	from(select d.counts, e.*
+		from(select isbn, sum(history_count) counts
+			from (select a.isbn , a.history_count ,b.order_date
+			from historys a join orders b
+			on a.order_id = b.order_id
+			where order_date between #{monthFirst} and #{monthLast}) c
+			group by isbn) d
+		join books e on d.isbn = e.isbn
+		order by counts desc)f
+	where rownum <=#{page}*10)g
 where rn >(#{page}-1)*10
 		]]>
 	</select>
