@@ -65,14 +65,14 @@
 							<c:if test="${'VVIP' eq grade }">
 								<input type="text" style="width: 80px; text-align: center; display: inline-block;border:none" value="${(bookPrice*0.05)*1 }"></td>
 							</c:if>
-							<td style="text-align:left"><input type="text" name="basketCount" id="basketCount" style="width: 150px; text-align: center; display: inline-block;border:none" value="${basketCount }"></td>
+							<td style="text-align:left"><input type="number" name="basketCount" id="basketCount" style="width: 50px; text-align: center; display: inline-block;margin-right:10px" value="1"></td>
 						</tr>
 				</table>
 			</div>
 		</div>
 	</fieldset>
 	<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4"
-			style="margin: 0 auto ;width:1000px;text-align:center">
+			style="margin: 40px auto ;width:1000px;text-align:center">
 			<table>
 				<tr><td style="width: 250px" style="word-break:break-all">배송지 정보<br></td></tr>
 				<tr><td style="width: 250px; height: 50px; word-break: break-all">주문인</td></tr>
@@ -87,7 +87,7 @@
 						<tr><td style="width: 200px; height: 30px"></td></tr>
 						<tr><td style="width: 200px; height: 40px; word-break: break-all"><input id="Name" name="name"></td></tr>
 						<tr><td style="width: 200px; height: 40px; word-break: break-all"><input id="Post" name="post"></td>
-							<td><button id="postchange" type="button" style="padding:20px 80px;margin-left:50px;" onclick="execDaumPostcode()">우편번호 찾기</button></td>
+							<td><input id="postchange" type="button" style="padding:20px 80px;margin-left:50px;" onclick="execDaumPostcode()" value="우편번호 찾기"></td>
 						</tr>
 						<tr><td style="width: 400px; height: 50px; word-break: break-all"><input id="Address" name="address"></td></tr>
 						<tr><td style="width: 400px; height: 55px; word-break: break-all"><input id="Phone" name="phone"></td></tr>
@@ -112,7 +112,7 @@
 				</c:otherwise>
 			</c:choose>
 		</div>
-	<div style="margin:0 auto; text-align:right"><button type="submit" style="padding: 15px 25px;margin:50px" value="" onclick="javascript: form.action='waitpayment.do';"/>결제하기</button></div>
+	<div style="margin:0 auto; text-align:right"><input type="submit" style="padding: 15px 25px;margin:50px" onclick="javascript: form.action='waitpayment.do';" value="결제하기"></div>
 </form>
 </c:if>
 <c:if test="${'1' eq check }">
@@ -153,7 +153,7 @@
 			</div>
 		</div>
 		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4"
-			style="margin: 0 auto ;width:1000px;text-align:center">
+			style="margin: 40px auto ;width:1000px;text-align:center">
 			<table>
 				<tr><td style="width: 250px" style="word-break:break-all">배송지 정보<br></td></tr>
 				<tr><td style="width: 250px; height: 50px; word-break: break-all">주문인</td></tr>
@@ -168,7 +168,7 @@
 						<tr><td style="width: 200px; height: 30px"></td></tr>
 						<tr><td style="width: 200px; height: 40px; word-break: break-all"><input id="Name" name="name"></td></tr>
 						<tr><td style="width: 200px; height: 40px; word-break: break-all"><input id="Post" name="post"></td>
-							<td><button id="postchange" type="button" style="padding:20px 80px;margin-left:50px;" onclick="execDaumPostcode()">우편번호 찾기</button></td>
+							<td><input id="postchange" type="button" style="padding:20px 80px;margin-left:50px;" onclick="execDaumPostcode()" value="우편번호 찾기"></td>
 						</tr>
 						<tr><td style="width: 400px; height: 50px; word-break: break-all"><input id="Address" name="address"></td></tr>
 						<tr><td style="width: 400px; height: 55px; word-break: break-all"><input id="Phone" name="phone"></td></tr>
@@ -194,7 +194,7 @@
 			</c:choose>
 		</div>
 	</fieldset>
-	<div style="margin:0 auto; text-align:right"><button type="submit" style="padding: 15px 25px;margin:50px" value="" onclick="javascript: form.action='waitpayment.do';"/>결제하기</button></div>
+	<div style="margin:0 auto; text-align:right"><input type="submit" style="padding: 15px 25px;margin:50px" value="결제하기" onclick="javascript: form.action='waitpayment.do';"></div>
 </form>
 </c:if>
 <c:if test="${'1' eq present }">
@@ -217,7 +217,7 @@
 							<td style="text-align:left"><input type="text" name="bookName" id="bookName" style="width: 500px; text-align: center; display: inline-block;border:none" value="${bookName }"></td>
 							<td style="text-align:left"><input type="text" name="bookPrice" id="bookPrice" style="width: 80px; text-align: center; display: inline-block;border:none" value="${bookPrice }">/<input type="text"
 							style="width: 80px; text-align: center; display: inline-block;border:none" value="${bookPrice/100 }"></td>
-							<td style="text-align:left"><input type="text" name="basketCount" id="basketCount" style="width: 150px; text-align: center; display: inline-block;border:none" value="${basketCount }"></td>
+							<td style="text-align:left"><input type="number" name="basketCount" id="basketCount" style="width: 150px; text-align: center; display: inline-block;border:none" value="1"></td>
 						</tr>
 					<tr>
 						<td>총가격 : <input type="text" name="totalPrice" id="totalPrice" style="width: 80px; text-align: center; display: inline-block;border:none" value="${total }">원</td>
@@ -227,7 +227,7 @@
 		</div>
 	</fieldset>
 	<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4"
-			style="margin: 0 auto ;width:1000px;text-align:center">
+			style="margin: 40px auto ;width:1000px;text-align:center">
 			<table>
 				<tr><td style="width: 250px" style="word-break:break-all">배송지 정보<br></td></tr>
 				<tr><td style="width: 250px; height: 50px; word-break: break-all">주문인</td></tr>
@@ -242,7 +242,7 @@
 						<tr><td style="width: 200px; height: 30px"></td></tr>
 						<tr><td style="width: 200px; height: 40px; word-break: break-all"><input id="Name" name="name"></td></tr>
 						<tr><td style="width: 200px; height: 40px; word-break: break-all"><input id="Post" name="post"></td>
-							<td><button id="postchange" type="button" style="padding:20px 80px;margin-left:50px;" onclick="execDaumPostcode()">우편번호 찾기</button></td>
+							<td><input id="postchange" type="button" onclick="execDaumPostcode()" value="우편번호 찾기"></td>
 						</tr>
 						<tr><td style="width: 400px; height: 50px; word-break: break-all"><input id="Address" name="address"></td></tr>
 						<tr><td style="width: 400px; height: 55px; word-break: break-all"><input id="Phone" name="phone"></td></tr>
@@ -267,7 +267,7 @@
 				</c:otherwise>
 			</c:choose>
 		</div>
-	<div style="margin:0 auto; text-align:right"><button type="submit" style="padding: 15px 25px;margin:50px" value="" onclick="javascript: form.action='waitpayment.do';"/>결제하기</button></div>
+	<div style="margin:0 auto; text-align:right"><input type="submit" style="padding: 15px 25px;margin:50px" value="결제하기" onclick="javascript: form.action='waitpayment.do';"/></div>
 </form>
 </c:if>
 <c:if test="${'0' eq present }">
@@ -309,7 +309,7 @@
 		</div>
 	</fieldset>
 	<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4"
-			style="margin: 0 auto ;width:1000px;text-align:center">
+			style="margin: 40px auto ;width:1000px;text-align:center">
 			<table>
 				<tr><td style="width: 250px" style="word-break:break-all">배송지 정보<br></td></tr>
 				<tr><td style="width: 250px; height: 50px; word-break: break-all">주문인</td></tr>
@@ -324,7 +324,7 @@
 						<tr><td style="width: 200px; height: 30px"></td></tr>
 						<tr><td style="width: 200px; height: 40px; word-break: break-all"><input id="Name" name="name"></td></tr>
 						<tr><td style="width: 200px; height: 40px; word-break: break-all"><input id="Post" name="post"></td>
-							<td><button id="postchange" type="button" style="padding:20px 80px;margin-left:50px;" onclick="execDaumPostcode()">우편번호 찾기</button></td>
+							<td><input id="postchange" type="button" 	 onclick="execDaumPostcode()" value="우편번호 찾기"></td>
 						</tr>
 						<tr><td style="width: 400px; height: 50px; word-break: break-all"><input id="Address" name="address"></td></tr>
 						<tr><td style="width: 400px; height: 55px; word-break: break-all"><input id="Phone" name="phone"></td></tr>
@@ -349,23 +349,11 @@
 				</c:otherwise>
 			</c:choose>
 		</div>
-	<div style="margin:0 auto; text-align:right"><button type="submit" style="padding: 15px 25px;margin:50px" value="" onclick="javascript: form.action='waitpayment.do';"/>결제하기</button></div>
+	<div style="margin:0 auto; text-align:right"><input type="submit" style="padding: 15px 25px;margin:50px" value="결제하기" onclick="javascript: form.action='waitpayment.do';"></div>
 </form>
 </c:if>
 </div>
-<div id="MOVE_TOP_BTN">
-	<a href="#"><div
-			style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative">
-			<p
-				style="font-size: 12px; position: absolute; top: 15px; left: 15px;">top</p>
-		</div></a> <a href="#"><div
-			style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative">
-			<p style="font-size: 12px; position: absolute; top: 15px; left: 5px;">로그인</p>
-		</div></a> <a href="#"><div
-			style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative">
-			<p style="font-size: 10px; position: absolute; top: 15px; left: 5px;">회원가입</p>
-		</div></a>
-</div>
+
 <!-- Footer-->
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -411,20 +399,16 @@ function execDaumPostcode() {
       }).open();
     });
   }
-	$(function() {
-		$(window).scroll(function() {
-			if ($(this).scrollTop() > 100) {
-				$('#MOVE_TOP_BTN').fadeIn();
-			} else {
-				$('#MOVE_TOP_BTN').fadeOut();
-			}
-		});
-
-		$("#MOVE_TOP_BTN").click(function() {
-			$('html, body').animate({
-				scrollTop : 0
-			}, 400);
-			return false;
-		});
-	});
+	document.querySelector('#basketCount').addEventListener('change',function(){
+		if(this.value < 1){
+			alert('1권이하 주문 불가합니다');
+			this.value =1;
+		}
+		let stock = ${bookStock};
+		console.log(stock);
+		if(this.value > stock){
+			alert('재고량 이상으로 주문 불가합니다');
+			this.value = stock;
+		}
+	})
 </script>

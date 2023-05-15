@@ -26,6 +26,7 @@ public class DeliveryControl implements Control {
 		if(req.getMethod().equals("GET")) {
 			System.out.println("GET방식입니다.");
 			long isbn1 = Long.parseLong(req.getParameter("isbn"));
+			int bookStock = Integer.parseInt(req.getParameter("bookStock"));
 			System.out.println(isbn1);
 			BookVO bvo = new BookVO();
 			BookService service = new BookServiceImpl();
@@ -51,6 +52,7 @@ public class DeliveryControl implements Control {
 			req.setAttribute("sesInfo", uvo);
 			req.setAttribute("grade", grade);
 			req.setAttribute("basketCount", basketCount);
+			req.setAttribute("bookStock", bookStock);
 //			String userId = uvo.getUserId();
 //			String userName = uvo.getUserName();
 //			String userAddress = uvo.getUserAddress();

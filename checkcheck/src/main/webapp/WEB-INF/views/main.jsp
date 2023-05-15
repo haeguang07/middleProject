@@ -22,70 +22,7 @@
 .btnLightBlue.btnBorder:hover {
   box-shadow: 0px 0px 0px 5px #01939A;
 }
-.btnFloat {
-  background: none;
-  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.5);
-}
 
-.btnFloat:before {
-  content: 'Float';
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 120px;
-  height: 50px;
-  border-radius: 5px;
-  transition: all 0.2s ;
-}
-.btnLightBlue.btnFloat:before {
-  background: #5DC8CD;
-}
-.btnFloat:before {
-  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.4);
-}
-
-.btnFloat:hover:before {
-  
-}
-
-.btnFloat:hover:before {
-  margin-top: -2px;
-  margin-left: 0px;
-  transform: scale(1.1,1.1);
-  -ms-transform: scale(1.1,1.1);
-  -webkit-transform: scale(1.1,1.1);
-  box-shadow: 0px 5px 5px -2px rgba(0, 0, 0, 0.25);
-}
-.btnSlide .top {
-  position: absolute;
-  top: 0px;
-  left: 0;
-  width: 120px;
-  height: 50px;
-  background: #00AE68;
-  z-index: 10;
-  transition: all 0.2s ;
-  border-radius: 5px;
-}
-.btnSlide.btnLightBlue .top {
-  background: #5DC8CD;
-}
-
-.btnSlide .bottom {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 120px;
-  height: 50px;
-  color: #000;
-  z-index: 5;
-  border-radius: 5px;
-}
-
-.btnSlide:hover .top {
-  top: 40px;
-}
 input.button {
   display: block;
   float: left;

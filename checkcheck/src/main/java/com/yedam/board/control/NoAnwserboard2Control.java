@@ -26,8 +26,8 @@ public class NoAnwserboard2Control implements Control {
 		pageStr = pageStr==null ? "1": pageStr;
 		int page = Integer.parseInt(pageStr);
 		BoardService service=new BoardServiceImpl();
-		List<BoardVO> list = service.getInquiryList(page);
-		int total = service.inquiryTotal();
+		List<BoardVO> list = service.getInquiryNList(page);
+		int total = service.inquiryNTotal();
 		PageDTO dto = new PageDTO(page, total);
 		if(list!=null) {
 			map.put("retCode","Success");

@@ -22,7 +22,7 @@
 		<![CDATA[
 		select b.*
 		from (select rownum rn,a.*
-			  from(select * from Boards where user_id=#{userId} and board_kind=2)a
+			  from(select * from Boards where user_id=#{userId} and board_kind=2 order by board_id desc)a
 			  where rownum <= #{page}*10) b
 		where rn >(#{page}-1)*10
 		]]>
@@ -70,5 +70,20 @@
 		from(select * from boards where board_kind = 3 order by board_date desc) a
 		where rownum <= 5
 		]]>
+	</select>
+	<select id="selectNBoard2List" resultType="board">
+	<![CDATA[
+		select rownum rn, b.*
+		from (select rownum rn, a.*
+			  from(select b.*,u.user_name 
+			  	   from Boards b join users u 
+			  	   on(b.user_id=u.user_id) 
+                   where board_kind=2 and checks ='N') a
+			  where rownum <= #{page}*10) b
+		where rn >(#{page}-1)*10
+	]]>
+	</select>
+	<select id="Nborad2ListCount">
+		select count(*) from boards where board_kind=2 and checks = 'N'
 	</select>
 </mapper>

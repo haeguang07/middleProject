@@ -55,7 +55,7 @@
 			.then(result => {
 				if (result.retCode == 'Success') {
 					alert('답변이 성공적으로 입력되었습니다')					
-					location.reload();
+					location.href='adminInquiryInfo.do';
 				} else if (result.retCode == 'Fail') {
 					alert('등록실패');
 				} else {

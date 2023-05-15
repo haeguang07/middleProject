@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <script src="//cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
 <script>
 	document.addEventListener("DOMContentLoaded", function () {
@@ -26,7 +27,7 @@
 		
 			<tr>
 				<td></td>
-				<td style="text-align: right;"><button id="btn" type="button">작성</button></td>
+				<td style="text-align: right;"><input id="btn" type="button" value="작성"></td>
 			</tr>
 		</table>
 	</form>
@@ -54,7 +55,7 @@
 		<option value="11">11월</option>
 		<option value="12">12월</option>
 	</select>
-	<button>검색</button>
+	<input type="button" value="검색">
 </div>
 <div style="text-align: center">
 	<table>
@@ -69,8 +70,7 @@
 		</c:if>
 		<c:forEach var="b" items="${list }" varStatus="o">
 			<tr class="${o.index%2==0 ? 'trGray':''}">
-				<td><fmt:parseDate var="bDate" value="${b.boardDate }" pattern="YYYY-MM-dd HH:mm:ss"/>
-					<fmt:formatDate value="${bDate }" pattern="YY년 MM월 dd일"/>  </td>
+				<td>${fn:substring(b.boardDate,0,10)}</td>
 				<td>${b.boardId }</td>
 				<td>${b.boardTitle }</td>
 				<td>${b.checks }</td>

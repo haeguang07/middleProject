@@ -21,4 +21,6 @@ public interface BoardMapper {
 	public BoardVO selectBoard1(int boardId);
 	public int insertAnno(@Param("userId")String userId,@Param("boardKind")int boardKind, @Param("boardTitle")String boardTitle,@Param("boardSubject")String boardSubject);
 	public List<BoardVO> board3List();
+	public List<BoardVO> selectNBoard2List(int page);
+	public int Nborad2ListCount();
 }

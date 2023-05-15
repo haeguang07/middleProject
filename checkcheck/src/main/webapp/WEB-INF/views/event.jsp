@@ -13,7 +13,10 @@
           result.forEach(event => {
             let newEvent = {
               title:'Ãâ¼®',
-              start: event.eventDate.substr(0, 11)
+
+              start: event.eventDate.substr(0, 10),
+              imageurl : "image/logo.png"
+
             }
             allEvents.push(newEvent);
           });
