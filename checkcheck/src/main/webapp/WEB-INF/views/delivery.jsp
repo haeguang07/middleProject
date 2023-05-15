@@ -102,7 +102,7 @@
 						<tr><td style="width: 400px; height: 50px; word-break: break-all"><input
 								id="Post" name="post" value="${sesInfo.userPost }" style="border: none"
 								readonly></td></tr>
-						<tr><td style="width: 400px; height: 50px; word-break: break-all"><input
+						<tr><td style="width: 800px; height: 50px; word-break: break-all"><input
 								id="Address" name="address" value="${sesInfo.userAddress }" style="border: none"
 								readonly></td></tr>
 						<tr><td style="width: 400px; height: 55px; word-break: break-all"><input
@@ -183,7 +183,7 @@
 						<tr><td style="width: 400px; height: 50px; word-break: break-all"><input
 								id="Post" name="post" value="${sesInfo.userPost }" style="border: none"
 								readonly></td></tr>
-						<tr><td style="width: 400px; height: 50px; word-break: break-all"><input
+						<tr><td style="width: 800px; height: 50px; word-break: break-all"><input
 								id="Address" name="address" value="${sesInfo.userAddress }" style="border: none"
 								readonly></td></tr>
 						<tr><td style="width: 400px; height: 55px; word-break: break-all"><input
@@ -257,7 +257,7 @@
 						<tr><td style="width: 400px; height: 50px; word-break: break-all"><input
 								id="Post" name="post" value="${sesInfo.userPost }" style="border: none"
 								readonly></td></tr>
-						<tr><td style="width: 400px; height: 50px; word-break: break-all"><input
+						<tr><td style="width: 800px; height: 50px; word-break: break-all"><input
 								id="Address" name="address" value="${sesInfo.userAddress }" style="border: none"
 								readonly></td></tr>
 						<tr><td style="width: 400px; height: 55px; word-break: break-all"><input
@@ -339,7 +339,7 @@
 						<tr><td style="width: 400px; height: 50px; word-break: break-all"><input
 								id="Post" name="post" value="${sesInfo.userPost }" style="border: none"
 								readonly></td></tr>
-						<tr><td style="width: 400px; height: 50px; word-break: break-all"><input
+						<tr><td style="width: 800px; height: 50px; word-break: break-all"><input
 								id="Address" name="address" value="${sesInfo.userAddress }" style="border: none"
 								readonly></td></tr>
 						<tr><td style="width: 400px; height: 55px; word-break: break-all"><input
@@ -399,16 +399,17 @@ function execDaumPostcode() {
       }).open();
     });
   }
-	document.querySelector('#basketCount').addEventListener('change',function(){
+  
+	 document.querySelector('#basketCount').addEventListener('change',function(){
 		if(this.value < 1){
 			alert('1권이하 주문 불가합니다');
 			this.value =1;
 		}
-		let stock = ${bookStock};
+		let stock = "${bookStock}";
 		console.log(stock);
 		if(this.value > stock){
 			alert('재고량 이상으로 주문 불가합니다');
 			this.value = stock;
 		}
-	})
+	}) 
 </script>
