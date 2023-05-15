@@ -1,13 +1,17 @@
 package com.yedam.user.control;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.yedam.book.domain.BookVO;
 import com.yedam.book.service.BookService;
 import com.yedam.book.service.BookServiceImpl;
@@ -24,6 +28,7 @@ public class LoginControl implements Control {
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//get 방식은 login.jsp
 		//post는 로그인 기능, 로그인 정보는 세션에 저장
+		Map<String, String> map = new HashMap<>();
 		if(req.getMethod().equals("GET")){
 			return "WEB-INF/views/user/login.jsp";
 			
@@ -42,7 +47,7 @@ public class LoginControl implements Control {
 				//로그인한 유저 장르 기입해서 상위 조회수 책 리스트 정보 가져오기
 				String like = vo.getUserCategory();
 				if(like.indexOf(",") != -1) {
-					String[] likeArr = like.split(",");
+					String[] likeArr = like.split(", ");
 					int random = (int) (Math.random()*likeArr.length);
 					like = likeArr[random];
 				}
@@ -52,16 +57,20 @@ public class LoginControl implements Control {
 				session.setAttribute("sesInfo", vo);
 				session.setAttribute("list", userList);
 				session.setAttribute("coupon", couponCount);
-				
-				return "main.do";
+				map.put("retCode", "Success");
 			}else {
-				return "main.do";
+				
+				map.put("retCode", "Fail");
 			}
 			
 		};
 		
+		Gson gson = new GsonBuilder().create();
+		String json = gson.toJson(map);
 		
-		return null;
+		return json+".json";
+		
+		
 	}
 
 }

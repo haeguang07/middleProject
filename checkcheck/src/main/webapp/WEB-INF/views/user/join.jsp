@@ -162,13 +162,13 @@
 					</tr>
 					<tr>
 						<td><label><input class="hobby" type="checkbox" name="check1" value="경제경영">경제경영</label></td>
-						<td><label><input class="hobby" type="checkbox" name="check1" value="건강취미">건강취미</label></td>
+						<td><label><input class="hobby" type="checkbox" name="check1" value="과학">과학</label></td>
 						<td><label><input class="hobby" type="checkbox" name="check1" value="ELT/어학/사전">ELT/어학/사전</label></td>
 						<td><label><input class="hobby" type="checkbox" name="check1" value="가정/원예/인테리어">가정/원예/인테리어</label></td>
 					</tr>
 					<tr>
-						<td><label><input class="hobby" type="checkbox" name="check1" value="과학">과학</label></td>
 						<td><label><input class="hobby" type="checkbox" name="check1" value="건강/취미">건강/취미</label></td>
+						<td><label><input class="hobby" type="checkbox" name="check1" value="수험서/자격증">수험서/자격증</label></td>
 						<td><label><input class="hobby" type="checkbox" name="check1" value="건강/스포츠">건강/스포츠</label></td>
 						<td><label><input class="hobby" type="checkbox" name="check1" value="경제경영">경제경영</label></td>
 					</tr>
@@ -176,7 +176,7 @@
 						<td><label><input class="hobby" type="checkbox" name="check1" value="공무원">공무원 수험서</label></td>
 						<td><label><input class="hobby" type="checkbox" name="check1" value="달력/기타">달력/기타</label></td>
 						<td><label><input class="hobby" type="checkbox" name="check1" value="공예/취미/수집">공예/취미/수집</label></td>
-						<td><label><input class="hobby" type="checkbox" name="check1" value="외국도서>만화 ">만화</label></td>
+						<td><label><input class="hobby" type="checkbox" name="check1" value="외국도서>만화">만화</label></td>
 					</tr>
 					<tr>
 						<td><label><input class="hobby" type="checkbox" name="check1" value="대학교제">대학교제</label></td>
@@ -191,7 +191,7 @@
 						<td><label><input class="hobby" type="checkbox" name="check1" value="요리">요리</label></td>
 					</tr>
 					<tr>
-						<td><label><input class="hobby" type="checkbox" name="check1" value="어린이">어린이</label></td>
+						<td><label><input class="hobby" type="checkbox" name="check1" value="건강정보">건강정보</label></td>
 						<td><label><input class="hobby" type="checkbox" name="check1" value="에세이">에세이</label></td>
 						<td><label><input class="hobby" type="checkbox" name="check1" value="종교/명상/점술">종교/명상/점술</label></td>
 						<td><label><input class="hobby" type="checkbox" name="check1" value="해외잡지">해외잡지</label></td>
