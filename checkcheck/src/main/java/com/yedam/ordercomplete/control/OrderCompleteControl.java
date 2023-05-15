@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.yedam.book.domain.BookVO;
 import com.yedam.common.Control;
@@ -14,6 +15,8 @@ import com.yedam.order.domain.OrderVO;
 import com.yedam.ordercomplete.service.CompleteService;
 import com.yedam.ordercomplete.service.CompleteServiceImpl;
 import com.yedam.user.domain.UserVO;
+import com.yedam.user.service.UserService;
+import com.yedam.user.service.UserServiceImpl;
 
 public class OrderCompleteControl implements Control {
 
@@ -185,6 +188,12 @@ public class OrderCompleteControl implements Control {
 		//orders table값 넣기, historys table값 넣기 <<insert문
 		//books bookstock값 수정, userpoint 사용한거빼고 쌓이는 포인트 추가 <<update
 		//coupons table 사용한 쿠폰 제거, baskets table 구매한 도서 제거 <<delete
+		HttpSession session = req.getSession();
+		UserVO vo = (UserVO) session.getAttribute("sesInfo");
+		session.removeAttribute("sesInfo");
+		UserService service = new UserServiceImpl();
+		vo = service.login(vo);
+		session.setAttribute("sesInfo", vo);
 		return "ordercomplete.tiles";
 	}
 

@@ -36,10 +36,10 @@ td{
 		<th>사용한 포인트</th>
 	</tr>
 	<c:forEach var="p" items="${list }">
-		<tr>
-			<td><fmt:formatDate value="${p.orderDate }" pattern="YYYY-MM-dd"/> </td>
-			<td>${p.orderPoint }P</td>
-		</tr>
+			<tr>
+				<td><fmt:formatDate value="${p.orderDate }" pattern="YYYY-MM-dd"/> </td>
+				<td>${p.orderPoint }P</td>
+			</tr>
 	</c:forEach>
 </table>
 <div style="text-align: center">
