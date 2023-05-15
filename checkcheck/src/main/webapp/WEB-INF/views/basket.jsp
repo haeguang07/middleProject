@@ -28,7 +28,7 @@
 <!-- Section-->
 <section class="py-5">
 	<div class="container px-4 px-lg-5 mt-5">
-<c:if test="${empty list }"><div style="width:1000px;height:300px"><p>현재 장바구니에 담아둔 도서가 없습니다!!</p></div></c:if>
+<c:if test="${empty list }"><div style="width:100%;height:300px;line-height:300px;text-align:center"><p style="font-size:1.2em"><b>현재 장바구니에 담아둔 도서가 없습니다!!</b></p></div></c:if>
 		    <c:if test="${not empty list }">
 		<input type='checkbox' name='selectall' value='selectall'
 			onclick='selectAll(this)' style="padding-bottom:5px"/> <b>전체선택</b>
@@ -36,7 +36,6 @@
 			<p style="width:300px; text-align:right; display:inline-block">도서제목</p>
 			<p style="width:150px; text-align:right; display:inline-block">가격</p>
 			<p style="width:270px; text-align:right; display:inline-block">수량</p>
-			<p style="width:260px; text-align:right; display:inline-block">초기화</p>
 		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
 		    <c:forEach var="i" items="${list }" varStatus="vs">
 				<form method="post"style="position: relative; width: 1100px; text-align:center;">
@@ -47,17 +46,17 @@
 							<td><input id="${vs.index }" class="remember" type="checkbox" onclick=checkSelectAll() name="remember" value="{'bookName':'${i.bookName }','bookPrice':'${i.bookPrice }','isbn':'${i.isbn }','proAddress':'${i.proAddress }','basketId':'${i.basketId }'" style="margin: 15px"></td>
 							<td rowspan="5"><img src="${i.cover }"
 								style="width: 150px; height: 150px"></td>
-							<td><input name="bookName" style="border:none;word-break:break-all; border:none"value="${i.bookName }"><br></td>
-							<td><input id="bookPrice" name="bookPrice" style="border:none;padding: 0 40px; word-break: break-all" value="${i.bookPrice }"></td>
-							<td><input id="bookPoint" name="bookPoint" style="border:none;" value="0"></td>
+							<td><input name="bookName" style="border:none;word-break:break-all; border:none"value="${i.bookName }" readonly><br></td>
+							<td><input id="bookPrice" name="bookPrice" style="border:none;padding: 0 40px; word-break: break-all" value="${i.bookPrice }" readonly></td>
+							<td><input id="bookPoint" name="bookPoint" style="border:none;display:none" value="0" readonly></td>
 							<td id="td" style="padding: 0 40px; width: 400px; word-break: break-all">
 								<input class="evt" type='button'  value='+'/>
 								<input class="evt" type='button'  value='-'/>
-								<input value=${i.basketCount } id="bookCount" class="bookCount" name="bookCount">
+								<input value=${i.basketCount } id="bookCount" class="bookCount" name="bookCount" readonly>
 								<p style="display:inline-block;">최대수량 : </p>
 								<div style="display:inline-block;" id="bookstock">10</div>
 							</td>
-							<td style="padding: 0 40px; width: 200px; word-break: break-all"><input type="reset"></input></td>
+							<td><input id="resetlabel" style="display:none" name="resetlabel" value="초기화" type="text" onclick=resetLabel(this) /></td>
 							<td><input style="display:none" id="isbn" name="isbn" value=${i.isbn }></td>
 							<td style="display:none"><input type="text" id="basketId" name="basketId" style="display:none" value="${i.basketId }"></td>
 						</tr>
@@ -71,8 +70,8 @@
 				<filedset class="form-inline center" role="form" action="delivery.do" method="post"
 					style="text-align: center; width: 500px; ">
 					<p>현재주소<input type="submit" value="변경" style="padding:5px 15px"></input><br></p>
-						<input id="proaddress" class="proaddress" name="proaddress" style="border:none; width:400px" type="text" value="${address }"><br><br>
-						총 상품 가격 : <input id="totalprice" name="totalprice" style="border:none" type="text" value="0">원<br>
+						<input id="proaddress" class="proaddress" name="proaddress" style="border:none; width:400px" type="text" value="${address }" readonly><br><br>
+						총 상품 가격 : <input id="totalprice" name="totalprice" style="border:none" type="text" value="0" readonly>원<br>
 						상품 포인트 : <input id="productpoint" name="productpoint" style="border:none" type="text" value="0" readonly>p<br>
 						고객님의 등급 : <input id="userGrade" name="grade" type="text" style="border:none" value="${userGrade }" readonly><br>
 						<p>normal : 1%   VIP : 3%   VVIP : 5%<br><br></p>
