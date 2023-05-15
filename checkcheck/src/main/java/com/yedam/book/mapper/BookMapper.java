@@ -30,5 +30,6 @@ public interface BookMapper {
 	public int stockTotal();
 	public int updateStock(@Param("isbn")long isbn , @Param("booknum")int booknum);
 	public List<BookVO> userCategoryList(String userCategory);
+	public List<String> buycheck(long isbn);
 	
 }

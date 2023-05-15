@@ -20,6 +20,7 @@ public class GetBookControl implements Control {
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		ReviewService reviewServ = new ReviewServiceImpl();
+		BookService bookServ = new BookServiceImpl();
 		long isbn = Long.parseLong(req.getParameter("bookInfo"));
 		String pageStr = req.getParameter("page");
 		pageStr = pageStr == null ? "1" : pageStr;
@@ -30,6 +31,8 @@ public class GetBookControl implements Control {
 		BookVO vo=service.isbnCallBook(isbn);
 		System.out.println(vo);
 		List<ReviewVO> list = reviewServ.getReviewPaging(page,isbn);
+		List<String> userList = bookServ.getBuyCheck(isbn);
+		req.setAttribute("userList", userList);
 		req.setAttribute("reviewList", list);
 		req.setAttribute("pageInfo", dto);
 		req.setAttribute("book", vo);

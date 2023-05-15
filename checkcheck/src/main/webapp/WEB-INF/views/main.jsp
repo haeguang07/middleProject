@@ -36,13 +36,13 @@ input.button {
   transition: all 0.2s ;
 }
 .btnLightBlue {
-  background: #5DC8CD;
+  background: rgb(108, 213, 234);
 }
 
 </style>
 
-		<input type="button" value="멈춰" onclick=stop()>
-		<input type="button" value="고" onclick=start()>
+		<img src="image/pause.png" style="cursor: pointer;width:20px;height:20px" onclick=stop()>
+		<img src="image/play.png" style="cursor: pointer;width:17px;height:17px" onclick=start()>
 <c:choose>
 	<c:when test="${not empty sesInfo}">
 		<div class="section" style="margin: 20px">
