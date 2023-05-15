@@ -24,6 +24,10 @@ public class CouponServiceImpl implements CouponService {
 	public List<CouponVO> ycouponList(String userId) {
 		return mapper.YsearchCoupon(userId);
 	}
+	@Override
+	public boolean addCoupon(CouponVO vo) {
+		return mapper.insertCoupon(vo)==1;
+	}
 	
 	
 	
