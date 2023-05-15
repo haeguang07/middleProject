@@ -27,28 +27,37 @@
 	border: solid black 1px;
 }
 
-#pay {
-	padding: 30px 40px;
-	top: 40%;
-	transform: translateY(0%);
-	width: 100px;
-	height: 100px;
-	border: none;
-	background-color: #c0c0c0;
-	color: white;
-	outline: none;
+.btnLightBlue.btnPush {
+  box-shadow: 0px 5px 0px 0px #1E8185;
+}
+.btnPush:hover {
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+.btnLightBlue.btnPush:hover {
+  box-shadow: 0px 0px 0px 0px #1E8185;
+}
+.btnLightBlue.btnBorder {
+  box-shadow: 0px 0px 0px 0px #01939A;
+}
+.btnLightBlue.btnBorder:hover {
+  box-shadow: 0px 0px 0px 5px #01939A;
 }
 
-#basket {
-	padding: 30px 40px;
-	top: 40%;
-	transform: translateY(0%);
-	width: 100px;
-	height: 100px;
-	border: none;
-	background-color: #c0c0c0;
-	color: white;
-	outline: none;
+input.button {
+  display: block;
+  float: left;
+  width: 120px;
+  padding: 0;
+  font-weight: 600;
+  text-align: center;
+  line-height: 50px;
+  color: #FFF;
+  border-radius: 5px;
+  transition: all 0.2s ;
+}
+.btnLightBlue {
+  background: #5DC8CD;
 }
 </style>
 <section style="display: flex">
@@ -87,9 +96,7 @@
 	</div>
 	<div
 		style="flex: 5; border: 1px black solid; margin: 5px; padding: 10px">
-		<select id="selectbox" style="float: right"><option
-				id="view10" value="10">10개씩보기</option>
-			<option id="view20" value="20">20개씩보기</option></select>
+		
 		<p>
 			<c:if test="${not empty select }">
 				<a>${select }</a>
@@ -132,8 +139,8 @@
 		</c:if>
 		<!-- 책 리스트 받아서 반복문 만들기-->
 		<c:forEach var="i" items="${list }">
-			<div style="padding: 10px; border-top: 1px black solid; clear: both;">
-				<form action="" method="post" style="position: relative; clear: both;">
+			<div style="padding: 10px; border-top: 1px black solid; clear: both;margin-bottom: 70px">
+				<form action="" method="post" style=" clear: both;">
 					<table style=" clear: both;">
 						<tr>
 							
@@ -146,8 +153,8 @@
 						<tr><td>평점</td><td>5</td></tr>
 						<input type="text" style="display:none" id="bookStock" value="${i.bookStock }">
 					</table>
-					<button id="pay" type="button" style="float: right; position: absolute; right: 0; bottom: 10%;" onclick=insertOrder(this)>구매</button>
-					<button id="basket" type="button" style="float: right; position: absolute; right: 70px; bottom: 10%;" onclick=insertBasket(this)>장바구니</button>
+					<input class="button btnPush btnLightBlue" value="구매" type="button" style="float: right;" onclick=insertOrder(this)>
+					<input class="button btnPush btnLightBlue" value="장바구니" type="button" style="float: right;" onclick=insertBasket(this)>
 					<span style="display:none">${i.isbn }</span>
 					<input type="text" style="display:none" value="">
 				</form>

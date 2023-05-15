@@ -14,7 +14,7 @@
 		<tr>
 			<td>비밀번호</td>
 			<td><input id="pw" type="password" name="pw"></td>
-			<td><button id="btn" type="submit">확인</button></td>
+			<td><input id="btn" type="submit" value="확인"></td>
 		</tr>
 	</table>
 

@@ -106,8 +106,17 @@
 					    </li>
 						<li><a href="bestSeller.do?category=베스트셀러">베스트셀러</a></li>
 						<li><a href="announcement.do">공지사항</a></li>
-						<li><a href="#!">문의사항</a></li>
+						<li><a id="iq" style="cursor: pointer;">문의사항</a></li>
 					</ul>
+						<script>
+							document.getElementById('iq').addEventListener('click',function(){
+								if(${empty sesInfo }){
+									location.href="login.do";
+								}else{
+								location.href="inquiryInfo.do";
+								}
+							})
+						</script>
 					
 			</div>
 		</div>

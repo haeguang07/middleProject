@@ -46,7 +46,7 @@
 	</div>
 	</div>
 	<div style="text-align:right; padding-right:200px; padding-top:30px; padding-bottom:30px">
-		<button type="button" value="홈으로" onclick="location.href='main.do';">홈으로</button>
+		<input type="button" value="홈으로" onclick="location.href='main.do';">
 	</div>
 	<div id="MOVE_TOP_BTN">
 		<a href="#"><div style="width: 50px; height: 50px; border-radius: 70%; background-color: white; border: 1px solid rgba(128, 128, 128, 0.282); position: relative">

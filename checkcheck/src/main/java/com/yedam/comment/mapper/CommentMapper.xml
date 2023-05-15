@@ -9,4 +9,7 @@
 	<insert id="insertComment" parameterType="comment">
 		insert into comments values(comment_seq.nextval,#{boardId},#{userId},#{commentSubject},sysdate)
 	</insert>
+	<update id="updateCM" >
+		update boards set checks ='Y' where board_id =#{boardId} 
+	</update>
 </mapper>

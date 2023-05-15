@@ -12,8 +12,8 @@
         .then(result => {
           result.forEach(event => {
             let newEvent = {
-              //
-              start: event.eventDate.substr(0, 11),
+              title:'Ãâ¼®',
+              start: event.eventDate.substr(0, 10),
               imageurl : "image/logo.png"
             }
             allEvents.push(newEvent);

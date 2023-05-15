@@ -16,4 +16,7 @@ public interface BoardService {
 	public BoardVO getOneAnno(int boardId);
 	public int addAnno(String userId ,int boardKind, String boardTitle , String boardSubject);
 	public List<BoardVO> getBoard3List();
+	public List<BoardVO> getInquiryNList(int page);
+	public int inquiryNTotal();
+	
 }

@@ -26,7 +26,7 @@ width: 300px;
 		<th>닉네임</th>
 		<td><input type="text" name="nick" id="nick"
 			value="${sesInfo.nickname }"></td>
-		<td><button id="nickBtn">변경하기</button></td>
+		<td><input type="button" id="nickBtn" value="변경하기"></td>
 	</tr>
 	<tr>
 		<th>이메일</th>
@@ -38,8 +38,7 @@ width: 300px;
 		<th>주소</th>
 		<td><input type="text" name="joinPost" id="joinPost"
 			style="width: 90px;" value="${sesInfo.userPost }">
-			<button class="joinButton" id="post" onclick="execDaumPostcode()">우편번호
-				찾기</button></td>
+			<input type="button" class="joinButton" id="post" onclick="execDaumPostcode()" value="우편번호찾기"></td>
 	</tr>
 	<tr>
 		<th></th>
@@ -50,7 +49,7 @@ width: 300px;
 		<th></th>
 		<td><input type="text" name="joinAdr2" id="joinAdr2"
 			placeholder="상세주소"></td>
-		<td><button type="button" id="adrBtn">변경하기</button></td>
+		<td><input value="변경하기" type="button" id="adrBtn"></td>
 	</tr>
 
 	<tr>
@@ -66,7 +65,7 @@ width: 300px;
 	<tr>
 		<th>비밀번호 확인</th>
 		<td><input type="password" name="pw2" id="pw2"></td>
-		<td><button type="button" id="pwBtn">변경하기</button></td>
+		<td><input type="button"  id="pwBtn" value="변경하기"></td>
 	</tr>
 	<tr>
 		<th>생년월일</th>
@@ -82,16 +81,16 @@ width: 300px;
 	<tr>
 		<th>네이버</th>
 		<td>연동중</td>
-		<td><button>연동해지하기</button></td>
+		<td><input type="button" value="연동해지하기"></td>
 	</tr>
 	<tr>
 		<th>카카오</th>
-		<td><button>연동하기</button></td>
+		<td><input type="button" value="연동하기"></td>
 		<td></td>
 	</tr>
 	<tr>
 		<th>구글</th>
-		<td><button>연동하기</button></td>
+		<td><input type="button" value="연동하기"></td>
 		<td></td>
 	</tr>
 </table>
@@ -192,9 +191,10 @@ width: 300px;
 			.then(resolve => resolve.json())
 			.then(result => {
 				if (result.retCode == 'Success') {
-					alert('페스워드 변경 성공');
+					alert('페스워드 변경 성공했습니다 다시 로그인 해주세요');
 					document.querySelector('#pw').value = '';
 					document.querySelector('#pw2').value = '';
+					location.href="login.do";
 				} else if (result.retCode == 'Fail') {
 					alert('변경실패');
 				} else {

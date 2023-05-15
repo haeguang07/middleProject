@@ -65,7 +65,7 @@ function modify(feild){
 	<tr>
 		<th>주소</th>
 		<td><input type="text" name="joinPost" id="joinPost" style="width: 90px;" value="${vo.orderPost }">
-			<button type="button" id="post" onclick="execDaumPostcode()">우편번호 찾기</button></td>
+			<input type="button" id="post" onclick="execDaumPostcode()" value="우편번호 찾기"></td>
 	</tr>
 	<tr>
 		<td></td>
@@ -80,7 +80,7 @@ function modify(feild){
 		<td colspan="3"><input type="text" value="${vo.orderPhone }" name="phone" id="phone"></td>
 	</tr>
 	<tr>
-	<td><button type="button" onclick=modify(this)>주소변경</button></td>
+	<td><input type="button" onclick=modify(this) value="주소변경"></td>
 	</tr>
 </table>
 </form>
@@ -120,7 +120,7 @@ function modify(feild){
 		<td>${vo.method }</td>
 	</tr>
 </table>
-<button id="cancel" onclick=cancel()>주문취소</button>
+<input type="button" id="cancel" onclick=cancel() value="주문취소">
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js?autoload=false"></script>
 <script>
 	function execDaumPostcode() {
@@ -159,8 +159,9 @@ function modify(feild){
 function cancel(){
 	if(confirm('정말로 취소하시겠습니까?')){
 		let id =window.location.search;
+		id = id.substring(4);
 		console.log(id);
-		location.href='cancleOrder.do'+id;
+		location.href='cancleOrder.do?id='+id;
 	}
 }
 

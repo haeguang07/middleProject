@@ -20,7 +20,9 @@ public class InquiryAnswerFormControl implements Control {
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String bid= req.getParameter("bid");
-		Integer page = Integer.parseInt(req.getParameter("page")) ;
+		String pageStr = req.getParameter("page");
+		pageStr = pageStr == null ? "1" : pageStr;
+		Integer page = Integer.parseInt(pageStr) ;
 		BoardService service = new BoardServiceImpl();
 		BoardVO vo =service.getOneAnno(Integer.parseInt(bid));
 		CommentService csv = new CommentServiceImpl();
