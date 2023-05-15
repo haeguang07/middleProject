@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
- <script src='/fullcal/dist/index.global.js'></script>
+ <script src='fullcal/dist/index.global.js'></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       var calendarEl = document.getElementById('calendar');
@@ -13,8 +13,10 @@
           result.forEach(event => {
             let newEvent = {
               title:'√‚ºÆ',
+
               start: event.eventDate.substr(0, 10),
               imageurl : "image/logo.png"
+
             }
             allEvents.push(newEvent);
           });
