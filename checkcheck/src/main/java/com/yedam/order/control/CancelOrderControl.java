@@ -15,12 +15,12 @@ public class CancelOrderControl implements Control {
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String id = req.getParameter("id");
+		System.out.println(id);
 		OrderService service = new OrderServiceImpl();
 		if(service.orderCancel(id)) {
-			return "myPage/mypage.tiles";			
+			return "myPageMain.do";			
 		}else {
-			req.setAttribute("id", id);
-			return "modifyShippingForm.do";
+			return "modifyShippingForm.do?id="+id;
 		}
 	}
 

@@ -18,6 +18,7 @@ public class CommentServiceImpl implements CommentService{
 	}
 	@Override
 	public boolean addComment(int boardId, String userId, String commentSubject) {
+		mapper.updateCM(boardId);
 		return mapper.insertComment(boardId, userId, commentSubject)==1;
 	}
 

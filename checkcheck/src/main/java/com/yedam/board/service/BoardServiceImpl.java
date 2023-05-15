@@ -56,7 +56,14 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.board3List();
 	}
 
-	
+	@Override
+	public List<BoardVO> getInquiryNList(int page) {
+		return mapper.selectNBoard2List(page);
+	}
+	@Override
+	public int inquiryNTotal() {
+		return mapper.Nborad2ListCount();
+	}
 	
 	
 

@@ -44,7 +44,7 @@
 					<table>
 						<tr>
 						<input style="display:none" name="presentcheck" value="0">
-							<td><input id="${vs.index }" class="remember" type="checkbox" onclick=checkSelectAll() name="remember" style="margin: 15px"></td>
+							<td><input id="${vs.index }" class="remember" type="checkbox" onclick=checkSelectAll() name="remember" value="{'bookName':'${i.bookName }','bookPrice':'${i.bookPrice }','isbn':'${i.isbn }','proAddress':'${i.proAddress }','basketId':'${i.basketId }'" style="margin: 15px"></td>
 							<td rowspan="5"><img src="${i.cover }"
 								style="width: 150px; height: 150px"></td>
 							<td><input name="bookName" style="border:none;word-break:break-all; border:none"value="${i.bookName }"><br></td>
@@ -95,9 +95,9 @@
 						<fmt:parseNumber var="gpoint" integerOnly="true" value= "${total*0.05 }"/>
 						</c:when>
 						</c:choose>
-						상품 포인트 : <input name="productpoint" style="border:none" type="text" value="${gpoint }">p<br>
-						예상 총 포인트 : <input name="totalpoint" style="border:none; width:200px" type="text" value="${userPoint+gpoint }">원<br><br>
-						고객님의 등급 : <input name="grade" type="text" style="border:none" value="${userGrade }"><br>
+						상품 포인트 : <input name="productpoint" style="border:none" type="text" value="${gpoint }" readonly>p<br>
+						예상 총 포인트 : <input name="totalpoint" style="border:none; width:200px" type="text" value="${userPoint+gpoint }" readonly>원<br><br>
+						고객님의 등급 : <input name="grade" type="text" style="border:none" value="${userGrade }" readonly><br>
 						<p>normal : 1%   VIP : 3%   VVIP : 5%<br><br></p>
 						<input id="Bespeak" type="submit" value="주문" style="padding:5px 15px" onclick="javascript: form.action='delivery.do';"/>
 						<input id="present" type="submit" value="선물" style="padding:5px 15px" onclick="javascript: form.action='basketDelivery.do';"/>
@@ -169,7 +169,7 @@
 	  console.log(evt);
 	  queryevt.forEach(item => {item.addEventListener('click',function (){
 	  // 결과를 표시할 element
-	  const resultElement = this.parentElement.children[2];
+	  let resultElement = this.parentElement.children[2];
 	  console.log(this.value);
 	  // 현재 화면에 표시된 값
 	  let number = resultElement.value;
@@ -214,8 +214,12 @@
 	  console.log(proAddress);	
 	  
 	})})
+	
+	
+	
+	//개별 추가
 	let remember = document.querySelectorAll('.remember');
-	remember.forEach(item => item.addEventListener('click',function(){
+	remember.forEach(item => item.addEventListener('change',function(){
 		let bookName = this.parentElement.parentElement.children[2].children[0].value;
 		let isbn = this.parentElement.parentElement.children[7].children[0].value;
 		let proAddress = document.querySelector('#proaddress').value;
@@ -228,8 +232,8 @@
 		let basketCount = this.parentElement.parentElement.children[5].children[2].value;
 		console.log(basketCount);
 			console.log(this);
-			const checkprice = this.parentElement.parentElement.children[3].children[0].value;
-			const checkcount = this.parentElement.parentElement.children[5].children[2].value;
+			let checkprice = this.parentElement.parentElement.children[3].children[0].value;
+			let checkcount = this.parentElement.parentElement.children[5].children[2].value;
 			if(this.checked){
 				console.log('가격'+checkprice);
 				console.log('개수'+checkcount);
@@ -269,13 +273,13 @@
 	
 	function checkSelectAll()  {
 		  // 전체 체크박스
-		  const checkboxes 
+		  let checkboxes 
 		    = document.querySelectorAll('input[name="remember"]');
 		  // 선택된 체크박스
-		  const checked 
+		  let checked 
 		    = document.querySelectorAll('input[name="remember"]:checked');
 		  // select all 체크박스
-		  const selectAll 
+		  let selectAll 
 		    = document.querySelector('input[name="selectall"]');
 		  
 		  if(checkboxes.length === checked.length)  {
@@ -289,12 +293,20 @@
 	}
 
 	function selectAll(selectAll)  {
-		  const checkboxes 
+		  let checkboxes 
 		     = document.getElementsByName('remember');
-		  
+		  let totalMoney =0;
+		  let total = document.querySelector('#totalprice');
 		  checkboxes.forEach((checkbox) => {
 		    checkbox.checked = selectAll.checked
-		    console.log('check');
+		    let checkprice = checkbox.parentElement.parentElement.children[3].children[0].value;
+			let checkcount = checkbox.parentElement.parentElement.children[5].children[2].value;
+			totalMoney += checkprice*checkcount;
+			checkbox.value += ",'basketCount':'"+checkcount+"'}";
+			if(selectAll.checked == false){
+				totalMoney =0;
+			}
 		  })
+		  total.value = totalMoney;
 	}
 </script>
