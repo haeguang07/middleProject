@@ -163,6 +163,7 @@ document.querySelector('#login').addEventListener('click',function(){
 })
 
 
+
 document.querySelector('#join').addEventListener('click',function(){
 	location.href ='joinForm.do';
 })
