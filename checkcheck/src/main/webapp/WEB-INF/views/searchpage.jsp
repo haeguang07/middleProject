@@ -59,6 +59,7 @@ input.button {
 .btnLightBlue {
   background: #5DC8CD;
 }
+
 </style>
 <section style="display: flex">
 	<div
@@ -99,9 +100,15 @@ input.button {
 		
 		<p>
 			<c:if test="${not empty select }">
+			
 				<a>${select }</a>
 			</c:if>
 			<a>${category }</a>
+			<form action="search.do" method="POST" ${category eq '베스트셀러' ? 'style="display:none"' : category eq '화제의책' ? 'style="display:none"': category eq '신간' ? 'style="display:none"' : '' }> 
+				<input value="${category }" name="category" style="display:none">
+				<input type="text" name="search" placeholder="검색">
+				<input type="submit" value="검색">
+			</form>
 			<c:if test="${not empty shWeek }">
 				<p style="display:inline-block">${shWeek }</p>
 			</c:if>
@@ -309,6 +316,23 @@ input.button {
 	integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
 	crossorigin="anonymous"></script>
 <script>
+	document.querySelector('#hoverforeign').addEventListener('click',
+			function() {
+				this.style.color = 'blue';
+				document.querySelector('#hoverkorea').style.color = 'black';
+				let korea = document.querySelector('#korea');
+				korea.style.display = 'none';
+				let foreign = document.querySelector('#foreign');
+				foreign.style.display = 'block';
+			})
+	document.querySelector('#hoverkorea').addEventListener('click', function() {
+		this.style.color = 'blue';
+		document.querySelector('#hoverforeign').style.color = 'black';
+		let korea = document.querySelector('#korea');
+		korea.style.display = 'block';
+		let foreign = document.querySelector('#foreign');
+		foreign.style.display = 'none';
+	})
 $(function() {
 	$(window).scroll(function() {
 		if ($(this).scrollTop() > 100) {
@@ -376,60 +400,7 @@ function insertOrder(field){
 	//location.href="delivery.do";
 	//넘겨야하는값 : isbn,bookName,bookPrice,basketCount(이거도없음),proAddress
 }
-	$('#star a').click(function(){ 
-		 $(this).parent().children("a").removeClass("on");    
-		 $(this).addClass("on").prevAll("a").addClass("on");
-		 console.log($(this).attr("value"));
-	 });
-	let selectbox = document.querySelector('#selectbox');
-	selectbox.addEventListener('change', function(event) {
-		console.log(selectbox.value);
-
-	});
-	$(function() {
-		$(window).scroll(function() {
-			if ($(this).scrollTop() > 100) {
-				$('#MOVE_TOP_BTN').fadeIn();
-			} else {
-				$('#MOVE_TOP_BTN').fadeOut();
-			}
-		});
-
-		$("#MOVE_TOP_BTN").click(function() {
-			$('html, body').animate({
-				scrollTop : 0
-			}, 400);
-			return false;
-		});
-	});
-	$("#selectbox option:selected").val();
-	$("#selectbox").val();
-	$('select[name="selectName"]').val();
-	document.querySelector('#view10').addEventListener('click', function() {
-		let view10 = document.querySelector('#view10').value;
-		console.log(view10);
-	})
-	document.querySelector('#view20').addEventListener('click', function() {
-		let view10 = document.querySelector('#view20').value;
-		console.log(view20);
-	})
-	document.querySelector('#hoverforeign').addEventListener('click',
-			function() {
-				this.style.color = 'blue';
-				document.querySelector('#hoverkorea').style.color = 'black';
-				let korea = document.querySelector('#korea');
-				korea.style.display = 'none';
-				let foreign = document.querySelector('#foreign');
-				foreign.style.display = 'block';
-			})
-	document.querySelector('#hoverkorea').addEventListener('click', function() {
-		this.style.color = 'blue';
-		document.querySelector('#hoverforeign').style.color = 'black';
-		let korea = document.querySelector('#korea');
-		korea.style.display = 'block';
-		let foreign = document.querySelector('#foreign');
-		foreign.style.display = 'none';
-	})
+	
 
 	//월별 일수 구현하기
 	function makeWeekSelectOptions() {
@@ -497,4 +468,6 @@ function insertOrder(field){
 			obj.value = seled;
 		
 		}
+	
+	
 </script>

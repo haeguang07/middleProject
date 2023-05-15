@@ -43,7 +43,26 @@ public class SearchPageControl implements Control {
 			req.setAttribute("pageInfo", dto);
 			return "searchpage.tiles";
 		}
+		if(req.getParameter("search")!= null) {
+			String category = req.getParameter("category");
+			String search = req.getParameter("search");
+			
+			String pageStr = req.getParameter("page");
+			pageStr = pageStr == null ? "1" : pageStr;
+			int page = Integer.parseInt(pageStr);
+			int total = service.getSearchPageCount(category, search);
+			// 페이징
+			PageDTO dto = new PageDTO(page, total);
 
+			list = service.searchBookList(category, search, page);
+			System.out.println(list);
+			System.out.println(dto);
+			System.out.println(total);
+			req.setAttribute("list", list);
+			req.setAttribute("category", category);
+			req.setAttribute("pageInfo", dto);
+			return "searchpage.tiles";
+		}else {
 		String category = req.getParameter("category");
 		System.out.println(category);
 		category = category == null ? "국내도서>과학" : category;
@@ -65,6 +84,7 @@ public class SearchPageControl implements Control {
 		req.setAttribute("pageInfo", dto);
 
 		return "searchpage.tiles";
+		}
 	}
 
 }
