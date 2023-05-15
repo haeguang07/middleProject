@@ -113,18 +113,18 @@
 	<div id="loginForm">
 		<form action="login.do" method="post">
 			<div class="imgcontainer">
-				<img src="image/logo.png" alt="Avatar" class="avatar">
+				<img src="image/logo.png" alt="Avatar" class="avatar" style="cursor: pointer;" onclick="location.href='main.do'">
 			</div>
 
 			<div class="container">
 				<ul id="logininput">
-					<li><label for="uname"><b>아이디</b></label> <input type="text" placeholder="아이디를 입력하세요" name="id" required></li>
-					<li><label for="psw"><b>비밀번호</b></label> <input type="password" placeholder="패스워드를 입력하세요" name="pw" required>
+					<li><label for="uname"><b>아이디</b></label> <input type="text" placeholder="아이디를 입력하세요" id="id" name="id" required></li>
+					<li><label for="psw"><b>비밀번호</b></label> <input type="password" placeholder="패스워드를 입력하세요" id="pw" name="pw" required>
 					</li>
 				</ul>
 				<div id="login_button">
-					<button type="submit">로그인</button>
-					<button type="button">회원가입</button>
+					<button type="button" id="login">로그인</button>
+					<button type="button" id="join" style=" cursor: pointer;">회원가입</button>
 				</div>
 				<span class="psw"><a href="#">아이디/비밀번호찾기</a></span>
 			</div>
@@ -137,7 +137,36 @@
 			</div>
 		</form>
 	</div>
+<script>
 
+document.querySelector('#login').addEventListener('click',function(){
+	let id= document.querySelector('#id');
+	let pw= document.querySelector('#pw');
+	fetch('login.do',{
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'id=' + id.value + '&pw=' + pw.value
+      })
+      .then(resolve => resolve.json())
+	  .then(result => {
+			if (result.retCode == 'Success') {
+				location.href="main.do";
+			}else if(result.retCode == 'Fail'){
+				alert('아이디와 비밀번호를 다시 확인해 주세요')
+			}else{
+				alert('알 수 없는 오류');
+			}
+	   })
+	   .catch(err => console.log(err));
+})
+
+
+document.querySelector('#join').addEventListener('click',function(){
+	location.href ='joinForm.do';
+})
+</script>
 </body>
 
 </html>
