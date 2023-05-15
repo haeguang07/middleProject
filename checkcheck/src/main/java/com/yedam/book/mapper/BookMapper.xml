@@ -211,4 +211,7 @@ order by counts desc
 			where rownum <=5
 		]]>
 	</select>
+	<select id="buycheck" resultType="String">
+		select distinct(a.user_id) from orders a join historys b on a.order_id = b.order_id where isbn=#{isbn} and order_state = '배송중'
+	</select>
 </mapper>

@@ -3,6 +3,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <style>
 #myform fieldset {
@@ -216,7 +217,9 @@
 		</div>
 	</div>
 	
-	
+	<c:forEach var="i" items="${userList }">
+		<input class="userCheck" value="${i }" name="userId" style="display:none">
+	</c:forEach>
 	
 	<table style="display: none;">
 		<tbody>
@@ -476,6 +479,21 @@
 			if (id == null || id == '') {
 				alert("로그인 후에 처리하세요.");
 				location.href = 'login.do';
+				return;
+			}
+			
+			let userId = '${sesInfo.userId}';
+			let userList = document.querySelectorAll('.userCheck');
+			let checkCount =0;
+			for(i of userList){
+				if(i.value == userId){
+					checkCount++;
+				}
+			}
+			
+			if(checkCount == 0){
+				alert('구매한 책에만 댓글을 작성할 수 있습니다.');
+				document.getElementById('reply').value ='';
 				return;
 			}
 			let replySub = document.querySelector('#reply').value;

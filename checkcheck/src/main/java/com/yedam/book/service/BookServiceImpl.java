@@ -119,4 +119,9 @@ public class BookServiceImpl implements BookService{
 		return mapper.userCategoryList(userCategory);
 	}
 
+	@Override
+	public List<String> getBuyCheck(long isbn) {
+		return mapper.buycheck(isbn);
+	}
+
 }

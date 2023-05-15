@@ -30,4 +30,5 @@ public interface BookService {
 	public int getStockTotal();
 	public boolean modifyStock(long isbn,int booknum);
 	public List<BookVO> getUserCategoryList(String userCategory);
+	public List<String> getBuyCheck(long isbn);
 }
