@@ -122,6 +122,7 @@
 					<tr>
 						<td>전화번호</td>
 						<td><input type="text" class="textjoin1" id="joinPhone" name="joinPhone"></td>
+						<td class="explanText">010-XXXX-XXXX 형태로 입력해 주세요</td>
 					</tr>
 					<tr>
 						<td>닉네임</td>
@@ -139,7 +140,7 @@
 					<tr>
 						<td>생년월일</td>
 						<td><input type="text" class="textjoin1" name="birth" id="birth" placeholder="YYYY-MM-DD"></td>
-						<td></td>
+						<td class="explanText">YYYY-MM-DD 형태로 입력해 주세요</td>
 					</tr>
 					<tr>
 						<td></td>
@@ -281,7 +282,7 @@
 		//정규식
 		let regId = /^[a-zA-Z0-9]{4,12}$/; // 4자~12자리의 영문자, 숫자
 		let regPw = /^[a-zA-Z0-9!@#$%^&*()?_~]{8,15}$/; // 8~15자리 숫자, 영문, 특수문자 조합
-		let reqNick = /^[a-zA-Z0-9]{1,8}/; // 1~8자리  영문자, 숫자 특수문자와 공백
+		let reqNick = /[^a-z|A-Z|0-9|ㄱ-ㅎ|가-힣]{1,8}/g; // 1~8자리  영문자, 숫자 특수문자와 공백/[^a-z|A-Z|0-9|ㄱ-ㅎ|가-힣]/g
 		let reqBirth =
 			/^(19[0-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/ //19XX|20XX - 0(0~9)|1(1,2) - 0(0~9)|(1,2)(0~9)|3(0,1)
 
@@ -327,7 +328,7 @@
 		//닉네임 중복체크
 		let nickcheckBtn = document.querySelector('#nickcheck');
 		nickcheckBtn.addEventListener('click', function () {
-			if (!reqNick.test(nickname.value)) {
+			if (reqNick.test(nickname.value)) {
 				alert('닉네임는 1~8자리 입력하세요');
 				return;
 			} else {
@@ -392,7 +393,7 @@
 			} else if (!id.name) {
 				alert('아이디 중복체크를 해주세요');
 				return;
-			} else if (pwCheck()) {
+			} else if (!pwCheck()) {
 				pw.value = '';
 				pw2.value = '';
 				return;

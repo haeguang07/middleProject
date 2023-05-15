@@ -17,4 +17,14 @@ public class EventServiceImpl implements EventService {
 		return mapper.selectEvent(userId);
 	}
 
+	@Override
+	public boolean addEvent(String userId, String eventDate) {
+		return mapper.insertEvent(userId, eventDate)==1;
+	}
+
+	@Override
+	public boolean checkEvent(String weekStart, String weekEnd, String userId) {
+		return mapper.eventWeekCount(weekStart, weekEnd, userId)==7;
+	}
+
 }

@@ -42,6 +42,7 @@ import com.yedam.book.control.InsertBookControl;
 import com.yedam.book.control.NewBookSearchControl;
 import com.yedam.comment.control.addAnswerControl;
 import com.yedam.coupon.control.CouponInfoControl;
+import com.yedam.event.contorl.AddEventControl;
 import com.yedam.event.contorl.EventControl;
 import com.yedam.event.contorl.EventFormControl;
 import com.yedam.order.control.CancelOrderControl;
@@ -149,6 +150,8 @@ public class FrontController extends HttpServlet {
 		map.put("/eventForm.do", new EventFormControl());
 		//이벤트 리스트
 		map.put("/event.do", new EventControl());
+		//출석체크
+		map.put("/addEvent.do", new AddEventControl());
 		
 		// 로그인 기능(get:화면으로, post:로그인 기능)
 		map.put("/login.do", new LoginControl());

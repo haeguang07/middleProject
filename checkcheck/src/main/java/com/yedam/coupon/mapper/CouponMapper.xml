@@ -18,5 +18,8 @@
 	<select id="YsearchCoupon" parameterType="coupon">
 		select * from coupons where user_id=#{userId} and coupon_state='Y'
 	</select>
+	<insert id="insertCoupon" parameterType="coupon">
+		insert into coupons values(#{userId},#{discount},sysdate,sysdate+30,'Y',coupon_seq.nextval)
+	</insert>
 
 </mapper>
