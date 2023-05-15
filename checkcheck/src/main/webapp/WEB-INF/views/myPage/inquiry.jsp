@@ -72,7 +72,7 @@
 			<tr class="${o.index%2==0 ? 'trGray':''}">
 				<td>${fn:substring(b.boardDate,0,10)}</td>
 				<td>${b.boardId }</td>
-				<td>${b.boardTitle }</td>
+				<td><a href="inquiryClick.do?boardId=${b.boardId }">${b.boardTitle }</a></td>
 				<td>${b.checks }</td>
 			</tr>
 		</c:forEach>

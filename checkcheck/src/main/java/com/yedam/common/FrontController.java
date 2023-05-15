@@ -40,6 +40,7 @@ import com.yedam.book.control.GetStockCountControl;
 import com.yedam.book.control.HitCountControl;
 import com.yedam.book.control.InsertBookControl;
 import com.yedam.book.control.NewBookSearchControl;
+import com.yedam.comment.control.InquiryClickControl;
 import com.yedam.comment.control.addAnswerControl;
 import com.yedam.coupon.control.CouponInfoControl;
 import com.yedam.event.contorl.AddEventControl;
@@ -218,6 +219,8 @@ public class FrontController extends HttpServlet {
 		map.put("/inquiryInfo.do", new inquiryInfoControl());
 		// 문의내역 추가
 		map.put("/inquiryAdd.do", new InquiryAddControl());
+		map.put("/inquiryClick.do", new InquiryClickControl());
+		
 
 		// 05-02 장바구니페이지
 		map.put("/basket.do", new BasketControl());

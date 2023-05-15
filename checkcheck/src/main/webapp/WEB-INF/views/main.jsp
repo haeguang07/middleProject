@@ -41,6 +41,8 @@ input.button {
 
 </style>
 
+		<input type="button" value="멈춰" onclick=stop()>
+		<input type="button" value="고" onclick=start()>
 <c:choose>
 	<c:when test="${not empty sesInfo}">
 		<div class="section" style="margin: 20px">
@@ -290,8 +292,24 @@ input.button {
 		}
 	} , 3000);
 
-	
-	
+	function stop(){
+		clearInterval(interval);
+	}
+	function start(){
+		interval = setInterval(function (){
+			for(let i = 0 ; i< radios.length;i++){
+			    if(radios[i].checked){
+			        radios[i].checked = false;
+			        if(i == radios.length -1){
+			        	radios[0].checked = true;
+			        	break;
+			        }
+			        radios[i+1].checked = true;
+			        break;
+			    }
+			}
+		} , 3000);
+	}
 	var slides01 = document.querySelector('.sl01 .slides'),
 		slide01 = document.querySelectorAll('.sl01 .slides li'),
 		slides02 = document.querySelector('.sl02 .slides'),
