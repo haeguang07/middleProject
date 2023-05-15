@@ -1,25 +1,32 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
  <script src='fullcal/dist/index.global.js'></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
+	  let todayC = false;
+	  let date = new Date();
+		let year = date.getFullYear();
+		let month = date.getMonth() + 1;
+		let day = date.getDate();
+		let eventDate = year+ "-"+ (month >= 10 ? month : '0' + month)+"-" +(day >= 10 ? day : '0' + day); 
+		
       var calendarEl = document.getElementById('calendar');
-
-      //allEventsÃÊ±âÈ­
+      //allEventsì´ˆê¸°í™”
       let allEvents = [];
       fetch('event.do')
         .then(resolve => resolve.json())
         .then(result => {
           result.forEach(event => {
+        	  let start =event.eventDate.substr(0, 10);
+        	  if(start== eventDate) todayC =true;
             let newEvent = {
-              title:'Ãâ¼®',
+              title:'ì¶œì„',
               start: event.eventDate.substr(0, 10),
               imageurl : "image/logo.png"
             }
             allEvents.push(newEvent);
           });
-          //foreach Á¾·á
-          console.log(allEvents);
+          //foreach ì¢…ë£Œ
 
           var calendar = new FullCalendar.Calendar(calendarEl, {
             headerToolbar: {
@@ -29,20 +36,36 @@
             },
             customButtons:{
             	check:{
-            		text:'Ãâ¼®Ã¼Å©',
+            		text:'ì¶œì„ì²´í¬',
             		click: function(){
-            			alert('Ãâ¼®Ã¼Å©ÀÔ´Ï´Ù');
+            			if(todayC) {
+            				alert('ì˜¤ëŠ˜ ì¶œì„ì„ í–ˆìŠµë‹ˆë‹¤');
+            				return;
+             			}
+            			fetch('addEvent.do?date='+eventDate)
+            			.then(resolve=> resolve.json())
+            			.then(result=>{
+            				console.log(result);
+            				if(result.retCode==='Success'){
+            					alert('ì¶œì„ì²´í¬ì— ì„±ê³µí–ˆìŠµë‹ˆë‹¤');
+            					if(result.coupon=='Success')
+            						alert('1%ì¿ í°ì´ ì¶”ê°€ë˜ì—ˆìŠµë‹ˆë‹¤')
+            					location.reload();
+            				}else if(result.retCode=='Fail')
+            					alert('ì¶œì„ì²´í¬ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤');
+            				else alert('ì•Œìˆ˜ ì—†ëŠ” ì˜¤ë¥˜');
+            			})
             		}
             	}
             },
        	   
             initialDate: new Date(),
-            navLinks: true, // ³¯Â¥¸¦ ¼±ÅÃÇÏ¸é Day Ä¶¸°´õ³ª Week Ä¶¸°´õ·Î ¸µÅ©
-            editable: true, // ¼öÁ¤ °¡´É?
-            selectable: true, // ´Ş·Â ÀÏÀÚ µå·¡±× ¼³Á¤°¡´É
-            nowIndicator: true, // ÇöÀç ½Ã°£ ¸¶Å©
-            dayMaxEvents: true, // ÀÌº¥Æ®°¡ ¿À¹öµÇ¸é ³ôÀÌ Á¦ÇÑ (+ ¸î °³½ÄÀ¸·Î Ç¥Çö)
-            locale: 'ko', // ÇÑ±¹¾î ¼³Á¤
+            navLinks: false, // ë‚ ì§œë¥¼ ì„ íƒí•˜ë©´ Day ìº˜ë¦°ë”ë‚˜ Week ìº˜ë¦°ë”ë¡œ ë§í¬
+            editable: false, // ìˆ˜ì • ê°€ëŠ¥?
+            selectable: false, // ë‹¬ë ¥ ì¼ì ë“œë˜ê·¸ ì„¤ì •ê°€ëŠ¥
+            nowIndicator: true, // í˜„ì¬ ì‹œê°„ ë§ˆí¬
+            dayMaxEvents: false, // ì´ë²¤íŠ¸ê°€ ì˜¤ë²„ë˜ë©´ ë†’ì´ ì œí•œ (+ ëª‡ ê°œì‹ìœ¼ë¡œ í‘œí˜„)
+            locale: 'ko', // í•œêµ­ì–´ ì„¤ì •
          
             events: allEvents
           });

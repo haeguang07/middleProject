@@ -4,5 +4,13 @@
 	<select id="selectEvent" resultType="event">
 		select * from events where user_id =#{userId}
 	</select>
-	
+	<insert id="insertEvent">
+		insert into events values(#{userId}, #{eventDate})
+	</insert>
+	<select id="eventWeekCount">
+		select count(*) 
+		from events 
+		where user_id=#{userId}		
+		and event_date BETWEEN #{weekStart} and #{weekEnd} 
+	</select>
 </mapper>
