@@ -28,7 +28,7 @@
 <!-- Section-->
 <section class="py-5">
 	<div class="container px-4 px-lg-5 mt-5">
-<c:if test="${empty list }"><p>현재 장바구니에 담아둔 도서가 없습니다!!</p></c:if>
+<c:if test="${empty list }"><div style="width:1000px;height:300px"><p>현재 장바구니에 담아둔 도서가 없습니다!!</p></div></c:if>
 		    <c:if test="${not empty list }">
 		<input type='checkbox' name='selectall' value='selectall'
 			onclick='selectAll(this)' style="padding-bottom:5px"/> <b>전체선택</b>
@@ -48,19 +48,8 @@
 							<td rowspan="5"><img src="${i.cover }"
 								style="width: 150px; height: 150px"></td>
 							<td><input name="bookName" style="border:none;word-break:break-all; border:none"value="${i.bookName }"><br></td>
-								<c:choose>
-									<c:when test="${userGrade eq 'normal' }">
-									<fmt:parseNumber var="spoint" integerOnly="true" value= "${(i.bookPrice*0.01)*i.basketCount }"/>
-									</c:when>
-									<c:when test="${userGrade eq 'VIP' }">
-									<fmt:parseNumber var="spoint" integerOnly="true" value= "${(i.bookPrice*0.03)*i.basketCount }"/>
-									</c:when>
-									<c:when test="${userGrade eq 'VVIP' }">
-									<fmt:parseNumber var="spoint" integerOnly="true" value= "${(i.bookPrice*0.05)*i.basketCount }"/>
-									</c:when>
-								</c:choose>
 							<td><input id="bookPrice" name="bookPrice" style="border:none;padding: 0 40px; word-break: break-all" value="${i.bookPrice }"></td>
-							<td><input id="bookPoint" name="bookPoint" style="border:none;" value="${spoint }"></td>
+							<td><input id="bookPoint" name="bookPoint" style="border:none;" value="0"></td>
 							<td id="td" style="padding: 0 40px; width: 400px; word-break: break-all">
 								<input class="evt" type='button'  value='+'/>
 								<input class="evt" type='button'  value='-'/>
@@ -82,23 +71,12 @@
 				<filedset class="form-inline center" role="form" action="delivery.do" method="post"
 					style="text-align: center; width: 500px; ">
 					<p>현재주소<input type="submit" value="변경" style="padding:5px 15px"></input><br></p>
-						<input id="proaddress" class="proaddress" name="proaddress" style="border:none; width:200px" type="text" value=${address }><br><br>
+						<input id="proaddress" class="proaddress" name="proaddress" style="border:none; width:400px" type="text" value="${address }"><br><br>
 						총 상품 가격 : <input id="totalprice" name="totalprice" style="border:none" type="text" value="0">원<br>
-						<c:choose>
-						<c:when test="${userGrade eq 'normal' }">
-						<fmt:parseNumber var="gpoint" integerOnly="true" value= "${total*0.01 }"/>
-						</c:when>
-						<c:when test="${userGrade eq 'VIP' }">
-						<fmt:parseNumber var="gpoint" integerOnly="true" value= "${total*0.03 }"/>
-						</c:when>
-						<c:when test="${userGrade eq 'VVIP' }">
-						<fmt:parseNumber var="gpoint" integerOnly="true" value= "${total*0.05 }"/>
-						</c:when>
-						</c:choose>
-						상품 포인트 : <input name="productpoint" style="border:none" type="text" value="${gpoint }" readonly>p<br>
-						예상 총 포인트 : <input name="totalpoint" style="border:none; width:200px" type="text" value="${userPoint+gpoint }" readonly>원<br><br>
-						고객님의 등급 : <input name="grade" type="text" style="border:none" value="${userGrade }" readonly><br>
+						상품 포인트 : <input id="productpoint" name="productpoint" style="border:none" type="text" value="0" readonly>p<br>
+						고객님의 등급 : <input id="userGrade" name="grade" type="text" style="border:none" value="${userGrade }" readonly><br>
 						<p>normal : 1%   VIP : 3%   VVIP : 5%<br><br></p>
+						<input type="text" style="display:none" id="userPoint" name="userPoint" value="${userPoint }">
 						<input id="Bespeak" type="submit" value="주문" style="padding:5px 15px" onclick="javascript: form.action='delivery.do';"/>
 						<input id="present" type="submit" value="선물" style="padding:5px 15px" onclick="javascript: form.action='basketDelivery.do';"/>
 						<input id="delete" type="submit" value="삭제" style="padding:5px 15px" onclick="javascript: form.action='basketDelete.do';"/>
@@ -173,24 +151,35 @@
 	  console.log(this.value);
 	  // 현재 화면에 표시된 값
 	  let number = resultElement.value;
-	  
+	  console.log('1 : '+number);
+	  let userGrade = document.getElementById('userGrade');
 	  // 더하기/빼기
 	  let bookprice = this.parentElement.parentElement.children[3].children[0].value;
 	  let total = document.querySelector('#totalprice').value;
 	  let isbn = this.parentElement.parentElement.children[7].children[0].value;
 	  let bookName = this.parentElement.parentElement.children[2].children[0].value;
 	  let proAddress = document.querySelector('#proaddress').value;
-	  
 	  let basketId = this.parentElement.parentElement.children[8].children[0].value;
-	  console.log(basketId)
+	  console.log(basketId);
+	  let checkprice = this.parentElement.parentElement.children[3].children[0].value;
+	  let checkcount = this.parentElement.parentElement.children[5].children[2].value;
+	  let totalcheck = (checkprice*1)*(checkcount*1);
+	  let productpoint = document.querySelector('#productpoint');
+			
 	  if(this.value === '+') {
 	    number = parseInt(number) + 1;
 	    if(number > this.parentElement.children[4].innerText){
 	    	alert('재고량 이상 주문 불가합니다.');
 	    	number = this.parentElement.children[4].innerText;
+	    	let propoint = (productpoint*1*0.01);
+		    console.log('check = '+propoint);
+		    document.querySelector('#productpoint').value = propoint;
 	    }else{
 	    	if(this.parentElement.parentElement.children[0].children[0].checked){
-		  		  document.querySelector('#totalprice').value = (total*1+bookprice*1);
+		  		  document.querySelector('#totalprice').value = (total*1+(bookprice*1));
+		  		  console.log(document.querySelector('#totalprice').value);
+		  		  productpoint = document.querySelector('#totalprice').value;
+		  		  console.log('productpoint = '+productpoint);
 		  	 	}
 	    }
 	  }else if(this.value === '-')  {
@@ -198,10 +187,26 @@
 	    if(number < 0){
 	    	alert('0권 이하 주문 불가합니다.');
 	    	number =0;
+	    	let propoint = 0;
+	    	document.querySelector('#productpoint').value = propoint;
 	    	
 	    }else{
 	    	if(this.parentElement.parentElement.children[0].children[0].checked){
 	    		document.querySelector('#totalprice').value = (total*1-bookprice*1);
+	    		 productpoint = document.querySelector('#totalprice').value;
+	    		 if(userGrade.value === "normal"){
+	    			  	let propoint = (productpoint*1*0.01);
+	    			    console.log('check = '+propoint);
+	    			    document.querySelector('#productpoint').value = propoint;
+    			  }else if(userGrade.value ==="VIP"){
+	    				let propoint = (productpoint*1*0.03);
+	    				console.log('check = '+propoint);
+	    				document.querySelector('#productpoint').value = propoint;
+    			  }else if(userGrade.value ==="VVIP"){
+	    				let propoint = (productpoint*1*0.05);
+	    				console.log('check = '+propoint);
+	    				document.querySelector('#productpoint').value = propoint;
+    			  }
 	    	}
 	    }
 	  }
@@ -212,7 +217,20 @@
 	  console.log(checkbox.value);
 	  console.log('장바구니아이디'+basketId);
 	  console.log(proAddress);	
-	  
+	  if(userGrade.value === "normal"){
+	  	let propoint = (productpoint*1*0.01);
+	  console.log('check = '+propoint);
+	  document.querySelector('#productpoint').value = propoint;
+	  }else if(userGrade.value ==="VIP"){
+		let propoint = (productpoint*1*0.03);
+		console.log('check = '+propoint);
+		document.querySelector('#productpoint').value = propoint;
+	  }else if(userGrade.value ==="VVIP"){
+		let propoint = (productpoint*1*0.05);
+		console.log('check = '+propoint);
+		document.querySelector('#productpoint').value = propoint;
+	  }
+	  console.log( document.querySelector('#productpoint'));
 	})})
 	
 	
@@ -234,13 +252,35 @@
 			console.log(this);
 			let checkprice = this.parentElement.parentElement.children[3].children[0].value;
 			let checkcount = this.parentElement.parentElement.children[5].children[2].value;
+			let productpoint = document.getElementById('productpoint');
+			let userGrade = document.getElementById('userGrade');
+				let total = document.querySelector('#totalprice').value;
 			if(this.checked){
 				console.log('가격'+checkprice);
 				console.log('개수'+checkcount);
-				let total = document.querySelector('#totalprice').value;
+				let totalcheck = (checkprice*1)*(checkcount*1);
+				console.log(checkprice);
+				console.log(checkcount);
 				document.querySelector('#totalprice').value = (total*1+(checkprice*checkcount));
 				console.log(document.querySelector('#totalprice').value);
 				this.value = "{'bookName':'"+bookName+"','bookPrice':'"+bookprice+"','isbn':'"+isbn+"','basketCount':'"+basketCount+"','proAddress':'"+proAddress+"','basketId':'"+basketId+"'}";
+				if(userGrade.value ==='normal'){
+					let protest = document.querySelector('#totalprice').value;
+					console.log('protest = '+protest)
+					let propoint = protest*0.01;
+					document.querySelector('#productpoint').value = propoint;
+					console.log('propoint = '+propoint);
+				}else if(userGrade.value ==='VIP'){
+					let protest = document.querySelector('#totalprice').value;
+					console.log('protest = '+protest)
+					let propoint = protest*0.03;
+					document.querySelector('#productpoint').value = propoint;
+				}else if(userGrade.value ==='VVIP'){
+					let protest = document.querySelector('#totalprice').value;
+					console.log('protest = '+protest)
+					let propoint = protest*0.05;
+					document.querySelector('#productpoint').value = propoint;
+				}
 				console.log(this.value);
 				
 			}else{
@@ -250,6 +290,7 @@
 				document.querySelector('#totalprice').value = (total*1-(checkprice*checkcount));
 				console.log(document.querySelector('#totalprice').value);
 				this.value=0;
+				productpoint.value = 0;
 				console.log(this.value);
 			}
 	}))
@@ -297,14 +338,24 @@
 		     = document.getElementsByName('remember');
 		  let totalMoney =0;
 		  let total = document.querySelector('#totalprice');
+		  let productpoint = document.getElementById('productpoint');
+		  let userGrade = document.getElementById('userGrade');
 		  checkboxes.forEach((checkbox) => {
 		    checkbox.checked = selectAll.checked
 		    let checkprice = checkbox.parentElement.parentElement.children[3].children[0].value;
 			let checkcount = checkbox.parentElement.parentElement.children[5].children[2].value;
 			totalMoney += checkprice*checkcount;
 			checkbox.value += ",'basketCount':'"+checkcount+"'}";
+			if(userGrade.value ==='normal'){
+				productpoint.value = totalMoney*0.01;
+			}else if(userGrade.value==='VIP'){
+				productpoint.value = totalMoney*0.03;
+			}else if(userGrade.value==='VVIP'){
+				productpoint.value = totalMoney*0.05;
+			}
 			if(selectAll.checked == false){
 				totalMoney =0;
+				productpoint.value = 0;
 			}
 		  })
 		  total.value = totalMoney;
