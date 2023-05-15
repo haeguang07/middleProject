@@ -65,7 +65,7 @@
 							<c:if test="${'VVIP' eq grade }">
 								<input type="text" style="width: 80px; text-align: center; display: inline-block;border:none" value="${(bookPrice*0.05)*1 }"></td>
 							</c:if>
-							<td style="text-align:left"><input type="text" name="basketCount" id="basketCount" style="width: 150px; text-align: center; display: inline-block;border:none" value="${basketCount }"></td>
+							<td style="text-align:left"><input type="number" name="basketCount" id="basketCount" style="width: 50px; text-align: center; display: inline-block;margin-right:10px" value="1"></td>
 						</tr>
 				</table>
 			</div>
@@ -112,7 +112,7 @@
 				</c:otherwise>
 			</c:choose>
 		</div>
-	<div style="margin:0 auto; text-align:right"><input type="submit" style="padding: 15px 25px;margin:50px" value="" onclick="javascript: form.action='waitpayment.do';" value="결제하기"></div>
+	<div style="margin:0 auto; text-align:right"><input type="submit" style="padding: 15px 25px;margin:50px" onclick="javascript: form.action='waitpayment.do';" value="결제하기"></div>
 </form>
 </c:if>
 <c:if test="${'1' eq check }">
@@ -217,7 +217,7 @@
 							<td style="text-align:left"><input type="text" name="bookName" id="bookName" style="width: 500px; text-align: center; display: inline-block;border:none" value="${bookName }"></td>
 							<td style="text-align:left"><input type="text" name="bookPrice" id="bookPrice" style="width: 80px; text-align: center; display: inline-block;border:none" value="${bookPrice }">/<input type="text"
 							style="width: 80px; text-align: center; display: inline-block;border:none" value="${bookPrice/100 }"></td>
-							<td style="text-align:left"><input type="text" name="basketCount" id="basketCount" style="width: 150px; text-align: center; display: inline-block;border:none" value="${basketCount }"></td>
+							<td style="text-align:left"><input type="number" name="basketCount" id="basketCount" style="width: 150px; text-align: center; display: inline-block;border:none" value="1"></td>
 						</tr>
 					<tr>
 						<td>총가격 : <input type="text" name="totalPrice" id="totalPrice" style="width: 80px; text-align: center; display: inline-block;border:none" value="${total }">원</td>
@@ -399,5 +399,16 @@ function execDaumPostcode() {
       }).open();
     });
   }
-	
+	document.querySelector('#basketCount').addEventListener('change',function(){
+		if(this.value < 1){
+			alert('1권이하 주문 불가합니다');
+			this.value =1;
+		}
+		let stock = ${bookStock};
+		console.log(stock);
+		if(this.value > stock){
+			alert('재고량 이상으로 주문 불가합니다');
+			this.value = stock;
+		}
+	})
 </script>

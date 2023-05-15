@@ -22,7 +22,7 @@
 		<![CDATA[
 		select b.*
 		from (select rownum rn,a.*
-			  from(select * from Boards where user_id=#{userId} and board_kind=2)a
+			  from(select * from Boards where user_id=#{userId} and board_kind=2 order by board_id desc)a
 			  where rownum <= #{page}*10) b
 		where rn >(#{page}-1)*10
 		]]>

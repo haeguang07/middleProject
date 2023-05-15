@@ -369,10 +369,9 @@ function insertOrder(field){
 		alert('재고가 없습니다!!');
 		return;
 	}else if(bookStock>=1){
-	    location.href="delivery.do?isbn="+isbn;
+	    location.href="delivery.do?isbn="+isbn+"&bookStock="+ bookStock;
 	}
-	console.log(bookStock);
-	location.href="delivery.do?isbn="+isbn;
+
 	
 	//location.href="delivery.do";
 	//넘겨야하는값 : isbn,bookName,bookPrice,basketCount(이거도없음),proAddress
