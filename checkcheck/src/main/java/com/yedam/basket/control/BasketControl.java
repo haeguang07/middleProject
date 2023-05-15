@@ -29,6 +29,7 @@ public class BasketControl implements Control {
 		list = service.selectBasket(userId);
 		String userGrade = uvo.getUserGrade();
 		String address = uvo.getUserAddress();
+		System.out.println("주소 : "+address);
 		String userPoint = uvo.getUserPoint();
 		req.setAttribute("list", list);
 		req.setAttribute("address", address);
