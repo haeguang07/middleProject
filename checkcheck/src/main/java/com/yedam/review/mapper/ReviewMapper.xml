@@ -43,7 +43,7 @@
 	<![CDATA[
 		select b.*
 		from (select rownum rn,a.*
-		from(select r.*,u.nickname from reviews r join users u on r.user_id=u.user_id where isbn =#{isbn}) a
+		from(select r.*,u.nickname from reviews r join users u on r.user_id=u.user_id where isbn =#{isbn} order by review_id desc) a
 		where rownum <= #{page}*10) b
 		where rn >(#{page}-1)*10
 		]]>
