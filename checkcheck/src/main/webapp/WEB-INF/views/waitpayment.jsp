@@ -37,7 +37,7 @@
 	<p style="width: 100px; text-align: right; display: inline-block">주문완료</p>
 </div>
 <c:if test="${'0' eq check }">
-	<form method="post"style="position: relative; width: 1100px;">
+	<form method="post"style="width: 1100px;">
 		<div>
 			<input style="display:none" name="typecheck" value="0">
 			<input type="text" style="display:none" name="userId" value="${userId }">
@@ -60,23 +60,26 @@
 			<p style="padding-left:200px; display:inline-block">현재 사용가능한 포인트 : ${userPoint }</p>
 		</div>
 		<div>
-			<p>결제수단 결정</p>
+		<div style="text-align: center;">
+			<h5 style="text-align: center;">결제수단 결정</h5>
 		</div>
-		<div style="margin:0 auto">
-			<table>
+		<div style="margin:20px;text-align: center;" >
+			<table class="table" style="margin: 0 auto">
 				<tr>
 					<td><input type="radio" name="remember" style="margin: 15px" value="카카오"><b>카카오</b></td>
 					<td><input type="radio" name="remember" style="margin: 15px" value="네이버"><b>네이버</b></td>
 					<td><input type="radio" name="remember" style="margin: 15px" value="토스"><b>토스</b></td>
-				</tr><tr>
+				</tr>
+				<tr>
 					<td><input type="radio" name="remember" style="margin: 15px" value="신용카드"><b>신용카드</b></td>
 					<td><input type="radio" name="remember" style="margin: 15px" value="계좌이체"><b>계좌이체</b></td>
 					<td><input type="radio" name="remember" style="margin: 15px" value="페이코"><b>페이코</b></td>
 				</tr>
 			</table>
 		</div>
+		</div>
 		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4" style="width:800px; margin:0 auto">
-		  <table>
+		  <table class="table">
 		  	<c:choose>
 				<c:when test="${userGrade eq 'normal' }">
 				<fmt:parseNumber var="totalSpoint" integerOnly="true" value= "${(totalPrice*0.01) }"/>
@@ -88,10 +91,10 @@
 				<fmt:parseNumber var="totalSpoint" integerOnly="true" value= "${(totalPrice*0.05) }"/>
 				</c:when>
 			</c:choose>
-			<tr><td>총 가격 : <input type="text" id="totalPrice" name="totalPrice" style="width:100px;border:none" value="${(bookPrice*1)*(basketCount*1) }"></td></tr>
-			<tr><td>적립금액 : <input type="text" id="totalSpoint" name="totalSpoint" style="width:100px;border:none" value="${(totalSpoint*1)*(basketCount*1) }"></td></tr>
-			<tr><td>총할인금액 : <input type="text" id="totalSSpoint" style="width:150px;border:none" value=""></td></tr>
-			<tr><td>결제금액 : <input type="text" name="totalPriceEnd" id="totalPriceCount" style="width:100px;border:none" value=""></td></tr>
+			<tr><td>총 가격 : <input readonly type="text" id="totalPrice" name="totalPrice" style="width:100px;border:none" value="${(bookPrice*1)*(basketCount*1) }"></td></tr>
+			<tr><td>적립금액 : <input readonly type="text" id="totalSpoint" name="totalSpoint" style="width:100px;border:none" value="${(totalSpoint*1)*(basketCount*1) }"></td></tr>
+			<tr><td>총할인금액 : <input readonly type="text" id="totalSSpoint" style="width:150px;border:none" value=""></td></tr>
+			<tr><td>결제금액 : <input readonly type="text" name="totalPriceEnd" id="totalPriceCount" style="width:100px;border:none" value="${(bookPrice*1)*(basketCount*1) }"></td></tr>
 		  </table>
 		</div>
 		<div style="text-align:right; padding-right:200px; padding-top:30px; padding-bottom:30px">
@@ -154,10 +157,10 @@
 				<fmt:parseNumber var="totalSpoint" integerOnly="true" value= "${(totalPrice*0.05) }"/>
 				</c:when>
 			</c:choose>
-			<tr><td>총 가격 : <input type="text" id="totalPrice" name="totalPrice" style="width:100px;border:none" value="${totalPrice }"></td></tr>
-			<tr><td>적립금액 : <input type="text" id="totalSpoint" name="totalSpoint" style="width:100px;border:none" value="${totalSpoint }"></td></tr>
-			<tr><td>총할인금액 : <input type="text" id="totalSSpoint" style="width:150px;border:none" value=""></td></tr>
-			<tr><td>결제금액 : <input type="text" name="totalPriceEnd" id="totalPriceCount" style="width:100px;border:none" value=""></td></tr>
+			<tr><td>총 가격 : <input type="text" id="totalPrice" name="totalPrice" style="width:100px;border:none" value="${totalPrice }" readonly></td></tr>
+			<tr><td>적립금액 : <input type="text" id="totalSpoint" name="totalSpoint" style="width:100px;border:none" value="${totalSpoint }" readonly></td></tr>
+			<tr><td>총할인금액 : <input type="text" id="totalSSpoint" style="width:150px;border:none" value="" readonly></td></tr>
+			<tr><td>결제금액 : <input type="text" name="totalPriceEnd" id="totalPriceCount" style="width:100px;border:none" value="${totalPrice }" readonly></td></tr>
 		  </table>
 		</div>
 		<div style="text-align:right; padding-right:200px; padding-top:30px; padding-bottom:30px">

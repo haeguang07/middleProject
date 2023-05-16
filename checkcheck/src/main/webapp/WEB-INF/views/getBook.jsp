@@ -112,7 +112,7 @@
 				</tr>
 				<tr>
 					<td><p style="display: inline-block">수량 :</p>
-						<p id="bookCount" style="display: inline-block">${book.bookStock }</p></td>
+						<p id="bookCount" name="bookStock" style="display: inline-block">${book.bookStock }</p></td>
 					<td>
 						<div id='result'>1</div> <input type='button'
 						onclick='count("minus")' value='- ' /> <input type='button'
@@ -293,7 +293,7 @@
 						number = document.querySelector('#bookCount').innerText;
 					}
 					else if(number < bookCount){
-						location.href="delivery.do?isbn="+isbn+"&bookCount="+number;
+						location.href="delivery.do?isbn="+isbn+"&bookStock="+number;
 					}
 				}else if(bookCount<1){
 					alert('재고가 부족합니다!! 구매가 불가능합니다!!');
@@ -524,7 +524,7 @@
 					let tlist = document.getElementById('tlist');
 					let tr = document.createElement('tr');
 					let td = document.createElement('td');
-					td.innerText= document.getElementById('tlist').children[0].children[0].innerText +1;
+					td.innerText= result.data.reviewId;
 					tr.append(td);
 					td = document.createElement('td');
 					td.innerText = reply;
@@ -544,7 +544,17 @@
 					let str1 = dt.getFullYear()+'-'+(dt.getMonth()+1)+'-'+dt.getDate()+' '+' '+ dt.getHours()+':'+dt.getMinutes()+':'+dt.getSeconds();
 					td.innerText = str1;
 					tr.append(td);
+					td = document.createElement('td');
+					let btn = document.createElement('input');
+					btn.type="button";
+					btn.value="삭제";
+					td.append(btn);
+					tr.append(td);
+					if(tlist.children.length == 0){
+						tlist.append(tr);
+					}else{
 					tlist.insertBefore(tr,tlist.children[0])
+					}
 					// 입력값 초기화하기.
 					document.getElementById("reply").value = '';
 					document.getElementById("reply").focus();

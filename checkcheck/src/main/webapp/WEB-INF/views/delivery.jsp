@@ -49,22 +49,23 @@
 			<input style="display:none" name="presentcheck" value="0">
 				<table style="width: 900px; margin: 0 auto">
 					<tr>
-						<td style="width: 50%; text-align: center; display: inline-block">상품명</td>
-						<td style="width: 25%; text-align: center; display: inline-block">가격</td>
-						<td style="width: 25%; text-align: center; display: inline-block">수량</td>
+						<td style="width: 40%; text-align: center;">상품명</td>
+						<td style="width: 30%; text-align: center;">가격/포인트</td>
+						<td style="width: 30%; text-align: center;">수량</td>
 					</tr>
 						<tr>
-							<td style="text-align:left"><input type="text" name="bookName" id="bookName" style="text-align: center; display: inline-block;border:none" value="${bookPrice }">/
+							<td><input type="text" name="bookName" id="bookName" readonly value="${bookName }"></td>
+							<td style="text-align:center"><input type="text" name="bookPrice" id="bookPrice" style="text-align: center;border:none;width:80px" value="${bookPrice }">/
 							<c:if test="${'normal' eq grade }">
-								<input type="text" style="text-align: center; display: inline-block;border:none" value="${(bookPrice*0.01)*1 }"></td>
+								<input type="text" style="text-align: center;border:none;width:50px" value="${(bookPrice*0.01)*1 }"></td>
 							</c:if>
 							<c:if test="${'VIP' eq grade }">
-								<input type="text" style="text-align: center; display: inline-block;border:none" value="${(bookPrice*0.03)*1 }"></td>
+								<input type="text" style="text-align: center;border:none;width:50px" value="${(bookPrice*0.03)*1 }"></td>
 							</c:if>
 							<c:if test="${'VVIP' eq grade }">
-								<input type="text" style="text-align: center; display: inline-block;border:none" value="${(bookPrice*0.05)*1 }"></td>
+								<input type="text" style="text-align: center;border:none;width:50px" value="${(bookPrice*0.05)*1 }"></td>
 							</c:if>
-							<td style="text-align:left"><input type="number" name="basketCount" id="basketCount" style="text-align: center; display: inline-block;margin-right:10px" value="1"></td>
+							<td style="text-align:center"><input type="number" name="basketCount" id="basketCount" style="text-align: center;margin-right:10px" value="1" ></td>
 						</tr>
 				</table>
 			</div>

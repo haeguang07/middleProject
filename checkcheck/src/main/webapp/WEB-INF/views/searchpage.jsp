@@ -151,7 +151,7 @@ input.button {
 					<table style=" clear: both;">
 						<tr>
 							
-							<td rowspan="5"><img src=${i.cover } style="width: 200px; height: 300px"></td>
+							<td rowspan="5"><img src=${i.cover } style="width: 200px; height: 300px;cursor:pointer" onclick="location.href='getBook.do?bookInfo=${i.isbn}'" ></td>
 							<td>이름</td><td>${i.bookName }</td>
 						</tr>
 						<tr><td>저자</td><td>${i.author }</td></tr>
