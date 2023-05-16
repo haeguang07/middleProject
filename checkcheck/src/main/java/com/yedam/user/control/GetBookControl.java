@@ -22,6 +22,7 @@ public class GetBookControl implements Control {
 		ReviewService reviewServ = new ReviewServiceImpl();
 		BookService bookServ = new BookServiceImpl();
 		long isbn = Long.parseLong(req.getParameter("bookInfo"));
+		bookServ.plusHitCount(isbn);
 		String pageStr = req.getParameter("page");
 		pageStr = pageStr == null ? "1" : pageStr;
 		int page = Integer.parseInt(pageStr);
