@@ -53,7 +53,7 @@
 	<c:forEach var="book" items="${list}">
 	<tr>
 		<td><img src="${book.cover }" style="width:100px"></td>
-		<td>${book.book }</td>
+		<td><a href="getBook.do?bookInfo=${book.isbn }">${book.book }</a></td>
 		<td>${book.num} </td>
 		<td>${book.num*book.price }¿ø</td>
 	</tr>	

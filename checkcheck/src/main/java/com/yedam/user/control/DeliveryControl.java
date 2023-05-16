@@ -39,7 +39,7 @@ public class DeliveryControl implements Control {
 			System.out.println(isbn);
 			System.out.println("책이름 : "+bvo.getBookName());
 			System.out.println("책가격 : "+bvo.getBookPrice());
-			System.out.println("갯수 : "+basketCount);
+			System.out.println("갯수 : "+bookStock);
 			String check="0";
 			req.setAttribute("check", check);
 			req.setAttribute("isbn", isbn);

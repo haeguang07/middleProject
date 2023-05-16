@@ -59,7 +59,7 @@ input.button {
 							<div class="textbox" style="margin-left: 30px; width: 400px;padding:40px">
 								<h4 style="text-overflow: ellipsis; overflow: hidden;margin-bottom:40px">${list[0].bookName }</h4>
 								<p style="white-space:normal !important;color:black">${list[0].bookDetail }</p>
-							</div> <img src="./img/slide.jpg"> <label for="slide02"
+							</div> <img src="./img/책사진2.png"> <label for="slide02"
 							class="right"></label>
 					</a></li>
 					<li><a href="getBook.do?bookInfo=${list[1].isbn }" style="position: relative;text-decoration:none;color:black"> <img
@@ -69,7 +69,7 @@ input.button {
 							<div class="textbox" style="margin-left: 30px; width: 400px;padding:40px">
 								<h4 style="text-overflow: ellipsis; overflow: hidden;margin-bottom:40px">${list[1].bookName }</h4>
 								<p style="white-space:normal !important;color:black">${list[1].bookDetail }</p>
-							</div> <img src="./img/slide.jpg"> <label for="slide03"
+							</div> <img src="./img/책사진2.png"> <label for="slide03"
 							class="right"></label>
 					</a></li>
 					<li><a href="getBook.do?bookInfo=${list[2].isbn }" style="position: relative;text-decoration:none;color:black"> <img
@@ -79,7 +79,7 @@ input.button {
 							<div class="textbox" style="margin-left: 30px; width: 400px;padding:40px">
 								<h4 style="text-overflow: ellipsis; overflow: hidden;margin-bottom:40px">${list[2].bookName }</h4>
 								<p style="white-space:normal !important;color:black">${list[2].bookDetail }</p>
-							</div> <img src="./img/slide.jpg"> <label for="slide04"
+							</div> <img src="./img/책사진2.png"> <label for="slide04"
 							class="right"></label>
 					</a></li>
 					<li><a href="getBook.do?bookInfo=${list[3].isbn }" style="position: relative;text-decoration:none;color:black"> <img
@@ -89,7 +89,7 @@ input.button {
 							<div class="textbox" style="margin-left: 30px; width: 400px;padding:40px">
 								<h4 style="text-overflow: ellipsis; overflow: hidden;margin-bottom:40px">${list[3].bookName }</h4>
 								<p style="white-space:normal !important;color:black">${list[3].bookDetail }</p>
-							</div> <img src="./img/slide.jpg"> <label for="slide05"
+							</div> <img src="./img/책사진2.png"> <label for="slide05"
 							class="right"></label>
 					</a></li>
 					<li><a href="getBook.do?bookInfo=${list[4].isbn }" style="position: relative;text-decoration:none;color:black"> <img
@@ -99,7 +99,7 @@ input.button {
 							<div class="textbox" style="margin-left: 30px; width: 400px;padding:40px">
 								<h4 style="text-overflow: ellipsis; overflow: hidden;margin-bottom:40px">${list[4].bookName }</h4>
 								<p style="white-space:normal !important;color:black">${list[4].bookDetail }</p>
-							</div> <img src="./img/slide.jpg"> <label for="slide01"
+							</div> <img src="./img/책사진2.png"> <label for="slide01"
 							class="right"></label>
 					</a></li>
 				</ul>

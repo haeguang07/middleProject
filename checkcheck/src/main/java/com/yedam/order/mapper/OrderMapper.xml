@@ -28,7 +28,7 @@
 	]]>
 	</select>
 	<select id="selectOrderOrderId" resultType="order">
-		select o.*,c.book,c.num, c.book_price price,c.cover
+		select o.*,c.book,c.num, c.book_price price,c.cover,c.isbn
 		FROM (select h.order_id, b.book_name book,h.history_count num,b.book_price,b.isbn,b.cover
 		from historys h
 		JOIN books b
