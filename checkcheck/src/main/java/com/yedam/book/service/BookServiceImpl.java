@@ -124,4 +124,9 @@ public class BookServiceImpl implements BookService{
 		return mapper.buycheck(isbn);
 	}
 
+	@Override
+	public int plusHitCount(long isbn) {
+		return mapper.plusHitCount(isbn);
+	}
+
 }

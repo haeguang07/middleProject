@@ -214,4 +214,7 @@ order by counts desc
 	<select id="buycheck" resultType="String">
 		select distinct(a.user_id) from orders a join historys b on a.order_id = b.order_id where isbn=#{isbn} and order_state = '배송중'
 	</select>
+	<update id="plusHitCount">
+		update books set hit_count = hit_count + 1 where isbn = #{isbn}
+	</update>
 </mapper>
