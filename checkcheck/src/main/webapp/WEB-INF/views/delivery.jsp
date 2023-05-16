@@ -23,6 +23,14 @@
 <script src="https://code.jquery.com/jquery-3.6.4.js"
 	integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
 	crossorigin="anonymous"></script>
+	<style>
+		#Address{
+			width:400px;
+		}
+		.left td{
+			text-align: left;
+		}
+	</style>
 </head>
 <div style="width: 1100px;">
 	<p></p>
@@ -65,7 +73,7 @@
 							<c:if test="${'VVIP' eq grade }">
 								<input type="text" style="text-align: center;border:none;width:50px" value="${(bookPrice*0.05)*1 }"></td>
 							</c:if>
-							<td style="text-align:center"><input type="number" name="basketCount" id="basketCount" style="text-align: center;margin-right:10px" value="1" ></td>
+							<td style="text-align:center"><input type="number" name="basketCount" id="basketCount" style="text-align: center;margin-right:10px" value="${basketCount }" ></td>
 						</tr>
 				</table>
 			</div>
@@ -83,7 +91,7 @@
 			</table>
 			<c:choose>
 				<c:when test="${state eq '1'}">
-					<table>
+					<table class="left">
 						<tr><td style="width: 200px; height: 30px"></td></tr>
 						<tr><td style="width: 200px; height: 40px; word-break: break-all"><input id="Name" name="name"></td></tr>
 						<tr><td style="width: 200px; height: 40px; word-break: break-all"><input id="Post" name="post"></td>
@@ -94,7 +102,7 @@
 					</table>
 				</c:when>
 				<c:otherwise>
-					<table>
+					<table class="left">
 						<tr><td style="width: 200px; height: 30px"></td></tr>
 						<tr><td style="width: 200px; height: 40px; word-break: break-all"><input
 								id="Name" name="name" value="${sesInfo.userName }" style="border: none"
@@ -166,7 +174,7 @@
 			</table>
 			<c:choose>
 				<c:when test="${state eq '1'}">
-					<table>
+					<table class="left">
 						<tr><td style="width: 200px; height: 30px"></td></tr>
 						<tr><td style="width: 200px; height: 40px; word-break: break-all"><input id="Name" name="name"></td></tr>
 						<tr><td style="width: 200px; height: 40px; word-break: break-all"><input id="Post" name="post"></td>
@@ -209,20 +217,20 @@
 			<input style="display:none" name="presentcheck" value="1">
 				<table style="width: 900px; margin: 0 auto">
 					<tr>
-						<td style="width: 50%; text-align: center; display: inline-block">상품명</td>
-						<td style="width: 25%; text-align: center; display: inline-block">가격</td>
-						<td style="width: 25%; text-align: center; display: inline-block">수량</td>
+						<td style="width: 50%; text-align: center;">상품명</td>
+						<td style="width: 25%; text-align: center;">가격</td>
+						<td style="width: 25%; text-align: center;">수량</td>
 					</tr>
 					<c:set var="total" value="0"></c:set>
 						<c:set var="total" value="${bookPrice*basketCount + total }"></c:set>
 						<tr>
-							<td style="text-align:left"><input type="text" name="bookName" id="bookName" style="text-align: center; display: inline-block;border:none" value="${bookName }"></td>
-							<td style="text-align:left"><input type="text" name="bookPrice" id="bookPrice" style="text-align: center; display: inline-block;border:none" value="${bookPrice }">/<input type="text"
-							style="text-align: center; display: inline-block;border:none" value="${bookPrice/100 }"></td>
-							<td style="text-align:left"><input type="number" name="basketCount" id="basketCount" style="text-align: center; display: inline-block;border:none" value="1"></td>
+							<td style="text-align:center;"><input type="text" name="bookName" id="bookName" style="text-align: center;border:none" value="${bookName }"></td>
+							<td style="text-align:center;"><input type="text" name="bookPrice" id="bookPrice" style="text-align: center;border:none;width:80px" value="${bookPrice }">/<input type="text"
+							style="text-align: center;border:none;width:50px" value="${bookPrice/100 }"></td>
+							<td style="text-align:center;"><input type="number" name="basketCount" id="basketCount" style="text-align: center;border:none" value="${basketCount }"></td>
 						</tr>
 					<tr>
-						<td>총가격 : <input type="text" name="totalPrice" id="totalPrice" style="width: 80px; text-align: center; display: inline-block;border:none" value="${total }">원</td>
+						<td>총가격 : <input type="text" name="totalPrice" id="totalPrice" style="width: 80px; text-align: center;border:none" value="${total }">원</td>
 					</tr>
 				</table>
 			</div>
@@ -240,7 +248,7 @@
 			</table>
 			<c:choose>
 				<c:when test="${state eq '1'}">
-					<table>
+					<table class="left">
 						<tr><td style="width: 200px; height: 30px"></td></tr>
 						<tr><td style="width: 200px; height: 40px; word-break: break-all"><input id="Name" name="name"></td></tr>
 						<tr><td style="width: 200px; height: 40px; word-break: break-all"><input id="Post" name="post"></td>
@@ -282,18 +290,18 @@
 			<input style="display:none" name="presentcheck" value="1">
 				<table style="width: 900px; margin: 0 auto">
 					<tr>
-						<td style="width: 50%; text-align: center; display: inline-block">상품명</td>
-						<td style="width: 25%; text-align: center; display: inline-block">가격</td>
-						<td style="width: 25%; text-align: center; display: inline-block">수량</td>
+						<td style="width: 50%; text-align: center;">상품명</td>
+						<td style="width: 25%; text-align: center;">가격</td>
+						<td style="width: 25%; text-align: center;">수량</td>
 					</tr>
 					<c:set var="total" value="0"></c:set>
 					<c:forEach var="i" items="${list }">
 						<c:set var="total" value="${i.bookPrice*i.basketCount + total }"></c:set>
 						<tr>
-							<td style="text-align:left"><input type="text" name="bookName" id="bookName" style="text-align: center; display: inline-block;border:none" value="${i.bookName }"></td>
-							<td style="text-align:left"><input type="text" name="bookPrice" id="bookPrice" style="text-align: center; display: inline-block;border:none" value="${i.bookPrice }">/<input type="text"
-							style="text-align: center; display: inline-block;border:none" value="${i.bookPrice/100 }"></td>
-							<td style="text-align:left"><input type="text" name="basketCount" id="basketCount" style="text-align: center; display: inline-block;border:none" value="${i.basketCount }"></td>
+							<td style="text-align:center;"><input type="text" name="bookName" id="bookName" style="text-align: center;border:none" value="${i.bookName }"></td>
+							<td style="text-align:center;"><input type="text" name="bookPrice" id="bookPrice" style="text-align: center;border:none;width:80px" value="${i.bookPrice }">/<input type="text"
+							style="text-align: center;border:none;width:50px" value="${i.bookPrice/100 }"></td>
+							<td style="text-align:center;"><input type="text" name="basketCount" id="basketCount" style="text-align: center;border:none" value="${i.basketCount }"></td>
 							<c:choose>
 								<c:when test="${empty i.basketId }">
 								</c:when>
@@ -322,13 +330,13 @@
 			</table>
 			<c:choose>
 				<c:when test="${state eq '1'}">
-					<table>
+					<table class="left">
 						<tr><td style="width: 200px; height: 30px"></td></tr>
 						<tr><td style="width: 200px; height: 40px; word-break: break-all"><input id="Name" name="name"></td></tr>
 						<tr><td style="width: 200px; height: 40px; word-break: break-all"><input id="Post" name="post"></td>
 							<td><input id="postchange" type="button" 	 onclick="execDaumPostcode()" value="우편번호 찾기"></td>
 						</tr>
-						<tr><td style="width: 400px; height: 50px; word-break: break-all"><input id="Address" name="address"></td></tr>
+						<tr><td colspan="2" style="width: 400px; height: 50px; word-break: break-all"><input id="Address" name="address"></td></tr>
 						<tr><td style="width: 400px; height: 55px; word-break: break-all"><input id="Phone" name="phone"></td></tr>
 					</table>
 				</c:when>

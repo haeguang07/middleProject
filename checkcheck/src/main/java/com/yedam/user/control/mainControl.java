@@ -34,7 +34,7 @@ public class mainControl implements Control {
 		Date time = new Date();
 		
 		int year = time.getYear() + 1900;
-		int month = time.getMonth()+1;
+		int month = time.getMonth();
 		int day = time.getDay();
 		Calendar cal = Calendar.getInstance(Locale.KOREA);
 		cal.set(year , month , day);

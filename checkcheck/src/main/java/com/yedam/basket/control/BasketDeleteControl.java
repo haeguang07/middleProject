@@ -75,7 +75,7 @@ public class BasketDeleteControl implements Control {
 		}else {
 			System.out.println("제거할 장바구니목록을 받아오지 못했습니다.");
 		}
-		return "main.tiles";
+		return "basket.do";
 	}
 
 }
