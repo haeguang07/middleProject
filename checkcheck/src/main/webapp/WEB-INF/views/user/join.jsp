@@ -360,7 +360,7 @@
 				alert("비밀번호는 숫자, 영문, 특수문자 조합으로 8~15자리를 사용해야 합니다.");
 				return false;
 			}
-			let chk = 0;
+ 			let chk = 0;
 			if (pw.value.search(/[0-9]/g) != -1) chk++;
 			if (pw.value.search(/[a-z]/ig) != -1) chk++;
 			if (pw.value.search(/[!@#$%^&*()?_~]/g) != -1) chk++;
@@ -368,8 +368,8 @@
 				alert("비밀번호는 숫자, 영문, 특수문자를 두가지이상 혼용하여야 합니다.");
 
 				return false;
-			}
-			// 동일한 문자/숫자 4이상, 연속된 문자
+			} 
+ 			// 동일한 문자/숫자 4이상, 연속된 문자
 			if (/(\w)\1\1\1/.test(pw.value) || isContinuedValue(pw.value)) {
 				alert("비밀번호에 4자 이상의 연속 또는 반복 문자 및 숫자를 사용하실 수 없습니다.");
 				return false;
@@ -379,11 +379,12 @@
 				alert("ID가 포함된 비밀번호는 사용하실 수 없습니다.");
 				return false;
 			}
-			// 기존 비밀번호와 새 비밀번호 일치 여부
+ 			// 기존 비밀번호와 새 비밀번호 일치 여부
 			if (pw.value != pw2.value) {
 				alert("기존 비밀본호와 새 비밀번호가 일치하지 않습니다.");
 				return false;
 			}
+ 			return true;
 		}
 		let nextBtn = document.querySelector('#nextBtn');
 		nextBtn.addEventListener('click', function (e) {
@@ -394,6 +395,7 @@
 				alert('아이디 중복체크를 해주세요');
 				return;
 			} else if (!pwCheck()) {
+				
 				pw.value = '';
 				pw2.value = '';
 				return;

@@ -61,10 +61,12 @@
 	<!-- 조회수 많은 책들을 가져옴 -->
 	<select id="newList" resultType="book">
 	<![CDATA[
-		select rownum,a.* from books a
-		where rownum < 8
-		and book_name not like '%CD%'
-		order by hitcount desc
+		select rownum,a.*
+		from(select * 
+		from books 
+		where book_name not like '%CD%'
+		order by hitcount desc)a
+		where rownum <8
 		]]>
 	</select>
 	<!-- 최근 발간일 책들 7권 가져옴 -->
@@ -215,6 +217,6 @@ order by counts desc
 		select distinct(a.user_id) from orders a join historys b on a.order_id = b.order_id where isbn=#{isbn} and order_state = '배송중'
 	</select>
 	<update id="plusHitCount">
-		update books set hit_count = hit_count + 1 where isbn = #{isbn}
+		update books set hitcount = hitcount + 1 where isbn = #{isbn}
 	</update>
 </mapper>
