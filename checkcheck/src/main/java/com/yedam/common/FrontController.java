@@ -78,6 +78,7 @@ import com.yedam.user.control.PresentControl;
 import com.yedam.user.control.PwChageContorl;
 import com.yedam.user.control.SearchPageControl;
 import com.yedam.user.control.UserIdCheckControl;
+import com.yedam.user.control.idPwFindContorl;
 import com.yedam.user.control.logoutContorl;
 import com.yedam.user.control.mainControl;
 import com.yedam.user.control.modifyUserFormControl;
@@ -168,6 +169,8 @@ public class FrontController extends HttpServlet {
 		map.put("/checkEmail.do", new CheckEmailControl());
 		// 05-02회원가입 기능
 		map.put("/join.do", new JoinControl());
+		//아이디 패스워드 찾기
+		map.put("/idPwFind.do", new idPwFindContorl());
 
 		// 05-02마이페이지 이동(주문 조회로)
 		map.put("/myPageMain.do", new myPageOrderControl());

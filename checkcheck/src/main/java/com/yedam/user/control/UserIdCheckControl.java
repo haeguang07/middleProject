@@ -24,7 +24,7 @@ public class UserIdCheckControl implements Control {
 		UserVO vo = service.checkUid(uid);
 		Map<String, String> map = new HashMap<>();
 		if(vo!=null) {
-			map.put("retCode", "Fail");
+			map.put("retCode", "Fa.il");
 		}else {
 			map.put("retCode", "Success");
 		}

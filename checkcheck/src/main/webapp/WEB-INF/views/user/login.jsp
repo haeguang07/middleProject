@@ -126,7 +126,7 @@
 					<button type="button" id="login">로그인</button>
 					<button type="button" id="join" style=" cursor: pointer;">회원가입</button>
 				</div>
-				<span class="psw"><a href="#">아이디/비밀번호찾기</a></span>
+				<span class="psw"><a href="idPwFind.do">아이디/비밀번호찾기</a></span>
 			</div>
 			<div id="simple_login">
 				<br>
