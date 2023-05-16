@@ -36,6 +36,7 @@ public class DeliveryControl implements Control {
 			String bookName = bvo.getBookName();
 			String bookPrice = String.valueOf(bvo.getBookPrice());
 			String basketCount = req.getParameter("bookCount");
+			System.out.println("basketCount="+basketCount);
 			System.out.println(isbn);
 			System.out.println("책이름 : "+bvo.getBookName());
 			System.out.println("책가격 : "+bvo.getBookPrice());

@@ -31,6 +31,8 @@ public class OrderCompleteControl implements Control {
 			int payment = Integer.parseInt(req.getParameter("totalPrice"));//ok
 			int orderPoint = Integer.parseInt(req.getParameter("totalSpoint"));
 			int usePoint = Integer.parseInt(req.getParameter("usepoint"));
+			int totalPriceEnd = Integer.parseInt(req.getParameter("totalPriceEnd"));
+			System.out.println(totalPriceEnd);
 			System.out.println("usePoint : "+usePoint);
 			//배송상태(배송전중후)
 			//orderdate
@@ -56,7 +58,7 @@ public class OrderCompleteControl implements Control {
 			System.out.println("ordercheck5");
 			vo.setOrderId(orderId);
 			vo.setUserId(userId);
-			vo.setPayment(payment);
+			vo.setPayment(totalPriceEnd);
 			vo.setOrderPoint(usePoint);
 			//state,date
 			vo.setOrderPost(orderPost);
@@ -100,6 +102,8 @@ public class OrderCompleteControl implements Control {
 			int orderPoint = Integer.parseInt(req.getParameter("totalSpoint"));
 			String usePoint1 = req.getParameter("usepoint");
 			int usePoint =usePoint1== "" ? 0: Integer.parseInt(usePoint1);
+			int totalPriceEnd = Integer.parseInt(req.getParameter("totalPriceEnd"));
+			System.out.println(totalPriceEnd);
 			System.out.println("usePoint : "+usePoint);
 			//배송상태(배송전중후)
 			//orderdate
@@ -127,7 +131,7 @@ public class OrderCompleteControl implements Control {
 			OrderVO vo = new OrderVO();
 			vo.setOrderId(orderId);
 			vo.setUserId(userId);
-			vo.setPayment(payment);
+			vo.setPayment(totalPriceEnd);
 			vo.setOrderPoint(usePoint);
 			//state,date
 			vo.setOrderPost(orderPost);

@@ -132,12 +132,13 @@
 			<p>결제수단 결정</p>
 		</div>
 		<div style="margin:0 auto">
-			<table>
+			<table class="table" style="text-align: center;">
 				<tr>
 					<td><input type="radio" name="remember" style="margin: 15px" value="카카오"><b>카카오</b></td>
 					<td><input type="radio" name="remember" style="margin: 15px" value="네이버"><b>네이버</b></td>
 					<td><input type="radio" name="remember" style="margin: 15px" value="토스"><b>토스</b></td>
-				</tr><tr>
+				</tr>
+				<tr>
 					<td><input type="radio" name="remember" style="margin: 15px" value="신용카드"><b>신용카드</b></td>
 					<td><input type="radio" name="remember" style="margin: 15px" value="계좌이체"><b>계좌이체</b></td>
 					<td><input type="radio" name="remember" style="margin: 15px" value="페이코"><b>페이코</b></td>
@@ -145,7 +146,7 @@
 			</table>
 		</div>
 		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4" style="width:800px; margin:0 auto">
-		  <table>
+		  <table class="table">
 		  	<c:choose>
 				<c:when test="${userGrade eq 'normal' }">
 				<fmt:parseNumber var="totalSpoint" integerOnly="true" value= "${(totalPrice*0.01) }"/>
