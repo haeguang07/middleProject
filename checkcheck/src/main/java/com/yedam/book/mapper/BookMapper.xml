@@ -134,13 +134,11 @@ order by counts desc
 	<!-- 화제의책 페이지 가져오기 -->
 	<select id="hitCountSearchPage" resultType="book">
 		<![CDATA[
-		select e.*
+	select e.*
 		from(select rownum rn, d.*
-		    from (select a.*
-			from books a join historys b
-			on a.isbn = b.isbn
-			join orders c on b.order_id = c.order_id
-			where order_date between #{monthFirst} and #{monthLast}
+		    from (select * 
+			from books
+            where hitcount > 5
 			order by hitcount desc) d
 		    where rownum <= #{page}*10) e
 			where e.rn > (#{page}-1)*10
@@ -149,12 +147,9 @@ order by counts desc
 	<select id="hitCountCount" resultType="int">
 	<![CDATA[
 		 	select count(*)
-            from (select rownum rn ,a.*
-			from books a join historys b
-			on a.isbn = b.isbn
-			join orders c on b.order_id = c.order_id
-			where order_date between #{monthFirst} and #{monthLast}
-			order by hitcount desc) d
+			from books
+            where hitcount > 5
+			order by hitcount desc
             
 ]]>
 	</select>

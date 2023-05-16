@@ -36,7 +36,7 @@
 	</thead>
 	<tbody id="announceList">
 		<c:forEach var="i" items="${board3List }">
-		<tr>
+		<tr id="${i.boardId }">
 			<td><input type="checkbox" name="announcement" value="${i.boardId }" style=${sesInfo.userId eq 'hbj04003' ? 'dispaly:inline' : 'display:none' }></td>
 			<td style="text-align: left;"><p style="font-weight:bold;color:red ">중요</p></td>
 			<td style="text-align: left;"><a href="/searchAnno.do?boardId=${i.boardId }" style="text-decoration: none;color:red" >${i.boardTitle }</a></td>
