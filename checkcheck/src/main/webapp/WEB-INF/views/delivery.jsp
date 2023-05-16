@@ -411,13 +411,14 @@ function execDaumPostcode() {
   }
   
 	 document.querySelector('#basketCount').addEventListener('change',function(){
+		let count =this.value*1;
 		if(this.value < 1){
 			alert('1권이하 주문 불가합니다');
 			this.value =1;
 		}
 		let stock = "${bookStock}";
 		console.log(stock);
-		if(this.value > stock){
+		if(count > stock){
 			alert('재고량 이상으로 주문 불가합니다');
 			this.value = stock;
 		}

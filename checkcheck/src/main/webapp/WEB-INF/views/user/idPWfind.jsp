@@ -10,7 +10,6 @@
 	<style>
 		#containter {
 			width: 600px;
-			
 			margin: 50px auto;
 		}
 
@@ -43,8 +42,7 @@
 
 		.form label {
 			margin-bottom: 10px;
-			float: left;
-			display: block;
+			
 		}
 
 		.form input[type="text"],
@@ -87,24 +85,32 @@
 				<button type="button" id="findIdBtn">다음</button>
 			</form>
 		</div>
-
-		<div id="findPasswordForm" class="form">
-			<h2>비밀번호 찾기</h2>
-			<form>
-				<label for="findPasswordId">아이디:</label> 
-				<input type="text" id="findPasswordId" name="findPasswordId" required>
-				<label for="findPasswordEmail">이메일:</label> 
-				<input type="email" id="findPasswordEmail" name="findPasswordEmail" required>
-				<button type="button" id="findPasswordBtn">다음</button>
-			</form>
-		</div>
-
 		<div id="authForm" class="form">
 			<h2>인증하기</h2>
 			<form>
 				<label for="authCode">인증 코드:</label> 
 				<input type="text" id="authCode" name="authCode" required>
 				<button type="button" id="authBtn">인증하기</button>
+			</form>
+		</div>
+
+		<div id="findPasswordForm" class="form">
+			<h2>비밀번호 찾기</h2>
+			<form>
+				<label for="findPasswordId">아이디:</label> 
+				<input type="text" id="findPasswordId" name="findPasswordId" required>
+				<label for="findPasswordEmail">가입 이메일:</label> 
+				<input type="email" id="findPasswordEmail" name="findPasswordEmail" required>
+				<button type="button" id="findPasswordBtn">다음</button>
+			</form>
+		</div>
+
+		<div id="authForm2" class="form">
+			<h2>인증하기</h2>
+			<form>
+				<label for="authCode2">인증 코드:</label> 
+				<input type="text" id="authCode2" name="authCode2" required>
+				<button type="button" id="authBtn2">인증하기</button>
 			</form>
 		</div>
 
@@ -127,12 +133,14 @@
 		let findIdForm = document.getElementById('findIdForm');
 		let findPasswordForm = document.getElementById('findPasswordForm');
 		let authForm = document.getElementById('authForm');
+		let authForm2 = document.getElementById('authForm2');
 		let setPasswordForm = document.getElementById('setPasswordForm');
 
 		//버튼 요소들을 가져옴
 		let findIdBtn = document.getElementById('findIdBtn');
 		let findPasswordBtn = document.getElementById('findPasswordBtn');
 		let authBtn = document.getElementById('authBtn');
+		let authBtn2 = document.getElementById('authBtn2');
 		let setPasswordBtn = document.getElementById('setPasswordBtn');
 
 		// 아이디 찾기 탭을 클릭했을 때
@@ -145,6 +153,7 @@
 			findIdForm.style.display = 'flex';
 			findPasswordForm.style.display = 'none';
 			authForm.style.display = 'none';
+			authForm2.style.display = 'none';
 			setPasswordForm.style.display = 'none';
 		});
 
@@ -158,30 +167,46 @@
 			findPasswordForm.style.display = 'flex';
 			findIdForm.style.display = 'none';
 			authForm.style.display = 'none';
+			authForm2.style.display = 'none';
 			setPasswordForm.style.display = 'none';
 		});
 
 		// 아이디 찾기 다음 버튼을 클릭했을 때
 		findIdBtn.addEventListener('click', function () {
 			// 인증 폼을 보여주고 아이디 찾기 폼을 숨김
-			fetch('findId.do')
-			.then(resolve=>)
-			authForm.style.display = 'flex';
-			findIdForm.style.display = 'none';
+			/*fetch('findId.do')
+			.then(resolve=> resolve.json)
+			.then(result=>{
+				if(result.retCode=='Success'){
+					authForm.style.display = 'flex';
+					findIdForm.style.display = 'none';
+				}else if(result.retCode=='Fail'){
+					alert('아이디가 존재하지 않습니다');
+					return;
+				}else alert('알수 없는 오류');
+				
+			})*/
+			
 		});
 
 		// 비밀번호 찾기 다음 버튼을 클릭했을 때
 		findPasswordBtn.addEventListener('click', function () {
 			// 인증 폼을 보여주고 비밀번호 찾기 폼을 숨김
-			authForm.style.display = 'flex';
+			authForm2.style.display = 'flex';
 			findPasswordForm.style.display = 'none';
 		});
 
-		// 인증하기 버튼을 클릭했을 때
+		// 아이디 인증하기 버튼을 클릭했을 때
 		authBtn.addEventListener('click', function () {
 			// 비밀번호 설정 폼을 보여주고 인증 폼을 숨김
 			setPasswordForm.style.display = 'flex';
 			authForm.style.display = 'none';
+		});
+		// 비밀 인증하기 버튼을 클릭했을 때
+		authBtn2.addEventListener('click', function () {
+			// 비밀번호 설정 폼을 보여주고 인증 폼을 숨김
+			setPasswordForm.style.display = 'flex';
+			authForm2.style.display = 'none';
 		});
 
 
