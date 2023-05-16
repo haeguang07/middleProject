@@ -19,7 +19,7 @@
 		delete baskets where basket_id = #{basketId}
 	</delete>
 	<select id="selectbook">
-		select isbn from books where book_name=#{bookName}
+		select isbn from books where book_name Like '%'||#{bookName}||'%'
 	</select>
 	<insert id="insertHistory" parameterType="history">
 		insert into historys values(#{orderId},#{isbn},#{historyCount})

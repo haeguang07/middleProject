@@ -51,7 +51,7 @@ public class OrderCompleteControl implements Control {
 			if(bookStock == 1) {
 				bookStock = 1;
 			}
-			System.out.println(bookStock);
+			System.out.println("bookStock = "+bookStock);
 			System.out.println("ordercheck4");
 			String coupon = req.getParameter("couponId");
 			OrderVO vo = new OrderVO();
@@ -70,8 +70,9 @@ public class OrderCompleteControl implements Control {
 			service.insertOrder(vo);
 			BookVO bvo = new BookVO();
 			bvo = service.selectbook(bookName);
-			bvo.setBookStock(bookStock);
 			System.out.println(bvo);
+			System.out.println(bookName);
+			bvo.setBookStock(bookStock);
 			service.updateBook(bvo);
 			int userPoint = Integer.parseInt(req.getParameter("totalSpoint"));
 			service.updateUser(userPoint,userId);
@@ -86,7 +87,7 @@ public class OrderCompleteControl implements Control {
 			}
 			bvo = service.selectbook(bookName);
 			long isbn = bvo.getIsbn();
-			int historyCount = 1;
+			int historyCount = bookStock;
 			HistoryVO hvo = new HistoryVO();
 			hvo.setOrderId(orderId);
 			hvo.setIsbn(isbn);

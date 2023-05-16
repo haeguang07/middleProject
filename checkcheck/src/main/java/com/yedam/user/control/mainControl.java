@@ -28,6 +28,7 @@ public class mainControl implements Control {
 		
 		req.setAttribute("normalList", list);
 		req.setAttribute("newList", newlist);
+		System.out.println(newlist);
 		req.setAttribute("newBookList", newBookList);
 		
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
