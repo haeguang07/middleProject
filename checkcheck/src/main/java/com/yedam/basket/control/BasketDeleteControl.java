@@ -64,10 +64,10 @@ public class BasketDeleteControl implements Control {
 			
 			System.out.println(dateFormat.format(cal.getTime()));
 			cal.set(cal.DAY_OF_MONTH, cal.getMinimum(Calendar.DAY_OF_MONTH));
-			String monthFirst = dateFormat.format(cal.getTime());
+			Date monthFirst = cal.getTime();
 			System.out.println(dateFormat.format(cal.getTime()));
 			cal.set(cal.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
-			String monthLast = dateFormat.format(cal.getTime());
+			Date monthLast = cal.getTime();
 			System.out.println(dateFormat.format(cal.getTime()));
 			
 			List<BookVO> bestSellerList = service.getBestSeller(monthFirst, monthLast);
