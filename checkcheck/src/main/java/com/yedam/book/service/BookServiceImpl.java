@@ -1,5 +1,6 @@
 package com.yedam.book.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -57,12 +58,12 @@ public class BookServiceImpl implements BookService{
 	}
 
 	@Override
-	public List<BookVO> getBestSeller(String monthFirst, String monthLast) {
+	public List<BookVO> getBestSeller(Date monthFirst, Date monthLast) {
 		return mapper.bestSeller(monthFirst, monthLast);
 	}
 
 	@Override
-	public List<BookVO> getBestSellerSearchPage(String monthFirst, String monthLast, int page) {
+	public List<BookVO> getBestSellerSearchPage(Date monthFirst, Date monthLast, int page) {
 		return mapper.bestSellerSearchPage(monthFirst, monthLast, page);
 	}
 
@@ -72,7 +73,7 @@ public class BookServiceImpl implements BookService{
 	}
 
 	@Override
-	public int getBestCount(String monthFirst, String monthLast) {
+	public int getBestCount(Date monthFirst, Date monthLast) {
 		return mapper.bestSellerCount(monthFirst, monthLast);
 	}
 
@@ -87,12 +88,12 @@ public class BookServiceImpl implements BookService{
 	}
 
 	@Override
-	public List<BookVO> getNewBookSearchPage(String monthFirst, String monthLast, int page) {
+	public List<BookVO> getNewBookSearchPage(Date monthFirst, Date monthLast, int page) {
 		return mapper.newBookSearchPage(monthFirst, monthLast, page);
 	}
 
 	@Override
-	public int newBookCountSearch(String monthFirst, String monthLast) {
+	public int newBookCountSearch(Date monthFirst, Date monthLast) {
 		return mapper.newBookCount(monthFirst, monthLast);
 	}
 

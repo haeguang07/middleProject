@@ -34,10 +34,10 @@ public class BestSellerControl implements Control {
 		
 		System.out.println(dateFormat.format(cal.getTime()));
 		cal.set(cal.DAY_OF_MONTH, cal.getMinimum(Calendar.DAY_OF_MONTH));
-		String monthFirst = dateFormat.format(cal.getTime());
+		Date monthFirst = cal.getTime();
 		System.out.println(dateFormat.format(cal.getTime()));
 		cal.set(cal.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
-		String monthLast = dateFormat.format(cal.getTime());
+		Date monthLast = cal.getTime();
 		System.out.println(dateFormat.format(cal.getTime()));
 		
 		
@@ -48,9 +48,9 @@ public class BestSellerControl implements Control {
 			
 			System.out.println(shWeek);
 			String[] dateArr = shWeek.split("\\|");
-			monthFirst = dateArr[0];
+			monthFirst = new Date(dateArr[0]);
 			System.out.println(monthFirst + "zzzzz");
-			monthLast = dateArr[1];
+			monthLast = new Date(dateArr[1]);
 			System.out.println(monthLast + "zzzzddsdsd");
 			String pageStr = req.getParameter("page");
 			pageStr = pageStr == null ? "1" : pageStr;
@@ -79,9 +79,9 @@ public class BestSellerControl implements Control {
 		pageStr = pageStr == null ? "1" : pageStr;
 		int page = Integer.parseInt(pageStr);
 		System.out.println(page);
-		String monthFirst2 = req.getParameter("monthFirst");
+		Date monthFirst2 =new Date(req.getParameter("monthFirst"));
 		monthFirst2 = monthFirst2 == null ? monthFirst : monthFirst2;
-		String monthLast2 = req.getParameter("monthLast");
+		Date monthLast2 = new Date(req.getParameter("monthLast"));
 		monthLast2 = monthLast2 == null ? monthLast : monthLast2;
 		System.out.println(monthFirst2 + " " + monthLast2);
 
