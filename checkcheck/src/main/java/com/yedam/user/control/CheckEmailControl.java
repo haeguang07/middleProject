@@ -37,12 +37,12 @@ public class CheckEmailControl implements Control {
 	    final String bodyEncoding = "UTF-8"; //콘텐츠 인코딩
 	    int random = (int)(Math.random()*100000)+100000;
 	    String subject = "인증번호 발송";
-	    String fromEmail = "hk97564@gmail.com";
+	    String fromEmail = "";
 	    String fromUsername = "CHECKCHECK";
 	    String toEmail = req.getParameter("email"); // 콤마(,)로 여러개 나열
 	    
 	    final String username = "hk97564";         
-	    final String password = "gllapytrjkrkseak";
+	    final String password = "";
 	    
 	    // 메일에 출력할 텍스트
 	    StringBuffer sb = new StringBuffer();
